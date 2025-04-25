@@ -6,14 +6,15 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 00:13:05 by atambo            #+#    #+#             */
-/*   Updated: 2025/04/25 00:32:23 by atambo           ###   ########.fr       */
+/*   Updated: 2025/04/25 01:10:58 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
 
-int init_data(t_data *data)
+int ft_init_data(t_data *data, int fd)
 {
+	data->fd = fd;
 	data->mlx = mlx_init();
 	if (!data->mlx)
 	{
@@ -30,4 +31,5 @@ int init_data(t_data *data)
 	data->img = mlx_new_image(data->mlx, IM_WIDTH, IM_HEIGHT);
 	data->addr = mlx_get_data_addr(data->img, &data->bpp,
 			&data->line_len, &data->endian);
+	return (0);
 }

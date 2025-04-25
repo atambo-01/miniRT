@@ -15,10 +15,11 @@ SOURCES		=	src/minirt.c\
 				src/inits.c\
 				src/inputs.c\
 				src/utils.c\
+				src/ft_perror.c\
 
 NAME		=	miniRT
 CC			=	cc
-CFLAGS		=	-g #-Wall -Wextra -Werror
+CFLAGS		=	-g -Wall -Wextra -Werror
 OBJS		=	$(SOURCES:.c=.o)
 INCLUDES	=	-Iinc
 

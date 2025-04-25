@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 22:55:42 by atambo            #+#    #+#             */
-/*   Updated: 2025/04/25 00:31:17 by atambo           ###   ########.fr       */
+/*   Updated: 2025/04/25 01:10:48 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@
 # include			<unistd.h>
 # include			<math.h>
 # include			<stdio.h>
-#include			<errno.h>
+# include			<errno.h>
+# include			<fcntl.h>
+#include			<string.h>
 
 # include			"../minilibx-linux/mlx.h"
 
@@ -37,8 +39,14 @@ typedef struct	s_data
 	void*	win;
 	void*	img;
 	void*	addr;
-};				t_data;
+	int		line_len;
+	int		bpp;
+	int		endian;
+	int		fd;
+}				t_data;
 
 int	ft_perror(char const *msg, int e);
+int ft_check_file(int ac, char **av);
+int ft_init_data(t_data *data, int fd);
 
 #endif
