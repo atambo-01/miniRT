@@ -1,30 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minirt.c                                           :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/24 22:57:58 by atambo            #+#    #+#             */
-/*   Updated: 2025/04/25 01:55:00 by atambo           ###   ########.fr       */
+/*   Created: 2025/04/25 00:13:05 by atambo            #+#    #+#             */
+/*   Updated: 2025/04/25 01:49:45 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
 
-int main(int ac, char **av)
+int ft_init_data(t_data *data, int fd)
 {
-	int		fd;
-	t_data	data;
-
-	fd = ft_check_file(ac, av);
-	ft_init_data(&data, fd);
-//	render_img();
-	mlx_put_image_to_window(data.mlx, data.win, data.img, 0, 0);
-	mlx_key_hook(data.win, key_hook, &data);
-	// mlx_mouse_hook(data.win, mouse_hook, data);
-	// mlx_hook (data.win, 17, 0, close_window, data);
-	mlx_hook (data.win, 17, 0, close_window, &data);
-	mlx_loop (data.mlx);
+	data->fd = fd;
+	data->mlx = mlx_init();
+	if (!data->mlx)
+	{
+		free(data);
+		exit(1);
+	}
+	data->win = mlx_new_window(data->mlx, W_WIDTH, W_HEIGHT, "fract-ol");
+	if (!data->win)
+	{
+		mlx_destroy_display(data->mlx);
+		free(data);
+		exit(1);
+	}
+	data->img = mlx_new_image(data->mlx, IM_WIDTH, IM_HEIGHT);
+	data->addr = mlx_get_data_addr(data->img, &data->bpp,
+			&data->line_len, &data->endian);
 	return (0);
 }

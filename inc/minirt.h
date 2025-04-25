@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 22:55:42 by atambo            #+#    #+#             */
-/*   Updated: 2025/04/25 01:10:48 by atambo           ###   ########.fr       */
+/*   Updated: 2025/04/25 01:50:19 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,7 @@ typedef struct	s_data
 int	ft_perror(char const *msg, int e);
 int ft_check_file(int ac, char **av);
 int ft_init_data(t_data *data, int fd);
+int	key_hook(int keycode, t_data *data);
+int	close_window(t_data *data);
 
 #endif
