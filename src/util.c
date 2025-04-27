@@ -6,11 +6,18 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 02:23:44 by atambo            #+#    #+#             */
-/*   Updated: 2025/04/26 16:53:06 by atambo           ###   ########.fr       */
+/*   Updated: 2025/04/27 15:13:31 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
+
+void ft_setvec3(t_vec3 *v, float a, float b, float c)
+{
+    v->x = a;
+    v->y = b;
+    v->z = c;
+}
 
 void ft_pixel_put_img(t_img *img, int x, int y, int color)
 {

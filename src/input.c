@@ -6,35 +6,105 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 01:38:57 by atambo            #+#    #+#             */
-/*   Updated: 2025/04/27 07:41:13 by atambo           ###   ########.fr       */
+/*   Updated: 2025/04/27 17:46:42 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
 
-// void	key_hook_2(int keycode, t_data *data)
-// {
-// }
-
-// int	key_hook(int keycode, t_data *data)
-// {
-// 	if (keycode == ESC)
-// 		close_window(data);
-// 	if (keycode == DOWN)
-// 	if (keycode == UP)
-// 	if (keycode == LEFT)
-// 	if (keycode == RIGHT)
-// 	key_hook_2(keycode, data);
-// 	return (0);
-// }
-
-int ft_p_cam(t_data *data)
+int ft_print_vec3(t_vec3 *vec)
 {
-	system("clear");
-	printf("\t\tx\ty\tz\n");
-	printf("cam_pos =\t%0.4f\t%0.4f\t%0.4f \n", data->cam.pos.x, data->cam.pos.y, data->cam.pos.z);
-	printf("cam_dir =\t%0.4f\t%0.4f\t%0.4f \n", data->cam.dir.x, data->cam.dir.y, data->cam.dir.z);
-	printf("---------------------------------------------------\n");
+    printf("\t\t%.4f\t%.4f\t%.4f\n", vec->x, vec->y, vec->z);
+    return (0);
+}
+
+int ft_print_cam(t_cam *cam)
+{
+    printf("Camera:\n");
+    printf("  Pos:\t");
+    ft_print_vec3(&cam->pos);
+    printf("  Dir:\t");
+    ft_print_vec3(&cam->dir);
+    printf("  FOV:\t%.2f degrees\n", cam->fov);
+    return (0);
+}
+
+int ft_print_obj(t_obj *obj)
+{
+    printf("Objects:\n");
+    while (obj)
+    {
+        printf("  Type:\t%c\n", obj->type);
+        printf("  Center:");
+        ft_print_vec3(&obj->center);
+        printf("  Dir:\t");
+        ft_print_vec3(&obj->dir);
+        printf("  Radius:\t%.2f\n", obj->radius);
+        printf("  Length:\t%.2f\n", obj->len);
+        printf("  Color:\t0x%06X\n", obj->color);
+        obj = obj->next;
+    }
+    return (0);
+}
+
+int ft_print_data(t_data *data)
+{
+    system("clear");
+    printf("-----------------------------------------\n");
+    printf("\t\t\tx\ty\tz\n");
+    ft_print_cam(&data->cam);
+    ft_print_obj(data->obj);
+    printf("-----------------------------------------\n");
+    return (0);
+}
+
+int ft_rotate_obj(int keycode, t_data *data)
+{
+	float angle = 15.0 * M_PI / 180; // 5 degrees in radians
+	if (keycode == 120) // x
+    {
+        data->obj->dir.x += 0.1;
+        ft_normalize(&data->obj->dir);
+        ft_print_vec3(&data->obj->dir); // Debug
+    }
+    if (keycode == 121) // y
+    {
+        data->obj->dir.y += 0.1;
+        ft_normalize(&data->obj->dir);
+        ft_print_vec3(&data->obj->dir); // Debug
+    }
+	if (keycode == 122) // z (rotate around Z-axis)
+    {
+        float tmp = data->obj->dir.x;
+        data->obj->dir.x = tmp * cos(angle) - data->obj->dir.y * sin(angle);
+        data->obj->dir.y = tmp * sin(angle) + data->obj->dir.y * cos(angle);
+        ft_normalize(&data->obj->dir);
+        ft_print_vec3(&data->obj->dir);
+	}
+}
+int ft_rotate_cam(int keycode, t_data *data)
+{
+	if (keycode == 113)
+	{
+		float tmp = data->cam.dir.x;
+		data->cam.dir.x = tmp * cos(0.1) + data->cam.dir.z * sin(0.1);
+		data->cam.dir.z = -tmp * sin(0.1) + data->cam.dir.z * cos(0.1);
+		ft_normalize(&data->cam.dir);
+	}
+	if (keycode == 113) // Q
+    {
+        float tmp = data->cam.dir.x;
+        data->cam.dir.x = tmp * cos(0.157) + data->cam.dir.z * sin(0.157);
+        data->cam.dir.z = -tmp * sin(0.157) + data->cam.dir.z * cos(0.157);
+        ft_normalize(&data->cam.dir);
+    }
+    if (keycode == 101) // E
+    {
+        float tmp = data->cam.dir.x;
+        data->cam.dir.x = tmp * cos(-0.157) + data->cam.dir.z * sin(-0.157);
+        data->cam.dir.z = -tmp * sin(-0.157) + data->cam.dir.z * cos(-0.157);
+        ft_normalize(&data->cam.dir);
+    }
 }
 
 int ft_key_hook(int keycode, t_data *data)
@@ -50,33 +120,22 @@ int ft_key_hook(int keycode, t_data *data)
 		data->cam.pos.x -= 1;
 	if (keycode == 100)
 		data->cam.pos.x += 1;
-	if (keycode == 113)
-	{
-		float tmp = data->cam.dir.x;
-		data->cam.dir.x = tmp * cos(0.1) + data->cam.dir.z * sin(0.1);
-		data->cam.dir.z = -tmp * sin(0.1) + data->cam.dir.z * cos(0.1);
-		ft_normalize(&data->cam.dir);
-	}
-	if (keycode == 101)
-	{
-		float tmp = data->cam.dir.x;
-		data->cam.dir.x = tmp * cos(-0.1) + data->cam.dir.z * sin(-0.1);
-		data->cam.dir.z = -tmp * sin(-0.1) + data->cam.dir.z * cos(-0.1);
-		ft_normalize(&data->cam.dir);
-	}
-    ft_render_scene(data);
+	ft_rotate_cam(keycode, data);
+	ft_rotate_obj(keycode, data);
+	ft_print_data(data);
+	ft_render_scene(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img.ptr, 0, 0);
-	ft_p_cam(data);
     return (0);
 }
 
 int ft_mouse_hook(int button, int x, int y, t_data *data)
 {
-    if (button == 4) // Scroll up
+    if (button == 4) // Scroll upc
         data->cam.pos.z += 1.0;
     if (button == 5) // Scroll down
         data->cam.pos.z -= 1.0;
+	ft_print_data(data);
 	ft_render_scene(data);
-	ft_p_cam(data);
+	mlx_put_image_to_window(data->mlx, data->win, data->img.ptr, 0, 0);
     return (0);
 }

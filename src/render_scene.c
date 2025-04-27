@@ -6,35 +6,37 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 16:38:03 by atambo            #+#    #+#             */
-/*   Updated: 2025/04/27 12:55:24 by atambo           ###   ########.fr       */
+/*   Updated: 2025/04/27 17:40:11 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
 
-float ft_intersect_plane(t_vec3 orig, t_vec3 dir, t_vec3 center, t_vec3 normal, float size)
+float ft_intersect_plane(t_vec3 origin, t_vec3 dir, t_obj *obj)
 {
     float denom, t;
     t_vec3 hit, u, v, p;
 
-    denom = ft_dot(normal, dir);
+    denom = ft_dot(obj->dir, dir);
     if (denom == 0.0) // Ray parallel to plane
         return (-1);
-    t = (ft_dot(center, normal) - ft_dot(orig, normal)) / denom;
+    t = (ft_dot(obj->center, obj->dir) - ft_dot(origin, obj->dir)) / denom;
     if (t < 0.0) // Intersection behind ray origin
         return (-1);
-    if (size == 0.0) // Infinite plane
+    if (obj->radius == 0.0) // Infinite plane
         return (t);
-    hit.x = orig.x + t * dir.x;
-    hit.y = orig.y + t * dir.y;
-    hit.z = orig.z + t * dir.z;
-    u = (t_vec3){-normal.z, 0, normal.x}; // Local X-axis perpendicular to normal
+    hit.x = origin.x + t * dir.x;
+    hit.y = origin.y + t * dir.y;
+    hit.z = origin.z + t * dir.z;
+    u = (t_vec3){-obj->dir.z, 0, obj->dir.x}; // Local X-axis
     ft_normalize(&u);
-    v = (t_vec3){-normal.y * u.z, normal.z * u.z - normal.x * u.x, normal.x * u.y}; // Local Y-axis
+    v = (t_vec3){-obj->dir.y * u.z, obj->dir.z * u.z - obj->dir.x * u.x, obj->dir.x * u.y}; // Local Y-axis
     ft_normalize(&v);
-    p.x = ft_dot(hit, u) - ft_dot(center, u);
-    p.y = ft_dot(hit, v) - ft_dot(center, v);
-    if (p.x < -size || p.x > size || p.y < -size || p.y > size) // Outside square
+    p.x = ft_dot(hit, u) - ft_dot(obj->center, u);
+    p.y = ft_dot(hit, v) - ft_dot(obj->center, v);
+    if (p.x < -obj->radius || p.x > obj->radius || p.y < -obj->radius || p.y > obj->radius) // Outside square
+        return (-1);
+    if (sqrt(p.x * p.x + p.y * p.y) <= 3.0) // Black circle, radius 3
         return (-1);
     return (t);
 }
@@ -43,10 +45,9 @@ void ft_render_scene(t_data *data)
 {
     int x = 0;
     int y = 0;
-    t_vec3 plane_center = {0, 0, 10}; // Center of plane
-    t_vec3 plane_normal = {0.7071, 0, 0.7071}; // Normal (45° tilt)
-    float plane_size = 50.0; // Half-size (10x10 square)
-    t_vec3 ray_dir = data->cam.dir;
+    float fov = data->cam.fov * M_PI / 180.0; // 60 degrees to radians
+    float aspect = (float)IM_WIDTH / IM_HEIGHT; // 1.5
+    float tan_half_fov = tan(fov / 2.0);
 
     while (y < IM_HEIGHT)
     {
@@ -54,13 +55,20 @@ void ft_render_scene(t_data *data)
         while (x < IM_WIDTH)
         {
             t_vec3 ray_pos = data->cam.pos;
-            ray_pos.x += (x - IM_WIDTH / 2);
-            ray_pos.y += (IM_HEIGHT / 2 - y);
-            float t = ft_intersect_plane(ray_pos, ray_dir, plane_center, plane_normal, plane_size);
+            float px = (2.0 * (x + 0.5) / IM_WIDTH - 1.0) * tan_half_fov * aspect;
+            float py = (1.0 - 2.0 * (y + 0.5) / IM_HEIGHT) * tan_half_fov;
+            t_vec3 ray_dir = {px, py, 1.0};
+            ft_normalize(&ray_dir);
+            float t = ft_intersect_plane(ray_pos, ray_dir, data->obj);
             if (t > 0)
-                ft_pixel_put_img(&data->img, x, y, 0xFFFFFF); // White for hit
+            {
+                float intensity = 60.0 / t;
+                int green = (int)(intensity * 255);
+                int color = (green << 8); // 0x00GG00
+                ft_pixel_put_img(&data->img, x, y, color);
+            }
             else
-                ft_pixel_put_img(&data->img, x, y, 0x000000); // Black for miss
+                ft_pixel_put_img(&data->img, x, y, 0x000000);
             x++;
         }
         y++;

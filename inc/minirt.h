@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 22:55:42 by atambo            #+#    #+#             */
-/*   Updated: 2025/04/26 16:52:49 by atambo           ###   ########.fr       */
+/*   Updated: 2025/04/27 17:07:13 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,17 @@ typedef struct	s_vec3
     float x, y, z;
 }				t_vec3;
 
+typedef struct	s_obj t_obj;
+typedef struct	s_obj
+{
+	char	type;
+	t_vec3	center;
+	t_vec3	dir;
+	float	radius;
+	float	len;
+	int		color;
+	t_obj	*next;
+}				t_obj;
 typedef struct	s_cam
 {
     t_vec3	pos;
@@ -63,6 +74,7 @@ typedef struct	s_data
 	t_img	img;
 	t_img	s_img;
 	t_cam	cam;
+	t_obj	*obj;
 }				t_data;
 
 // src/check_file.c
@@ -84,6 +96,7 @@ void	ft_upscale_img(t_data *data);
 float	ft_intersect_sphere(t_vec3 orig, t_vec3 dir, t_vec3 center, float radius);
 void	ft_render_scene(t_data *data);
 // src/util.c
+void 	ft_setvec3(t_vec3 *v, float a, float b, float c);
 void	ft_pixel_put_img(t_img *img, int x, int y, int color);
 float	ft_dot(t_vec3 a, t_vec3 b);
 void	ft_normalize(t_vec3 *v);
