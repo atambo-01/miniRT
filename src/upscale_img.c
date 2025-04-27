@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 04:24:21 by atambo            #+#    #+#             */
-/*   Updated: 2025/04/25 12:07:56 by atambo           ###   ########.fr       */
+/*   Updated: 2025/04/26 16:55:17 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void fill_color(t_data *data, int color)
         x = 0;
         while (x < W_WIDTH)
         {
-            pixel_put_img(&img, x, y, color);
+            ft_pixel_put_img(&img, x, y, color);
             x++;
         }
         y++;
@@ -52,7 +52,7 @@ void fill_tiled(t_img *img, t_data *data)
             // Alternate colors: black or white based on (tile_x + tile_y) parity
             int color = ((tile_x + tile_y) % 2 == 0) ? 0xFFFFFF : 0x000000;
             // Set pixel at (x, y) in the smaller image
-			pixel_put_img(img, x, y, color);
+			ft_pixel_put_img(img, x, y, color);
         }
     }
 }
@@ -118,7 +118,7 @@ void upscale_img(t_data *data)
             b = b_sum / count;
 
             int color = ((int)r << 16) | ((int)g << 8) | (int)b;
-            pixel_put_img(&data->s_img, x, y, color);
+            ft_pixel_put_img(&data->s_img, x, y, color);
         }
     }
 }
