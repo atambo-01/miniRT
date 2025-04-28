@@ -19,6 +19,7 @@ SOURCES		=	src/minirt.c\
 				src/ft_perror.c\
 				src/upscale_img.c\
 				src/render_scene.c\
+				src/print_data.c\
 
 NAME		=	miniRT
 CC			=	cc

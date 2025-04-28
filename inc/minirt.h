@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 22:55:42 by atambo            #+#    #+#             */
-/*   Updated: 2025/04/27 17:07:13 by atambo           ###   ########.fr       */
+/*   Updated: 2025/04/27 20:19:17 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,13 +88,18 @@ int		ft_key_hook(int keycode, t_data *data);
 int		ft_mouse_hook(int button, int x, int y, t_data *data);
 // src/input_util.c
 int		ft_close_window(t_data *data);
+// print_data.c
+int		ft_print_vec3(t_vec3 *vec);
+int		ft_print_cam(t_cam *cam);
+int		ft_print_obj(t_obj *obj);
+int		ft_print_data(t_data *data);
+// src/render_scene.c
+float	ft_intersect_sphere(t_vec3 orig, t_vec3 dir, t_vec3 center, float radius);
+void	ft_render_scene(t_data *data);
 // src/upscale_img.c
 void	ft_fill_color(t_data *data, int color);
 void	ft_fill_tiled(t_img *img, t_data *data);
 void	ft_upscale_img(t_data *data);
-// src/render_img.c
-float	ft_intersect_sphere(t_vec3 orig, t_vec3 dir, t_vec3 center, float radius);
-void	ft_render_scene(t_data *data);
 // src/util.c
 void 	ft_setvec3(t_vec3 *v, float a, float b, float c);
 void	ft_pixel_put_img(t_img *img, int x, int y, int color);
