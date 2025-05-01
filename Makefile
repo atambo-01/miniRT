@@ -6,7 +6,7 @@
 #    By: mchingi <mchingi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/29 12:55:11 by mchingi           #+#    #+#              #
-#    Updated: 2025/04/29 15:44:28 by mchingi          ###   ########.fr        #
+#    Updated: 2025/04/30 15:01:59 by mchingi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ OBJ = $(SRC:.c=.o)
 all: $(NAME)
 
 $(NAME):	$(MLX) $(OBJ)
-			$(CC) $(CFLAGS) $(MLXFLAGS) $(MLX) $(OBJ) -o $(NAME)
+			$(CC) $(CFLAGS) $(OBJ) $(MLXFLAGS) -o $(NAME)
 			@echo "Program Compiled!"
 
 $(MLX):
