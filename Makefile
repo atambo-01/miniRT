@@ -49,7 +49,6 @@ clean:
 
 fclean: clean
 	rm -f $(NAME)
-	$(foreach dir, $(SUBDIR), $(MAKE) -C $(dir) fclean;)
 
 re: fclean all
 

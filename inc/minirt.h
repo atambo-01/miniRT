@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 22:55:42 by atambo            #+#    #+#             */
-/*   Updated: 2025/04/27 20:19:17 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/01 15:10:54 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef struct	s_obj
 	char	type;
 	t_vec3	center;
 	t_vec3	dir;
+	t_vec3	u;
 	float	radius;
 	float	len;
 	int		color;

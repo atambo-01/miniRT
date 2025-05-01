@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 00:13:05 by atambo            #+#    #+#             */
-/*   Updated: 2025/04/27 17:33:41 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/01 15:27:44 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,10 @@ int	ft_init_obj(t_data *data)
 	data->obj = obj;
 	data->obj->type = 'P';
 	ft_setvec3(&data->obj->center, 0, 0, 15);
-	ft_setvec3(&data->obj->dir, 0.7, 0, 0.7);
-	data->obj->radius = 10;
-	data->obj->len = 10;
+	ft_setvec3(&data->obj->dir, 0.0, 0.0, 1.0);
+	ft_setvec3(&data->obj->u, 0.0, 1.0, 0.0);
+	data->obj->radius = 5;
+	data->obj->len = 5;
 	data->obj->color = 0x2d57cc;
 	data->obj->next = NULL;
 	return (0);
@@ -32,7 +33,7 @@ int ft_init_cam(t_data *data)
 {
 	ft_setvec3(&data->cam.pos, 0, 0, -10);
 	ft_setvec3(&data->cam.dir, 0, 0, 1);
-    data->cam.fov = 60.0;
+    data->cam.fov = 0.0;
 	return (ft_init_obj(data));
 }
 

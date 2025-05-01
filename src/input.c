@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 01:38:57 by atambo            #+#    #+#             */
-/*   Updated: 2025/04/28 07:29:27 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/01 15:40:16 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,63 +14,91 @@
 
 void ft_rotate_obj_z(int keycode, t_data *data)
 {
-    float angle = 15.0 * M_PI / 180.0; // 15 degrees
-    float tmp = data->obj->dir.x;
-    if (keycode == 65436) // z: +15° (clockwise)
+    float angle = 15.0 * M_PI / 180.0;
+    float tmp_x, tmp_ux;
+    if (keycode == 65436) // Numpad 1: +15°
     {
-        data->obj->dir.x = tmp * cos(angle) - data->obj->dir.y * sin(angle);
-        data->obj->dir.y = tmp * sin(angle) + data->obj->dir.y * cos(angle);
+        tmp_x = data->obj->dir.x;
+        tmp_ux = data->obj->u.x;
+        data->obj->dir.x = tmp_x * cos(angle) - data->obj->dir.y * sin(angle);
+        data->obj->dir.y = tmp_x * sin(angle) + data->obj->dir.y * cos(angle);
+        data->obj->u.x = tmp_ux * cos(angle) - data->obj->u.y * sin(angle);
+        data->obj->u.y = tmp_ux * sin(angle) + data->obj->u.y * cos(angle);
     }
-    else if (keycode == 65435) // x: -15° (counterclockwise)
+    else if (keycode == 65435) // Numpad 3: -15°
     {
-        data->obj->dir.x = tmp * cos(angle) + data->obj->dir.y * sin(angle);
-        data->obj->dir.y = -tmp * sin(angle) + data->obj->dir.y * cos(angle);
+        tmp_x = data->obj->dir.x;
+        tmp_ux = data->obj->u.x;
+        data->obj->dir.x = tmp_x * cos(angle) + data->obj->dir.y * sin(angle);
+        data->obj->dir.y = -tmp_x * sin(angle) + data->obj->dir.y * cos(angle);
+        data->obj->u.x = tmp_ux * cos(angle) + data->obj->u.y * sin(angle);
+        data->obj->u.y = -tmp_ux * sin(angle) + data->obj->u.y * cos(angle);
     }
     if (keycode == 65436 || keycode == 65435)
     {
         ft_normalize(&data->obj->dir);
+        ft_normalize(&data->obj->u);
         ft_print_vec3(&data->obj->dir);
     }
 }
 
 void ft_rotate_obj_y(int keycode, t_data *data)
 {
-    float angle = 15.0 * M_PI / 180.0; // 15 degrees
-    float tmp = data->obj->dir.x;
-    if (keycode == 65430) // c: +15°
+    float angle = 15.0 * M_PI / 180.0;
+    float tmp_x, tmp_ux;
+    if (keycode == 65430) // Numpad 4
     {
-        data->obj->dir.x = tmp * cos(angle) - data->obj->dir.z * sin(angle);
-        data->obj->dir.z = tmp * sin(angle) + data->obj->dir.z * cos(angle);
+        tmp_x = data->obj->dir.x;
+        tmp_ux = data->obj->u.x;
+        data->obj->dir.x = tmp_x * cos(angle) - data->obj->dir.z * sin(angle);
+        data->obj->dir.z = tmp_x * sin(angle) + data->obj->dir.z * cos(angle);
+        data->obj->u.x = tmp_ux * cos(angle) - data->obj->u.z * sin(angle);
+        data->obj->u.z = tmp_ux * sin(angle) + data->obj->u.z * cos(angle);
     }
-    else if (keycode == 65432) // v: -15°
+    else if (keycode == 65432) // Numpad 6
     {
-        data->obj->dir.x = tmp * cos(angle) + data->obj->dir.z * sin(angle);
-        data->obj->dir.z = -tmp * sin(angle) + data->obj->dir.z * cos(angle);
+        tmp_x = data->obj->dir.x;
+        tmp_ux = data->obj->u.x;
+        data->obj->dir.x = tmp_x * cos(angle) + data->obj->dir.z * sin(angle);
+        data->obj->dir.z = -tmp_x * sin(angle) + data->obj->dir.z * cos(angle);
+        data->obj->u.x = tmp_ux * cos(angle) + data->obj->u.z * sin(angle);
+        data->obj->u.z = -tmp_ux * sin(angle) + data->obj->u.z * cos(angle);
     }
-    if (keycode == 65430 || keycode == 65432)
+    if (keycode == 65433 || keycode == 65432)
     {
         ft_normalize(&data->obj->dir);
+        ft_normalize(&data->obj->u);
         ft_print_vec3(&data->obj->dir);
     }
 }
+
 void ft_rotate_obj_x(int keycode, t_data *data)
 {
-    float angle = 15.0 * M_PI / 180.0; // 15 degrees in radians
-    float tmp = data->obj->dir.x;
-    if (keycode == 65429) // z: +15° (clockwise)
+    float angle = 15.0 * M_PI / 180.0;
+    float tmp_y, tmp_uy;
+    if (keycode == 65429) // Numpad 7
     {
-        data->obj->dir.x = tmp * cos(angle) - data->obj->dir.y * sin(angle);
-        data->obj->dir.y = tmp * sin(angle) + data->obj->dir.y * cos(angle);
+        tmp_y = data->obj->dir.y;
+        tmp_uy = data->obj->u.y;
+        data->obj->dir.y = tmp_y * cos(angle) - data->obj->dir.z * sin(angle);
+        data->obj->dir.z = tmp_y * sin(angle) + data->obj->dir.z * cos(angle);
+        data->obj->u.y = tmp_uy * cos(angle) - data->obj->u.z * sin(angle);
+        data->obj->u.z = tmp_uy * sin(angle) + data->obj->u.z * cos(angle);
     }
-    else if (keycode == 65434) // x: -15° (counterclockwise)
+    else if (keycode == 65434) // Numpad 9
     {
-        data->obj->dir.x = tmp * cos(angle) + data->obj->dir.y * sin(angle);
-        data->obj->dir.y = -tmp * sin(angle) + data->obj->dir.y * cos(angle);
+        tmp_y = data->obj->dir.y;
+        tmp_uy = data->obj->u.y;
+        data->obj->dir.y = tmp_y * cos(angle) + data->obj->dir.z * sin(angle);
+        data->obj->dir.z = -tmp_y * sin(angle) + data->obj->dir.z * cos(angle);
+        data->obj->u.y = tmp_uy * cos(angle) + data->obj->u.z * sin(angle);
+        data->obj->u.z = -tmp_uy * sin(angle) + data->obj->u.z * cos(angle);
     }
     if (keycode == 65429 || keycode == 65434)
     {
-        ft_normalize(&data->obj->dir); // Normalize after rotation
-        ft_print_vec3(&data->obj->dir); // Debug
+        ft_normalize(&data->obj->dir);
+        ft_normalize(&data->obj->u);
+        ft_print_vec3(&data->obj->dir);
     }
 }
 void ft_rotate_obj(int keycode, t_data *data)
