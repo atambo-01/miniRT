@@ -20,6 +20,7 @@ SOURCES		=	src/minirt.c\
 				src/upscale_img.c\
 				src/render_scene.c\
 				src/print_data.c\
+				src/exit_minirt.c\
 
 NAME		=	miniRT
 CC			=	cc

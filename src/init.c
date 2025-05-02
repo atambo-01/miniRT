@@ -6,27 +6,47 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 00:13:05 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/01 15:58:49 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/01 20:46:01 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
 
-int	ft_init_obj(t_data *data)
-{	
-	t_obj *obj;
+// int	ft_init_obj(t_data *data)
+// {	
+// 	t_obj *obj;
 
-	obj = malloc(sizeof(t_obj));
-	data->obj = obj;
-	data->obj->type = 'P';
-	ft_setvec3(&data->obj->center, 0, 0, 15);
-	ft_setvec3(&data->obj->dir, 0.0, 0.0, 1.0);
-	ft_setvec3(&data->obj->u, 0.0, 1.0, 0.0);
-	data->obj->radius = 5;
-	data->obj->len = 5;
-	data->obj->color = 0x2d57cc;
-	data->obj->next = NULL;
-	return (0);
+// 	obj = malloc(sizeof(t_obj));
+// 	data->obj = obj;
+// 	data->obj->type = 'P';
+// 	ft_setvec3(&data->obj->center, 0, 0, 15);
+// 	ft_setvec3(&data->obj->dir, 0.0, 0.0, 1.0);
+// 	ft_setvec3(&data->obj->u, 0.0, 1.0, 0.0);
+// 	data->obj->radius = 5;
+// 	data->obj->len = 5;
+// 	data->obj->color = 0x2d57cc;
+// 	data->obj->next = NULL;
+// 	return (0);
+// }
+
+int ft_init_obj(t_data *data)
+{
+    t_obj *obj;
+
+    obj = malloc(sizeof(t_obj));
+    if (!obj)
+        return (-1);
+    data->obj = obj;
+    obj->type = 'c'; // Cube
+    ft_setvec3(&obj->center, 0, 0, 15);
+    ft_setvec3(&obj->dir, 0.1, 0, -1);
+    ft_setvec3(&obj->u, 0, 1, 0);
+    ft_normalize(&obj->dir);
+    obj->radius = 1; // 20x20x20 cube
+    obj->len = 0;
+    obj->color = 0x2d57cc; // Green
+    obj->next = NULL;
+    return (0);
 }
 
 int ft_init_cam(t_data *data)

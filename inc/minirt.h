@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 22:55:42 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/01 15:10:54 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/02 01:27:29 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,10 @@ typedef struct	s_data
 
 // src/check_file.c
 int 	ft_check_file(int ac, char **av);
+// src/exit_minirt.c
+void	ft_free_obj(t_obj *obj);
+void	ft_quit_mlx(t_data *data);
+void	ft_exit_minirt(t_data *data);
 // ft_perror.c
 int		ft_perror(char const *msg, int e);
 // src/init.c
