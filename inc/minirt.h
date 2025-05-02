@@ -6,12 +6,16 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 22:55:42 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/02 01:44:16 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/02 05:17:36 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef				MINIRT_H
 # define			MINIRT_H
+
+# ifndef 			BUFFER_SIZE
+#  define 			BUFFER_SIZE 42
+# endif
 
 # include			<stdlib.h>
 # include			<unistd.h>
@@ -32,6 +36,7 @@
 # define W_HEIGHT	720
 # define IM_WIDTH	1080
 # define IM_HEIGHT	720
+
 // # define IM_WIDTH	540
 // # define IM_HEIGHT	360
 
@@ -87,6 +92,7 @@ void	ft_quit_mlx(t_data *data);
 void	ft_exit_minirt(t_data *data);
 
 // ft_perror.c
+int		ft_strlen(char const *str);
 int		ft_perror(char const *msg, int e);
 
 // src/init.c
@@ -123,5 +129,14 @@ void 	ft_setvec3(t_vec3 *v, float a, float b, float c);
 void	ft_pixel_put_img(t_img *img, int x, int y, int color);
 float	ft_dot(t_vec3 a, t_vec3 b);
 void	ft_normalize(t_vec3 *v);
+
+// src/get_next_line.c && src/get_next_line_utils.c
+char	*ft_strchr(char *s, int c);
+char	*ft_strjoin(char *str, char *buffer);
+char	*ft_strjoin_2(char *new_str, char *str, char *buffer);
+char	*ft_getline(char *str);
+void	ft_free(char **str, char *buffer);
+char	*ft_substr(char *str, int start, int len_str);
+char	*ft_get_next_line(int fd);
 
 #endif

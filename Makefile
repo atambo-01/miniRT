@@ -22,6 +22,8 @@ SOURCES		=	src/minirt.c\
 				src/print_data.c\
 				src/intersect.c\
 				src/exit_minirt.c\
+				src/get_next_line.c\
+				src/get_next_line_utils.c\
 
 NAME		=	miniRT
 CC			=	cc
