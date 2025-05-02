@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 22:55:42 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/02 05:17:36 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/02 08:38:23 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,9 @@
 #include			<string.h>
 
 # include			"../minilibx-linux/mlx.h"
+# include			"../libft/libft.h"
 
+# define SINGLE		3
 # define ESC		65307
 # define UP			65363
 # define DOWN		65361
@@ -36,6 +38,10 @@
 # define W_HEIGHT	720
 # define IM_WIDTH	1080
 # define IM_HEIGHT	720
+
+// error msgs
+
+# define ERR_ALIGHT "Bad ambient light formating\n"
 
 // # define IM_WIDTH	540
 // # define IM_HEIGHT	360
@@ -63,6 +69,20 @@ typedef struct	s_cam
     t_vec3	dir;
     float	fov;
 }				t_cam;
+
+typedef struct	s_light
+{
+	t_vec3	center;
+	float	ratio;
+	int		color;
+}				t_light;
+
+typedef struct	s_alight
+{
+	float	ratio;
+	int		color;
+}				t_alight;
+
 typedef struct	s_img
 {
 	void*	ptr;
@@ -74,13 +94,15 @@ typedef struct	s_img
 
 typedef struct	s_data
 {
-	void*	mlx;
-	void*	win;
-	int		fd;
-	t_img	img;
-	t_img	s_img;
-	t_cam	cam;
-	t_obj	*obj;
+	void*		mlx;
+	void*		win;
+	int			fd;
+	t_img		img;
+	t_img		s_img;
+	t_cam		cam;
+	t_obj		*obj;
+	t_light		light;
+	t_alight	alight;
 }				t_data;
 
 // src/check_file.c
@@ -89,11 +111,7 @@ int 	ft_check_file(int ac, char **av);
 // src/exit_minirt.c
 void	ft_free_obj(t_obj *obj);
 void	ft_quit_mlx(t_data *data);
-void	ft_exit_minirt(t_data *data);
-
-// ft_perror.c
-int		ft_strlen(char const *str);
-int		ft_perror(char const *msg, int e);
+void	ft_exit_minirt(t_data *data, char *err);
 
 // src/init.c
 int 	ft_init_data(t_data *data, int fd);
@@ -108,6 +126,10 @@ float	ft_intersect_plane(t_vec3 origin, t_vec3 dir, t_obj *obj);
 
 // src/input_util.c
 int		ft_close_window(t_data *data);
+
+// src/minirt_error.c
+int		ft_strlen(char const *str);
+int		ft_minirt_error(char const *msg, int e);
 
 // print_data.c
 int		ft_print_vec3(t_vec3 *vec);
@@ -131,12 +153,12 @@ float	ft_dot(t_vec3 a, t_vec3 b);
 void	ft_normalize(t_vec3 *v);
 
 // src/get_next_line.c && src/get_next_line_utils.c
-char	*ft_strchr(char *s, int c);
-char	*ft_strjoin(char *str, char *buffer);
+char	*ft_strchr_1(char *s, int c);
+char	*ft_strjoin_1(char *str, char *buffer);
 char	*ft_strjoin_2(char *new_str, char *str, char *buffer);
 char	*ft_getline(char *str);
 void	ft_free(char **str, char *buffer);
-char	*ft_substr(char *str, int start, int len_str);
+char	*ft_substr_1(char *str, int start, int len_str);
 char	*ft_get_next_line(int fd);
 
 #endif

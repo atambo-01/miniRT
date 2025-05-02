@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_perror.c                                        :+:      :+:    :+:   */
+/*   minirt_error.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 00:29:38 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/02 05:14:13 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/02 08:06:19 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,12 @@ int	ft_strlen(char const *str)
 	return (i);
 }
 
-int	ft_perror(char const *msg, int e)
+int	ft_minirt_error(char const *msg, int e)
 {
 	if (msg)
+	{
+		write(2, "Error\n", 6);
 		write(2, msg, ft_strlen(msg));
+	}
 	return (e);
 }

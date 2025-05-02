@@ -16,7 +16,6 @@ SOURCES		=	src/minirt.c\
 				src/input.c\
 				src/input_util.c\
 				src/util.c\
-				src/ft_perror.c\
 				src/upscale_img.c\
 				src/render_scene.c\
 				src/print_data.c\
@@ -24,16 +23,19 @@ SOURCES		=	src/minirt.c\
 				src/exit_minirt.c\
 				src/get_next_line.c\
 				src/get_next_line_utils.c\
+				src/read_file.c\
+				src/minirt_error.c\
 
 NAME		=	miniRT
 CC			=	cc
 CFLAGS		=	-g #-Wall -Wextra -Werror
 OBJS		=	$(SOURCES:.c=.o)
-INCLUDES	=	-Iinc
+INCLUDES	=	-Iinc -Ilibft
 
-SUBDIR		=	./minilibx-linux
+SUBDIR		=	./minilibx-linux ./libft
 LIBS		=	-Lminilibx-linux -l:libmlx_Linux.a\
-				-L/usr/lib -lXext -lX11 -lm -lz
+				-L/usr/lib -lXext -lX11 -lm -lz\
+				-Llibft -lft\
 
 all: submake $(NAME)
 
@@ -53,6 +55,7 @@ clean:
 
 fclean: clean
 	rm -f $(NAME)
+	$(foreach dir, $(SUBDIR), $(MAKE) -C $(dir) fclean;)
 
 re: fclean all
 

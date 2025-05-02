@@ -6,13 +6,13 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 13:34:38 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/02 05:13:54 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/02 08:37:55 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
 
-char	*ft_strchr(char *s, int c)
+char	*ft_strchr_1(char *s, int c)
 {
 	int	i;
 
@@ -33,7 +33,7 @@ char	*ft_strchr(char *s, int c)
 	return (NULL);
 }
 
-char	*ft_strjoin(char *str, char *buffer)
+char	*ft_strjoin_1(char *str, char *buffer)
 {
 	char	*new_str;
 
@@ -74,7 +74,7 @@ char	*ft_strjoin_2(char *new_str, char *str, char *buffer)
 	return (new_str);
 }
 
-char	*ft_substr(char *str, int start, int len_str)
+char	*ft_substr_1(char *str, int start, int len_str)
 {
 	int		i;
 	char	*subs;

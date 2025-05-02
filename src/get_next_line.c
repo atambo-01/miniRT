@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 16:55:25 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/02 05:09:37 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/02 08:37:35 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ char	*ft_get_next_line(int fd)
 	buffer = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buffer)
 		return (NULL);
-	while (bytes_read != 0 && !(ft_strchr(str, '\n')))
+	while (bytes_read != 0 && !(ft_strchr_1(str, '\n')))
 	{
 		bytes_read = read(fd, buffer, BUFFER_SIZE);
 		if (bytes_read == -1)
@@ -66,10 +66,10 @@ char	*ft_get_next_line(int fd)
 			return (NULL);
 		}
 		buffer[bytes_read] = '\0';
-		str = ft_strjoin(str, buffer);
+		str = ft_strjoin_1(str, buffer);
 	}
 	free(buffer);
 	buffer = ft_getline(str);
-	str = ft_substr(str, ft_strlen(buffer), ft_strlen(str));
+	str = ft_substr_1(str, ft_strlen(buffer), ft_strlen(str));
 	return (buffer);
 }
