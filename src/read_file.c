@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 04:37:51 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/02 08:43:28 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/02 11:37:02 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,13 @@ void	ft_read_file(t_data *data)
 	int i;
 	char *line = NULL;
 	char **tokens = NULL;
+	int		info[];
 
-	line = ft_get_next_line(data->fd);
-	tokens = ft_split(line, ' ');
+	info = (int []){0, 0, 0, 0, 0};
 	while(tokens[i])
 	{
+		line = ft_get_next_line(data->fd);
+		tokens = ft_split(line, ' ');
 		if (!ft_strcmp(tokens[i], "A"))
 			ft_get_alight(data, tokens);
 		// else if (ft_strcmp(token[i][0], "C") == 0)
