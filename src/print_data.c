@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 20:15:19 by atambo            #+#    #+#             */
-/*   Updated: 2025/04/27 22:17:20 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/05 12:52:06 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int ft_print_obj(t_obj *obj)
     printf("Objects:\n");
     while (obj)
     {
-        printf("  Type:\t%c\n", obj->type);
+        printf("  Type:\t%s\n", obj->type);
         printf("  Center:");
         ft_print_vec3(&obj->center);
         printf("  Dir:\t");

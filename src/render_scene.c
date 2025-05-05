@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 16:38:03 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/05 12:26:16 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/05 12:57:58 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ t_hit *ft_calc_hit(t_vec3 ray_o, t_vec3 ray_dir, t_obj *obj)
     hit = malloc(sizeof(t_hit));
     while(obj)
     {
+        hit->obj = obj;
         if (!ft_strcmp(obj->type, "pl"))
             hit->t = ft_hit_plane(ray_o, ray_dir, obj);
         else if (!ft_strcmp(obj->type, "cub"))
@@ -32,13 +33,7 @@ void ft_ray_color(t_hit *hit, t_data *data, float x, float y)
 {
     if (hit->t > 0)
     {
-        float intensity = 12 / hit->t;
-        if (intensity > 1.0)
-            intensity = 1.0;
-        if (intensity < 0.2)
-            intensity = 0.2;
-        int green = (int)(intensity * 255);
-        int color = (green << 8);
+        int color = (int)(hit->obj->color);
         ft_pixel_put_img(&(data->img), x, y, color);
     }
     else
