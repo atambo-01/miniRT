@@ -6,7 +6,7 @@
 /*   By: mchingi <mchingi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 13:16:08 by mchingi           #+#    #+#             */
-/*   Updated: 2025/04/30 14:35:00 by mchingi          ###   ########.fr       */
+/*   Updated: 2025/05/02 15:57:01 by mchingi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,17 @@ int	main(int ac, char **av)
 {
 	(void) ac;
 	(void) av;
-	void* mlx;
+	t_mlx	mlx;
+	t_img	img;
 	
-	mlx = mlx_init();
-	mlx_new_window(mlx, 500, 300, "Hello World!");
-	mlx_loop(mlx);
+	mlx.init = mlx_init();
+	mlx.window = mlx_new_window(mlx.init, 960, 540, "Hello World!");
+	
+	img.init = mlx_new_image(mlx.init, 480, 270);
+	img.addr = mlx_get_data_addr(img.init, &img.bpp, &img.line, &img.endian);
+	mlx_pixel_put(mlx.init, mlx.window, 100, 50, 0xFF0000);
+	mlx_put_image_to_window(mlx.init, mlx.window, img.init, 0, 0);
+
+	mlx_loop(mlx.init);
 	return (0);
 }
