@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 22:55:42 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/02 08:38:23 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/05 12:19:47 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ typedef struct	s_vec3
 typedef struct	s_obj t_obj;
 typedef struct	s_obj
 {
-	char	type;
+	char	*type;
 	t_vec3	center;
 	t_vec3	dir;
 	t_vec3	u;
@@ -105,6 +105,12 @@ typedef struct	s_data
 	t_alight	alight;
 }				t_data;
 
+typedef struct	s_hit
+{
+	float	t;
+	t_obj	*obj;
+}				t_hit;
+
 // src/check_file.c
 int 	ft_check_file(int ac, char **av);
 
@@ -120,9 +126,6 @@ int 	ft_init_data(t_data *data, int fd);
 int		ft_key_hook(int keycode, t_data *data);
 int		ft_mouse_hook(int button, int x, int y, t_data *data);
 
-// src/intersect.c
-float	ft_intersect_cube(t_vec3 origin, t_vec3 dir, t_obj *obj);
-float	ft_intersect_plane(t_vec3 origin, t_vec3 dir, t_obj *obj);
 
 // src/input_util.c
 int		ft_close_window(t_data *data);
@@ -138,7 +141,6 @@ int		ft_print_obj(t_obj *obj);
 int		ft_print_data(t_data *data);
 
 // src/render_scene.c
-float	ft_intersect_sphere(t_vec3 orig, t_vec3 dir, t_vec3 center, float radius);
 void	ft_render_scene(t_data *data);
 
 // src/upscale_img.c
@@ -160,5 +162,9 @@ char	*ft_getline(char *str);
 void	ft_free(char **str, char *buffer);
 char	*ft_substr_1(char *str, int start, int len_str);
 char	*ft_get_next_line(int fd);
+
+// src/hit.c
+float	ft_hit_cube(t_vec3 origin, t_vec3 dir, t_obj *obj);
+float	ft_hit_plane(t_vec3 origin, t_vec3 dir, t_obj *obj);
 
 #endif

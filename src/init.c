@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 00:13:05 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/01 20:46:01 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/05 12:16:48 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int ft_init_obj(t_data *data)
     if (!obj)
         return (-1);
     data->obj = obj;
-    obj->type = 'c'; // Cube
+    obj->type = ft_strdup("cub"); // Cube
     ft_setvec3(&obj->center, 0, 0, 15);
     ft_setvec3(&obj->dir, 0.1, 0, -1);
     ft_setvec3(&obj->u, 0, 1, 0);

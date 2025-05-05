@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   intersect.c                                        :+:      :+:    :+:   */
+/*   hit.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 20:47:34 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/02 01:27:34 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/05 12:18:11 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
 
-float ft_intersect_cube(t_vec3 origin, t_vec3 dir, t_obj *obj)
+float ft_hit_cube(t_vec3 origin, t_vec3 dir, t_obj *obj)
 {
     t_vec3 v = {
         obj->dir.y * obj->u.z - obj->dir.z * obj->u.y,
@@ -65,7 +65,7 @@ float ft_intersect_cube(t_vec3 origin, t_vec3 dir, t_obj *obj)
     return (t_min);
 }
 
-float ft_intersect_plane(t_vec3 origin, t_vec3 dir, t_obj *obj)
+float ft_hit_plane(t_vec3 origin, t_vec3 dir, t_obj *obj)
 {
     float denom, t;
     t_vec3 hit, u, v, p;
