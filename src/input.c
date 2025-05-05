@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 01:38:57 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/05 18:03:04 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/05 18:46:14 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,7 +161,7 @@ void ft_switch_obj(t_data *data, int x, int y)
 		t_vec3 ray_dir = {u, v, 1.0};
 		ft_normalize(&ray_dir);
 		hit = ft_calc_hit(data->cam.pos, ray_dir, data->obj);
-		// if (hit && hit->obj) // Valid hit
+		if (hit != NULL && hit->obj) // Valid hit
 			data->curr = hit->obj;
 		free(hit);
 	}
@@ -192,14 +192,17 @@ int ft_key_hook(int keycode, t_data *data)
 
 int ft_mouse_hook(int button, int x, int y, t_data *data)
 {
-    if (button == 4) // Scroll upc
-        data->cam.pos.z += 1.0;
+	if (button == 4) // Scroll upc
+		data->cam.pos.z += 1.0;
     if (button == 5) // Scroll down
-        data->cam.pos.z -= 1.0;
+		data->cam.pos.z -= 1.0;
+	if (button == 1)
+		ft_switch_obj(data, x, y);
+	if (button == 3);
 	ft_print_data(data);
-	ft_switch_obj(data, x, y);
 	ft_render_scene(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img.ptr, 0, 0);
+	printf("mouse_hook = %d\n", button);
     return (0);
 }
 

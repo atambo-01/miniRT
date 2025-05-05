@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 16:38:03 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/05 14:10:28 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/05 18:34:14 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ t_hit *ft_calc_hit(t_vec3 ray_o, t_vec3 ray_dir, t_obj *obj)
     t1 = -1;
     while (obj)
     {
-        if (obj->type[0] == 'p') // "pl"
+        if (!ft_strcmp(obj->type, "pl")) // "pl"
             t2 = ft_hit_plane(ray_o, ray_dir, obj);
-        else if (obj->type[0] == 'c') // "cub"
+        else if (!ft_strcmp(obj->type, "cub")) // "cub"
             t2 = ft_hit_cube(ray_o, ray_dir, obj);
         else
             t2 = -1;

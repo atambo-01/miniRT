@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 20:15:19 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/05 13:52:54 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/05 18:47:47 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,18 +45,14 @@ int ft_print_cam(t_cam *cam)
 int ft_print_obj(t_obj *obj)
 {
     printf("Objects:\n");
-    while (obj)
-    {
-        printf("  Type:\t%s\n", obj->type);
-        printf("  Center:");
-        ft_print_vec3(&obj->center);
-        printf("  Dir:\t");
-        ft_print_vec3(&obj->dir);
-        printf("  Radius:\t%.2f\n", obj->radius);
-        printf("  Length:\t%.2f\n", obj->len);
-        printf("  Color:\t0x%06X\n", obj->color);
-        obj = obj->next;
-    }
+	printf("  Type:\t%s\n", obj->type);
+	printf("  Center:");
+	ft_print_vec3(&obj->center);
+	printf("  Dir:\t");
+	ft_print_vec3(&obj->dir);
+	printf("  Radius:\t%.2f\n", obj->radius);
+	printf("  Length:\t%.2f\n", obj->len);
+	printf("  Color:\t0x%06X\n", obj->color);
     return (0);
 }
 
@@ -66,7 +62,8 @@ int ft_print_data(t_data *data)
     printf("-----------------------------------------\n");
     printf("\t\t\tx\ty\tz\n");
     ft_print_cam(&data->cam);
-    ft_print_obj(data->obj);
+	if (data->curr)
+		ft_print_obj(data->curr);
 	printf("obj_count = %d\n",ft_count_obj(data->obj));
     printf("-----------------------------------------\n");
     return (0);

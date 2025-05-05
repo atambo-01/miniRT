@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 01:09:44 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/02 08:34:46 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/05 18:51:09 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	ft_free_obj(t_obj *obj)
 	{
 		temp = obj;
 		obj = obj->next;
+		free(temp->type);
 		free(temp);
 	}
 	obj = NULL;
