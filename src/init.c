@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 00:13:05 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/05 18:42:01 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/05 19:53:00 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,34 +49,34 @@ int ft_init_obj(t_data *data)
 	obj_1->next = NULL;
 	data->obj = obj_1;
 
-	// obj_2 = malloc(sizeof(t_obj));
-    // if (!obj_2)
-    //     return (-1);
-	// obj_2->type = ft_strdup("cub");
-	// ft_setvec3(&obj_2->center, 0, 5, 20);
-	// ft_setvec3(&obj_2->dir, 0.1, 0, -1);
-	// ft_setvec3(&obj_2->u, 0, 1, 0);
-	// ft_normalize(&obj_2->dir);
-	// obj_2->radius = 1;
-	// obj_2->len = 0;
-	// obj_2->color = 0x2d57cc;
-	// obj_2->next = NULL;
-	// data->obj->next = obj_2;
-	// data->curr = data->obj;
+	obj_2 = malloc(sizeof(t_obj));
+    if (!obj_2)
+        return (-1);
+	obj_2->type = ft_strdup("cub");
+	ft_setvec3(&obj_2->center, 0, 5, 20);
+	ft_setvec3(&obj_2->dir, 0.1, 0, -1);
+	ft_setvec3(&obj_2->u, 0, 1, 0);
+	ft_normalize(&obj_2->dir);
+	obj_2->radius = 1;
+	obj_2->len = 0;
+	obj_2->color = 0x2d57cc;
+	obj_2->next = NULL;
+	data->obj->next = obj_2;
+	data->curr = data->obj;
 
-	// obj_3 = malloc(sizeof(t_obj));
-    // if (!obj_3)
-    //     return (-1);
-	// obj_3->type = ft_strdup("cub");
-	// ft_setvec3(&obj_3->center, 0, 5, 10);
-	// ft_setvec3(&obj_3->dir, 0.1, 0, -1);
-	// ft_setvec3(&obj_3->u, 0, 1, 0);
-	// ft_normalize(&obj_3->dir);
-	// obj_3->radius = 1;
-	// obj_3->len = 0;
-	// obj_3->color = 0xb5264f;
-	// obj_3->next = NULL;
-	// data->obj->next->next = obj_3;
+	obj_3 = malloc(sizeof(t_obj));
+	if (!obj_3)
+		return (-1);
+	obj_3->type = ft_strdup("cub");
+	ft_setvec3(&obj_3->center, 0, 5, 70);
+	ft_setvec3(&obj_3->dir, 0.1, 0, -1);
+	ft_setvec3(&obj_3->u, 0, 1, 0);
+	ft_normalize(&obj_3->dir);
+	obj_3->radius = 2;
+	obj_3->len = 0;
+	obj_3->color = 0xb5264f;
+	obj_3->next = NULL;
+	data->obj->next->next = obj_3;
     return (0);
 }
 

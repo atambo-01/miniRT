@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 20:15:19 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/05 18:47:47 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/05 19:54:19 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int ft_print_cam(t_cam *cam)
 
 int ft_print_obj(t_obj *obj)
 {
-    printf("Objects:\n");
+    printf("Object:\n");
 	printf("  Type:\t%s\n", obj->type);
 	printf("  Center:");
 	ft_print_vec3(&obj->center);

@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 01:09:44 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/05 18:51:09 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/05 19:47:37 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	ft_free_obj(t_obj *obj)
 {
-	t_obj *temp;
+	t_obj	*temp;
 
 	temp = NULL;
-	while(obj)
+	while (obj)
 	{
 		temp = obj;
 		obj = obj->next;
