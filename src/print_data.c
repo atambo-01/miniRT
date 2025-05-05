@@ -6,11 +6,24 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 20:15:19 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/05 12:52:06 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/05 13:52:54 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
+
+int ft_count_obj(t_obj *obj)
+{
+	int	i;
+
+	i = 0;
+	while(obj)
+	{
+		i++;
+		obj = obj->next;
+	}
+	return (i);
+}
 
 int ft_print_vec3(t_vec3 *vec)
 {
@@ -54,6 +67,7 @@ int ft_print_data(t_data *data)
     printf("\t\t\tx\ty\tz\n");
     ft_print_cam(&data->cam);
     ft_print_obj(data->obj);
+	printf("obj_count = %d\n",ft_count_obj(data->obj));
     printf("-----------------------------------------\n");
     return (0);
 }

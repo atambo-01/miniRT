@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 00:13:05 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/05 12:16:48 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/05 17:44:04 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,21 +31,38 @@
 
 int ft_init_obj(t_data *data)
 {
-    t_obj *obj;
+    t_obj	*obj_1;
+	t_obj	*obj_2;
 
-    obj = malloc(sizeof(t_obj));
-    if (!obj)
+    obj_1 = malloc(sizeof(t_obj));
+    if (!obj_1)
         return (-1);
-    data->obj = obj;
-    obj->type = ft_strdup("cub"); // Cube
-    ft_setvec3(&obj->center, 0, 0, 15);
-    ft_setvec3(&obj->dir, 0.1, 0, -1);
-    ft_setvec3(&obj->u, 0, 1, 0);
-    ft_normalize(&obj->dir);
-    obj->radius = 1; // 20x20x20 cube
-    obj->len = 0;
-    obj->color = 0x2d57cc; // Green
-    obj->next = NULL;
+	obj_1->type = ft_strdup("cub"); // Cube
+	ft_setvec3(&obj_1->center, 0, 0, 15);
+	ft_setvec3(&obj_1->dir, 0.1, 0, -1);
+	ft_setvec3(&obj_1->u, 0, 1, 0);
+	ft_normalize(&obj_1->dir);
+	obj_1->radius = 1; // 20x20x20 cube
+	obj_1->len = 0;
+	obj_1->color = 0xd19c15; // Green
+	obj_1->next = NULL;
+	data->obj = obj_1;
+
+	obj_2 = malloc(sizeof(t_obj));
+    if (!obj_2)
+        return (-1);
+	obj_2->type = ft_strdup("cub");
+	ft_setvec3(&obj_2->center, 0, 5, 20);
+	ft_setvec3(&obj_2->dir, 0.1, 0, -1);
+	ft_setvec3(&obj_2->u, 0, 1, 0);
+	ft_normalize(&obj_2->dir);
+	obj_2->radius = 1;
+	obj_2->len = 0;
+	obj_2->color = 0x2d57cc;
+	obj_2->next = NULL;
+	data->obj->next = obj_2;
+
+	data->curr = data->obj;
     return (0);
 }
 

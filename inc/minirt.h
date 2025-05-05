@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 22:55:42 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/05 12:19:47 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/05 18:06:49 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ typedef struct	s_data
 	t_img		s_img;
 	t_cam		cam;
 	t_obj		*obj;
+	t_obj		*curr;
 	t_light		light;
 	t_alight	alight;
 }				t_data;
@@ -124,8 +125,8 @@ int 	ft_init_data(t_data *data, int fd);
 
 // src/input.c
 int		ft_key_hook(int keycode, t_data *data);
+void	ft_switch_obj(t_data *data, int x, int y);
 int		ft_mouse_hook(int button, int x, int y, t_data *data);
-
 
 // src/input_util.c
 int		ft_close_window(t_data *data);
@@ -141,6 +142,7 @@ int		ft_print_obj(t_obj *obj);
 int		ft_print_data(t_data *data);
 
 // src/render_scene.c
+t_hit	*ft_calc_hit(t_vec3 ray_o, t_vec3 ray_dir, t_obj *obj);
 void	ft_render_scene(t_data *data);
 
 // src/upscale_img.c
