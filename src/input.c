@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 01:38:57 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/06 16:53:41 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/06 18:02:25 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -221,7 +221,6 @@ int ft_key_hook(int keycode, t_data *data)
 	ft_rotate_obj(keycode, data->curr);
 	ft_print_data(data);
 	ft_render_scene(data);
-	mlx_put_image_to_window(data->mlx, data->win, data->img.ptr, 0, 0);
     printf("key = %d (%c)\n", keycode, keycode);
     return (0);
 }
@@ -229,15 +228,14 @@ int ft_key_hook(int keycode, t_data *data)
 int ft_mouse_hook(int button, int x, int y, t_data *data)
 {
 	if (button == 4) // Scroll upc
-	ft_move_z(data, +1.0);
+		ft_move_z(data, +1.0);
     if (button == 5) // Scroll down
-	ft_move_z(data, -1.0);
+		ft_move_z(data, -1.0);
 	if (button == 1)
-	ft_switch_obj(data, x, y);
+		ft_switch_obj(data, x, y);
 	if (button == 3);
-	ft_print_data(data);
+		ft_print_data(data);
 	ft_render_scene(data);
-	mlx_put_image_to_window(data->mlx, data->win, data->img.ptr, 0, 0);
 	printf("mouse_hook = %d\n", button);
     return (0);
 }

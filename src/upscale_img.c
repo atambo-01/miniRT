@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 04:24:21 by atambo            #+#    #+#             */
-/*   Updated: 2025/04/26 16:55:17 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/06 18:10:52 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,8 @@ void fill_tiled(t_img *img, t_data *data)
     }
 }
 
-void upscale_img(t_data *data)
+void ft_upscale_img(t_data *data)
 {
-    data->s_img.ptr = mlx_new_image(data->mlx, W_WIDTH, W_HEIGHT);
-    data->s_img.addr = mlx_get_data_addr(data->s_img.ptr, &data->s_img.bpp, &data->s_img.line_len, &data->s_img.endian);
     float scale_x = (float)IM_WIDTH / W_WIDTH;
     float scale_y = (float)IM_HEIGHT / W_HEIGHT;
 

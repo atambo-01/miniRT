@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 16:38:03 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/06 16:42:00 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/06 18:07:48 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,5 +86,6 @@ void ft_render_scene(t_data *data)
         }
         y++;
     }
-    mlx_put_image_to_window(data->mlx, data->win, data->img.ptr, 0, 0);
+	ft_upscale_img(data);
+    mlx_put_image_to_window(data->mlx, data->win, data->s_img.ptr, 0, 0);
 }

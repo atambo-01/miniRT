@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 00:13:05 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/06 17:10:01 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/06 18:10:17 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ int ft_init_data(t_data *data, int fd)
 	data->img.ptr = mlx_new_image(data->mlx, IM_WIDTH, IM_HEIGHT);
 	data->s_img.ptr = mlx_new_image(data->mlx, W_WIDTH, W_HEIGHT);
     if (!data->img.ptr || !data->s_img.ptr)
-	exit(ft_perror("Failed to create render image", 1));
+		exit(ft_perror("Failed to create render image", 1));
     data->img.addr = mlx_get_data_addr(data->img.ptr, &data->img.bpp, 
 		&data->img.line_len, &data->img.endian);
 	data->s_img.addr = mlx_get_data_addr(data->s_img.ptr, &data->s_img.bpp, 

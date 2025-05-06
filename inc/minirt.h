@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 22:55:42 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/06 17:03:43 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/06 18:03:03 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@
 # define RIGHT		65364
 # define W_WIDTH	1080
 # define W_HEIGHT	720
-# define IM_WIDTH	1080
-# define IM_HEIGHT	720
+// # define IM_WIDTH	1080
+// # define IM_HEIGHT	720
 
 # define NUM_1
 # define NUM_PLUS
@@ -46,8 +46,8 @@
 
 # define ERR_ALIGHT "Bad ambient light formating\n"
 
-// # define IM_WIDTH	540
-// # define IM_HEIGHT	360
+# define IM_WIDTH	540
+# define IM_HEIGHT	360
 
 typedef struct	s_vec3
 {
