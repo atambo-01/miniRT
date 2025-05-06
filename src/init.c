@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 00:13:05 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/06 14:08:27 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/06 17:10:01 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,5 +113,6 @@ int ft_init_data(t_data *data, int fd)
 	data->s_img.addr = mlx_get_data_addr(data->s_img.ptr, &data->s_img.bpp, 
 		&data->s_img.line_len, &data->s_img.endian);
 	data->curr = NULL;
+	data->err = NULL;;
 	return(ft_init_cam(data));
 }

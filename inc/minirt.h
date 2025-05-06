@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 22:55:42 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/05 18:06:49 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/06 17:03:43 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,9 @@
 # define W_HEIGHT	720
 # define IM_WIDTH	1080
 # define IM_HEIGHT	720
+
+# define NUM_1
+# define NUM_PLUS
 
 // error msgs
 
@@ -104,6 +107,7 @@ typedef struct	s_data
 	t_obj		*curr;
 	t_light		light;
 	t_alight	alight;
+	char		*err;
 }				t_data;
 
 typedef struct	s_hit
@@ -118,7 +122,7 @@ int 	ft_check_file(int ac, char **av);
 // src/exit_minirt.c
 void	ft_free_obj(t_obj *obj);
 void	ft_quit_mlx(t_data *data);
-void	ft_exit_minirt(t_data *data, char *err);
+int		ft_exit_minirt(t_data *data);
 
 // src/init.c
 int 	ft_init_data(t_data *data, int fd);

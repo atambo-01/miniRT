@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 01:38:57 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/06 16:05:01 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/06 16:53:41 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -202,7 +202,7 @@ int ft_key_hook(int keycode, t_data *data)
 	if (keycode == '.')
 		data->curr = NULL;
 	else if (keycode == 65307)
-		ft_close_window(data);
+		ft_exit_minirt(data);
 	else if (keycode == 'w')
 		ft_move_y(data, +1.0);
 	else if (keycode == 's')

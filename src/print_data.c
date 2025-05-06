@@ -6,18 +6,18 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 20:15:19 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/05 19:54:19 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/06 16:19:47 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
 
-int ft_count_obj(t_obj *obj)
+int	ft_count_obj(t_obj *obj)
 {
 	int	i;
 
 	i = 0;
-	while(obj)
+	while (obj)
 	{
 		i++;
 		obj = obj->next;
@@ -25,21 +25,21 @@ int ft_count_obj(t_obj *obj)
 	return (i);
 }
 
-int ft_print_vec3(t_vec3 *vec)
+int	ft_print_vec3(t_vec3 *vec)
 {
-    printf("\t\t%.4f\t%.4f\t%.4f\n", vec->x, vec->y, vec->z);
-    return (0);
+	printf("\t\t%.4f\t%.4f\t%.4f\n", vec->x, vec->y, vec->z);
+	return (0);
 }
 
 int ft_print_cam(t_cam *cam)
 {
-    printf("Camera:\n");
-    printf("  Pos:\t");
-    ft_print_vec3(&cam->pos);
-    printf("  Dir:\t");
-    ft_print_vec3(&cam->dir);
-    printf("  FOV:\t%.2f degrees\n", cam->fov);
-    return (0);
+	printf("Camera:\n");
+	printf("  Pos:\t");
+	ft_print_vec3(&cam->pos);
+	printf("  Dir:\t");
+	ft_print_vec3(&cam->dir);
+	printf("  FOV:\t%.2f degrees\n", cam->fov);
+	return (0);
 }
 
 int ft_print_obj(t_obj *obj)
