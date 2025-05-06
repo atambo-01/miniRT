@@ -6,7 +6,7 @@
 /*   By: mchingi <mchingi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 13:19:57 by mchingi           #+#    #+#             */
-/*   Updated: 2025/05/02 15:30:35 by mchingi          ###   ########.fr       */
+/*   Updated: 2025/05/05 14:00:04 by mchingi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <string.h>
 #include <math.h>
 #include <fcntl.h>
+#include <X11/keysym.h>
 #include "../minilibx-linux/mlx.h"
 
 #include <errno.h>
