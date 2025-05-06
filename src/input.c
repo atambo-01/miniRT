@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 01:38:57 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/06 18:02:25 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/06 19:27:11 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,15 +136,38 @@ void ft_rotate_cam(int keycode, t_data *data)
     }
     ft_normalize(&data->cam.dir);
 }
-void ft_switch_obj(t_data *data, int x, int y)
+
+void	ft_calc_ray(t_data *data,int x, int y, t_ray *ray)
 {
-    float   tan_half_fov = tan(data->cam.fov * M_PI / 360.0);
-    float   view_width = 2.0 * tan_half_fov;
-    float   aspect_ratio = (float)IM_WIDTH / IM_HEIGHT;
-    float   view_height = view_width / aspect_ratio;
-    t_hit   *hit;
+	ray->tan_half_fov = tan(data->cam.fov * M_PI / 360.0);
+	ray->view_width = 2.0 * ray->tan_half_fov;
+	ray->asp_ratio = (float)IM_WIDTH / IM_HEIGHT;
+	ray->view_height = ray->view_width / ray->asp_ratio;
+	ray->u = (2.0 * (x + 0.5) / IM_WIDTH - 1.0) * ray->tan_half_fov;
+	ray->v = (1.0 - 2.0 * (y + 0.5) / IM_HEIGHT) * ray->view_height / 2.0;
+}
+
+void	ft_switch_obj_point(t_data *data, int x, int y, t_ray *ray)
+{
+	ft_calc_ray(data, x, y, ray);
+	t_hit   *hit;
 
 	hit = NULL;
+	ray->dir.x = ray->u;
+	ray->dir.y = ray->v;
+	ray->dir.z = 1.0;
+	ft_normalize(&(ray->dir));
+	hit = ft_calc_hit(data->cam.pos, ray->dir, data->obj);
+	if (hit != NULL) // Valid hit
+		data->curr = hit->obj;
+	free(hit);
+}
+
+
+void ft_switch_obj(t_data *data, int x, int y)
+{
+	t_ray	ray;
+	
     if (x < 0 || y < 0) // Cycle through objects
     {
         if (!data->curr) // Reset to head if NULL
@@ -155,16 +178,7 @@ void ft_switch_obj(t_data *data, int x, int y)
             data->curr = data->obj;
     }
 	else
-	{
-		float u = (2.0 * (x + 0.5) / IM_WIDTH - 1.0) * tan_half_fov;
-		float v = (1.0 - 2.0 * (y + 0.5) / IM_HEIGHT) * view_height / 2.0;
-		t_vec3 ray_dir = {u, v, 1.0};
-		ft_normalize(&ray_dir);
-		hit = ft_calc_hit(data->cam.pos, ray_dir, data->obj);
-		if (hit != NULL) // Valid hit
-			data->curr = hit->obj;
-		free(hit);
-	}
+		ft_switch_obj_point(data, x, y, &ray);
 }
 
 void	ft_obj_size(t_data *data, float i)

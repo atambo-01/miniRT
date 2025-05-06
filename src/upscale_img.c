@@ -6,56 +6,11 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 04:24:21 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/06 18:10:52 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/06 18:35:21 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
-
-void fill_color(t_data *data, int color)
-{
-    t_img img;
-    int x;
-    int y;
-
-    img.ptr = mlx_new_image(data->mlx, W_WIDTH, W_HEIGHT);
-    if (!img.ptr)
-        exit(ft_perror("Failed to create image", 1));
-    img.addr = mlx_get_data_addr(img.ptr, &img.bpp, &img.line_len, &img.endian);
-    y = 0;
-    while (y < W_HEIGHT)
-    {
-        x = 0;
-        while (x < W_WIDTH)
-        {
-            ft_pixel_put_img(&img, x, y, color);
-            x++;
-        }
-        y++;
-    }
-    mlx_put_image_to_window(data->mlx, data->win, img.ptr, 0, 0);
-    mlx_destroy_image(data->mlx, img.ptr);
-}
-
-void fill_tiled(t_img *img, t_data *data)
-{
-    int x, y;
-    int tile_size = 4; // Size of each chessboard square in pixels (adjust as needed)
-
-    for (y = 0; y < IM_HEIGHT; y++)
-    {
-        for (x = 0; x < IM_WIDTH; x++)
-        {
-            // Calculate tile position
-            int tile_x = x / tile_size;
-            int tile_y = y / tile_size;
-            // Alternate colors: black or white based on (tile_x + tile_y) parity
-            int color = ((tile_x + tile_y) % 2 == 0) ? 0xFFFFFF : 0x000000;
-            // Set pixel at (x, y) in the smaller image
-			ft_pixel_put_img(img, x, y, color);
-        }
-    }
-}
 
 void ft_upscale_img(t_data *data)
 {

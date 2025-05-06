@@ -19,7 +19,7 @@ SOURCES		=	src/minirt.c\
 				src/upscale_img.c\
 				src/render_scene.c\
 				src/print_data.c\
-				src/hit.c\
+				src/hit_obj.c\
 				src/exit_minirt.c\
 				src/get_next_line.c\
 				src/get_next_line_utils.c\
@@ -33,9 +33,8 @@ OBJS		=	$(SOURCES:.c=.o)
 INCLUDES	=	-Iinc -Ilibft
 
 SUBDIR		=	./minilibx-linux ./libft
-LIBS		=	-Lminilibx-linux -l:libmlx_Linux.a\
-				-L/usr/lib -lXext -lX11 -lm -lz\
-				-Llibft -lft\
+LIBS		=	-Lminilibx-linux -l:libmlx_Linux.a -L/usr/lib -lXext -lX11 -lm -lz\
+				-Llibft -l:libft.a\
 
 all: submake $(NAME)
 
@@ -44,10 +43,6 @@ $(NAME): $(OBJS)
 
 submake:
 	$(foreach dir, $(SUBDIR), $(MAKE) -C $(dir);)
-
-
-%.o: %.c
-	$(CC) $(CFLAGS) $(INCLUDES)  -c $< -o $@
 
 clean:
 	rm -f $(OBJS)

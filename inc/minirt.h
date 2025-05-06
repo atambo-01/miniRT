@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 22:55:42 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/06 18:03:03 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/06 19:33:22 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,10 @@
 # define IM_WIDTH	540
 # define IM_HEIGHT	360
 
+
 typedef struct	s_vec3
 {
-    float x, y, z;
+	float x, y, z;
 }				t_vec3;
 
 typedef struct	s_obj t_obj;
@@ -68,7 +69,7 @@ typedef struct	s_obj
 }				t_obj;
 typedef struct	s_cam
 {
-    t_vec3	pos;
+	t_vec3	pos;
     t_vec3	dir;
     float	fov;
 }				t_cam;
@@ -115,6 +116,16 @@ typedef struct	s_hit
 	float	t;
 	t_obj	*obj;
 }				t_hit;
+typedef struct	s_ray
+{
+	t_vec3	dir;
+	float   tan_half_fov;
+	float   view_width;
+	float	asp_ratio;
+	float   view_height;
+	float	u;
+	float	v;
+}				t_ray;
 
 // src/check_file.c
 int 	ft_check_file(int ac, char **av);
@@ -150,8 +161,6 @@ t_hit	*ft_calc_hit(t_vec3 ray_o, t_vec3 ray_dir, t_obj *obj);
 void	ft_render_scene(t_data *data);
 
 // src/upscale_img.c
-void	ft_fill_color(t_data *data, int color);
-void	ft_fill_tiled(t_img *img, t_data *data);
 void	ft_upscale_img(t_data *data);
 
 // src/util.c
