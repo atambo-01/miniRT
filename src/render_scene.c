@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 16:38:03 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/06 20:34:08 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/06 23:09:04 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ t_hit *ft_calc_hit(t_vec3 ray_o, t_vec3 ray_dir, t_obj *obj)
             t[1] = ft_hit_plane(ray_o, ray_dir, obj);
         else if (!ft_strcmp(obj->type, "cub"))
             t[1] = ft_hit_cube(ray_o, ray_dir, obj);
+		else if (!ft_strcmp(obj->type, "sp"))
+            t[1] = ft_hit_sphere(ray_o, ray_dir, obj);
         else
             t[1] = -1;
         if (t[1] >= 0 && (t[1] < t[0] || t[0] < 0))

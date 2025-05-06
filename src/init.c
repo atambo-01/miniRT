@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 00:13:05 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/06 18:10:17 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/06 23:07:33 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int ft_init_obj(t_data *data)
 	obj_3 = malloc(sizeof(t_obj));
 	if (!obj_3)
 	return (-1);
-	obj_3->type = ft_strdup("cub");
+	obj_3->type = ft_strdup("sp");
 	ft_setvec3(&obj_3->center, 0, 5, 70);
 	ft_setvec3(&obj_3->dir, 0.1, 0, -1);
 	ft_setvec3(&obj_3->u, 0, 1, 0);

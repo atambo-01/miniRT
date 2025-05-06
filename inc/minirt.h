@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 22:55:42 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/06 20:24:19 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/06 23:06:58 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -185,5 +185,6 @@ char	*ft_get_next_line(int fd);
 // src/hit.c
 float	ft_hit_cube(t_vec3 origin, t_vec3 dir, t_obj *obj);
 float	ft_hit_plane(t_vec3 origin, t_vec3 dir, t_obj *obj);
+float	ft_hit_sphere(t_vec3 ray_o, t_vec3 ray_dir, t_obj *obj);
 
 #endif
