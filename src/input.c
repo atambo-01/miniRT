@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 01:38:57 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/06 15:34:57 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/06 16:05:01 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,28 +170,52 @@ void ft_switch_obj(t_data *data, int x, int y)
 void	ft_obj_size(t_data *data, float i)
 {
 	if (!data->curr)
-		return ;
+	return ;
 	data->curr->radius += (i / 100) * data->curr->radius;
 }
+void ft_move_x(t_data *data, float i)
+{
+	if (data->curr)
+		data->curr->center.x += i;
+	else
+		data->cam.pos.x += i;
+}
 
+void ft_move_y(t_data *data, float i)
+{
+	if (data->curr)
+		data->curr->center.y += i;
+	else
+		data->cam.pos.y += i;
+}
+
+void ft_move_z(t_data *data, float i)
+{
+	if (data->curr)
+		data->curr->center.z += i;
+	else
+		data->cam.pos.z += i;
+}
 
 int ft_key_hook(int keycode, t_data *data)
 {
-	if (keycode == 65307)
+	if (keycode == '.')
+		data->curr = NULL;
+	else if (keycode == 65307)
 		ft_close_window(data);
-	if (keycode == 'w')
-		data->cam.pos.y += 1;
-	if (keycode == 's')
-		data->cam.pos.y -= 1;
-	if (keycode == 'a')
-		data->cam.pos.x -= 1;
-	if (keycode == 'd')
-		data->cam.pos.x += 1;
-	if (keycode == 32)
+	else if (keycode == 'w')
+		ft_move_y(data, +1.0);
+	else if (keycode == 's')
+		ft_move_y(data, -1.0);
+	else if (keycode == 'a')
+		ft_move_x(data, -1.0);
+	else if (keycode == 'd')
+		ft_move_x(data, +1.0);
+	else if (keycode == 32)
 		ft_switch_obj(data, -1, -1);
-	if (keycode == 'i')
+	else if (keycode == 'i')
 		ft_obj_size(data, 10.0);
-	if (keycode == 'k')
+	else if (keycode == 'k')
 		ft_obj_size(data, -10.0);
 	ft_rotate_cam(keycode, data);
 	ft_rotate_obj(keycode, data->curr);
@@ -205,11 +229,11 @@ int ft_key_hook(int keycode, t_data *data)
 int ft_mouse_hook(int button, int x, int y, t_data *data)
 {
 	if (button == 4) // Scroll upc
-		data->cam.pos.z += 1.0;
+	ft_move_z(data, +1.0);
     if (button == 5) // Scroll down
-		data->cam.pos.z -= 1.0;
+	ft_move_z(data, -1.0);
 	if (button == 1)
-		ft_switch_obj(data, x, y);
+	ft_switch_obj(data, x, y);
 	if (button == 3);
 	ft_print_data(data);
 	ft_render_scene(data);
