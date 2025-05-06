@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 01:38:57 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/05 18:46:14 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/06 14:10:10 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,7 +161,7 @@ void ft_switch_obj(t_data *data, int x, int y)
 		t_vec3 ray_dir = {u, v, 1.0};
 		ft_normalize(&ray_dir);
 		hit = ft_calc_hit(data->cam.pos, ray_dir, data->obj);
-		if (hit != NULL && hit->obj) // Valid hit
+		if (hit != NULL) // Valid hit
 			data->curr = hit->obj;
 		free(hit);
 	}

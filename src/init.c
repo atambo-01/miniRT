@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 00:13:05 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/05 19:53:00 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/06 14:08:27 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,11 @@ int ft_init_obj(t_data *data)
 	obj_1->color = 0xd19c15; // Green
 	obj_1->next = NULL;
 	data->obj = obj_1;
-
+	
+	
 	obj_2 = malloc(sizeof(t_obj));
     if (!obj_2)
-        return (-1);
+	return (-1);
 	obj_2->type = ft_strdup("cub");
 	ft_setvec3(&obj_2->center, 0, 5, 20);
 	ft_setvec3(&obj_2->dir, 0.1, 0, -1);
@@ -62,11 +63,10 @@ int ft_init_obj(t_data *data)
 	obj_2->color = 0x2d57cc;
 	obj_2->next = NULL;
 	data->obj->next = obj_2;
-	data->curr = data->obj;
-
+	
 	obj_3 = malloc(sizeof(t_obj));
 	if (!obj_3)
-		return (-1);
+	return (-1);
 	obj_3->type = ft_strdup("cub");
 	ft_setvec3(&obj_3->center, 0, 5, 70);
 	ft_setvec3(&obj_3->dir, 0.1, 0, -1);
@@ -107,10 +107,11 @@ int ft_init_data(t_data *data, int fd)
 	data->img.ptr = mlx_new_image(data->mlx, IM_WIDTH, IM_HEIGHT);
 	data->s_img.ptr = mlx_new_image(data->mlx, W_WIDTH, W_HEIGHT);
     if (!data->img.ptr || !data->s_img.ptr)
-        exit(ft_perror("Failed to create render image", 1));
+	exit(ft_perror("Failed to create render image", 1));
     data->img.addr = mlx_get_data_addr(data->img.ptr, &data->img.bpp, 
 		&data->img.line_len, &data->img.endian);
 	data->s_img.addr = mlx_get_data_addr(data->s_img.ptr, &data->s_img.bpp, 
 		&data->s_img.line_len, &data->s_img.endian);
+	data->curr = NULL;
 	return(ft_init_cam(data));
 }
