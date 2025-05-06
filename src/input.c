@@ -6,18 +6,18 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 01:38:57 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/06 19:27:11 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/06 20:24:00 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
 
-void ft_rotate_obj_z(int keycode, t_obj *obj)
+void ft_rotate_obj_z(int key, t_obj *obj)
 {
     float angle = 15.0 * M_PI / 180.0;
     float tmp_x, tmp_ux;
 
-    if (keycode == 'b') // Numpad 1: +15°
+    if (key == 'b' || key == 65436) // Numpad 1: +15°
     {
         tmp_x = obj->dir.x;
         tmp_ux = obj->u.x;
@@ -26,7 +26,8 @@ void ft_rotate_obj_z(int keycode, t_obj *obj)
         obj->u.x = tmp_ux * cos(angle) - obj->u.y * sin(angle);
         obj->u.y = tmp_ux * sin(angle) + obj->u.y * cos(angle);
     }
-    else if (keycode == 'm') // Numpad 3: -15°
+
+    else if (key == 'm' || key == 65435) // Numpad 3: -15°
     {
         tmp_x = obj->dir.x;
         tmp_ux = obj->u.x;
@@ -35,20 +36,14 @@ void ft_rotate_obj_z(int keycode, t_obj *obj)
         obj->u.x = tmp_ux * cos(angle) + obj->u.y * sin(angle);
         obj->u.y = -tmp_ux * sin(angle) + obj->u.y * cos(angle);
     }
-    if (keycode == 65436 || keycode == 65435)
-    {
-        ft_normalize(&obj->dir);
-        ft_normalize(&obj->u);
-        ft_print_vec3(&obj->dir);
-    }
 }
 
-void ft_rotate_obj_y(int keycode, t_obj *obj)
+void ft_rotate_obj_y(int key, t_obj *obj)
 {
     float angle = 15.0 * M_PI / 180.0;
     float tmp_x, tmp_ux;
 
-    if (keycode == 'g') // Numpad 4: +15°
+    if (key == 'g' || key == 65430) // Numpad 4: +15°
     {
         tmp_x = obj->dir.x;
         tmp_ux = obj->u.x;
@@ -57,7 +52,7 @@ void ft_rotate_obj_y(int keycode, t_obj *obj)
         obj->u.x = tmp_ux * cos(angle) - obj->u.z * sin(angle);
         obj->u.z = tmp_ux * sin(angle) + obj->u.z * cos(angle);
     }
-    else if (keycode == 'j') // Numpad 6: -15°
+    else if (key == 'j' || key == 65432) // Numpad 6: -15°
     {
         tmp_x = obj->dir.x;
         tmp_ux = obj->u.x;
@@ -66,20 +61,14 @@ void ft_rotate_obj_y(int keycode, t_obj *obj)
         obj->u.x = tmp_ux * cos(angle) + obj->u.z * sin(angle);
         obj->u.z = -tmp_ux * sin(angle) + obj->u.z * cos(angle);
     }
-    if (keycode == 65430 || keycode == 65432)
-    {
-        ft_normalize(&obj->dir);
-        ft_normalize(&obj->u);
-        ft_print_vec3(&obj->dir);
-    }
 }
 
-void ft_rotate_obj_x(int keycode, t_obj *obj)
+void ft_rotate_obj_x(int key, t_obj *obj)
 {
     float angle = 15.0 * M_PI / 180.0;
     float tmp_y, tmp_uy;
 
-    if (keycode == 't') // Numpad 7: +15°
+    if (key == 't' || key == 65429) // Numpad 7: +15°
     {
         tmp_y = obj->dir.y;
         tmp_uy = obj->u.y;
@@ -88,7 +77,7 @@ void ft_rotate_obj_x(int keycode, t_obj *obj)
         obj->u.y = tmp_uy * cos(angle) - obj->u.z * sin(angle);
         obj->u.z = tmp_uy * sin(angle) + obj->u.z * cos(angle);
     }
-    else if (keycode == 'u') // Numpad 9: -15°
+    else if (key == 'u' || key == 65434) // Numpad 9: -15°
     {
         tmp_y = obj->dir.y;
         tmp_uy = obj->u.y;
@@ -97,21 +86,18 @@ void ft_rotate_obj_x(int keycode, t_obj *obj)
         obj->u.y = tmp_uy * cos(angle) + obj->u.z * sin(angle);
         obj->u.z = -tmp_uy * sin(angle) + obj->u.z * cos(angle);
     }
-    if (keycode == 65429 || keycode == 65434)
-    {
-        ft_normalize(&obj->dir);
-        ft_normalize(&obj->u);
-        ft_print_vec3(&obj->dir);
-    }
 }
 
-void ft_rotate_obj(int keycode, t_obj *obj)
+void ft_rotate_obj(int key, t_obj *obj)
 {
 	if (!obj)
 		return ;
-    ft_rotate_obj_x(keycode, obj);
-    ft_rotate_obj_y(keycode, obj);
-    ft_rotate_obj_z(keycode, obj);
+    ft_rotate_obj_x(key, obj);
+    ft_rotate_obj_y(key, obj);
+    ft_rotate_obj_z(key, obj);
+	ft_normalize(&obj->dir);
+	ft_normalize(&obj->u);
+	ft_print_vec3(&obj->dir);
 }
 
 void ft_rotate_cam(int keycode, t_data *data)
@@ -137,30 +123,21 @@ void ft_rotate_cam(int keycode, t_data *data)
     ft_normalize(&data->cam.dir);
 }
 
-void	ft_calc_ray(t_data *data,int x, int y, t_ray *ray)
-{
-	ray->tan_half_fov = tan(data->cam.fov * M_PI / 360.0);
-	ray->view_width = 2.0 * ray->tan_half_fov;
-	ray->asp_ratio = (float)IM_WIDTH / IM_HEIGHT;
-	ray->view_height = ray->view_width / ray->asp_ratio;
-	ray->u = (2.0 * (x + 0.5) / IM_WIDTH - 1.0) * ray->tan_half_fov;
-	ray->v = (1.0 - 2.0 * (y + 0.5) / IM_HEIGHT) * ray->view_height / 2.0;
-}
-
 void	ft_switch_obj_point(t_data *data, int x, int y, t_ray *ray)
 {
 	ft_calc_ray(data, x, y, ray);
 	t_hit   *hit;
 
-	hit = NULL;
 	ray->dir.x = ray->u;
 	ray->dir.y = ray->v;
 	ray->dir.z = 1.0;
 	ft_normalize(&(ray->dir));
 	hit = ft_calc_hit(data->cam.pos, ray->dir, data->obj);
 	if (hit != NULL) // Valid hit
+	{	
 		data->curr = hit->obj;
-	free(hit);
+		free(hit);
+	}
 }
 
 
@@ -211,31 +188,31 @@ void ft_move_z(t_data *data, float i)
 		data->cam.pos.z += i;
 }
 
-int ft_key_hook(int keycode, t_data *data)
+int ft_key_hook(int key, t_data *data)
 {
-	if (keycode == '.')
+	if (key == '.')
 		data->curr = NULL;
-	else if (keycode == 65307)
+	else if (key == 65307)
 		ft_exit_minirt(data);
-	else if (keycode == 'w')
+	else if (key == 'w')
 		ft_move_y(data, +1.0);
-	else if (keycode == 's')
+	else if (key == 's')
 		ft_move_y(data, -1.0);
-	else if (keycode == 'a')
+	else if (key == 'a')
 		ft_move_x(data, -1.0);
-	else if (keycode == 'd')
+	else if (key == 'd')
 		ft_move_x(data, +1.0);
-	else if (keycode == 32)
+	else if (key == 32)
 		ft_switch_obj(data, -1, -1);
-	else if (keycode == 'i')
+	else if (key == 'i')
 		ft_obj_size(data, 10.0);
-	else if (keycode == 'k')
+	else if (key == 'k')
 		ft_obj_size(data, -10.0);
-	ft_rotate_cam(keycode, data);
-	ft_rotate_obj(keycode, data->curr);
+	ft_rotate_cam(key, data);
+	ft_rotate_obj(key, data->curr);
 	ft_print_data(data);
 	ft_render_scene(data);
-    printf("key = %d (%c)\n", keycode, keycode);
+    printf("key = %d (%c)\n", key, key);
     return (0);
 }
 

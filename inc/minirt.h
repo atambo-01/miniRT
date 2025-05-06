@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 22:55:42 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/06 19:33:22 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/06 20:24:19 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@
 
 # define IM_WIDTH	540
 # define IM_HEIGHT	360
-
 
 typedef struct	s_vec3
 {
@@ -116,8 +115,10 @@ typedef struct	s_hit
 	float	t;
 	t_obj	*obj;
 }				t_hit;
+
 typedef struct	s_ray
 {
+	t_vec3	o;
 	t_vec3	dir;
 	float   tan_half_fov;
 	float   view_width;
@@ -155,6 +156,9 @@ int		ft_print_vec3(t_vec3 *vec);
 int		ft_print_cam(t_cam *cam);
 int		ft_print_obj(t_obj *obj);
 int		ft_print_data(t_data *data);
+// ray.c
+void	ft_init_ray(t_data *data,int x, int y, t_ray *ray);
+void	ft_calc_ray(t_data *data,int x, int y, t_ray *ray);
 
 // src/render_scene.c
 t_hit	*ft_calc_hit(t_vec3 ray_o, t_vec3 ray_dir, t_obj *obj);

@@ -25,6 +25,7 @@ SOURCES		=	src/minirt.c\
 				src/get_next_line_utils.c\
 				src/read_file.c\
 				src/minirt_error.c\
+				src/ray.c\
 
 NAME		=	miniRT
 CC			=	cc
