@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 20:47:34 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/06 23:06:12 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/06 23:30:05 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,5 +115,44 @@ float ft_hit_sphere(t_vec3 ray_o, t_vec3 ray_dir, t_obj *obj)
         if (t < 0)
             return (-1);
     }
+    return (t);
+}
+
+float ft_hit_cylinder(t_vec3 ray_o, t_vec3 ray_dir, t_obj *obj)
+{
+    t_vec3 oc = {ray_o.x - obj->center.x, ray_o.y - obj->center.y, ray_o.z - obj->center.z};
+    float dir_dot_axis = ft_dot(ray_dir, obj->dir);
+    float oc_dot_axis = ft_dot(oc, obj->dir);
+    t_vec3 proj = {ray_dir.x - dir_dot_axis * obj->dir.x, ray_dir.y - dir_dot_axis * obj->dir.y, ray_dir.z - dir_dot_axis * obj->dir.z};
+    t_vec3 oc_proj = {oc.x - oc_dot_axis * obj->dir.x, oc.y - oc_dot_axis * obj->dir.y, oc.z - oc_dot_axis * obj->dir.z};
+    float a = ft_dot(proj, proj);
+    float b = 2.0 * ft_dot(proj, oc_proj);
+    float c = ft_dot(oc_proj, oc_proj) - obj->radius * obj->radius;
+    float discriminant = b * b - 4.0 * a * c;
+    float t = -1, z, t_cap;
+    t_obj cap = *obj;
+
+    if (discriminant >= 0 && a >= 1e-6)
+    {
+        t = (-b - sqrt(discriminant)) / (2.0 * a);
+        z = oc_dot_axis + t * dir_dot_axis;
+        if (t < 0 || fabs(z) > obj->len / 2)
+        {
+            t = (-b + sqrt(discriminant)) / (2.0 * a);
+            z = oc_dot_axis + t * dir_dot_axis;
+            if (t < 0 || fabs(z) > obj->len / 2)
+                t = -1;
+        }
+    }
+    cap.center = (t_vec3){obj->center.x + obj->len / 2 * obj->dir.x, obj->center.y + obj->len / 2 * obj->dir.y, obj->center.z + obj->len / 2 * obj->dir.z};
+    t_cap = ft_hit_plane(ray_o, ray_dir, &cap);
+    if (t_cap > 0)
+    {
+        t_vec3 hit = {ray_o.x + t_cap * ray_dir.x - cap.center.x, ray_o.y + t_cap * ray_dir.y - cap.center.y, ray_o.z + t_cap * ray_dir.z - cap.center.z};
+        if (ft_dot(hit, hit) > obj->radius * obj->radius)
+            t_cap = -1;
+    }
+    if (t_cap > 0 && (t < 0 || t_cap < t))
+        return (t_cap);
     return (t);
 }

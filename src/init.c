@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 00:13:05 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/06 23:07:33 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/06 23:24:20 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,13 @@ int ft_init_obj(t_data *data)
 	obj_2 = malloc(sizeof(t_obj));
     if (!obj_2)
 	return (-1);
-	obj_2->type = ft_strdup("cub");
+	obj_2->type = ft_strdup("cy");
 	ft_setvec3(&obj_2->center, 0, 5, 20);
 	ft_setvec3(&obj_2->dir, 0.1, 0, -1);
 	ft_setvec3(&obj_2->u, 0, 1, 0);
 	ft_normalize(&obj_2->dir);
 	obj_2->radius = 1;
-	obj_2->len = 0;
+	obj_2->len = 10;
 	obj_2->color = 0x2d57cc;
 	obj_2->next = NULL;
 	data->obj->next = obj_2;
