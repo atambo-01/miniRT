@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 16:38:03 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/06 20:07:05 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/06 20:34:08 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,28 +58,26 @@ void ft_render_scene(t_data *data)
 {
     t_hit   *hit;
     t_ray   ray;
-    int     x;
-    int     y;
+    int     xy[2];
 
-    y = 0;
-	ft_init_ray(data, x, y, &ray);
-    while (y < IM_HEIGHT)
+    xy[1] = 0;
+	ft_init_ray(data, xy[0], xy[1], &ray);
+    while (xy[1] < IM_HEIGHT)
     {
-        x = 0;
-        while (x < IM_WIDTH)
+        xy[0] = 0;
+        while (xy[0] < IM_WIDTH)
         {
-            ft_calc_ray(data, x, y, &ray);
-            hit = ft_calc_hit(ray.o, ray.dir, data->obj);
-            if (hit)
+            ft_calc_ray(data, xy[0], xy[1], &ray);
+            if (hit = ft_calc_hit(ray.o, ray.dir, data->obj))
             {
-                ft_ray_color(hit, data, x, y);
-                free(hit);
-            }
+				ft_ray_color(hit, data, xy[0], xy[1]);
+				free(hit);
+			}
             else
-                ft_pixel_put_img(&data->img, x, y, 0x000000);
-            x++;
+                ft_pixel_put_img(&data->img, xy[0], xy[1], 0x000000);
+            xy[0]++;
         }
-        y++;
+        xy[1]++;
     }
     ft_upscale_img(data);
     mlx_put_image_to_window(data->mlx, data->win, data->s_img.ptr, 0, 0);
