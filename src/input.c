@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 01:38:57 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/06 14:10:10 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/06 15:34:57 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void ft_rotate_obj_z(int keycode, t_obj *obj)
     float angle = 15.0 * M_PI / 180.0;
     float tmp_x, tmp_ux;
 
-    if (keycode == 65436) // Numpad 1: +15°
+    if (keycode == 'b') // Numpad 1: +15°
     {
         tmp_x = obj->dir.x;
         tmp_ux = obj->u.x;
@@ -26,7 +26,7 @@ void ft_rotate_obj_z(int keycode, t_obj *obj)
         obj->u.x = tmp_ux * cos(angle) - obj->u.y * sin(angle);
         obj->u.y = tmp_ux * sin(angle) + obj->u.y * cos(angle);
     }
-    else if (keycode == 65435) // Numpad 3: -15°
+    else if (keycode == 'm') // Numpad 3: -15°
     {
         tmp_x = obj->dir.x;
         tmp_ux = obj->u.x;
@@ -48,7 +48,7 @@ void ft_rotate_obj_y(int keycode, t_obj *obj)
     float angle = 15.0 * M_PI / 180.0;
     float tmp_x, tmp_ux;
 
-    if (keycode == 65430) // Numpad 4: +15°
+    if (keycode == 'g') // Numpad 4: +15°
     {
         tmp_x = obj->dir.x;
         tmp_ux = obj->u.x;
@@ -57,7 +57,7 @@ void ft_rotate_obj_y(int keycode, t_obj *obj)
         obj->u.x = tmp_ux * cos(angle) - obj->u.z * sin(angle);
         obj->u.z = tmp_ux * sin(angle) + obj->u.z * cos(angle);
     }
-    else if (keycode == 65432) // Numpad 6: -15°
+    else if (keycode == 'j') // Numpad 6: -15°
     {
         tmp_x = obj->dir.x;
         tmp_ux = obj->u.x;
@@ -79,7 +79,7 @@ void ft_rotate_obj_x(int keycode, t_obj *obj)
     float angle = 15.0 * M_PI / 180.0;
     float tmp_y, tmp_uy;
 
-    if (keycode == 65429) // Numpad 7: +15°
+    if (keycode == 't') // Numpad 7: +15°
     {
         tmp_y = obj->dir.y;
         tmp_uy = obj->u.y;
@@ -88,7 +88,7 @@ void ft_rotate_obj_x(int keycode, t_obj *obj)
         obj->u.y = tmp_uy * cos(angle) - obj->u.z * sin(angle);
         obj->u.z = tmp_uy * sin(angle) + obj->u.z * cos(angle);
     }
-    else if (keycode == 65434) // Numpad 9: -15°
+    else if (keycode == 'u') // Numpad 9: -15°
     {
         tmp_y = obj->dir.y;
         tmp_uy = obj->u.y;
@@ -167,26 +167,38 @@ void ft_switch_obj(t_data *data, int x, int y)
 	}
 }
 
+void	ft_obj_size(t_data *data, float i)
+{
+	if (!data->curr)
+		return ;
+	data->curr->radius += (i / 100) * data->curr->radius;
+}
+
+
 int ft_key_hook(int keycode, t_data *data)
 {
 	if (keycode == 65307)
 		ft_close_window(data);
-	if (keycode == 119)
+	if (keycode == 'w')
 		data->cam.pos.y += 1;
-	if (keycode == 115)
+	if (keycode == 's')
 		data->cam.pos.y -= 1;
-	if (keycode == 97)
+	if (keycode == 'a')
 		data->cam.pos.x -= 1;
-	if (keycode == 100)
+	if (keycode == 'd')
 		data->cam.pos.x += 1;
 	if (keycode == 32)
 		ft_switch_obj(data, -1, -1);
+	if (keycode == 'i')
+		ft_obj_size(data, 10.0);
+	if (keycode == 'k')
+		ft_obj_size(data, -10.0);
 	ft_rotate_cam(keycode, data);
 	ft_rotate_obj(keycode, data->curr);
 	ft_print_data(data);
 	ft_render_scene(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img.ptr, 0, 0);
-    printf("key = %d\n", keycode);
+    printf("key = %d (%c)\n", keycode, keycode);
     return (0);
 }
 
