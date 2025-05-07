@@ -26,6 +26,7 @@ SOURCES		=	src/minirt.c\
 				src/read_file.c\
 				src/minirt_error.c\
 				src/ray.c\
+				src/costum_scene.c\
 
 NAME		=	miniRT
 CC			=	cc

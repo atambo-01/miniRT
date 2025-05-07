@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 22:55:42 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/06 23:11:27 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/07 02:41:04 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,9 @@
 # include			<fcntl.h>
 #include			<string.h>
 
+// remove these libs
+#include <sys/time.h>
+
 # include			"../minilibx-linux/mlx.h"
 # include			"../libft/libft.h"
 
@@ -36,18 +39,17 @@
 # define RIGHT		65364
 # define W_WIDTH	1080
 # define W_HEIGHT	720
-// # define IM_WIDTH	1080
-// # define IM_HEIGHT	720
+# define IM_WIDTH	1080
+# define IM_HEIGHT	720
 
 # define NUM_1
 # define NUM_PLUS
 
 // error msgs
-
 # define ERR_ALIGHT "Bad ambient light formating\n"
 
-# define IM_WIDTH	540
-# define IM_HEIGHT	360
+// # define IM_WIDTH	540
+// # define IM_HEIGHT	360
 
 typedef struct	s_vec3
 {
@@ -97,17 +99,19 @@ typedef struct	s_img
 
 typedef struct	s_data
 {
-	void*		mlx;
-	void*		win;
-	int			fd;
-	t_img		img;
-	t_img		s_img;
-	t_cam		cam;
-	t_obj		*obj;
-	t_obj		*curr;
-	t_light		light;
-	t_alight	alight;
-	char		*err;
+	void*			mlx;
+	void*			win;
+	int				fd;
+	t_img			img;
+	t_img			s_img;
+	t_cam			cam;
+	t_obj			*obj;
+	t_obj			*curr;
+	t_light			light;
+	t_alight		alight;
+	char			*err;
+	struct timeval	start;
+	struct timeval	end;
 }				t_data;
 
 typedef struct	s_hit
@@ -137,6 +141,8 @@ void	ft_quit_mlx(t_data *data);
 int		ft_exit_minirt(t_data *data);
 
 // src/init.c
+int		ft_init_obj(t_data *data);
+int		ft_init_cam(t_data *data);
 int 	ft_init_data(t_data *data, int fd);
 
 // src/input.c
@@ -172,6 +178,7 @@ void 	ft_setvec3(t_vec3 *v, float a, float b, float c);
 void	ft_pixel_put_img(t_img *img, int x, int y, int color);
 float	ft_dot(t_vec3 a, t_vec3 b);
 void	ft_normalize(t_vec3 *v);
+float	ft_get_speed(struct timeval start, struct timeval end);
 
 // src/get_next_line.c && src/get_next_line_utils.c
 char	*ft_strchr_1(char *s, int c);

@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 01:38:57 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/06 20:24:00 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/07 02:43:21 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,7 +139,6 @@ void	ft_switch_obj_point(t_data *data, int x, int y, t_ray *ray)
 		free(hit);
 	}
 }
-
 
 void ft_switch_obj(t_data *data, int x, int y)
 {

@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 16:38:03 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/06 23:12:31 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/07 02:41:48 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,8 @@ void ft_render_scene(t_data *data)
     t_hit   *hit;
     t_ray   ray;
     int     xy[2];
-
+    
+	gettimeofday(&(data->start), NULL);
     xy[1] = 0;
 	ft_init_ray(data, xy[0], xy[1], &ray);
     while (xy[1] < IM_HEIGHT)
@@ -83,6 +84,7 @@ void ft_render_scene(t_data *data)
         }
         xy[1]++;
     }
-    ft_upscale_img(data);
-    mlx_put_image_to_window(data->mlx, data->win, data->s_img.ptr, 0, 0);
+    // ft_upscale_img(data);
+    mlx_put_image_to_window(data->mlx, data->win, data->img.ptr, 0, 0);
+	gettimeofday(&(data->end), NULL);
 }
