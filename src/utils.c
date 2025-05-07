@@ -6,11 +6,17 @@
 /*   By: mchingi <mchingi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 15:02:07 by mchingi           #+#    #+#             */
-/*   Updated: 2025/05/06 15:57:57 by mchingi          ###   ########.fr       */
+/*   Updated: 2025/05/07 11:46:50 by mchingi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../inc/miniRT.h"
+
+void	ft_error(char *str)
+{
+	ft_putstr_fd(str, 2);
+	exit(EXIT_FAILURE);
+}
 
 int	input_keys(int keysym, t_mlx *data)
 {

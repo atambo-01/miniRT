@@ -6,12 +6,12 @@
 /*   By: mchingi <mchingi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 13:16:08 by mchingi           #+#    #+#             */
-/*   Updated: 2025/05/06 15:57:52 by mchingi          ###   ########.fr       */
+/*   Updated: 2025/05/07 17:01:25 by mchingi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/miniRT.h"
-
+/*
 int	main(int ac, char **av)
 {
 	(void) ac;
@@ -32,8 +32,23 @@ int	main(int ac, char **av)
 	mlx_loop(mlx.init);
 	return (0);
 }
-
-
+*/
 // ------------------------------------------------------------------------
 
+int	main(int ac, char **av)
+{
+	if (ac == 2)
+	{
+		int		i;
+		char 	**arr;
 
+		i = 0;
+		arr = file_management(av[1]);
+		while (arr[i])
+		{
+			printf("%s", arr[i]);
+			i++;
+		}
+	}
+	return (0);
+}
