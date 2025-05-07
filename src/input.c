@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 01:38:57 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/07 02:43:21 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/07 02:49:24 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,7 @@ void ft_rotate_cam(int keycode, t_data *data)
 
 void	ft_switch_obj_point(t_data *data, int x, int y, t_ray *ray)
 {
+	ft_init_ray(data, x, y, ray);
 	ft_calc_ray(data, x, y, ray);
 	t_hit   *hit;
 
@@ -202,7 +203,7 @@ int ft_key_hook(int key, t_data *data)
 	else if (key == 'd')
 		ft_move_x(data, +1.0);
 	else if (key == 32)
-		ft_switch_obj(data, -1, -1);
+		ft_switch_obj(data, -42.0, -42.0);
 	else if (key == 'i')
 		ft_obj_size(data, 10.0);
 	else if (key == 'k')
