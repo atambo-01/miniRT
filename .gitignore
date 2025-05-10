@@ -1,0 +1,5 @@
+*.o
+
+test_file.c
+
+miniRT
