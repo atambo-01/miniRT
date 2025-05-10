@@ -6,7 +6,7 @@
 /*   By: mchingi <mchingi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 13:16:08 by mchingi           #+#    #+#             */
-/*   Updated: 2025/05/07 17:01:25 by mchingi          ###   ########.fr       */
+/*   Updated: 2025/05/10 17:10:21 by mchingi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,16 +39,9 @@ int	main(int ac, char **av)
 {
 	if (ac == 2)
 	{
-		int		i;
-		char 	**arr;
-
-		i = 0;
-		arr = file_management(av[1]);
-		while (arr[i])
-		{
-			printf("%s", arr[i]);
-			i++;
-		}
+		file_management(av[1]);
 	}
+	else
+		printf("invalid av\n");
 	return (0);
 }

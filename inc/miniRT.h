@@ -6,7 +6,7 @@
 /*   By: mchingi <mchingi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 13:19:57 by mchingi           #+#    #+#             */
-/*   Updated: 2025/05/07 16:58:44 by mchingi          ###   ########.fr       */
+/*   Updated: 2025/05/10 17:09:15 by mchingi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,17 +130,18 @@ typedef struct s_data
 
 
 
-// --------------------- FILE MANAGEMENT --------------------------------/
+// ----------------------- FILE MANAGEMENT --------------------------------/
 int	open_file(char *file_name);
-char	**file_management(char *file_name);
+void	file_management(char *file_name/*, t_data *data*/);
 
 
-// ----------------------- MLX UTILS -----------------------------------/
+// ------------------------- MLX UTILS -----------------------------------/
 int		input_keys(int keysym, t_mlx *data);
 void	ft_mlx_put_pixel(t_img *img, int x, int y, int color);
 void	ft_put_pixels(t_img *img, int x, int y, int size, int color);
 void    draw_gradient(t_img *img, int width, int height);
 
-// ---------------------------------------------------------------------/
+// --------------------------- UTILS ----------------------------------/
 void	ft_error(char *str);
+void	ft_free_array(char **array);
 
