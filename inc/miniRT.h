@@ -6,7 +6,7 @@
 /*   By: mchingi <mchingi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 13:19:57 by mchingi           #+#    #+#             */
-/*   Updated: 2025/05/10 17:09:15 by mchingi          ###   ########.fr       */
+/*   Updated: 2025/05/11 16:00:46 by mchingi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,8 +131,9 @@ typedef struct s_data
 
 
 // ----------------------- FILE MANAGEMENT --------------------------------/
-int	open_file(char *file_name);
-void	file_management(char *file_name/*, t_data *data*/);
+int		open_file(char *file_name);
+int	file_management(char *file_name/*, t_data *data*/);
+int		validate_scene(char **arr, int arr_size);
 
 
 // ------------------------- MLX UTILS -----------------------------------/
@@ -144,4 +145,5 @@ void    draw_gradient(t_img *img, int width, int height);
 // --------------------------- UTILS ----------------------------------/
 void	ft_error(char *str);
 void	ft_free_array(char **array);
+int		ft_array_size(char **arr);
 
