@@ -6,7 +6,7 @@
 #    By: mchingi <mchingi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/29 12:55:11 by mchingi           #+#    #+#              #
-#    Updated: 2025/05/11 16:03:46 by mchingi          ###   ########.fr        #
+#    Updated: 2025/05/16 17:06:41 by mchingi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,8 @@ RM = rm -rf
 SRC =	./src/main.c \
 		./src/utils.c \
 		./src/file_management.c \
-		./src/scene_validations.c
+		./src/scene_validations.c \
+		./src/
 
 INC =	./inc/miniRT.h
 

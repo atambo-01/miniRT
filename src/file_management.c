@@ -6,7 +6,7 @@
 /*   By: mchingi <mchingi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 13:26:05 by mchingi           #+#    #+#             */
-/*   Updated: 2025/05/16 16:49:21 by mchingi          ###   ########.fr       */
+/*   Updated: 2025/05/16 17:05:05 by mchingi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,13 +78,6 @@ char	**extract_lines(char *file_name, int arr_size)
 	arr[++i] = NULL;
 	free(str);
 	return (arr);
-}
-
-int	fill_data(char **scene, t_data *data)
-{
-	
-	
-	return (1);
 }
 
 int	file_management(char *file_name, t_data *data)

@@ -4,7 +4,4 @@ test_file.c
 
 miniRT
 
-scene (3rd copy).rt
-scene (4th copy).rt
-scene (another copy).rt
-scene (copy).rt
+scenes/

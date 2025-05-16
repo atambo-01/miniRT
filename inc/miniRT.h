@@ -6,7 +6,7 @@
 /*   By: mchingi <mchingi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 13:19:57 by mchingi           #+#    #+#             */
-/*   Updated: 2025/05/16 16:48:09 by mchingi          ###   ########.fr       */
+/*   Updated: 2025/05/16 17:03:17 by mchingi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +134,7 @@ typedef struct s_data
 int		open_file(char *file_name);
 int		file_management(char *file_name, t_data *data);
 int		validate_scene(char **arr, int arr_size);
+int		fill_data(char **scene, t_data *data);
 
 
 // ------------------------- MLX UTILS -----------------------------------/
