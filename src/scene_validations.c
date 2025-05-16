@@ -6,7 +6,7 @@
 /*   By: mchingi <mchingi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 14:42:01 by mchingi           #+#    #+#             */
-/*   Updated: 2025/05/11 17:05:07 by mchingi          ###   ########.fr       */
+/*   Updated: 2025/05/16 11:55:03 by mchingi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ int	check_duplicate_capital_elements_aux(int a, int c, int l)
 	{
 		if (a > 1)
 		{
-			ft_putstr_fd("Error: Only one ambient light (A) can be declared\n", 2);
+			ft_putstr_fd("Error: Only one ambient light (A) can be \
+				declared\n", 2);
 			return (1);
 		}
 		if (c > 1)
@@ -66,8 +67,8 @@ int	check_duplicate_capital_elements(char **arr, int arr_size)
 
 int	check_identifier(char **arr)
 {
-	int x;
-	
+	int	x;
+
 	x = ft_array_size(arr);
 	if ((ft_strncmp(arr[0], "A", 2) == 0) && (x == 3))
 		return (1);
@@ -98,7 +99,7 @@ int	validate_scene(char **arr, int arr_size)
 		if (!check_identifier(tmp_arr))
 		{
 			ft_putstr_fd("Error: Invalid Map\n", 2);
-			ft_array_size(tmp_arr);
+			ft_free_array(tmp_arr);
 			return (0);
 		}
 		ft_free_array(tmp_arr);

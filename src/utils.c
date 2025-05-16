@@ -6,7 +6,7 @@
 /*   By: mchingi <mchingi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 12:19:09 by mchingi           #+#    #+#             */
-/*   Updated: 2025/05/11 14:45:21 by mchingi          ###   ########.fr       */
+/*   Updated: 2025/05/16 16:16:39 by mchingi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,10 @@ void	ft_free_array(char **array)
 {
 	int	i;
 
-	i = 0;
-	while (array[i++])
+	if (!array)
+		return ;
+	i = -1;
+	while (array[++i])
 		free(array[i]);
 	free(array);
 }
@@ -35,7 +37,24 @@ int	ft_array_size(char **arr)
 
 	i = -1;
 	counter = 0;
-	while(arr[++i] != NULL)
+	while (arr[++i] != NULL)
 		counter++;
 	return (counter);
+}
+
+char **remove_char(char **array)
+{
+    int i = 0;
+    int j = 0;
+    char **arr;
+
+    arr = (char **)malloc(sizeof(char *) * (ft_array_size(array) + 1));
+    while(array[j])
+    {
+        arr[i] = ft_strtrim(array[j], " \n\t");
+        i++;
+        j++;
+    }
+    arr[i] = NULL;
+    return (arr);
 }
