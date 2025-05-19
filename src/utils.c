@@ -6,7 +6,7 @@
 /*   By: mchingi <mchingi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 12:19:09 by mchingi           #+#    #+#             */
-/*   Updated: 2025/05/16 16:16:39 by mchingi          ###   ########.fr       */
+/*   Updated: 2025/05/19 19:52:36 by mchingi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,4 +57,30 @@ char **remove_char(char **array)
     }
     arr[i] = NULL;
     return (arr);
+}
+
+double	ft_atof(char *str)
+{
+	int		int_part;
+	double	dec_part;
+	double	num;
+	char	**tmp;
+
+	num = 0;
+	tmp = ft_split(str, '.');
+	int_part = ft_atoi(tmp[0]);
+	if (ft_array_size(tmp) == 2)
+	{
+		if (int_part < 0)
+			return (-1);
+		dec_part = ft_atoi(tmp[1]);
+		if (dec_part > 9)
+			return (-1);
+		num = (int_part + (dec_part / 10.0));
+	}
+	else if (ft_array_size(tmp) == 1)
+		num = int_part;
+	else
+		return (-1);
+	return (num);
 }

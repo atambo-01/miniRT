@@ -6,7 +6,7 @@
 /*   By: mchingi <mchingi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 13:26:05 by mchingi           #+#    #+#             */
-/*   Updated: 2025/05/16 17:05:05 by mchingi          ###   ########.fr       */
+/*   Updated: 2025/05/19 15:19:05 by mchingi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ int	file_management(char *file_name, t_data *data)
 	if (!fill_data(remove_char(arr), data))
 	{
 		ft_free_array(arr);
-		return(0);
+		return (0);
 	}
 	ft_free_array(arr);
 	return (1);

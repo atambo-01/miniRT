@@ -6,7 +6,7 @@
 /*   By: mchingi <mchingi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 13:16:08 by mchingi           #+#    #+#             */
-/*   Updated: 2025/05/16 12:26:38 by mchingi          ###   ########.fr       */
+/*   Updated: 2025/05/19 19:52:33 by mchingi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,11 @@ int	main(int ac, char **av)
 
 int	main(int ac, char **av)
 {
+	t_data data;
+	
 	if (ac == 2)
 	{
-		if (file_management(av[1]))
+		if (file_management(av[1], &data))
 			printf("Good Map\n");
 	}
 	else
