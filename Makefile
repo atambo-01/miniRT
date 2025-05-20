@@ -6,7 +6,7 @@
 #    By: mchingi <mchingi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/29 12:55:11 by mchingi           #+#    #+#              #
-#    Updated: 2025/05/19 15:17:32 by mchingi          ###   ########.fr        #
+#    Updated: 2025/05/20 19:48:05 by mchingi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,7 @@ RM = rm -rf
 
 SRC =	./src/main.c \
 		./src/utils.c \
+		./src/utils2.c \
 		./src/file_management.c \
 		./src/scene_validations.c \
 		./src/fill_data.c
