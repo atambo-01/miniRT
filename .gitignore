@@ -6,12 +6,13 @@
 #    By: atambo <alex.tambo.15432@gmail.com>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/13 20:55:51 by atambo            #+#    #+#              #
-#    Updated: 2025/05/03 16:06:45 by atambo           ###   ########.fr        #
+#    Updated: 2025/05/21 12:27:58 by atambo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 miniRT
 *~lock*
+miniRT.code-workspace
 # Compiled source
 *.a
 *.o

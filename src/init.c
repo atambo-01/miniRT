@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 00:13:05 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/07 15:19:02 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/15 16:34:32 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,12 @@ int ft_init_data(t_data *data, int fd)
 	data->fd = fd;
 	data->mlx = mlx_init();
 	if (!data->mlx)
-	{
-		free(data);
 		exit(1);
-	}
 	data->win = mlx_new_window(data->mlx, W_WIDTH, W_HEIGHT, "miniRT");
 	if (!data->win)
 	{
 		mlx_destroy_display(data->mlx);
-		free(data);
+		free(data->mlx);
 		exit(1);
 	}
 	data->img.ptr = mlx_new_image(data->mlx, IM_WIDTH, IM_HEIGHT);
