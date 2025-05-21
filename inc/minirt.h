@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 22:55:42 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/21 15:36:19 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/21 19:30:51 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,10 @@
 # define RIGHT		65364
 # define W_WIDTH	1080
 # define W_HEIGHT	720
+# define IM_WIDTH	540
+# define IM_HEIGHT	360
+// # define IM_WIDTH	1080
+// # define IM_HEIGHT	720
 
 # define NUM_1
 # define NUM_PLUS
@@ -48,11 +52,48 @@
 # define ERR_NEED_FILE "Need a file_path as param\n"
 # define ERR_ALIGHT "Bad ambient light formating\n"
 
-// # define IM_WIDTH	1080
-// # define IM_HEIGHT	720
-# define IM_WIDTH	540
-# define IM_HEIGHT	360
 
+typedef struct	s_upscale
+{
+	float	src_x;
+	float	src_y;
+	float	fx;
+	float	fy;
+	float	r;
+	float	g;
+	float	b;
+	int		*p00;
+	int		*p10;
+	int		*p01;
+	int		*p11;
+	int		r00;
+	int		g00;
+	int		b00;
+	int		r10;
+	int		g10;
+	int		b10;
+	int		r01;
+	int		g01;
+	int		b01;
+	int		r11;
+	int		g11;
+	int		b11;
+} t_upscale;
+
+typedef struct	s_neighbor
+{
+	float	r_sum;
+	float	g_sum;
+	float	b_sum;
+	int		count;
+	int		x0;
+	int		y0;
+	int		dx;
+	int		dy;
+	int		nx;
+	int		ny;
+	int		*p;
+}t_neighbor;
 typedef struct	s_vec3
 {
 	float x, y, z;
@@ -73,8 +114,8 @@ typedef struct	s_obj
 typedef struct	s_cam
 {
 	t_vec3	pos;
-    t_vec3	dir;
-    float	fov;
+	t_vec3	dir;
+	float	fov;
 }				t_cam;
 
 typedef struct	s_light
@@ -172,6 +213,12 @@ void	ft_calc_ray(t_data *data,int x, int y, t_ray *ray);
 t_hit	*ft_calc_hit(t_vec3 ray_o, t_vec3 ray_dir, t_obj *obj);
 void	ft_render_scene(t_data *data);
 void ft_render_and_upscale(t_data *data, int upscale);
+
+//src/upscale_assign.c
+void	ft_assign_src_coords(t_data *data, t_upscale *up, int x, int y);
+void	ft_assign_corner_pixels(t_data *data, t_upscale *up);
+void	ft_assign_rgb_values(t_upscale *up);
+void	ft_init_neighbor(t_upscale *up, t_neighbor *nb);
 
 // src/upscale_img.c
 void	ft_upscale_img(t_data *data);

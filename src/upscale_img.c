@@ -6,72 +6,85 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 04:24:21 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/06 18:35:21 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/21 19:30:58 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
 
-void ft_upscale_img(t_data *data)
+static void	ft_bilinear_interpolate(t_upscale *up)
 {
-    float scale_x = (float)IM_WIDTH / W_WIDTH;
-    float scale_y = (float)IM_HEIGHT / W_HEIGHT;
+	ft_assign_rgb_values(up);
+	up->r = (1 - up->fx) * (1 - up->fy) * up->r00 + up->fx * (1 - up->fy)
+		* up->r10 + (1 - up->fx) * up->fy * up->r01 + up->fx * up->fy * up->r11;
+	up->g = (1 - up->fx) * (1 - up->fy) * up->g00 + up->fx * (1 - up->fy)
+		* up->g10 + (1 - up->fx) * up->fy * up->g01 + up->fx * up->fy * up->g11;
+	up->b = (1 - up->fx) * (1 - up->fy) * up->b00 + up->fx * (1 - up->fy)
+		* up->b10 + (1 - up->fx) * up->fy * up->b01 + up->fx * up->fy * up->b11;
+}
 
-    for (int y = 0; y < W_HEIGHT; y++)
-    {
-        for (int x = 0; x < W_WIDTH; x++)
-        {
-            float src_x = x * scale_x;
-            float src_y = y * scale_y;
-            int x0 = (int)src_x;
-            int y0 = (int)src_y;
-            int x1 = x0 + 1 < IM_WIDTH ? x0 + 1 : x0;
-            int y1 = y0 + 1 < IM_HEIGHT ? y0 + 1 : y0;
-            float fx = src_x - x0;
-            float fy = src_y - y0;
+static void	ft_process_neighbor(t_data *data, t_neighbor *nb)
+{
+	nb->nx = nb->x0 + nb->dx;
+	nb->ny = nb->y0 + nb->dy;
+	if (nb->nx >= 0 && nb->nx < IM_WIDTH && nb->ny >= 0 && nb->ny < IM_HEIGHT)
+	{
+		nb->p = (int *)(data->img.addr + nb->ny * data->img.line_len + nb->nx
+				* (data->img.bpp / 8));
+		nb->r_sum += (*nb->p >> 16) & 0xFF;
+		nb->g_sum += (*nb->p >> 8) & 0xFF;
+		nb->b_sum += *nb->p & 0xFF;
+		nb->count++;
+	}
+}
 
-            int *p00 = (int *)(data->img.addr + y0 * data->img.line_len + x0 * (data->img.bpp / 8));
-            int *p10 = (int *)(data->img.addr + y0 * data->img.line_len + x1 * (data->img.bpp / 8));
-            int *p01 = (int *)(data->img.addr + y1 * data->img.line_len + x0 * (data->img.bpp / 8));
-            int *p11 = (int *)(data->img.addr + y1 * data->img.line_len + x1 * (data->img.bpp / 8));
+static void	ft_finalize_neighbor(t_upscale *up, t_neighbor *nb)
+{
+	up->r = nb->r_sum / nb->count;
+	up->g = nb->g_sum / nb->count;
+	up->b = nb->b_sum / nb->count;
+}
 
-            int r00 = (*p00 >> 16) & 0xFF, g00 = (*p00 >> 8) & 0xFF, b00 = *p00 & 0xFF;
-            int r10 = (*p10 >> 16) & 0xFF, g10 = (*p10 >> 8) & 0xFF, b10 = *p10 & 0xFF;
-            int r01 = (*p01 >> 16) & 0xFF, g01 = (*p01 >> 8) & 0xFF, b01 = *p01 & 0xFF;
-            int r11 = (*p11 >> 16) & 0xFF, g11 = (*p11 >> 8) & 0xFF, b11 = *p11 & 0xFF;
+static void	ft_average_neighbors(t_data *data, t_upscale *up)
+{
+	t_neighbor	nb;
 
-            float r = (1 - fx) * (1 - fy) * r00 + fx * (1 - fy) * r10 +
-                      (1 - fx) * fy * r01 + fx * fy * r11;
-            float g = (1 - fx) * (1 - fy) * g00 + fx * (1 - fy) * g10 +
-                      (1 - fx) * fy * g01 + fx * fy * g11;
-            float b = (1 - fx) * (1 - fy) * b00 + fx * (1 - fy) * b10 +
-                      (1 - fx) * fy * b01 + fx * fy * b11;
+	ft_init_neighbor(up, &nb);
+	while (nb.dy <= 1)
+	{
+		nb.dx = -1;
+		while (nb.dx <= 1)
+		{
+			if (nb.dx != 0 || nb.dy != 0)
+				ft_process_neighbor(data, &nb);
+			nb.dx++;
+		}
+		nb.dy++;
+	}
+	ft_finalize_neighbor(up, &nb);
+}
 
-            float r_sum = r, g_sum = g, b_sum = b;
-            int count = 1;
-            for (int dy = -1; dy <= 1; dy++)
-            {
-                for (int dx = -1; dx <= 1; dx++)
-                {
-                    if (dx == 0 && dy == 0) continue;
-                    int nx = x0 + dx;
-                    int ny = y0 + dy;
-                    if (nx >= 0 && nx < IM_WIDTH && ny >= 0 && ny < IM_HEIGHT)
-                    {
-                        int *p = (int *)(data->img.addr + ny * data->img.line_len + nx * (data->img.bpp / 8));
-                        r_sum += (*p >> 16) & 0xFF;
-                        g_sum += (*p >> 8) & 0xFF;
-                        b_sum += *p & 0xFF;
-                        count++;
-                    }
-                }
-            }
-            r = r_sum / count;
-            g = g_sum / count;
-            b = b_sum / count;
+void	ft_upscale_img(t_data *data)
+{
+	t_upscale	up;
+	int			color;
+	int			y;
+	int			x;
 
-            int color = ((int)r << 16) | ((int)g << 8) | (int)b;
-            ft_pixel_put_img(&data->s_img, x, y, color);
-        }
-    }
+	y = 0;
+	while (y < W_HEIGHT)
+	{
+		x = 0;
+		while (x < W_WIDTH)
+		{
+			ft_assign_src_coords(data, &up, x, y);
+			ft_assign_corner_pixels(data, &up);
+			ft_bilinear_interpolate(&up);
+			ft_average_neighbors(data, &up);
+			color = ((int)up.r << 16) | ((int)up.g << 8) | (int)up.b;
+			ft_pixel_put_img(&data->s_img, x, y, color);
+			x++;
+		}
+		y++;
+	}
 }
