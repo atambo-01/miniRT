@@ -6,7 +6,7 @@
 /*   By: mchingi <mchingi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 13:26:05 by mchingi           #+#    #+#             */
-/*   Updated: 2025/05/19 15:19:05 by mchingi          ###   ########.fr       */
+/*   Updated: 2025/05/21 19:26:34 by mchingi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,14 @@ int	open_file(char *file_name)
 
 	fd = -1;
 	if (ft_strncmp(ft_strrchr(file_name, '.'), ".rt", 4) == 0)
+	{
 		fd = open(file_name, O_RDONLY);
+		if (fd < 0)
+			perror("Error\nminiRT");
+		return (fd);
+	}	
 	else
-		ft_putstr_fd("Wrong file extension\n", 2);
+		ft_putstr_fd("Error\nminiRT: Wrong file extension\n", 2);
 	return (fd);
 }
 
@@ -64,8 +69,11 @@ char	**extract_lines(char *file_name, int arr_size)
 
 	i = -1;
 	fd = open(file_name, O_RDONLY);
-	if (!fd)
-		ft_error("Error opening file\n");
+	if (fd < 0)
+	{
+		perror("Error\nScene");
+		return (NULL);
+	}
 	str = get_next_line(fd);
 	arr = (char **)malloc(sizeof(char *) * (arr_size + 1));
 	while (str)

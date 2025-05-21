@@ -6,7 +6,7 @@
 /*   By: mchingi <mchingi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 17:08:11 by mchingi           #+#    #+#             */
-/*   Updated: 2025/05/21 11:52:14 by mchingi          ###   ########.fr       */
+/*   Updated: 2025/05/21 19:01:35 by mchingi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int	threed_n_o_range(double x, double y, double z)
 	return (0);
 }
 
-int	fill_normalized_orientation(char *data, t_vec3 *direction)
+int	fill_normalized_vector(char *data, t_vec3 *direction)
 {
 	char **xyz;
 

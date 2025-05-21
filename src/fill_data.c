@@ -6,7 +6,7 @@
 /*   By: mchingi <mchingi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 17:07:27 by mchingi           #+#    #+#             */
-/*   Updated: 2025/05/21 12:09:42 by mchingi          ###   ########.fr       */
+/*   Updated: 2025/05/21 19:28:10 by mchingi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	camera_data(t_cam *cam, char **data)
 		return (0);
 	if (!fill_coordinate(data[1], &cam->pos))
 		return (0);
-	if (!fill_normalized_orientation(data[2], &cam->dir))
+	if (!fill_normalized_vector(data[2], &cam->dir))
 		return (0);
 	cam->fov = atoi(data[3]);
 	if (cam->fov < 0 || cam->fov > 180)
@@ -56,17 +56,17 @@ int	parse_line(char *line, t_data *data)
 	success = 0;
 	tokens = ft_split2(line);
 	if (ft_strncmp(tokens[0], "A", 2) == 0)
-		success = ambient_data(&data->scenario.ambient_light, tokens);
+		success = ambient_data(&data->ambient_light, tokens);
 	else if (ft_strncmp(tokens[0], "C", 2) == 0)
-		success = camera_data(&data->scenario.cam, tokens);
+		success = camera_data(&data->cam, tokens);
 	else if (ft_strncmp(tokens[0], "L", 2) == 0)
-		success = light_data(&data->scenario.light, tokens);
+		success = light_data(&data->light, tokens);
 	else if (ft_strncmp(tokens[0], "pl", 3) == 0)
-		return(printf("Element %s parsed\n", tokens[0])); // success = 1;
+		success = plane_data(&data->objects.pl, tokens);
 	else if (ft_strncmp(tokens[0], "sp", 3) == 0)
-		return(printf("Element %s parsed\n", tokens[0])); // success = 1;
+		success = sphere_data(&data->objects.sp, tokens);
 	else if (ft_strncmp(tokens[0], "cy", 3) == 0)
-		return(printf("Element %s parsed\n", tokens[0])); // success = 1;
+		success = cylinder_data(&data->objects.cy, tokens);
 	ft_free_array(tokens);
 	return (success);
 }

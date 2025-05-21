@@ -6,7 +6,7 @@
 /*   By: mchingi <mchingi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 14:42:01 by mchingi           #+#    #+#             */
-/*   Updated: 2025/05/16 11:55:03 by mchingi          ###   ########.fr       */
+/*   Updated: 2025/05/21 15:39:15 by mchingi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,11 @@
 
 int	check_duplicate_capital_elements_aux(int a, int c, int l)
 {
+	if (a == 1 && c == 1 && l == 1)
+		return (0);
 	if (a > 1 || c > 1 || l > 1)
-	{
-		if (a > 1)
-		{
-			ft_putstr_fd("Error: Only one ambient light (A) can be \
-				declared\n", 2);
-			return (1);
-		}
-		if (c > 1)
-		{
-			ft_putstr_fd("Error: Only one camera (C) can be declared\n", 2);
-			return (1);
-		}
-		if (l > 1)
-		{
-			ft_putstr_fd("Error: Only one light (L) can be declared\n", 2);
-			return (1);
-		}
-	}
-	return (0);
+		ft_putstr_fd("Error\nScene: Duplicate ACL element in scene\n", 2);
+	return (1);
 }
 
 int	check_duplicate_capital_elements(char **arr, int arr_size)
@@ -98,7 +83,7 @@ int	validate_scene(char **arr, int arr_size)
 		tmp_arr = ft_split2(arr[i]);
 		if (!check_identifier(tmp_arr))
 		{
-			ft_putstr_fd("Error: Invalid Map\n", 2);
+			ft_putstr_fd("Error\nScene: Invalid Identifier\n", 2);
 			ft_free_array(tmp_arr);
 			return (0);
 		}

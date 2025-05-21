@@ -6,7 +6,7 @@
 #    By: mchingi <mchingi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/29 12:55:11 by mchingi           #+#    #+#              #
-#    Updated: 2025/05/20 19:48:05 by mchingi          ###   ########.fr        #
+#    Updated: 2025/05/21 19:03:57 by mchingi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,11 +28,9 @@ MLX = $(MINILIBX)/libmlx_Linux.a
 RM = rm -rf
 
 SRC =	./src/main.c \
-		./src/utils.c \
-		./src/utils2.c \
-		./src/file_management.c \
-		./src/scene_validations.c \
-		./src/fill_data.c
+		./src/file_management.c ./src/scene_validations.c \
+		./src/fill_data.c ./src/fill_obj_data.c \
+		./src/utils.c ./src/utils2.c 
 
 INC =	./inc/miniRT.h
 
