@@ -6,13 +6,13 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 00:51:59 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/21 17:49:15 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/21 19:44:38 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
 
-int ft_check_file(int ac, char **av)
+int	ft_check_file(int ac, char **av)
 {
 	int		fd;
 	char	buffer[1];
@@ -29,7 +29,5 @@ int ft_check_file(int ac, char **av)
 		close(fd);
 		exit (1);
 	}
-
 	return (fd);
 }
-//void ft_read_file();

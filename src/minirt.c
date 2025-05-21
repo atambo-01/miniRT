@@ -6,13 +6,13 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 22:57:58 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/21 15:33:09 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/21 19:42:18 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
 	int		fd;
 	t_data	data;
