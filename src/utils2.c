@@ -6,7 +6,7 @@
 /*   By: mchingi <mchingi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 17:08:11 by mchingi           #+#    #+#             */
-/*   Updated: 2025/05/20 19:59:57 by mchingi          ###   ########.fr       */
+/*   Updated: 2025/05/21 11:52:14 by mchingi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,30 @@ int	fill_coordinate(char *coordinate_data, t_vec3 *coordinates)
 	coordinates->z = ft_atof(xyz[2]);
 	ft_free_array(xyz);
 	return (1);
+}
+
+int	threed_n_o_range(double x, double y, double z)
+{
+	if ((x >= -1 && x <= 1) && (y >= -1 && y <= 1) && (z >= -1 && z <= 1))
+		return (1);
+	return (0);
+}
+
+int	fill_normalized_orientation(char *data, t_vec3 *direction)
+{
+	char **xyz;
+
+	if (!data)
+		return (0);
+	xyz = ft_split(data, ',');
+	if (!xyz || ft_array_size(xyz) != 3)
+	{
+		ft_free_array(xyz);
+		return (0);
+	}
+	direction->x = ft_atof(xyz[0]);
+	direction->y = ft_atof(xyz[1]);
+	direction->z = ft_atof(xyz[2]);
+	ft_free_array(xyz);
+	return (threed_n_o_range(direction->x, direction->y, direction->z));
 }

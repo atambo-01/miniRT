@@ -6,7 +6,7 @@
 /*   By: mchingi <mchingi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 13:19:57 by mchingi           #+#    #+#             */
-/*   Updated: 2025/05/20 19:58:43 by mchingi          ###   ########.fr       */
+/*   Updated: 2025/05/21 11:52:56 by mchingi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,6 +137,7 @@ int		fill_data(char **scene, t_data *data);
 
 int		fill_color(char *color_data, t_color *colors);
 int		fill_coordinate(char *coordinate_data, t_vec3 *coordinates);
+int		fill_normalized_orientation(char *data, t_vec3 *direction);
 
 // ------------------------- MLX UTILS -----------------------------------/
 // int		input_keys(int keysym, t_mlx *data);

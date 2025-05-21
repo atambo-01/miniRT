@@ -6,7 +6,7 @@
 /*   By: mchingi <mchingi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 13:16:08 by mchingi           #+#    #+#             */
-/*   Updated: 2025/05/20 19:48:07 by mchingi          ###   ########.fr       */
+/*   Updated: 2025/05/21 12:24:34 by mchingi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,24 @@ int	main(int ac, char **av)
 	{
 		if (file_management(av[1], &data))
 			printf("Good Map\n");
+		printf("\n");
+		printf("/-------- Ambient Lighting --------/\n");
+		printf("Ratio = %.1lf\n", data.scenario.ambient_light.light_ratio);
+		printf("COLOR\nR = %d\nB = %d\nG = %d\n", data.scenario.ambient_light.color.r, \
+			data.scenario.ambient_light.color.b, data.scenario.ambient_light.color.g);
+		printf("\n");
+		printf("/-------- Camera --------/\n");
+		printf("COORDINATES\nx = %.1lf\ny = %.1lf\nz = %.1lf\n", data.scenario.cam.pos.x, \
+			data.scenario.cam.pos.y,data.scenario.cam.pos.z);
+		printf("DIRECTION\nx = %.1lf\ny = %.1lf\nz = %.1lf\n", data.scenario.cam.dir.x, \
+			data.scenario.cam.dir.y, data.scenario.cam.dir.z);
+		printf("FOV = %d\n", data.scenario.cam.fov);
+		printf("\n");
+		printf("/-------- Light --------/\n");
+		printf("COORDINATES\nx = %.1lf\ny = %.1lf\nz = %.1lf\n", data.scenario.light.pos.x, \
+			data.scenario.light.pos.y, data.scenario.light.pos.z);
+		printf("Light Brightness ratio = %.1lf\n", data.scenario.light.bright_ratio);
+		printf("\n");
 	}
 	else
 		printf("invalid av\n");
