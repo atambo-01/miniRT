@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 01:38:57 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/07 02:49:24 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/21 18:06:21 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,22 +123,24 @@ void ft_rotate_cam(int keycode, t_data *data)
     ft_normalize(&data->cam.dir);
 }
 
-void	ft_switch_obj_point(t_data *data, int x, int y, t_ray *ray)
+void ft_switch_obj_point(t_data *data, int x, int y, t_ray *ray)
 {
-	ft_init_ray(data, x, y, ray);
-	ft_calc_ray(data, x, y, ray);
-	t_hit   *hit;
+    x = x * ((float)IM_WIDTH / W_WIDTH);
+    y = y * ((float)IM_HEIGHT / W_HEIGHT);
+    ft_init_ray(data, x, y, ray);
+    ft_calc_ray(data, x, y, ray);
+    t_hit *hit;
 
-	ray->dir.x = ray->u;
-	ray->dir.y = ray->v;
-	ray->dir.z = 1.0;
-	ft_normalize(&(ray->dir));
-	hit = ft_calc_hit(data->cam.pos, ray->dir, data->obj);
-	if (hit != NULL) // Valid hit
-	{	
-		data->curr = hit->obj;
-		free(hit);
-	}
+    ray->dir.x = ray->u;
+    ray->dir.y = ray->v;
+    ray->dir.z = 1.0;
+    ft_normalize(&(ray->dir));
+    hit = ft_calc_hit(data->cam.pos, ray->dir, data->obj);
+    if (hit != NULL) // Valid hit
+    {    
+        data->curr = hit->obj;
+        free(hit);
+    }
 }
 
 void ft_switch_obj(t_data *data, int x, int y)
@@ -211,7 +213,7 @@ int ft_key_hook(int key, t_data *data)
 	ft_rotate_cam(key, data);
 	ft_rotate_obj(key, data->curr);
 	ft_print_data(data);
-	ft_render_scene(data);
+	ft_render_and_upscale(data, UPSCALE);
     printf("key = %d (%c)\n", key, key);
     return (0);
 }
@@ -226,7 +228,7 @@ int ft_mouse_hook(int button, int x, int y, t_data *data)
 		ft_switch_obj(data, x, y);
 	if (button == 3);
 		ft_print_data(data);
-	ft_render_scene(data);
+	ft_render_and_upscale(data, UPSCALE);
 	printf("mouse_hook = %d\n", button);
     return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 02:23:44 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/07 02:35:34 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/21 14:38:45 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,7 @@ void	ft_normalize(t_vec3 *v)
 
 float ft_get_speed(struct timeval start, struct timeval end)
 {
-    float sec_diff = (float)(end.tv_sec - start.tv_sec) * 1000.0;
-    float usec_diff = (float)(end.tv_usec - start.tv_usec) / 1000.0;
-    return (sec_diff + usec_diff);
+	float sec_diff = (float)(end.tv_sec - start.tv_sec) * 1000.0;
+	float usec_diff = (float)(end.tv_usec - start.tv_usec) / 1000.0;
+	return (sec_diff + usec_diff);
 }
-

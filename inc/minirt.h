@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 22:55:42 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/15 16:03:12 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/21 15:36:19 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 # include			"../minilibx-linux/mlx.h"
 # include			"../libft/libft.h"
 
-# define SINGLE		3
+# define UPSCALE	1
 # define ESC		65307
 # define UP			65363
 # define DOWN		65361
@@ -44,12 +44,14 @@
 # define NUM_PLUS
 
 // error msgs
+# define ERR_PARAM "Too many params, only need one file_path\n"
+# define ERR_NEED_FILE "Need a file_path as param\n"
 # define ERR_ALIGHT "Bad ambient light formating\n"
 
-# define IM_WIDTH	1080
-# define IM_HEIGHT	720
-// # define IM_WIDTH	540
-// # define IM_HEIGHT	360
+// # define IM_WIDTH	1080
+// # define IM_HEIGHT	720
+# define IM_WIDTH	540
+# define IM_HEIGHT	360
 
 typedef struct	s_vec3
 {
@@ -169,6 +171,7 @@ void	ft_calc_ray(t_data *data,int x, int y, t_ray *ray);
 // src/render_scene.c
 t_hit	*ft_calc_hit(t_vec3 ray_o, t_vec3 ray_dir, t_obj *obj);
 void	ft_render_scene(t_data *data);
+void ft_render_and_upscale(t_data *data, int upscale);
 
 // src/upscale_img.c
 void	ft_upscale_img(t_data *data);
