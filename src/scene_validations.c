@@ -6,7 +6,7 @@
 /*   By: mchingi <mchingi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 14:42:01 by mchingi           #+#    #+#             */
-/*   Updated: 2025/05/21 15:39:15 by mchingi          ###   ########.fr       */
+/*   Updated: 2025/05/22 17:14:03 by mchingi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,8 @@ int	validate_scene(char **arr, int arr_size)
 		tmp_arr = ft_split2(arr[i]);
 		if (!check_identifier(tmp_arr))
 		{
-			ft_putstr_fd("Error\nScene: Invalid Identifier\n", 2);
+			ft_putstr_fd("Error\nScene: Invalid Data\n", 2);
+			printf("\n%s\n", arr[i]); // Debug
 			ft_free_array(tmp_arr);
 			return (0);
 		}

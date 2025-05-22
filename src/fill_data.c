@@ -6,7 +6,7 @@
 /*   By: mchingi <mchingi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 17:07:27 by mchingi           #+#    #+#             */
-/*   Updated: 2025/05/22 13:28:53 by mchingi          ###   ########.fr       */
+/*   Updated: 2025/05/22 17:26:02 by mchingi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ambient_data(t_amblight *amb, char **data)
 	amb->light_ratio = ft_atof(data[1]);
 	if (amb->light_ratio < 0.0 || amb->light_ratio > 1.0)
 		return (0);
-	return(fill_color(data[2], &amb->color));
+	return (fill_color(data[2], &amb->color));
 }
 
 int	camera_data(t_cam *cam, char **data)
@@ -38,20 +38,20 @@ int	camera_data(t_cam *cam, char **data)
 
 int	light_data(t_light *light, char **data)
 {
-	if (ft_array_size(data) < 3)
+	if (ft_array_size(data) < 4)
 		return (0);
 	if (!fill_coordinate(data[1], &light->pos))
 		return (0);
 	light->bright_ratio = atof(data[2]);
 	if (light->bright_ratio < 0.0 || light->bright_ratio > 1.0)
 		return (0);
-	return (1);
+	return (fill_color(data[3], &light->color));
 }
 
 int	parse_line(char *line, t_data *data)
 {
-	int	success;
-	char **tokens;
+	int		success;
+	char	**tokens;
 
 	success = 0;
 	tokens = ft_split2(line);
@@ -76,11 +76,11 @@ int	fill_data(char **scene, t_data *data)
 	int		i;
 
 	i = -1;
-	while(scene[++i])
+	while (scene[++i])
 	{
 		if (!parse_line(scene[i], data))
 		{
-			printf("Error in line %d: %s\n", (i + 1), scene[i]);
+			printf("Error in line %d: %s\n", (i + 1), scene[i]); // Debug
 			ft_free_array(scene);
 			return (0);
 		}

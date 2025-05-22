@@ -6,7 +6,7 @@
 /*   By: mchingi <mchingi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 13:16:08 by mchingi           #+#    #+#             */
-/*   Updated: 2025/05/22 13:29:29 by mchingi          ###   ########.fr       */
+/*   Updated: 2025/05/22 17:30:25 by mchingi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,10 @@ void print_debug_info(t_data data)
     printf("COORDINATES\nx = %.1lf\ny = %.1lf\nz = %.1lf\n", data.light.pos.x,
            data.light.pos.y, data.light.pos.z);
     printf("Light Brightness ratio = %.1lf\n", data.light.bright_ratio);
+    printf("COLOR\nR = %d\nG = %d\nB = %d\n", data.light.color.r,
+           data.light.color.g, data.light.color.b);
     printf("\n");
-    printf("/---- OBJECTS ----/\n");
+    printf("/-------------- OBJECTS --------------/\n");
     printf("\n");
 
     // Print all spheres

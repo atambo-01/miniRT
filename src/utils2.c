@@ -6,35 +6,35 @@
 /*   By: mchingi <mchingi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 17:08:11 by mchingi           #+#    #+#             */
-/*   Updated: 2025/05/21 19:01:35 by mchingi          ###   ########.fr       */
+/*   Updated: 2025/05/22 17:06:57 by mchingi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../inc/miniRT.h"
+#include "../inc/miniRT.h"
 
-int	color_range(int r, int b, int g)
+int	color_range(int r, int g, int b)
 {
-	if ((r >= 0 && r <= 255) && (b >= 0 && b <= 255) && (g >= 0 && g <= 255))
+	if ((r >= 0 && r <= 255) && (g >= 0 && g <= 255) && (b >= 0 && b <= 255))
 		return (1);
 	return (0);
 }
 
 int	fill_color(char *color_data, t_color *colors)
 {
-	char	**rbg;
+	char	**rgb;
 
 	if (!color_data)
 		return (0);
-	rbg = ft_split(color_data, ',');
-	if (!rbg || ft_array_size(rbg) != 3)
+	rgb = ft_split(color_data, ',');
+	if (!rgb || ft_array_size(rgb) != 3)
 	{
-		ft_free_array(rbg);
+		ft_free_array(rgb);
 		return (0);
 	}
-	colors->r = ft_atoi(rbg[0]);
-	colors->b = ft_atoi(rbg[1]);
-	colors->g = ft_atoi(rbg[2]);
-	ft_free_array(rbg);
+	colors->r = ft_atoi(rgb[0]);
+	colors->g = ft_atoi(rgb[1]);
+	colors->b = ft_atoi(rgb[2]);
+	ft_free_array(rgb);
 	return (color_range(colors->r, colors->b, colors->g));
 }
 
@@ -66,7 +66,7 @@ int	threed_n_o_range(double x, double y, double z)
 
 int	fill_normalized_vector(char *data, t_vec3 *direction)
 {
-	char **xyz;
+	char	**xyz;
 
 	if (!data)
 		return (0);

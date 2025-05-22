@@ -6,7 +6,7 @@
 /*   By: mchingi <mchingi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 13:19:57 by mchingi           #+#    #+#             */
-/*   Updated: 2025/05/22 11:23:00 by mchingi          ###   ########.fr       */
+/*   Updated: 2025/05/22 17:23:47 by mchingi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ typedef struct s_light
 	// char	id; // L
 	t_vec3	pos; // x, y, z coordinates of the light point
 	double	bright_ratio; // the light brightness ratio in the range [0.0,1.0]
+	t_color	color;
 }		t_light;
 
 typedef struct s_sphere

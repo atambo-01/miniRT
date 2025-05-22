@@ -6,7 +6,7 @@
 /*   By: mchingi <mchingi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 12:19:09 by mchingi           #+#    #+#             */
-/*   Updated: 2025/05/20 19:57:07 by mchingi          ###   ########.fr       */
+/*   Updated: 2025/05/22 16:38:00 by mchingi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,23 @@ void	ft_error(char *str)
 	exit(EXIT_FAILURE);
 }
 
-char **remove_char(char **array)
+char	**remove_char(char **array)
 {
-    int i = 0;
-    int j = 0;
-    char **arr;
+	int		i;
+	int		j;
+	char	**arr;
 
-    arr = (char **)malloc(sizeof(char *) * (ft_array_size(array) + 1));
-    while(array[j])
-    {
-        arr[i] = ft_strtrim(array[j], " \n\t");
-        i++;
-        j++;
-    }
-    arr[i] = NULL;
-    return (arr);
+	i = 0;
+	j = 0;
+	arr = (char **)malloc(sizeof(char *) * (ft_array_size(array) + 1));
+	while (array[j])
+	{
+		arr[i] = ft_strtrim(array[j], " \n\t");
+		i++;
+		j++;
+	}
+	arr[i] = NULL;
+	return (arr);
 }
 
 // double	ft_atof2(char *str)
