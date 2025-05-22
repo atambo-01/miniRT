@@ -6,7 +6,7 @@
 /*   By: mchingi <mchingi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 13:16:08 by mchingi           #+#    #+#             */
-/*   Updated: 2025/05/21 19:27:50 by mchingi          ###   ########.fr       */
+/*   Updated: 2025/05/22 13:29:29 by mchingi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,61 +35,96 @@ int	main(int ac, char **av)
 */
 // ------------------------------------------------------------------------
 
+void print_debug_info(t_data data)
+{
+    printf("Good Map\n");
+    printf("\n");
+    printf("/-------- Ambient Lighting --------/\n");
+    printf("Ratio = %.1lf\n", data.ambient_light.light_ratio);
+    printf("COLOR\nR = %d\nG = %d\nB = %d\n", data.ambient_light.color.r,
+           data.ambient_light.color.g, data.ambient_light.color.b);
+    printf("\n");
+    printf("/-------- Camera --------/\n");
+    printf("COORDINATES\nx = %.1lf\ny = %.1lf\nz = %.1lf\n", data.cam.pos.x,
+           data.cam.pos.y, data.cam.pos.z);
+    printf("DIRECTION\nx = %.1lf\ny = %.1lf\nz = %.1lf\n", data.cam.dir.x,
+           data.cam.dir.y, data.cam.dir.z);
+    printf("FOV = %d\n", data.cam.fov);
+    printf("\n");
+    printf("/-------- Light --------/\n");
+    printf("COORDINATES\nx = %.1lf\ny = %.1lf\nz = %.1lf\n", data.light.pos.x,
+           data.light.pos.y, data.light.pos.z);
+    printf("Light Brightness ratio = %.1lf\n", data.light.bright_ratio);
+    printf("\n");
+    printf("/---- OBJECTS ----/\n");
+    printf("\n");
+
+    // Print all spheres
+    t_sphere *current_sp = data.objects.sp;
+    int sp_count = 1;
+    while (current_sp != NULL)
+    {
+        printf("/---- Sphere %d ----/\n", sp_count++);
+        printf("COORDINATES\nx = %.1lf\ny = %.1lf\nz = %.1lf\n", current_sp->center.x,
+               current_sp->center.y, current_sp->center.z);
+        printf("Diameter = %.1lf\n", current_sp->diameter);
+        printf("COLOR\nR = %d\nG = %d\nB = %d\n", current_sp->colors.r,
+               current_sp->colors.g, current_sp->colors.b);
+        printf("\n");
+        current_sp = current_sp->next;
+    }
+
+    // Print all planes
+    t_plane *current_pl = data.objects.pl;
+    int pl_count = 1;
+    while (current_pl != NULL)
+    {
+        printf("/---- Plane %d ----/\n", pl_count++);
+        printf("COORDINATES\nx = %.1lf\ny = %.1lf\nz = %.1lf\n", current_pl->pos.x,
+               current_pl->pos.y, current_pl->pos.z);
+        printf("DIRECTION\nx = %.1lf\ny = %.1lf\nz = %.1lf\n", current_pl->dir.x,
+               current_pl->dir.y, current_pl->dir.z);
+        printf("COLOR\nR = %d\nG = %d\nB = %d\n", current_pl->colors.r,
+               current_pl->colors.g, current_pl->colors.b);
+        printf("\n");
+        current_pl = current_pl->next;
+    }
+
+    // Print all cylinders
+    t_cylinder *current_cy = data.objects.cy;
+    int cy_count = 1;
+    while (current_cy != NULL)
+    {
+        printf("/---- Cylinder %d ----/\n", cy_count++);
+        printf("COORDINATES\nx = %.1lf\ny = %.1lf\nz = %.1lf\n", current_cy->center.x,
+               current_cy->center.y, current_cy->center.z);
+        printf("DIRECTION\nx = %.1lf\ny = %.1lf\nz = %.1lf\n", current_cy->dir.x,
+               current_cy->dir.y, current_cy->dir.z);
+        printf("Diameter = %.1lf\n", current_cy->diameter);
+        printf("Height = %.1lf\n", current_cy->height);
+        printf("COLOR\nR = %d\nG = %d\nB = %d\n", current_cy->colors.r,
+               current_cy->colors.g, current_cy->colors.b);
+        printf("\n");
+        current_cy = current_cy->next;
+    }
+}
+
 int	main(int ac, char **av)
 {
 	t_data data;
 	
+	data.objects.sp = NULL;
+	data.objects.pl = NULL;
+	data.objects.cy = NULL;
 	if (ac == 2)
 	{
 		if (file_management(av[1], &data))
 		{
-			printf("Good Map\n");
-			printf("\n");
-			printf("/-------- Ambient Lighting --------/\n");
-			printf("Ratio = %.1lf\n", data.ambient_light.light_ratio);
-			printf("COLOR\nR = %d\nB = %d\nG = %d\n", data.ambient_light.color.r, \
-				data.ambient_light.color.b, data.ambient_light.color.g);
-			printf("\n");
-			printf("/-------- Camera --------/\n");
-			printf("COORDINATES\nx = %.1lf\ny = %.1lf\nz = %.1lf\n", data.cam.pos.x, \
-				data.cam.pos.y,data.cam.pos.z);
-			printf("DIRECTION\nx = %.1lf\ny = %.1lf\nz = %.1lf\n", data.cam.dir.x, \
-				data.cam.dir.y, data.cam.dir.z);
-			printf("FOV = %d\n", data.cam.fov);
-			printf("\n");
-			printf("/-------- Light --------/\n");
-			printf("COORDINATES\nx = %.1lf\ny = %.1lf\nz = %.1lf\n", data.light.pos.x, \
-				data.light.pos.y, data.light.pos.z);
-			printf("Light Brightness ratio = %.1lf\n", data.light.bright_ratio);
-			printf("\n");
-			printf("\n");
-			printf("/---- OBJECTS ----/\n");
-			printf("\n");
-			printf("/---- Sphere ----/\n");
-			printf("COORDINATES\nx = %.1lf\ny = %.1lf\nz = %.1lf\n", data.objects.sp.center.x, 
-				 data.objects.sp.center.y, data.objects.sp.center.z);
-			printf("Diameter = %.1lf\n", data.objects.sp.diameter);
-			printf("COLOR\nR = %d\nB = %d\nG = %d\n", data.objects.sp.colors.r, 
-				data.objects.sp.colors.b, data.objects.sp.colors.g);
-			printf("\n");
-			printf("/---- Plane ----/\n");
-			printf("COORDINATES\nx = %.1lf\ny = %.1lf\nz = %.1lf\n", data.objects.pl.pos.x, 
-				data.objects.pl.pos.y, data.objects.pl.pos.z);
-			printf("DIRECTION\nx = %.1lf\ny = %.1lf\nz = %.1lf\n", data.objects.pl.dir.x, 
-				data.objects.pl.dir.y, data.objects.pl.dir.z);
-			printf("COLOR\nR = %d\nB = %d\nG = %d\n", data.objects.pl.colors.r, 
-				data.objects.pl.colors.b, data.objects.pl.colors.g);
-			printf("\n");
-			printf("/---- Cylinder ----/\n");
-			printf("COORDINATES\nx = %.1lf\ny = %.1lf\nz = %.1lf\n", data.objects.cy.center.x, 
-				data.objects.cy.center.y, data.objects.cy.center.z);
-			printf("DIRECTION\nx = %.1lf\ny = %.1lf\nz = %.1lf\n", data.objects.cy.dir.x, 
-				data.objects.cy.dir.y, data.objects.cy.dir.z);
-			printf("Diameter = %.1lf\n", data.objects.cy.diameter);
-			printf("Height = %.1lf\n", data.objects.cy.height);
-			printf("COLOR\nR = %d\nB = %d\nG = %d\n", data.objects.cy.colors.r, 
-				data.objects.cy.colors.b, data.objects.cy.colors.g);
-		}
+			print_debug_info(data);
+			// free(data.objects.sp);
+			// free(data.objects.pl);
+			// free(data.objects.cy);
+		}	
 		else 
 			printf("This shitty stink\n");
 	}

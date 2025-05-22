@@ -6,7 +6,7 @@
 /*   By: mchingi <mchingi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 13:19:57 by mchingi           #+#    #+#             */
-/*   Updated: 2025/05/21 19:27:42 by mchingi          ###   ########.fr       */
+/*   Updated: 2025/05/22 11:23:00 by mchingi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,13 +80,6 @@ typedef struct s_light
 	double	bright_ratio; // the light brightness ratio in the range [0.0,1.0]
 }		t_light;
 
-// typedef struct s_scene
-// {
-// 	t_amblight	ambient_light;
-// 	t_cam		cam;
-// 	t_light		light;
-// }			t_scene;
-
 typedef struct s_sphere
 {
 	char			id; // sp
@@ -118,9 +111,9 @@ typedef struct s_cylinder
 
 typedef struct s_obj
 {
-	t_sphere	sp;
-	t_plane		pl;
-	t_cylinder	cy;
+	t_sphere	*sp;
+	t_plane		*pl;
+	t_cylinder	*cy;
 }		t_obj;
 
 typedef struct s_data
@@ -141,9 +134,9 @@ int		fill_color(char *color_data, t_color *colors);
 int		fill_coordinate(char *coordinate_data, t_vec3 *coordinates);
 int		fill_normalized_vector(char *data, t_vec3 *direction);
 
-int		sphere_data(t_sphere *sp, char **data);
-int		plane_data(t_plane *pl, char **data);
-int		cylinder_data(t_cylinder *cy, char **data);
+int	sphere_data(t_obj *obj, char **data);
+int	plane_data(t_obj *obj, char **data);
+int	cylinder_data(t_obj *obj, char **data);
 
 // ------------------------- MLX UTILS -----------------------------------/
 // int		input_keys(int keysym, t_mlx *data);

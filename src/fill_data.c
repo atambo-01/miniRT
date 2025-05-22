@@ -6,7 +6,7 @@
 /*   By: mchingi <mchingi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 17:07:27 by mchingi           #+#    #+#             */
-/*   Updated: 2025/05/21 19:28:10 by mchingi          ###   ########.fr       */
+/*   Updated: 2025/05/22 13:28:53 by mchingi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +62,11 @@ int	parse_line(char *line, t_data *data)
 	else if (ft_strncmp(tokens[0], "L", 2) == 0)
 		success = light_data(&data->light, tokens);
 	else if (ft_strncmp(tokens[0], "pl", 3) == 0)
-		success = plane_data(&data->objects.pl, tokens);
+		success = plane_data(&data->objects, tokens);
 	else if (ft_strncmp(tokens[0], "sp", 3) == 0)
-		success = sphere_data(&data->objects.sp, tokens);
+		success = sphere_data(&data->objects, tokens);
 	else if (ft_strncmp(tokens[0], "cy", 3) == 0)
-		success = cylinder_data(&data->objects.cy, tokens);
+		success = cylinder_data(&data->objects, tokens);
 	ft_free_array(tokens);
 	return (success);
 }
@@ -81,8 +81,10 @@ int	fill_data(char **scene, t_data *data)
 		if (!parse_line(scene[i], data))
 		{
 			printf("Error in line %d: %s\n", (i + 1), scene[i]);
+			ft_free_array(scene);
 			return (0);
 		}
 	}
+	ft_free_array(scene);
 	return (1);
 }
