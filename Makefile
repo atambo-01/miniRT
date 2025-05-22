@@ -28,6 +28,7 @@ SOURCES		=	src/minirt.c\
 				src/ray.c\
 				src/costum_scene.c\
 				src/upscale_assign.c\
+				src/hit_light.c\
 
 NAME		=	miniRT
 CC			=	cc

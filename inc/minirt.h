@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 22:55:42 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/21 19:30:51 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/22 15:51:32 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 # include			"../minilibx-linux/mlx.h"
 # include			"../libft/libft.h"
 
+# define EPSILON	0.0001
 # define UPSCALE	1
 # define ESC		65307
 # define UP			65363
@@ -55,13 +56,13 @@
 
 typedef struct	s_upscale
 {
-	float	src_x;
-	float	src_y;
-	float	fx;
-	float	fy;
-	float	r;
-	float	g;
-	float	b;
+	double	src_x;
+	double	src_y;
+	double	fx;
+	double	fy;
+	double	r;
+	double	g;
+	double	b;
 	int		*p00;
 	int		*p10;
 	int		*p01;
@@ -82,9 +83,9 @@ typedef struct	s_upscale
 
 typedef struct	s_neighbor
 {
-	float	r_sum;
-	float	g_sum;
-	float	b_sum;
+	double	r_sum;
+	double	g_sum;
+	double	b_sum;
 	int		count;
 	int		x0;
 	int		y0;
@@ -96,7 +97,7 @@ typedef struct	s_neighbor
 }t_neighbor;
 typedef struct	s_vec3
 {
-	float x, y, z;
+	double x, y, z;
 }				t_vec3;
 
 typedef struct	s_obj t_obj;
@@ -106,8 +107,8 @@ typedef struct	s_obj
 	t_vec3	center;
 	t_vec3	dir;
 	t_vec3	u;
-	float	radius;
-	float	len;
+	double	radius;
+	double	len;
 	int		color;
 	t_obj	*next;
 }				t_obj;
@@ -115,19 +116,20 @@ typedef struct	s_cam
 {
 	t_vec3	pos;
 	t_vec3	dir;
-	float	fov;
+	double	fov;
 }				t_cam;
 
 typedef struct	s_light
 {
 	t_vec3	center;
-	float	ratio;
+	double	radius;
+	double	ratio;
 	int		color;
 }				t_light;
 
 typedef struct	s_alight
 {
-	float	ratio;
+	double	ratio;
 	int		color;
 }				t_alight;
 
@@ -159,7 +161,9 @@ typedef struct	s_data
 
 typedef struct	s_hit
 {
-	float	t;
+	double	t;
+	double	d;
+	t_vec3	p;
 	t_obj	*obj;
 }				t_hit;
 
@@ -167,12 +171,10 @@ typedef struct	s_ray
 {
 	t_vec3	o;
 	t_vec3	dir;
-	float   tan_half_fov;
-	float   view_width;
-	float	asp_ratio;
-	float   view_height;
-	float	u;
-	float	v;
+	double   tan_half_fov;
+	double   view_height;
+	double	u;
+	double	v;
 }				t_ray;
 
 // src/check_file.c
@@ -206,13 +208,14 @@ int		ft_print_cam(t_cam *cam);
 int		ft_print_obj(t_obj *obj);
 int		ft_print_data(t_data *data);
 // ray.c
-void	ft_init_ray(t_data *data,int x, int y, t_ray *ray);
-void	ft_calc_ray(t_data *data,int x, int y, t_ray *ray);
+void	ft_init_ray(t_data *data, t_ray *ray);
+void	ft_calc_ray(int x, int y, t_ray *ray);
 
 // src/render_scene.c
-t_hit	*ft_calc_hit(t_vec3 ray_o, t_vec3 ray_dir, t_obj *obj);
+double	ft_calc_hit_2(t_vec3 ray_o, t_vec3 ray_dir, t_obj *obj);
+t_hit	*ft_calc_hit(t_ray ray, t_obj *obj);
 void	ft_render_scene(t_data *data);
-void ft_render_and_upscale(t_data *data, int upscale);
+void	ft_render_and_upscale(t_data *data, int upscale);
 
 //src/upscale_assign.c
 void	ft_assign_src_coords(t_data *data, t_upscale *up, int x, int y);
@@ -224,11 +227,13 @@ void	ft_init_neighbor(t_upscale *up, t_neighbor *nb);
 void	ft_upscale_img(t_data *data);
 
 // src/util.c
-void 	ft_setvec3(t_vec3 *v, float a, float b, float c);
+void 	ft_setvec3(t_vec3 *v, double a, double b, double c);
 void	ft_pixel_put_img(t_img *img, int x, int y, int color);
-float	ft_dot(t_vec3 a, t_vec3 b);
+double	ft_dot(t_vec3 a, t_vec3 b);
 void	ft_normalize(t_vec3 *v);
-float	ft_get_speed(struct timeval start, struct timeval end);
+double	ft_get_speed(struct timeval start, struct timeval end);
+t_vec3	ft_vec3_add(t_vec3 v1, t_vec3 v2);
+t_vec3	ft_scalar(t_vec3 v1, float r);
 
 // src/get_next_line.c && src/get_next_line_utils.c
 char	*ft_strchr_1(char *s, int c);
@@ -239,10 +244,14 @@ void	ft_free(char **str, char *buffer);
 char	*ft_substr_1(char *str, int start, int len_str);
 char	*ft_get_next_line(int fd);
 
-// src/hit.c
-float	ft_hit_cube(t_vec3 origin, t_vec3 dir, t_obj *obj);
-float	ft_hit_plane(t_vec3 origin, t_vec3 dir, t_obj *obj);
-float	ft_hit_sphere(t_vec3 ray_o, t_vec3 ray_dir, t_obj *obj);
-float	ft_hit_cylinder(t_vec3 ray_o, t_vec3 ray_dir, t_obj *obj);
+//src/hit_light.c
+double	ft_in_shadow(t_ray ray, t_obj *obj);
+double	ft_hit_light(t_data *data, t_ray ray, t_hit *hit, t_light *lum);
+
+// src/hit_obj.c
+double	ft_hit_cube(t_vec3 origin, t_vec3 dir, t_obj *obj);
+double	ft_hit_plane(t_vec3 origin, t_vec3 dir, t_obj *obj);
+double	ft_hit_sphere(t_vec3 ray_o, t_vec3 ray_dir, t_obj *obj);
+double	ft_hit_cylinder(t_vec3 ray_o, t_vec3 ray_dir, t_obj *obj);
 
 #endif

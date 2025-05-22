@@ -6,11 +6,19 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 23:35:42 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/07 00:31:47 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/22 11:22:13 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
+
+int ft_init_light(t_data *data)
+{
+	data->light.ratio = 0.5;
+	data->light.color = 0xffffff;
+	data->light.radius = 50;
+	return (0);
+}
 
 int ft_init_room_planes(t_obj *obj_4, t_data *data)
 {
@@ -24,7 +32,7 @@ int ft_init_room_planes(t_obj *obj_4, t_data *data)
     ft_normalize(&obj_5->dir);
     obj_5->radius = 10;
     obj_5->len = 0;
-    obj_5->color = 0x808080; // Grey
+    obj_5->color = 0x717575; // Grey
     obj_5->next = NULL;
     obj_4->next = obj_5;
 
@@ -38,7 +46,7 @@ int ft_init_room_planes(t_obj *obj_4, t_data *data)
     ft_normalize(&obj_6->dir);
     obj_6->radius = 10;
     obj_6->len = 0;
-    obj_6->color = 0x5d6161; // Grey
+    obj_6->color = 0x717575; // Grey
     obj_6->next = NULL;
     obj_5->next = obj_6;
 
@@ -52,12 +60,12 @@ int ft_init_room_planes(t_obj *obj_4, t_data *data)
     ft_normalize(&obj_7->dir);
     obj_7->radius = 10;
     obj_7->len = 0;
-    obj_7->color = 0x717575; // Grey
+    obj_7->color = 0x5d6161; // Grey
     obj_7->next = NULL;
     obj_6->next = obj_7;
 
     // data->curr = data->obj;
-    return (0);
+	return(ft_init_light(data));
 }
 
 int ft_init_obj(t_data *data)

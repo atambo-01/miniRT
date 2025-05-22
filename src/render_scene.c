@@ -6,13 +6,13 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 16:38:03 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/21 18:46:55 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/22 16:12:12 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
 
-static float	ft_calc_hit_2(t_vec3 ray_o, t_vec3 ray_dir, t_obj *obj)
+double	ft_calc_hit_2(t_vec3 ray_o, t_vec3 ray_dir, t_obj *obj)
 {
 	if (!ft_strcmp(obj->type, "pl"))
 		return (ft_hit_plane(ray_o, ray_dir, obj));
@@ -26,41 +26,41 @@ static float	ft_calc_hit_2(t_vec3 ray_o, t_vec3 ray_dir, t_obj *obj)
 		return (-1);
 }
 
-t_hit	*ft_calc_hit(t_vec3 ray_o, t_vec3 ray_dir, t_obj *obj)
+t_hit	*ft_calc_hit(t_ray ray, t_obj *obj)
 {
-	float	t[2];
+	double	t;
 	t_hit	*hit;
 
 	hit = malloc(sizeof(t_hit));
 	if (!hit)
 		return (NULL);
 	hit->obj = NULL;
-	t[0] = -1;
-	while (obj)
+	hit->t = -1;
+	while (obj) // instead of for each obj we need a BVH logic to optimize
 	{
-		t[1] = ft_calc_hit_2(ray_o, ray_dir, obj);
-		if (t[1] >= 0 && (t[1] < t[0] || t[0] < 0))
+		t = ft_calc_hit_2(ray.o, ray.dir, obj);
+		if (t >= 0 && (t < hit->t || hit->t < 0))
 		{
-			t[0] = t[1];
+			hit->t = t;
 			hit->obj = obj;
 		}
 		obj = obj->next;
 	}
-	hit->t = t[0];
+	hit->p = ft_vec3_add(ray.o, ft_scalar(ray.dir, hit->t));
 	return (hit);
 }
 
-void	ft_ray_color(t_hit *hit, t_data *data, float x, float y)
+void	ft_ray_color(t_hit *hit, t_data *data, double x, double y)
 {
 	int	color;
-
+	
 	if (hit && hit->t >= 0 && hit->obj)
 	{
 		color = hit->obj->color;
 		ft_pixel_put_img(&data->img, x, y, color);
 	}
 	else
-		ft_pixel_put_img(&data->img, x, y, 0x000000);
+	ft_pixel_put_img(&data->img, x, y, 0x000000);
 }
 
 void	ft_render_scene(t_data *data)
@@ -68,16 +68,17 @@ void	ft_render_scene(t_data *data)
 	t_hit	*hit;
 	t_ray	ray;
 	int		xy[2];
-
+	
 	xy[1] = 0;
-	ft_init_ray(data, xy[0], xy[1], &(ray));
+	ft_init_ray(data, &(ray));
 	while (xy[1] < IM_HEIGHT)
 	{
 		xy[0] = 0;
 		while (xy[0] < IM_WIDTH)
 		{
-			ft_calc_ray(data, xy[0], xy[1], &(ray));
-			hit = ft_calc_hit(ray.o, ray.dir, data->obj);
+			ft_calc_ray(xy[0], xy[1], &(ray));
+			hit = ft_calc_hit(ray, data->obj);
+			// hit->d = ft_hit_light(data, ray, hit, &(data->light));
 			if (hit)
 			{
 				ft_ray_color(hit, data, xy[0], xy[1]);

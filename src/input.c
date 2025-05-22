@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 01:38:57 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/21 18:56:49 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/22 13:22:13 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void ft_rotate_obj_z(int key, t_obj *obj)
 {
-    float angle = 15.0 * M_PI / 180.0;
-    float tmp_x, tmp_ux;
+    double angle = 15.0 * M_PI / 180.0;
+    double tmp_x, tmp_ux;
 
     if (key == 'b' || key == 65436) // Numpad 1: +15°
     {
@@ -40,8 +40,8 @@ void ft_rotate_obj_z(int key, t_obj *obj)
 
 void ft_rotate_obj_y(int key, t_obj *obj)
 {
-    float angle = 15.0 * M_PI / 180.0;
-    float tmp_x, tmp_ux;
+    double angle = 15.0 * M_PI / 180.0;
+    double tmp_x, tmp_ux;
 
     if (key == 'g' || key == 65430) // Numpad 4: +15°
     {
@@ -65,8 +65,8 @@ void ft_rotate_obj_y(int key, t_obj *obj)
 
 void ft_rotate_obj_x(int key, t_obj *obj)
 {
-    float angle = 15.0 * M_PI / 180.0;
-    float tmp_y, tmp_uy;
+    double angle = 15.0 * M_PI / 180.0;
+    double tmp_y, tmp_uy;
 
     if (key == 't' || key == 65429) // Numpad 7: +15°
     {
@@ -104,19 +104,19 @@ void ft_rotate_cam(int keycode, t_data *data)
 {
 	if (keycode == 113)
 	{
-		float tmp = data->cam.dir.x;
+		double tmp = data->cam.dir.x;
 		data->cam.dir.x = tmp * cos(0.1) + data->cam.dir.z * sin(0.1);
 		data->cam.dir.z = -tmp * sin(0.1) + data->cam.dir.z * cos(0.1);
 	}
 	if (keycode == 113) // Q
     {
-        float tmp = data->cam.dir.x;
+        double tmp = data->cam.dir.x;
         data->cam.dir.x = tmp * cos(0.157) + data->cam.dir.z * sin(0.157);
         data->cam.dir.z = -tmp * sin(0.157) + data->cam.dir.z * cos(0.157);
     }
     if (keycode == 101) // E
     {
-		float tmp = data->cam.dir.x;
+		double tmp = data->cam.dir.x;
         data->cam.dir.x = tmp * cos(-0.157) + data->cam.dir.z * sin(-0.157);
         data->cam.dir.z = -tmp * sin(-0.157) + data->cam.dir.z * cos(-0.157);
     }
@@ -125,17 +125,17 @@ void ft_rotate_cam(int keycode, t_data *data)
 
 void ft_switch_obj_point(t_data *data, int x, int y, t_ray *ray)
 {
-    x = x * ((float)IM_WIDTH / W_WIDTH);
-    y = y * ((float)IM_HEIGHT / W_HEIGHT);
-    ft_init_ray(data, x, y, ray);
-    ft_calc_ray(data, x, y, ray);
+    x = x * ((double)IM_WIDTH / W_WIDTH);
+    y = y * ((double)IM_HEIGHT / W_HEIGHT);
+    ft_init_ray(data, ray);
+    ft_calc_ray(x, y, ray);
     t_hit *hit;
 
     ray->dir.x = ray->u;
     ray->dir.y = ray->v;
     ray->dir.z = 1.0;
     ft_normalize(&(ray->dir));
-    hit = ft_calc_hit(data->cam.pos, ray->dir, data->obj);
+    hit = ft_calc_hit(*ray, data->obj);
     if (hit != NULL) // Valid hit
     {    
         data->curr = hit->obj;
@@ -160,13 +160,13 @@ void ft_switch_obj(t_data *data, int x, int y)
 		ft_switch_obj_point(data, x, y, &ray);
 }
 
-void	ft_obj_size(t_data *data, float i)
+void	ft_obj_size(t_data *data, double i)
 {
 	if (!data->curr)
 	return ;
 	data->curr->radius += (i / 100) * data->curr->radius;
 }
-void ft_move_x(t_data *data, float i)
+void ft_move_x(t_data *data, double i)
 {
 	if (data->curr)
 		data->curr->center.x += i;
@@ -174,7 +174,7 @@ void ft_move_x(t_data *data, float i)
 		data->cam.pos.x += i;
 }
 
-void ft_move_y(t_data *data, float i)
+void ft_move_y(t_data *data, double i)
 {
 	if (data->curr)
 		data->curr->center.y += i;
@@ -182,7 +182,7 @@ void ft_move_y(t_data *data, float i)
 		data->cam.pos.y += i;
 }
 
-void ft_move_z(t_data *data, float i)
+void ft_move_z(t_data *data, double i)
 {
 	if (data->curr)
 		data->curr->center.z += i;

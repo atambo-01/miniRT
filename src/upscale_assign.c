@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 19:28:07 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/21 19:32:44 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/22 12:02:51 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 void	ft_assign_src_coords(t_data *data, t_upscale *up, int x, int y)
 {
-	float	scale_x;
-	float	scale_y;
+	double	scale_x;
+	double	scale_y;
 
-	scale_x = (float)IM_WIDTH / W_WIDTH;
-	scale_y = (float)IM_HEIGHT / W_HEIGHT;
+	scale_x = (double)IM_WIDTH / W_WIDTH;
+	scale_y = (double)IM_HEIGHT / W_HEIGHT;
 	up->src_x = x * scale_x;
 	up->src_y = y * scale_y;
 	up->fx = up->src_x - (int)up->src_x;

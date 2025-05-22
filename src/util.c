@@ -6,13 +6,13 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 02:23:44 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/21 14:38:45 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/22 12:09:38 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
 
-void	ft_setvec3(t_vec3 *v, float a, float b, float c)
+void	ft_setvec3(t_vec3 *v, double a, double b, double c)
 {
 	v->x = a;
 	v->y = b;
@@ -27,17 +27,37 @@ void	ft_pixel_put_img(t_img *img, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-float	ft_dot(t_vec3 a, t_vec3 b)
+double	ft_dot(t_vec3 a, t_vec3 b)
 {
-	float	result;
+	double	result;
 
 	result = a.x * b.x + a.y * b.y + a.z * b.z;
 	return (result);
 }
 
+t_vec3	ft_vec3_add(t_vec3 v1, t_vec3 v2)
+{
+	t_vec3	result;
+
+	result.x = v1.x + v2.x;
+	result.y = v1.y + v2.y;
+	result.z = v1.z + v2.z;
+	return (result);
+}
+
+t_vec3 ft_scalar(t_vec3 v1, float r)
+{
+	t_vec3	result;
+
+	result.x = v1.x * r;
+	result.y = v1.y * r;
+	result.z = v1.z * r;
+	return (result);
+}
+
 void	ft_normalize(t_vec3 *v)
 {
-	float	len;
+	double	len;
 
 	len = sqrt(ft_dot(*v, *v));
 	if (len > 0)
@@ -48,9 +68,9 @@ void	ft_normalize(t_vec3 *v)
 	}
 }
 
-float ft_get_speed(struct timeval start, struct timeval end)
+double ft_get_speed(struct timeval start, struct timeval end)
 {
-	float sec_diff = (float)(end.tv_sec - start.tv_sec) * 1000.0;
-	float usec_diff = (float)(end.tv_usec - start.tv_usec) / 1000.0;
+	double sec_diff = (double)(end.tv_sec - start.tv_sec) * 1000.0;
+	double usec_diff = (double)(end.tv_usec - start.tv_usec) / 1000.0;
 	return (sec_diff + usec_diff);
 }
