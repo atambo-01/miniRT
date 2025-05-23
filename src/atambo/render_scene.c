@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 16:38:03 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/23 20:12:19 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/23 21:20:06 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,10 +77,14 @@ void	ft_render_scene(t_data *data)
 		while (xy[0] < IM_WIDTH)
 		{
 			hit.t = -1;
+			hit.obj = NULL;
 			hit.color = 0x000000;
 			ft_calc_ray(xy[0], xy[1], &(ray));
 			ft_calc_hit(ray, data->obj, &hit);
-			if (hit.t > 0)
+			// if (!ft_hit_light(data, ray, &hit, &(data->light)));
+			// 	ft_calc_hit(ray, data->obj, &hit);
+			ft_hit_light(data, ray, &hit, &(data->light));
+			if (hit.t > 0 && hit.obj)
 				hit.d = ft_hit_obj_light(data, ray, hit, &(data->light));
 			ft_ray_color(&hit, data, xy[0], xy[1]);
 			xy[0]++;

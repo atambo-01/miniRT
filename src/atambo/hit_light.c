@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 12:21:37 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/23 16:17:41 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/23 21:15:28 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,28 @@ double	ft_in_shadow(t_ray ray, t_obj *obj)
 		obj = obj->next;
 	}
 	return (0);
+}
+
+int ft_hit_light(t_data *data, t_ray ray, t_hit *hit, t_light *lum)
+{
+	t_vec3 oc = {ray.o.x - lum->center.x, ray.o.y - lum->center.y, ray.o.z - lum->center.z};
+	double a = ft_dot(ray.dir, ray.dir);
+	double b = 2.0 * ft_dot(oc, ray.dir);
+	double c = ft_dot(oc, oc) - lum->radius * lum->radius;
+	double discriminant = b * b - 4.0 * a * c;
+
+	if (discriminant < 0)
+		return (0);
+	double t = (-b - sqrt(discriminant)) / (2.0 * a);
+	if (t < 0)
+	{
+		t = (-b + sqrt(discriminant)) / (2.0 * a);
+		if (t < 0)
+			return (0);
+	}
+	hit->t = t;
+	hit->color = lum->color;
+	return (t > 0);
 }
 
 // int ft_hit_light (t_data *data, t_ray ray, t_hit hit, t_light *lum)
