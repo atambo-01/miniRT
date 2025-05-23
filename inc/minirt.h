@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 22:55:42 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/22 15:51:32 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/23 12:27:45 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -246,7 +246,7 @@ char	*ft_get_next_line(int fd);
 
 //src/hit_light.c
 double	ft_in_shadow(t_ray ray, t_obj *obj);
-double	ft_hit_light(t_data *data, t_ray ray, t_hit *hit, t_light *lum);
+double	ft_hit_obj_light(t_data *data, t_ray ray, t_hit hit, t_light *lum);
 
 // src/hit_obj.c
 double	ft_hit_cube(t_vec3 origin, t_vec3 dir, t_obj *obj);

@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 12:21:37 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/22 16:01:03 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/23 12:32:58 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ double	ft_in_shadow(t_ray ray, t_obj *obj)
 	return (0);
 }
 
-
-double	ft_hit_light(t_data *data, t_ray ray, t_hit *hit, t_light *lum)
+int ft_hit_light (t_data *data, t_ray ray, t_hit hit, t_light *lum)
+double	ft_hit_obj_light(t_data *data, t_ray ray, t_hit hit, t_light *lum)
 {
 	double	t;
 	t_vec3	oc;
@@ -70,7 +70,12 @@ double	ft_hit_light(t_data *data, t_ray ray, t_hit *hit, t_light *lum)
 	
 	t = 0;
 	//init ray
-	ray.o = ft_vec3_add(hit->p, ft_scalar(hit->obj->dir, EPSILON));
+	t_vec3 v1 = hit.p;
+	if (!hit.obj)
+		printf("is NULL\n");
+	t_vec3 dir = hit.obj->dir;
+	t_vec3 v2 = ft_scalar(dir, 0.0001);
+	ray.o = ft_vec3_add(v1, v2);
 	ray.dir = ft_vec_AB(&(ray.o), &(lum->center));
 
 	//check against light
