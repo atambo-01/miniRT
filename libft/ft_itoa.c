@@ -3,60 +3,61 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchingi <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: atambo <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/18 13:51:59 by mchingi           #+#    #+#             */
-/*   Updated: 2024/05/18 13:52:07 by mchingi          ###   ########.fr       */
+/*   Created: 2024/05/21 10:54:15 by atambo            #+#    #+#             */
+/*   Updated: 2024/05/22 14:02:15 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"libft.h"
+#include "libft.h"
 
-static int	ft_lennum(long num)
+static int	ft_count_digits(int n)
 {
-	int	strlen;
+	int	count;
 
-	strlen = 0;
-	if (num == 0)
+	count = 0;
+	if (n == 0)
 		return (1);
-	else if (num < 0)
+	while (n != 0)
 	{
-		strlen++;
-		num *= -1;
+		n /= 10;
+		count++;
 	}
-	while (num > 0)
+	return (count);
+}
+
+static void	asign(char *result, int digits, int n, int i)
+{
+	if (n < 0)
 	{
-		num /= 10;
-		strlen++;
+		result[i++] = '-';
+		n = -n;
 	}
-	return (strlen);
+	result[digits] = '\0';
+	while (digits > i)
+	{
+		result[digits - 1] = (n % 10) + '0';
+		n /= 10;
+		digits--;
+	}
 }
 
 char	*ft_itoa(int n)
 {
-	int		lenstr;
-	long	num;
-	char	*str;
+	int		i;
+	int		digits;
+	char	*result;
 
-	num = n;
-	lenstr = ft_lennum(num);
-	str = (char *)malloc(sizeof(char) * (lenstr + 1));
-	if (!str)
+	i = 0;
+	if (n == -2147483648)
+		return (ft_strdup("-2147483648"));
+	digits = ft_count_digits(n);
+	if (n < 0)
+		digits++;
+	result = (char *)malloc((digits + 1) * sizeof(char));
+	if (!result)
 		return (NULL);
-	*(str + lenstr--) = '\0';
-	if (num == 0)
-	{
-		*(str + 0) = '0';
-	}
-	else if (num < 0)
-	{
-		num *= -1;
-		*(str + 0) = '-';
-	}
-	while (num > 0)
-	{
-		*(str + lenstr--) = (48 + (num % 10));
-		num /= 10;
-	}
-	return (str);
+	asign(result, digits, n, i);
+	return (result);
 }

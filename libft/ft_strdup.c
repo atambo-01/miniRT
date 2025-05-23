@@ -3,30 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchingi <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: atambo <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/18 13:06:42 by mchingi           #+#    #+#             */
-/*   Updated: 2024/05/18 13:18:54 by mchingi          ###   ########.fr       */
+/*   Created: 2024/05/07 10:55:51 by atambo            #+#    #+#             */
+/*   Updated: 2025/03/10 12:08:19 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"libft.h"
+#include "./libft.h"
 
-char	*ft_strdup(const char *s)
+char	*ft_strdup(char *src)
 {
-	size_t	i;
-	char	*str;
+	size_t	n;
+	char	*dst;
 
-	i = ft_strlen(s);
-	str = (char *)malloc(sizeof(char) * (i + 1));
-	if (!str)
-		return (0);
-	i = 0;
-	while (s[i])
+	if (!src)
+		return (NULL);
+	n = 0;
+	while (src[n])
+		n ++;
+	dst = ft_malloc((n + 1) * sizeof(char));
+	if (dst == NULL)
+		return (NULL);
+	n = 0;
+	while (src[n])
 	{
-		str[i] = s[i];
-		i++;
+		dst[n] = src[n];
+		n++;
 	}
-	str[i] = '\0';
-	return (str);
+	dst[n] = '\0';
+	return (dst);
 }

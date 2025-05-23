@@ -3,22 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchingi <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: atambo <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/15 13:28:26 by mchingi           #+#    #+#             */
-/*   Updated: 2024/05/18 11:15:24 by mchingi          ###   ########.fr       */
+/*   Created: 2024/05/16 18:26:32 by atambo            #+#    #+#             */
+/*   Updated: 2024/05/16 18:30:55 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"libft.h"
+#include "libft.h"
 
 int	ft_toupper(int c)
 {
-	if (c >= 97 && c <= 122)
-	{
-		c -= 32;
-		return (c);
-	}
+	if (c >= 'a' && c <= 'z')
+		return (c - 'a' + 'A');
 	else
 		return (c);
 }

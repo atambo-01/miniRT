@@ -1,1 +1,1 @@
-make re -s && clear && ./miniRT scene.rt
+make re -s && clear && ./miniRT file.rt

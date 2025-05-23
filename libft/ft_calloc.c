@@ -3,25 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchingi <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: atambo <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/18 13:23:09 by mchingi           #+#    #+#             */
-/*   Updated: 2024/05/18 13:27:02 by mchingi          ###   ########.fr       */
+/*   Created: 2024/05/20 18:38:20 by atambo            #+#    #+#             */
+/*   Updated: 2024/05/21 14:20:46 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"libft.h"
+#include "libft.h"
 
 void	*ft_calloc(size_t nmemb, size_t size)
 {
-	char	*buffer;
-	int		area;
+	void	*ptr;
+	size_t	max;
 
-	area = (nmemb * size);
-	buffer = (char *)malloc(sizeof(char) * area);
-	if (!buffer)
+	max = 4294967295;
+	if (nmemb == 0 || size == 0)
+		return (malloc(1));
+	if (nmemb > max / size)
 		return (NULL);
-	while (--area >= 0)
-		buffer[area] = '\0';
-	return ((void *)buffer);
+	ptr = malloc(nmemb * size);
+	ft_bzero(ptr, size * nmemb);
+	return (ptr);
 }

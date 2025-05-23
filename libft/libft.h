@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchingi <mchingi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:54:02 by mchingi           #+#    #+#             */
-/*   Updated: 2025/05/20 19:58:18 by mchingi          ###   ########.fr       */
+/*   Updated: 2025/05/23 14:14:54 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@
 # include <fcntl.h>
 //--------------LIBFT-----------------/
 // Mandatory Part 1:
-int		ft_isalpha(int c);
-int		ft_isdigit(int c);
-int		ft_isalnum(int c);
+int		ft_isalpha(char c);
+int		ft_isdigit(char c);
+int		ft_isalnum(char c);
 int		ft_isascii(int c);
 int		ft_isprint(int c);
 int		ft_toupper(int c);
@@ -31,7 +31,7 @@ int		ft_tolower(int c);
 int		ft_atoi(const char *ptr);
 int		ft_memcmp(const void *s1, const void *s2, size_t n);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
-char	*ft_strdup(const char *s);
+char	*ft_strdup(char *s);
 char	*ft_strchr(const char *str, int c);
 char	*ft_strrchr(const char *s, int c);
 char	*ft_strnstr(const char *big, const char *little, size_t len);
@@ -99,5 +99,12 @@ double	ft_atof(char *str);
 size_t	ft_array_size(char **arr);
 char	**ft_split2(char const *s); // Splits every isspace char
 void	ft_free_array(char **array);
+
+// ------------------------ miniRT ----------------------/
+int		ft_perror(char const *msg, int e);
+void	ft_putstr(char const *str);
+void	*ft_malloc(size_t size);
+int		ft_strcmp(const char *s1, const char *s2);
+
 
 #endif
