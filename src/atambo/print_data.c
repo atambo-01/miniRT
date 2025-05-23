@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 20:15:19 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/23 16:17:41 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/23 20:17:28 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,23 @@ int ft_print_obj(t_obj *obj)
     return (0);
 }
 
+int ft_print_light(t_light *lum)
+{
+    printf("Light:\n");
+	printf("  Center:");
+	ft_print_vec3(&lum->center);
+	printf("  Radius:\t%.2f\n", lum->radius);
+	printf("  Color:\t0x%06X\n", lum->color);
+    return (0);
+}
+
 int ft_print_data(t_data *data)
 {
     system("clear");
     printf("-----------------------------------------\n");
     printf("\t\tx\ty\tz\n");
     ft_print_cam(&data->cam);
+	ft_print_light(&data->light);
 	if (data->curr)
 		ft_print_obj(data->curr);
 	printf("obj_count = \t%d\n",ft_count_obj(data->obj));
