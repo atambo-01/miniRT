@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 22:55:42 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/23 16:12:24 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/23 20:11:17 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	ft_calc_ray(int x, int y, t_ray *ray);
 
 // src/render_scene.c
 double	ft_calc_hit_2(t_vec3 ray_o, t_vec3 ray_dir, t_obj *obj);
-t_hit	ft_calc_hit(t_ray ray, t_obj *obj);
+int		ft_calc_hit(t_ray ray, t_obj *obj, t_hit *hit);
 void	ft_render_scene(t_data *data);
 void	ft_render_and_upscale(t_data *data, int upscale);
 

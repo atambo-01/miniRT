@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 01:38:57 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/23 16:17:41 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/23 20:11:35 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,11 +136,11 @@ void ft_switch_obj_point(t_data *data, int x, int y, t_ray *ray)
     ray->dir.y = ray->v;
     ray->dir.z = 1.0;
     ft_normalize(&(ray->dir));
-    hit = ft_calc_hit(*ray, data->obj);
+    ft_calc_hit(*ray, data->obj, &hit);
     if (hit.t > 0) // Valid hit
     {    
         data->curr = hit.obj;
-  
+
     }
 }
 

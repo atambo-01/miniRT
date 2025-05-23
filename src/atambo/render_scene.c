@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 16:38:03 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/23 20:03:27 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/23 20:12:19 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,27 +27,27 @@ double	ft_calc_hit_2(t_vec3 ray_o, t_vec3 ray_dir, t_obj *obj)
 		return (-1);
 }
 
-t_hit	ft_calc_hit(t_ray ray, t_obj *obj)
+int	ft_calc_hit(t_ray ray, t_obj *obj, t_hit *hit)
 {
 	double	t;
-	t_hit	hit;
 
-	hit.obj = NULL;
-	hit.t = -1;
+	hit->obj = NULL;
+	hit->t = -1;
 	while (obj) // instead of for each obj we need a BVH logic to optimize
 	{
 		t = ft_calc_hit_2(ray.o, ray.dir, obj);
-		if (t >= 0 && (t < hit.t || hit.t < 0))
+		if (t >= 0 && (t < hit->t || hit->t < 0))
 		{
-			hit.t = t;
-			hit.n = obj->dir;
-			hit.color = obj->color;
-			hit.obj = obj;
+			hit->t = t;
+			hit->n = obj->dir;
+			hit->color = obj->color;
+			hit->obj = obj;
 		}
 		obj = obj->next;
 	}
-	hit.p = ft_vec3_add(ray.o, ft_scalar(ray.dir, hit.t));
-	return (hit);
+	hit->p = ft_vec3_add(ray.o, ft_scalar(ray.dir, hit->t));
+	return (hit->t > 1);
+
 }
 
 void	ft_ray_color(t_hit *hit, t_data *data, double x, double y)
@@ -79,7 +79,7 @@ void	ft_render_scene(t_data *data)
 			hit.t = -1;
 			hit.color = 0x000000;
 			ft_calc_ray(xy[0], xy[1], &(ray));
-			hit = ft_calc_hit(ray, data->obj);
+			ft_calc_hit(ray, data->obj, &hit);
 			if (hit.t > 0)
 				hit.d = ft_hit_obj_light(data, ray, hit, &(data->light));
 			ft_ray_color(&hit, data, xy[0], xy[1]);
