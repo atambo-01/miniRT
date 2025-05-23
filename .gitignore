@@ -1,0 +1,9 @@
+*.o
+
+test_file.c
+
+miniRT
+
+fill_obj_data.c
+
+scenes/
