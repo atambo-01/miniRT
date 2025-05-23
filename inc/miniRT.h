@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 13:19:57 by mchingi           #+#    #+#             */
-/*   Updated: 2025/05/23 16:19:26 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/23 19:57:47 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -241,6 +241,9 @@ typedef struct	s_hit
 	double	t;
 	double	d;
 	t_vec3	p;
+	int		color;
+	t_vec3	u;
+	t_vec3	n;
 	t_obj	*obj;
 }				t_hit;
 

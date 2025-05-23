@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 16:38:03 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/23 16:27:06 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/23 20:03:27 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ t_hit	ft_calc_hit(t_ray ray, t_obj *obj)
 		if (t >= 0 && (t < hit.t || hit.t < 0))
 		{
 			hit.t = t;
+			hit.n = obj->dir;
+			hit.color = obj->color;
 			hit.obj = obj;
 		}
 		obj = obj->next;
@@ -48,48 +50,17 @@ t_hit	ft_calc_hit(t_ray ray, t_obj *obj)
 	return (hit);
 }
 
-void ft_ray_color(t_hit *hit, t_data *data, double x, double y)
+void	ft_ray_color(t_hit *hit, t_data *data, double x, double y)
 {
-    int color;
-
-    if (hit && hit->t >= 0 && hit->obj)
-    {
-        // Simple attenuation: brighter when closer, dimmer when farther
-        double attenuation = 1.0 / (1.0 + 0.1 * hit->d); // Adjust 0.1 to control falloff
-
-        // Combine with light ratio to scale intensity
-        double intensity = data->light.ratio * attenuation;
-        intensity = fmin(1.0, fmax(0.0, intensity)); // Clamp to [0, 1]
-
-        // Extract RGB components of object and light colors
-        int obj_r = (hit->obj->color >> 16) & 0xFF;
-        int obj_g = (hit->obj->color >> 8) & 0xFF;
-        int obj_b = hit->obj->color & 0xFF;
-
-        int light_r = (data->light.color >> 16) & 0xFF;
-        int light_g = (data->light.color >> 8) & 0xFF;
-        int light_b = (data->light.color & 0xFF);
-
-        // Calculate final color by scaling object color with light color and intensity
-        int final_r = (int)(obj_r * light_r / 255.0 * intensity);
-        int final_g = (int)(obj_g * light_g / 255.0 * intensity);
-        int final_b = (int)(obj_b * light_b / 255.0 * intensity);
-
-        // Clamp RGB values to [0, 255]
-        final_r = fmin(255, fmax(0, final_r));
-        final_g = fmin(255, fmax(0, final_g));
-        final_b = fmin(255, fmax(0, final_b));
-
-        // Combine into final color
-        color = (final_r << 16) | (final_g << 8) | final_b;
-
-        ft_pixel_put_img(&data->img, x, y, color);
-    }
-    else
-    {
-        // Background color (black)
-        ft_pixel_put_img(&data->img, x, y, 0x000000);
-    }
+	int	color;
+	
+	if (hit->t >= 0)
+	{
+		color = hit->color;
+		ft_pixel_put_img(&data->img, x, y, color);
+	}
+	else
+		ft_pixel_put_img(&data->img, x, y, 0x000000);
 }
 
 void	ft_render_scene(t_data *data)
@@ -105,20 +76,13 @@ void	ft_render_scene(t_data *data)
 		xy[0] = 0;
 		while (xy[0] < IM_WIDTH)
 		{
+			hit.t = -1;
+			hit.color = 0x000000;
 			ft_calc_ray(xy[0], xy[1], &(ray));
-				hit = ft_calc_hit(ray, data->obj);
-				if (hit.t > 0)
-					hit.d = ft_hit_obj_light(data, ray, hit, &(data->light));
-				ft_ray_color(&hit, data, xy[0], xy[1]);
-			// if (!ft_hit_light(data, ray, &hit, &(data->light)))
-			// {	
-			// 	// hit = ft_calc_hit(ray, data->obj);
-			// 	// if (hit.t > 0 || hit.d)
-			// 	// {
-			// 	// 	hit.d = ft_hit_obj_light(data, ray, hit, &(data->light));
-			// 	// 	ft_ray_color(&hit, data, xy[0], xy[1]);
-			// 	// }
-			// }
+			hit = ft_calc_hit(ray, data->obj);
+			if (hit.t > 0)
+				hit.d = ft_hit_obj_light(data, ray, hit, &(data->light));
+			ft_ray_color(&hit, data, xy[0], xy[1]);
 			xy[0]++;
 		}
 		xy[1]++;
