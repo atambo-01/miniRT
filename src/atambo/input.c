@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 01:38:57 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/23 20:11:35 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/23 21:32:04 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,7 +140,6 @@ void ft_switch_obj_point(t_data *data, int x, int y, t_ray *ray)
     if (hit.t > 0) // Valid hit
     {    
         data->curr = hit.obj;
-
     }
 }
 
