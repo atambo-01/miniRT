@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 23:35:42 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/23 21:42:23 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/24 11:44:09 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int ft_init_room_planes(t_obj *obj_4, t_data *data)
     if (!obj_5)
         return (-1);
     obj_5->type = ft_strdup("pl"); // Right wall
-    ft_setvec3(&obj_5->center, 5, 0, 15);
+    ft_setvec3(&obj_5->center, 12, 0, 15);
     ft_setvec3(&obj_5->dir, -1, 0, 0);
     ft_setvec3(&obj_5->u, 0, 1, 0);
     ft_normalize(&obj_5->dir);
@@ -56,11 +56,11 @@ int ft_init_room_planes(t_obj *obj_4, t_data *data)
     if (!obj_6)
         return (-1);
     obj_6->type = ft_strdup("pl"); // Right wall
-    ft_setvec3(&obj_6->center, -5, 0, 15);
+    ft_setvec3(&obj_6->center, -2, 0, 15);
     ft_setvec3(&obj_6->dir, 1, 0, 0);
     ft_setvec3(&obj_6->u, 0, 1, 0);
     ft_normalize(&obj_6->dir);
-    obj_6->radius = 10;
+    obj_6->radius = 6.79;
     obj_6->len = 0;
     obj_6->color = 0x717575; // Grey
     obj_6->next = NULL;
@@ -70,7 +70,7 @@ int ft_init_room_planes(t_obj *obj_4, t_data *data)
     if (!obj_7)
         return (-1);
     obj_7->type = ft_strdup("pl"); // Right wall
-    ft_setvec3(&obj_7->center, 0, 0, 15);
+    ft_setvec3(&obj_7->center, 7, 0, 20);
     ft_setvec3(&obj_7->dir, 0, 0, -1);
     ft_setvec3(&obj_7->u, 0, 1, 0);
     ft_normalize(&obj_7->dir);
@@ -90,11 +90,13 @@ int ft_init_obj(t_data *data)
     if (!obj_2)
 	return (-1);
     obj_2->type = ft_strdup("cub"); // Cube (top-right)
-    ft_setvec3(&obj_2->center, 0.5, 0.375, -13);
-    ft_setvec3(&obj_2->dir, 0, 0, 1);
-    ft_setvec3(&obj_2->u, 0, 1, 0);
+
+	ft_setvec3(&obj_2->center, 8.50, 0.3750, 11.0);
+    ft_setvec3(&obj_2->dir, -0.5980, 0.6384, 0.4846);
+    ft_setvec3(&obj_2->u, 0.5043, -0.1701, 0.8466);
     ft_normalize(&obj_2->dir);
-    obj_2->radius = 0.25;
+    obj_2->radius = 1.72;
+
     obj_2->len = 0;
     obj_2->color = 0xab2929;
     obj_2->next = NULL;

@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 16:38:03 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/23 21:37:02 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/24 10:14:45 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,6 @@ int	ft_calc_hit(t_ray ray, t_obj *obj, t_hit *hit)
 {
 	double	t;
 
-	hit->obj = NULL;
-	hit->t = -1;
 	while (obj) // instead of for each obj we need a BVH logic to optimize
 	{
 		t = ft_calc_hit_2(ray.o, ray.dir, obj);
@@ -40,6 +38,7 @@ int	ft_calc_hit(t_ray ray, t_obj *obj, t_hit *hit)
 		{
 			hit->t = t;
 			hit->n = obj->dir;
+			hit->u = obj->u;
 			hit->color = obj->color;
 			hit->obj = obj;
 		}
@@ -76,13 +75,10 @@ void	ft_render_scene(t_data *data)
 		xy[0] = 0;
 		while (xy[0] < IM_WIDTH)
 		{
-			hit.t = -1;
-			hit.obj = NULL;
-			hit.color = 0x000000;
+			ft_hit_init(&hit);
 			ft_calc_ray(xy[0], xy[1], &(ray));
 			ft_calc_hit(ray, data->obj, &hit);
-			if (!ft_hit_light(data, ray, &hit, &(data->light)))
-				ft_calc_hit(ray, data->obj, &hit);
+			ft_hit_light(data, ray, &hit, &(data->light));
 			if (hit.t > 0 && hit.obj)
 				hit.d = ft_hit_obj_light(data, ray, hit, &(data->light));
 			ft_ray_color(&hit, data, xy[0], xy[1]);

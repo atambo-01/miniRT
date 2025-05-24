@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 12:21:37 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/23 21:15:28 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/24 10:14:05 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,12 @@ int ft_hit_light(t_data *data, t_ray ray, t_hit *hit, t_light *lum)
 		if (t < 0)
 			return (0);
 	}
-	hit->t = t;
-	hit->color = lum->color;
+	if (t >= 0 && t < hit->t)
+	{
+		hit->t = t;
+		hit->color = lum->color;
+		hit->obj = NULL;
+	}
 	return (t > 0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 00:13:05 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/23 21:41:21 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/24 11:42:14 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 int	ft_init_cam(t_data *data)
 {
-	ft_setvec3(&data->cam.pos, 0, 0, -15);
+	ft_setvec3(&data->cam.pos, 7, 0, -15);
 	ft_setvec3(&data->cam.dir, 0, 0, 1);
 	data->cam.fov = 60.0;
 	return (ft_init_obj(data));

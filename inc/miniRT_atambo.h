@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 22:55:42 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/23 21:06:38 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/24 10:06:25 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ void	ft_normalize(t_vec3 *v);
 double	ft_get_speed(struct timeval start, struct timeval end);
 t_vec3	ft_vec3_add(t_vec3 v1, t_vec3 v2);
 t_vec3	ft_scalar(t_vec3 v1, float r);
+void	ft_hit_init(t_hit *hit);
 
 // src/get_next_line.c && src/get_next_line_utils.c
 char	*ft_strchr_1(char *s, int c);
