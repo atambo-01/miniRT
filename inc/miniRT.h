@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchingi <mchingi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 13:19:57 by mchingi           #+#    #+#             */
-/*   Updated: 2025/05/24 13:46:55 by mchingi          ###   ########.fr       */
+/*   Updated: 2025/05/24 14:40:40 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,12 +121,12 @@ typedef struct s_cam
 
 //--------  these structs need to be fixed and joined  -------- //
 
-// typedef struct	s_obj t_obj;
 
+typedef struct	s_obj t_obj;
 typedef struct	s_obj
 {
 	char	*type;
-	t_vec3	center;
+	t_vec3	pos;
 	t_vec3	dir;
 	t_vec3	u;
 	double	radius;
@@ -137,7 +137,7 @@ typedef struct	s_obj
 
 typedef struct	s_light
 {
-	t_vec3	center;
+	t_vec3	pos;
 	double	radius;
 	double	ratio;
 	int		color;
@@ -168,12 +168,6 @@ typedef struct	s_data
 
 //=========================================================
 
-typedef struct s_color
-{
-	int	r;
-	int	b;
-	int	g;
-}		t_color;
 
 // typedef struct s_amblight
 // {
@@ -226,14 +220,6 @@ typedef struct s_color
 // 	t_plane		*pl;
 // 	t_cylinder	*cy;
 // }		t_obj;
-
-typedef struct s_data
-{
-	t_amblight	ambient_light;
-	t_cam		cam;
-	t_light		light;
-	t_obj	objects;
-}		t_data;
 
 //-----------------------------------------------------
 

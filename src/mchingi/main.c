@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchingi <mchingi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 13:16:08 by mchingi           #+#    #+#             */
-/*   Updated: 2025/05/24 12:28:43 by mchingi          ###   ########.fr       */
+/*   Updated: 2025/05/24 14:45:13 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,61 @@ int	main(int ac, char **av)
 */
 // ------------------------------------------------------------------------
 
+void print_debug_sp(t_obj *obj)
+{
+	printf("/---- Sphere ----/\n");
+	printf("COORDINATES\nx = %.1lf\ny = %.1lf\nz = %.1lf\n", obj->pos.x,
+		   obj->pos.y, obj->pos.z);
+	printf("Radius = %.1lf\n", obj->radius);
+	printf("COLOR = %d\n", obj->color);
+	printf("\n");
+}
+
+void print_debug_pl(t_obj *obj)
+{
+	printf("/---- Plane ----/\n");
+	printf("COORDINATES\nx = %.1lf\ny = %.1lf\nz = %.1lf\n", obj->pos.x,
+		   obj->pos.y, obj->pos.z);
+	printf("DIRECTION\nx = %.1lf\ny = %.1lf\nz = %.1lf\n", obj->dir.x,
+		   obj->dir.y, obj->dir.z);
+	printf("COLOR = %d\n", obj->color);
+	printf("\n");
+}
+
+void print_debug_cy(t_obj *obj)
+{
+	printf("/---- Cylinder ----/\n");
+	printf("COORDINATES\nx = %.1lf\ny = %.1lf\nz = %.1lf\n", obj->pos.x,
+		   obj->pos.y, obj->pos.z);
+	printf("DIRECTION\nx = %.1lf\ny = %.1lf\nz = %.1lf\n", obj->dir.x,
+		   obj->dir.y, obj->dir.z);
+	printf("Radius = %.1lf\n", obj->radius);
+	printf("Height = %.1lf\n", obj->len);
+	printf("COLOR = %d\n", obj->color);
+	printf("\n");
+}
+
+void print_debug_obj(t_obj *obj)
+{
+	while(obj)
+	{
+		if (!ft_strcmp(obj->type, "pl"))
+			print_debug_pl(obj);
+		else if (!ft_strcmp(obj->type, "sp"))
+			print_debug_sp(obj);
+		else if (!ft_strcmp(obj->type, "cy"))
+			print_debug_cy(obj);
+		obj = obj->next;
+	}
+}
+
 void print_debug_info(t_data data)
 {
     printf("Good Map\n");
     printf("\n");
     printf("/-------- Ambient Lighting --------/\n");
-    printf("Ratio = %.1lf\n", data.ambient_light.light_ratio);
-    printf("COLOR\nR = %d\nG = %d\nB = %d\n", data.ambient_light.color.r,
-           data.ambient_light.color.g, data.ambient_light.color.b);
+    printf("Ratio = %.1lf\n", data.alight.ratio);
+    printf("COLOR\n = %d\n", data.alight.color);
     printf("\n");
     printf("/-------- Camera --------/\n");
     printf("COORDINATES\nx = %.1lf\ny = %.1lf\nz = %.1lf\n", data.cam.pos.x,
@@ -56,81 +103,24 @@ void print_debug_info(t_data data)
     printf("/-------- Light --------/\n");
     printf("COORDINATES\nx = %.1lf\ny = %.1lf\nz = %.1lf\n", data.light.pos.x,
            data.light.pos.y, data.light.pos.z);
-    printf("Light Brightness ratio = %.1lf\n", data.light.bright_ratio);
-    printf("COLOR\nR = %d\nG = %d\nB = %d\n", data.light.color.r,
-           data.light.color.g, data.light.color.b);
+    printf("Light Brightness ratio = %.1lf\n", data.light.ratio);
+    printf("COLOR = %d\n", data.light.color);
     printf("\n");
     printf("/-------------- OBJECTS --------------/\n");
-    printf("\n");
-
-    // Print all spheres
-    t_sphere *current_sp = data.objects.sp;
-    int sp_count = 1;
-    while (current_sp != NULL)
-    {
-        printf("/---- Sphere %d ----/\n", sp_count++);
-        printf("COORDINATES\nx = %.1lf\ny = %.1lf\nz = %.1lf\n", current_sp->center.x,
-               current_sp->center.y, current_sp->center.z);
-        printf("Diameter = %.1lf\n", current_sp->diameter);
-        printf("COLOR\nR = %d\nG = %d\nB = %d\n", current_sp->colors.r,
-               current_sp->colors.g, current_sp->colors.b);
-        printf("\n");
-        current_sp = current_sp->next;
-    }
-
-    // Print all planes
-    t_plane *current_pl = data.objects.pl;
-    int pl_count = 1;
-    while (current_pl != NULL)
-    {
-        printf("/---- Plane %d ----/\n", pl_count++);
-        printf("COORDINATES\nx = %.1lf\ny = %.1lf\nz = %.1lf\n", current_pl->pos.x,
-               current_pl->pos.y, current_pl->pos.z);
-        printf("DIRECTION\nx = %.1lf\ny = %.1lf\nz = %.1lf\n", current_pl->dir.x,
-               current_pl->dir.y, current_pl->dir.z);
-        printf("COLOR\nR = %d\nG = %d\nB = %d\n", current_pl->colors.r,
-               current_pl->colors.g, current_pl->colors.b);
-        printf("\n");
-        current_pl = current_pl->next;
-    }
-
-    // Print all cylinders
-    t_cylinder *current_cy = data.objects.cy;
-    int cy_count = 1;
-    while (current_cy != NULL)
-    {
-        printf("/---- Cylinder %d ----/\n", cy_count++);
-        printf("COORDINATES\nx = %.1lf\ny = %.1lf\nz = %.1lf\n", current_cy->center.x,
-               current_cy->center.y, current_cy->center.z);
-        printf("DIRECTION\nx = %.1lf\ny = %.1lf\nz = %.1lf\n", current_cy->dir.x,
-               current_cy->dir.y, current_cy->dir.z);
-        printf("Diameter = %.1lf\n", current_cy->diameter);
-        printf("Height = %.1lf\n", current_cy->height);
-        printf("COLOR\nR = %d\nG = %d\nB = %d\n", current_cy->colors.r,
-               current_cy->colors.g, current_cy->colors.b);
-        printf("\n");
-        current_cy = current_cy->next;
-    }
+	print_debug_obj(data.obj);
+	printf("\n");
 }
 
 int	main(int ac, char **av)
 {
 	t_data data;
 	
-	data.objects.sp = NULL;
-	data.objects.pl = NULL;
-	data.objects.cy = NULL;
 	if (ac == 2)
 	{
 		if (file_management(av[1], &data))
-		{
 			print_debug_info(data);
-			// free(data.objects.sp);
-			// free(data.objects.pl);
-			// free(data.objects.cy);
-		}	
 		else 
-			printf("This shitty stink\n");
+			printf("Error reading file\n");
 	}
 	else
 		printf("invalid av\n");
