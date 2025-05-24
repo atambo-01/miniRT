@@ -13,7 +13,6 @@
 miniRT
 *~lock*
 miniRT.code-workspace
-scenes_checklist
 # Compiled source
 *.a
 *.o
