@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 13:26:05 by mchingi           #+#    #+#             */
-/*   Updated: 2025/05/23 16:20:21 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/24 15:00:02 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ int	open_file(char *file_name)
 	int	fd;
 
 	fd = -1;
+	if (!ft_strrchr(file_name, '.'))
+		return (-1);
 	if (ft_strncmp(ft_strrchr(file_name, '.'), ".rt", 4) == 0)
 	{
 		fd = open(file_name, O_RDONLY);

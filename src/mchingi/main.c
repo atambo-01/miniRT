@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 13:16:08 by mchingi           #+#    #+#             */
-/*   Updated: 2025/05/24 14:45:13 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/24 15:02:07 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,7 @@ int	main(int ac, char **av)
 {
 	t_data data;
 	
+	data.obj = NULL;
 	if (ac == 2)
 	{
 		if (file_management(av[1], &data))
@@ -123,6 +124,6 @@ int	main(int ac, char **av)
 			printf("Error reading file\n");
 	}
 	else
-		printf("invalid av\n");
+		printf("invalid number of args\n");
 	return (0);
 }
