@@ -6,7 +6,7 @@
 /*   By: mchingi <mchingi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 13:19:57 by mchingi           #+#    #+#             */
-/*   Updated: 2025/05/24 14:01:39 by mchingi          ###   ########.fr       */
+/*   Updated: 2025/05/24 17:08:03 by mchingi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ int		fill_color(char *color_data, int *color);
 int		fill_coordinate(char *coordinate_data, t_vec3 *coordinates);
 int		fill_normalized_vector(char *data, t_vec3 *direction);
 
-int	sphere_data(t_obj *obj, char **data);
-int	plane_data(t_obj *obj, char **data);
-int	cylinder_data(t_obj *obj, char **data);
+int		sphere_data(t_data *data, char **data_line);
+int		plane_data(t_data *data, char **data_line);
+int		cylinder_data(t_data *data, char **data_line);
 
 // ------------------------- MLX UTILS -----------------------------------/
 // int		input_keys(int keysym, t_mlx *data);

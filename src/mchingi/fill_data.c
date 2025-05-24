@@ -6,7 +6,7 @@
 /*   By: mchingi <mchingi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 17:07:27 by mchingi           #+#    #+#             */
-/*   Updated: 2025/05/24 17:03:02 by mchingi          ###   ########.fr       */
+/*   Updated: 2025/05/24 17:15:18 by mchingi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,6 @@ int	light_data(t_light *light, char **data)
 	return (1);
 }
 
-t_obj *get_obj_tail(t_obj *obj)
-{
-	while(obj)
-		obj = obj->next;
-	return(obj);
-}
-
 int	parse_line(char *line, t_data *data)
 {
 	int		success;
@@ -76,11 +69,11 @@ int	parse_line(char *line, t_data *data)
 	else if (ft_strncmp(tokens[0], "L", 2) == 0)
 		success = light_data(&data->light, tokens);
 	else if (ft_strncmp(tokens[0], "pl", 3) == 0)
-		success = plane_data(get_obj_tail(data->obj), tokens);
+		success = plane_data(data, tokens);
 	else if (ft_strncmp(tokens[0], "sp", 3) == 0)
-		success = sphere_data(get_obj_tail(data->obj), tokens);
+		success = sphere_data(data, tokens);
 	else if (ft_strncmp(tokens[0], "cy", 3) == 0)
-		success = cylinder_data(get_obj_tail(data->obj), tokens);
+		success = cylinder_data(data, tokens);
 	ft_free_array(tokens);
 	return (success);
 }
