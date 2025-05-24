@@ -6,7 +6,7 @@
 /*   By: mchingi <mchingi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 17:07:27 by mchingi           #+#    #+#             */
-/*   Updated: 2025/05/24 16:25:33 by mchingi          ###   ########.fr       */
+/*   Updated: 2025/05/24 17:03:02 by mchingi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	ambient_data(t_alight *amb, char **data)
 	amb->ratio = ft_atof(data[1]);
 	if (amb->ratio < 0.0 || amb->ratio > 1.0)
 		return (0);
-	if (!fill_color(data[2], &amb->color));
+	if (!fill_color(data[2], &amb->color))
 		return (0);
 	return (1);
 }
@@ -49,11 +49,8 @@ int	light_data(t_light *light, char **data)
 	light->ratio = atof(data[2]);
 	if (light->ratio < 0.0 || light->ratio > 1.0)
 		return (0);
-	if (fill_color(data[3], &light->color) == 0);
-	{
-		printf("Entrou na L %p\n", &light->color);
+	if (fill_color(data[3], &light->color) == 0)
 		return (0);
-	}
 	light->radius = 1;
 	return (1);
 }
