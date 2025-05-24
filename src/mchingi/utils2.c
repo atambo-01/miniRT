@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mchingi <mchingi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 17:08:11 by mchingi           #+#    #+#             */
-/*   Updated: 2025/05/23 16:20:21 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/24 14:01:16 by mchingi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,23 +20,23 @@ int	color_range(int r, int g, int b)
 	return (0);
 }
 
-int	fill_color(char *color_data, t_color *colors)
+int	fill_color(char *color_data, int *color)
 {
 	char	**rgb;
 
 	if (!color_data)
 		return (0);
+	*color = 0;
 	rgb = ft_split(color_data, ',');
-	if (!rgb || ft_array_size(rgb) != 3)
+	if (!rgb || ft_array_size(rgb) != 3 || \
+		color_range(ft_atoi(rgb[0]), ft_atoi(rgb[1]), ft_atoi(rgb[2])))
 	{
 		ft_free_array(rgb);
 		return (0);
 	}
-	colors->r = ft_atoi(rgb[0]);
-	colors->g = ft_atoi(rgb[1]);
-	colors->b = ft_atoi(rgb[2]);
+	*color = (ft_atoi(rgb[0]) << 16) | (ft_atoi(rgb[1]) << 8) | ft_atoi(rgb[2]);
 	ft_free_array(rgb);
-	return (color_range(colors->r, colors->b, colors->g));
+	return (1);
 }
 
 int	fill_coordinate(char *coordinate_data, t_vec3 *coordinates)

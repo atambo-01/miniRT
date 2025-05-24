@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mchingi <mchingi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 13:19:57 by mchingi           #+#    #+#             */
-/*   Updated: 2025/05/23 19:57:47 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/24 13:46:55 by mchingi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,10 +110,18 @@ typedef struct	s_img
 	int		endian;
 }				t_img;
 
+typedef struct s_cam
+{
+	// char	id; // C
+	t_vec3	pos; // x, y, z coordinates of the viewpoint
+	t_vec3	dir; // 3D normalized orientation vector, in the range [-1,1] for each x, y, z axis
+	double		fov; // Horizontal field of view in degrees in the range [0,180]
+}		t_cam;
+
 
 //--------  these structs need to be fixed and joined  -------- //
 
-typedef struct	s_obj t_obj;
+// typedef struct	s_obj t_obj;
 
 typedef struct	s_obj
 {
@@ -137,17 +145,9 @@ typedef struct	s_light
 
 typedef struct	s_alight
 {
-	double	ratio;
-	int		color;
+		double	ratio;
+		int		color;
 }				t_alight;
-
-typedef struct s_cam
-{
-	// char	id; // C
-	t_vec3	pos; // x, y, z coordinates of the viewpoint
-	t_vec3	dir; // 3D normalized orientation vector, in the range [-1,1] for each x, y, z axis
-	double		fov; // Horizontal field of view in degrees in the range [0,180]
-}		t_cam;
 
 typedef struct	s_data
 {
@@ -166,13 +166,14 @@ typedef struct	s_data
 	struct timeval	end;
 }				t_data;
 
+//=========================================================
 
-// typedef struct s_color
-// {
-// 	int	r;
-// 	int	b;
-// 	int	g;
-// }		t_color;
+typedef struct s_color
+{
+	int	r;
+	int	b;
+	int	g;
+}		t_color;
 
 // typedef struct s_amblight
 // {
@@ -226,13 +227,13 @@ typedef struct	s_data
 // 	t_cylinder	*cy;
 // }		t_obj;
 
-// typedef struct s_data
-// {
-// 	t_amblight	ambient_light;
-// 	t_cam		cam;
-// 	t_light		light;
-// 	t_obj	objects;
-// }		t_data;
+typedef struct s_data
+{
+	t_amblight	ambient_light;
+	t_cam		cam;
+	t_light		light;
+	t_obj	objects;
+}		t_data;
 
 //-----------------------------------------------------
 

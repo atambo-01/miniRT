@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mchingi <mchingi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 13:16:08 by mchingi           #+#    #+#             */
-/*   Updated: 2025/05/23 16:20:21 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/24 12:28:43 by mchingi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void print_debug_info(t_data data)
            data.cam.pos.y, data.cam.pos.z);
     printf("DIRECTION\nx = %.1lf\ny = %.1lf\nz = %.1lf\n", data.cam.dir.x,
            data.cam.dir.y, data.cam.dir.z);
-    printf("FOV = %d\n", data.cam.fov);
+    printf("FOV = %f\n", data.cam.fov);
     printf("\n");
     printf("/-------- Light --------/\n");
     printf("COORDINATES\nx = %.1lf\ny = %.1lf\nz = %.1lf\n", data.light.pos.x,

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT_mchingi.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mchingi <mchingi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 13:19:57 by mchingi           #+#    #+#             */
-/*   Updated: 2025/05/23 16:06:15 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/24 14:01:39 by mchingi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int		file_management(char *file_name, t_data *data);
 int		validate_scene(char **arr, int arr_size);
 int		fill_data(char **scene, t_data *data);
 
-int		fill_color(char *color_data, t_color *colors);
+int		fill_color(char *color_data, int *color);
 int		fill_coordinate(char *coordinate_data, t_vec3 *coordinates);
 int		fill_normalized_vector(char *data, t_vec3 *direction);
 

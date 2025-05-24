@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: atambo <atambo@student.42.fr>              +#+  +:+       +#+         #
+#    By: mchingi <mchingi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/19 16:56:50 by atambo            #+#    #+#              #
-#    Updated: 2025/03/08 15:21:43 by atambo           ###   ########.fr        #
+#    Updated: 2025/05/24 12:34:15 by mchingi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,7 +60,15 @@ SRCS =		ft_atoi.c\
 			ft_perror.c\
 			ft_strncpy.c\
 			ft_abs.c\
-			ft_realloc.c
+			ft_realloc.c \
+			ft_free_array.c \
+			ft_atof.c \
+			ft_array_size.c\
+			ft_split2.c\
+			get_next_line.c\
+			ft_isspace.c\
+			
+
 
 OBJS = $(SRCS:.c=.o)
 
