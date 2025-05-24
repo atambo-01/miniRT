@@ -2,6 +2,7 @@
 	"files.associations": {
 		"minirt.h": "c",
 		"mlx.h": "c",
-		"cstdlib": "c"
+		"cstdlib": "c",
+		"minirt_mchingi.h": "c"
 	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mchingi <mchingi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 17:07:27 by mchingi           #+#    #+#             */
-/*   Updated: 2025/05/24 14:53:50 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/24 16:25:33 by mchingi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,11 @@ int	light_data(t_light *light, char **data)
 	light->ratio = atof(data[2]);
 	if (light->ratio < 0.0 || light->ratio > 1.0)
 		return (0);
-	if (!fill_color(data[3], &light->color));
+	if (fill_color(data[3], &light->color) == 0);
+	{
+		printf("Entrou na L %p\n", &light->color);
 		return (0);
+	}
 	light->radius = 1;
 	return (1);
 }
