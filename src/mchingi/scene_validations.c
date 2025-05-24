@@ -6,11 +6,12 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 14:42:01 by mchingi           #+#    #+#             */
-/*   Updated: 2025/05/23 16:20:21 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/24 17:36:44 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/miniRT.h"
+#include "../../inc/miniRT_atambo.h"
 #include "../../inc/miniRT_mchingi.h"
 
 

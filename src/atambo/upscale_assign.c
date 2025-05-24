@@ -6,12 +6,13 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 19:28:07 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/23 16:17:41 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/24 17:36:44 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/miniRT.h"
 #include "../../inc/miniRT_atambo.h"
+#include "../../inc/miniRT_mchingi.h"
 
 void	ft_assign_src_coords(t_data *data, t_upscale *up, int x, int y)
 {

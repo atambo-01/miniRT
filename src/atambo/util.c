@@ -6,12 +6,13 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 02:23:44 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/24 10:07:05 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/24 18:05:03 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/miniRT.h"
 #include "../../inc/miniRT_atambo.h"
+#include "../../inc/miniRT_mchingi.h"
 
 void	ft_setvec3(t_vec3 *v, double a, double b, double c)
 {
@@ -84,4 +85,30 @@ void	ft_hit_init(t_hit *hit)
 	hit->d = 0.0;
 	hit->n = (t_vec3){0.0, 0.0, 0.0};
 	hit->u = (t_vec3){0.0, 0.0, 0.0};
+}
+
+t_vec3 ft_vec3_orthogonal(t_vec3 v)
+{
+    t_vec3 o;
+
+    // Handle case where v = (0, 0, 0)
+    if (v.x == 0 && v.y == 0 && v.z == 0)
+        return (t_vec3){0, 0, 0}; // Undefined, return zero vector
+
+    // If cx or cy is non-zero, use o = (cy, -cx, 0)
+    if (v.x != 0 || v.y != 0)
+    {
+        o.x = v.y;
+        o.y = -v.x;
+        o.z = 0;
+    }
+    // If cx = cy = 0, use o = (1, 0, 0)
+    else
+    {
+        o.x = 1;
+        o.y = 0;
+        o.z = 0;
+    }
+
+    return o;
 }

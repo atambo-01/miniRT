@@ -6,13 +6,13 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 13:26:05 by mchingi           #+#    #+#             */
-/*   Updated: 2025/05/24 15:00:02 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/24 18:46:03 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/miniRT.h"
+#include "../../inc/miniRT_atambo.h"
 #include "../../inc/miniRT_mchingi.h"
-
 
 int	check_empty_line(char *str)
 {
@@ -29,20 +29,24 @@ int	check_empty_line(char *str)
 
 int	open_file(char *file_name)
 {
-	int	fd;
+	int		fd;
+	char	buffer[1];
 
 	fd = -1;
-	if (!ft_strrchr(file_name, '.'))
-		return (-1);
-	if (ft_strncmp(ft_strrchr(file_name, '.'), ".rt", 4) == 0)
+	if (!ft_strrchr(file_name, '.') ||
+		(ft_strncmp(ft_strrchr(file_name, '.'), ".rt", 4)))
 	{
-		fd = open(file_name, O_RDONLY);
-		if (fd < 0)
-			perror("Error\nminiRT");
-		return (fd);
-	}	
-	else
-		ft_putstr_fd("Error\nminiRT: Wrong file extension\n", 2);
+		ft_minirt_error("Wrong file extension, need a '.rt' file\n", 1);
+		exit (1);
+	}
+	fd = open(file_name, O_RDONLY);
+	if (fd == -1 || (read(fd, buffer, 1) == -1 && errno == EISDIR))
+	{
+		ft_minirt_error(file_name, 1);
+		perror(" ");
+		close(fd);
+		exit (1);
+	}
 	return (fd);
 }
 
@@ -100,19 +104,14 @@ int	file_management(char *file_name, t_data *data)
 
 	fd = open_file(file_name);
 	if (fd < 0)
-		return (0);
+		return (-1);
 	arr_size = count_lines(fd);
 	arr = extract_lines(file_name, arr_size);
-	if (!validate_scene(arr, arr_size))
+	if (!validate_scene(arr, arr_size) || (!fill_data(remove_char(arr), data)))
 	{
 		ft_free_array(arr);
-		return (0);
-	}
-	if (!fill_data(remove_char(arr), data))
-	{
-		ft_free_array(arr);
-		return (0);
+		return (-1);
 	}
 	ft_free_array(arr);
-	return (1);
+	return (fd);
 }

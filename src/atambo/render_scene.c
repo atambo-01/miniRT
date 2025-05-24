@@ -6,12 +6,13 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 16:38:03 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/24 10:14:45 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/24 17:51:05 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/miniRT.h"
 #include "../../inc/miniRT_atambo.h"
+#include "../../inc/miniRT_mchingi.h"
 
 double	ft_calc_hit_2(t_vec3 ray_o, t_vec3 ray_dir, t_obj *obj)
 {
@@ -79,8 +80,8 @@ void	ft_render_scene(t_data *data)
 			ft_calc_ray(xy[0], xy[1], &(ray));
 			ft_calc_hit(ray, data->obj, &hit);
 			ft_hit_light(data, ray, &hit, &(data->light));
-			if (hit.t > 0 && hit.obj)
-				hit.d = ft_hit_obj_light(data, ray, hit, &(data->light));
+			// if (hit.t > 0 && hit.obj)
+			// 	hit.d = ft_hit_obj_light(data, ray, hit, &(data->light));
 			ft_ray_color(&hit, data, xy[0], xy[1]);
 			xy[0]++;
 		}

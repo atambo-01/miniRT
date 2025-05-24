@@ -6,12 +6,13 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 20:15:19 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/23 20:57:22 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/24 17:39:51 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/miniRT.h"
 #include "../../inc/miniRT_atambo.h"
+#include "../../inc/miniRT_mchingi.h"
 
 int	ft_count_obj(t_obj *obj)
 {
@@ -47,8 +48,8 @@ int ft_print_obj(t_obj *obj)
 {
     printf("Object:\n");
 	printf("  Type:\t%s\n", obj->type);
-	printf("  Center:");
-	ft_print_vec3(&obj->center);
+	printf("  pos:");
+	ft_print_vec3(&obj->pos);
 	printf("  Dir:\t");
 	ft_print_vec3(&obj->dir);
 	printf("  U:\t");
@@ -62,8 +63,8 @@ int ft_print_obj(t_obj *obj)
 int ft_print_light(t_light *lum)
 {
     printf("Light:\n");
-	printf("  Center:");
-	ft_print_vec3(&lum->center);
+	printf("  pos:");
+	ft_print_vec3(&lum->pos);
 	printf("  Radius:\t%.2f\n", lum->radius);
 	printf("  Color:\t0x%06X\n", lum->color);
     return (0);

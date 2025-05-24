@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   utils3.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchingi <mchingi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 13:03:23 by mchingi           #+#    #+#             */
-/*   Updated: 2025/05/23 13:05:08 by mchingi          ###   ########.fr       */
+/*   Updated: 2025/05/24 17:35:45 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/miniRT.h"
+#include "../../inc/miniRT.h"
+#include "../../inc/miniRT_atambo.h"
+#include "../../inc/miniRT_mchingi.h"
 
 double ft_atof2_aux(char *dec_str)
 {

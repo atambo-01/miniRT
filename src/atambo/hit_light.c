@@ -6,13 +6,13 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 12:21:37 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/24 11:45:52 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/24 17:41:05 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/miniRT.h"
 #include "../../inc/miniRT_atambo.h"
-
+#include "../../inc/miniRT_mchingi.h"
 
 static t_vec3 ft_vec_AB(t_vec3 *A, t_vec3 *B)
 {
@@ -62,7 +62,13 @@ double	ft_in_shadow(t_ray ray, t_obj *obj)
 
 int ft_hit_light(t_data *data, t_ray ray, t_hit *hit, t_light *lum)
 {
-	t_vec3 oc = {ray.o.x - lum->center.x, ray.o.y - lum->center.y, ray.o.z - lum->center.z};
+	t_vec3 oc = {ray.o.x - lum->pos
+
+.x, ray.o.y - lum->pos
+
+.y, ray.o.z - lum->pos
+
+.z};
 	double a = ft_dot(ray.dir, ray.dir);
 	double b = 2.0 * ft_dot(oc, ray.dir);
 	double c = ft_dot(oc, oc) - lum->radius * lum->radius;
@@ -104,10 +110,18 @@ double	ft_hit_obj_light(t_data *data, t_ray ray, t_hit hit, t_light *lum)
 	t_vec3 dir = hit.obj->dir;
 	t_vec3 v2 = ft_scalar(dir, 0.0001);
 	ray.o = ft_vec3_add(v1, v2);
-	ray.dir = ft_vec_AB(&(ray.o), &(lum->center));
+	ray.dir = ft_vec_AB(&(ray.o), &(lum->pos
+
+));
 
 	//check against light
-	oc = (t_vec3){ray.o.x - lum->center.x, ray.o.y - lum->center.y, ray.o.z - lum->center.z};
+	oc = (t_vec3){ray.o.x - lum->pos
+
+.x, ray.o.y - lum->pos
+
+.y, ray.o.z - lum->pos
+
+.z};
 	a = ft_dot(ray.dir, ray.dir);
 	b = 2.0 * ft_dot(oc, ray.dir);
 	c = ft_dot(oc, oc) - lum->radius * lum->radius;

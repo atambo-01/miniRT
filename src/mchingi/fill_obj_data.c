@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   fill_obj_data.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchingi <mchingi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 11:38:15 by mchingi           #+#    #+#             */
-/*   Updated: 2025/05/24 17:21:10 by mchingi          ###   ########.fr       */
+/*   Updated: 2025/05/24 18:51:03 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/miniRT.h"
+#include "../../inc/miniRT_atambo.h"
 #include "../../inc/miniRT_mchingi.h"
 
 
@@ -71,9 +72,11 @@ int	plane_data(t_data *data, char **data_line)
 		return (obj_return(new_plane));
 	if (!fill_normalized_vector(data_line[2], &new_plane->dir))
 		return (obj_return(new_plane));
+	new_plane->u = ft_vec3_orthogonal(new_plane->dir);
 	if (!fill_color(data_line[3], &new_plane->color))
 		return (obj_return(new_plane));
 	new_plane->next = NULL;
+	new_plane->radius = 10;
 	put_obj_tail(data, new_plane);
 	return (1);
 }
@@ -92,6 +95,7 @@ int	cylinder_data(t_data *data, char **data_line)
 		return (obj_return(new_cylinder));
 	if (!fill_normalized_vector(data_line[2], &new_cylinder->dir))
 		return (obj_return(new_cylinder));
+	new_cylinder->u = ft_vec3_orthogonal(new_cylinder->dir);
 	new_cylinder->radius = atof(data_line[3]);
 	new_cylinder->len = atof(data_line[4]);
 	if (new_cylinder->radius < 0 || new_cylinder->len < 0)

@@ -6,39 +6,38 @@
 #    By: atambo <atambo@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/29 12:55:11 by mchingi           #+#    #+#              #
-#    Updated: 2025/05/24 14:22:17 by atambo           ###   ########.fr        #
+#    Updated: 2025/05/24 17:42:00 by atambo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SOURCES		=	\
 				\
-				src/mchingi/main.c\
+				src/atambo/check_file.c\
+				src/atambo/init.c\
+				src/atambo/input.c\
+				src/atambo/input_util.c\
+				src/atambo/util.c\
+				src/atambo/upscale_img.c\
+				src/atambo/render_scene.c\
+				src/atambo/print_data.c\
+				src/atambo/hit_obj.c\
+				src/atambo/exit_minirt.c\
+				src/atambo/get_next_line.c\
+				src/atambo/get_next_line_utils.c\
+				src/atambo/read_file.c\
+				src/atambo/minirt_error.c\
+				src/atambo/ray.c\
+				src/atambo/upscale_assign.c\
+				src/atambo/hit_light.c\
+				\
 				src/mchingi/file_management.c\
 				src/mchingi/fill_data.c\
 				src/mchingi/fill_obj_data.c\
 				src/mchingi/scene_validations.c\
 				src/mchingi/utils.c\
 				src/mchingi/utils2.c\
-				# \
-				# src/atambo/miniRT.c\
-				# src/atambo/check_file.c\
-				# src/atambo/init.c\
-				# src/atambo/input.c\
-				# src/atambo/input_util.c\
-				# src/atambo/util.c\
-				# src/atambo/upscale_img.c\
-				# src/atambo/render_scene.c\
-				# src/atambo/print_data.c\
-				# src/atambo/hit_obj.c\
-				# src/atambo/exit_minirt.c\
-				# src/atambo/get_next_line.c\
-				# src/atambo/get_next_line_utils.c\
-				# src/atambo/read_file.c\
-				# src/atambo/minirt_error.c\
-				# src/atambo/ray.c\
-				# src/atambo/costum_scene.c\
-				# src/atambo/upscale_assign.c\
-				# src/atambo/hit_light.c\
+				\
+				src/miniRT.c\
 
 NAME		=	miniRT
 CC			=	cc

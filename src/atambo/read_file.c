@@ -6,12 +6,13 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 04:37:51 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/23 16:17:41 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/24 17:36:44 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/miniRT.h"
 #include "../../inc/miniRT_atambo.h"
+#include "../../inc/miniRT_mchingi.h"
 
 void ft_get_alight(t_data *data, char **tokens)
 {

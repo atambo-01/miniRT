@@ -6,12 +6,13 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 01:38:57 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/24 10:10:02 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/24 17:39:26 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/miniRT.h"
 #include "../../inc/miniRT_atambo.h"
+#include "../../inc/miniRT_mchingi.h"
 
 void ft_rotate_obj_z(int key, t_obj *obj)
 {
@@ -170,7 +171,7 @@ void	ft_obj_size(t_data *data, double i)
 void ft_move_x(t_data *data, double i)
 {
 	if (data->curr)
-		data->curr->center.x += i;
+		data->curr->pos.x += i;
 	else
 		data->cam.pos.x += i;
 }
@@ -178,7 +179,7 @@ void ft_move_x(t_data *data, double i)
 void ft_move_y(t_data *data, double i)
 {
 	if (data->curr)
-		data->curr->center.y += i;
+		data->curr->pos.y += i;
 	else
 		data->cam.pos.y += i;
 }
@@ -186,7 +187,7 @@ void ft_move_y(t_data *data, double i)
 void ft_move_z(t_data *data, double i)
 {
 	if (data->curr)
-		data->curr->center.z += i;
+		data->curr->pos.z += i;
 	else
 		data->cam.pos.z += i;
 }
