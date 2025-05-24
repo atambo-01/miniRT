@@ -1,9 +1,59 @@
-*.o
-
-test_file.c
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    .gitignore                                         :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: atambo <alex.tambo.15432@gmail.com>        +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2025/02/13 20:55:51 by atambo            #+#    #+#              #
+#    Updated: 2025/05/21 14:28:10 by atambo           ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
 miniRT
+*~lock*
+miniRT.code-workspace
+scenes_checklist
+# Compiled source
+*.a
+*.o
+*.so
+*.exe
+*.out
+*.dll
 
-fill_obj_data.c
+# Logs and databases
+*.log
+*.sql
+*.sqlite
 
-scenes/
+# OS-generated files
+.DS_Store
+Thumbs.db
+
+# Dependency directories
+node_modules/
+vendor/
+__pycache__/
+*.egg-info/
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Build artifacts
+/build/
+/dist/
+/target/
+
+# C/C++
+*.dSYM/
+
+# Environment files
+.env
+.env.local
+
+# Temp files
+*.un~
