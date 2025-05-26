@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 14:42:01 by mchingi           #+#    #+#             */
-/*   Updated: 2025/05/26 13:26:46 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/26 14:00:20 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ int	validate_scene(char **arr, int arr_size)
 			ft_minirt_error(E_SCENE_DATA, 1);
 			ft_perror(arr[i], 1); // Debug
 			ft_free_array(tmp_arr);
+			ft_free_array(arr);
 			exit (1);
 		}
 		ft_free_array(tmp_arr);

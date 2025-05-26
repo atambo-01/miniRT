@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 12:19:09 by mchingi           #+#    #+#             */
-/*   Updated: 2025/05/24 17:36:44 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/26 13:56:31 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,19 +23,17 @@ void	ft_error(char *str)
 char	**remove_char(char **array)
 {
 	int		i;
-	int		j;
 	char	**arr;
 
 	i = 0;
-	j = 0;
 	arr = (char **)malloc(sizeof(char *) * (ft_array_size(array) + 1));
-	while (array[j])
+	while (array[i])
 	{
-		arr[i] = ft_strtrim(array[j], " \n\t");
+		arr[i] = ft_strtrim(array[i], " \n\t");
 		i++;
-		j++;
 	}
 	arr[i] = NULL;
+	ft_free_array(array);
 	return (arr);
 }
 

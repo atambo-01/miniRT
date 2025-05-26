@@ -1,1 +1,1 @@
-make re -s && clear && valgrind --leak-check=full --show-leak-kinds=all ./miniRT scene.rt
+make re -s && clear && valgrind --leak-check=full --show-leak-kinds=all ./miniRT $_rt

@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 13:16:08 by mchingi           #+#    #+#             */
-/*   Updated: 2025/05/26 11:57:48 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/26 13:41:23 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ int	main(int ac, char **av)
 			mlx_mouse_hook(data.win, ft_mouse_hook, &data);
 			mlx_key_hook(data.win, ft_key_hook, &data);
 			mlx_hook(data.win, 17, 0, ft_exit_minirt, &data);
-			mlx_loop (data.mlx);		}
+			mlx_loop (data.mlx);
+		}
 		else 
 			return(ft_minirt_error(E_READFILE, 1));
 	}

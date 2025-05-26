@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 13:19:57 by mchingi           #+#    #+#             */
-/*   Updated: 2025/05/26 13:26:30 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/26 14:02:37 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,9 @@
 # define E_EXTENSION	"Wrong file extension, need a '.rt' file\n"
 # define E_PARAM		"Too many params, only need one file_path\n"
 # define E_NEEDFILE		"Need a file_path as param\n"
-# define E_ACL		"Duplicate or missing ACL element in scene\n"
+# define E_ACL			"Duplicate or missing ACL element in scene\n"
 # define E_MISS_ACL		"Missing ACL element in scene\n"
-# define E_SCENE_DATA	"Invalid Data\n"
+# define E_SCENE_DATA	"Invalid or missing identifier\n"
 typedef struct s_vec3
 {
 	double	x;

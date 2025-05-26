@@ -1,1 +1,1 @@
-make re -s && clear && ./miniRT $file_rt
+make re -s && clear && ./miniRT $_rt
