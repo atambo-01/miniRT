@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 11:38:15 by mchingi           #+#    #+#             */
-/*   Updated: 2025/05/26 13:43:06 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/26 16:29:02 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int	plane_data(t_data *data, char **data_line)
 	if (!fill_color(data_line[3], &new_plane->color))
 		return (obj_return(data, new_plane));
 	new_plane->next = NULL;
-	new_plane->radius = 10;
+	new_plane->radius = 0;
 	put_obj_tail(data, new_plane);
 	return (1);
 }

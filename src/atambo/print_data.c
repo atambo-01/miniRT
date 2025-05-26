@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 20:15:19 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/24 17:39:51 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/26 18:40:07 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ int ft_print_cam(t_cam *cam)
 int ft_print_obj(t_obj *obj)
 {
     printf("Object:\n");
-	printf("  Type:\t%s\n", obj->type);
-	printf("  pos:");
+	printf("  Type:\t\t%s\n", obj->type);
+	printf("  pos:\t");
 	ft_print_vec3(&obj->pos);
 	printf("  Dir:\t");
 	ft_print_vec3(&obj->dir);
@@ -62,9 +62,10 @@ int ft_print_obj(t_obj *obj)
 
 int ft_print_light(t_light *lum)
 {
-    printf("Light:\n");
-	printf("  pos:");
+	printf("Light:\n");
+	printf("  Pos:\t");
 	ft_print_vec3(&lum->pos);
+	printf("  Ratio:\t%.2f%\n", lum->ratio * 100);
 	printf("  Radius:\t%.2f\n", lum->radius);
 	printf("  Color:\t0x%06X\n", lum->color);
     return (0);
@@ -72,15 +73,18 @@ int ft_print_light(t_light *lum)
 
 int ft_print_data(t_data *data)
 {
-    system("clear");
+	system("clear");
     printf("-----------------------------------------\n");
     printf("\t\tx\ty\tz\n");
     ft_print_cam(&data->cam);
 	ft_print_light(&data->light);
 	printf("obj_count = \t%d\n", ft_count_obj(data->obj));
 	if (data->curr)
-		ft_print_obj(data->curr);
+	ft_print_obj(data->curr);
     printf("-----------------------------------------\n");
 	printf("Render time: %.2f ms\n", ft_get_speed(data->start, data->end));
+	printf(" Focus = %d\n", data->focus);
+	printf(" Curr = %p\n", data->curr);
+	printf(" Curr_ligth = %p\n", data->curr_light);
     return (0);
 }

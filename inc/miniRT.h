@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 13:19:57 by mchingi           #+#    #+#             */
-/*   Updated: 2025/05/26 14:02:37 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/26 17:40:27 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,9 @@
 # include	<sys/time.h>
 
 # define EPSILON	0.0001
+# define KAPPA		0.001
+# define GAMMA		0.0009
+
 # define UPSCALE	1
 # define ESC		65307
 # define UP			65363
@@ -162,11 +165,13 @@ typedef struct	s_data
 	t_cam			cam;
 	t_obj			*obj;
 	t_obj			*curr;
+	t_light			*curr_light;
 	t_light			light;
 	t_alight		alight;
 	char			*err;
 	struct timeval	start;
 	struct timeval	end;
+	int				focus;
 }				t_data;
 
 //=========================================================

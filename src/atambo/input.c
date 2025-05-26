@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 01:38:57 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/24 17:39:26 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/26 18:41:23 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,7 +171,17 @@ void	ft_obj_size(t_data *data, double i)
 void ft_move_x(t_data *data, double i)
 {
 	if (data->curr)
+	{
 		data->curr->pos.x += i;
+		if (data->focus)
+			data->cam.pos.x += i;
+	}
+	else if (data->curr_light)
+	{
+		data->curr_light->pos.x += i;
+		if (data->focus)
+			data->cam.pos.x += i;
+	}
 	else
 		data->cam.pos.x += i;
 }
@@ -179,7 +189,17 @@ void ft_move_x(t_data *data, double i)
 void ft_move_y(t_data *data, double i)
 {
 	if (data->curr)
+	{
 		data->curr->pos.y += i;
+		if (data->focus)
+			data->cam.pos.y += i;
+	}
+	else if (data->curr_light)
+	{
+		data->curr_light->pos.y += i;
+		if (data->focus)
+			data->cam.pos.y += i;
+	}
 	else
 		data->cam.pos.y += i;
 }
@@ -187,9 +207,46 @@ void ft_move_y(t_data *data, double i)
 void ft_move_z(t_data *data, double i)
 {
 	if (data->curr)
+	{
 		data->curr->pos.z += i;
+		if (data->focus)
+			data->cam.pos.z += i;
+	}
+	else if (data->curr_light)
+	{
+		data->curr_light->pos.z += i;
+		if (data->focus)
+			data->cam.pos.z += i;
+	}
 	else
 		data->cam.pos.z += i;
+}
+
+int ft_key_hook_2(int key, t_data *data)
+{
+	if (key == 32)
+		ft_switch_obj(data, -42.0, -42.0);
+	else if (key == 'i')
+		ft_obj_size(data, 10.0);
+	else if (key == 'k')
+		ft_obj_size(data, -10.0);
+	else if (key == '1')
+	{
+		if (data->curr_light)
+			data->curr_light = NULL;
+		else
+		{
+			data->curr = NULL;
+			data->curr_light = &data->light;
+		}
+	}
+	else if (key == 'f')
+	{
+		if (data->focus)
+			data->focus = 0;
+		else
+			data->focus = 1;
+	}
 }
 
 int ft_key_hook(int key, t_data *data)
@@ -206,12 +263,8 @@ int ft_key_hook(int key, t_data *data)
 		ft_move_x(data, -1.0);
 	else if (key == 'd')
 		ft_move_x(data, +1.0);
-	else if (key == 32)
-		ft_switch_obj(data, -42.0, -42.0);
-	else if (key == 'i')
-		ft_obj_size(data, 10.0);
-	else if (key == 'k')
-		ft_obj_size(data, -10.0);
+	else
+		ft_key_hook_2(key, data);
 	ft_rotate_cam(key, data);
 	ft_rotate_obj(key, data->curr);
 	ft_print_data(data);

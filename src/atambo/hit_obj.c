@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 20:47:34 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/24 17:57:23 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/26 15:01:52 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "../../inc/miniRT_atambo.h"
 #include "../../inc/miniRT_mchingi.h"
 
-double	ft_hit_cube(t_vec3 origin, t_vec3 dir, t_obj *obj)
+double	ft_hit_cube(t_vec3 origin, t_vec3 dir, t_obj *obj, t_hit *hit)
 {
 	t_vec3 v = {
 		obj->dir.y * obj->u.z - obj->dir.z * obj->u.y,
@@ -87,7 +87,7 @@ double	ft_hit_cube(t_vec3 origin, t_vec3 dir, t_obj *obj)
 	return (t_min);
 }
 
-double	ft_hit_plane(t_vec3 origin, t_vec3 dir, t_obj *obj)
+double	ft_hit_plane(t_vec3 origin, t_vec3 dir, t_obj *obj, t_hit *hit_o)
 {
 	double denom, t;
 	t_vec3 hit, u, v, p;
@@ -118,18 +118,14 @@ double	ft_hit_plane(t_vec3 origin, t_vec3 dir, t_obj *obj)
 , v);
 	if (p.x < -obj->radius || p.x > obj->radius || p.y < -obj->radius || p.y > obj->radius)
 		return (-1);
+	hit_o->n = obj->dir;
+	hit_o->u = obj->u;
 	return (t);
 }
 
-double	ft_hit_sphere(t_vec3 ray_o, t_vec3 ray_dir, t_obj *obj)
+double	ft_hit_sphere(t_vec3 ray_o, t_vec3 ray_dir, t_obj *obj, t_hit *hit)
 {
-	t_vec3 oc = {ray_o.x - obj->pos
-
-.x, ray_o.y - obj->pos
-
-.y, ray_o.z - obj->pos
-
-.z};
+	t_vec3 oc = {ray_o.x - obj->pos.x, ray_o.y - obj->pos.y, ray_o.z - obj->pos.z};
 	double a = ft_dot(ray_dir, ray_dir);
 	double b = 2.0 * ft_dot(oc, ray_dir);
 	double c = ft_dot(oc, oc) - obj->radius * obj->radius;
@@ -144,62 +140,28 @@ double	ft_hit_sphere(t_vec3 ray_o, t_vec3 ray_dir, t_obj *obj)
 		if (t < 0)
 			return (-1);
 	}
+	hit->n = obj->dir;
+	hit->u = obj->u;
 	return (t);
 }
 
-double	ft_check_cy_caps(t_vec3 ray_o, t_vec3 ray_dir, t_obj *obj)
+double	ft_check_cy_caps(t_vec3 ray_o, t_vec3 ray_dir, t_obj *obj, t_hit *hit)
 {
 	t_obj cap = *obj;
 	double t_cap = -1;
-	cap.pos
-
- = (t_vec3){obj->pos
-
-.x + obj->len / 2 * obj->dir.x,
-							obj->pos
-
-.y + obj->len / 2 * obj->dir.y,
-							obj->pos
-
-.z + obj->len / 2 * obj->dir.z};
-	t_cap = ft_hit_plane(ray_o, ray_dir, &cap);
+	cap.pos = (t_vec3){obj->pos.x + obj->len / 2 * obj->dir.x,obj->pos.y + obj->len / 2 * obj->dir.y, obj->pos.z + obj->len / 2 * obj->dir.z};
+	t_cap = ft_hit_plane(ray_o, ray_dir, &cap, hit);
 	if (t_cap > 0)
 	{
-		t_vec3 hit = {ray_o.x + t_cap * ray_dir.x - cap.pos
-
-.x,
-						ray_o.y + t_cap * ray_dir.y - cap.pos
-
-.y,
-						ray_o.z + t_cap * ray_dir.z - cap.pos
-
-.z};
+		t_vec3 hit = {ray_o.x + t_cap * ray_dir.x - cap.pos.x,ray_o.y + t_cap * ray_dir.y - cap.pos.y,ray_o.z + t_cap * ray_dir.z - cap.pos.z};
 		if (ft_dot(hit, hit) > obj->radius * obj->radius)
 			t_cap = -1;
 	}
-	cap.pos
-
- = (t_vec3){obj->pos
-
-.x - obj->len / 2 * obj->dir.x,
-							obj->pos
-
-.y - obj->len / 2 * obj->dir.y,
-							obj->pos
-
-.z - obj->len / 2 * obj->dir.z};
-	double t_cap_bot = ft_hit_plane(ray_o, ray_dir, &cap);
+	cap.pos = (t_vec3){obj->pos.x - obj->len / 2 * obj->dir.x,obj->pos.y - obj->len / 2 * obj->dir.y,obj->pos.z - obj->len / 2 * obj->dir.z};
+	double t_cap_bot = ft_hit_plane(ray_o, ray_dir, &cap, hit);
 	if (t_cap_bot > 0)
 	{
-		t_vec3 hit = {ray_o.x + t_cap_bot * ray_dir.x - cap.pos
-
-.x,
-						ray_o.y + t_cap_bot * ray_dir.y - cap.pos
-
-.y,
-						ray_o.z + t_cap_bot * ray_dir.z - cap.pos
-
-.z};
+		t_vec3 hit = {ray_o.x + t_cap_bot * ray_dir.x - cap.pos.x,ray_o.y + t_cap_bot * ray_dir.y - cap.pos.y,ray_o.z + t_cap_bot * ray_dir.z - cap.pos.z};
 		if (ft_dot(hit, hit) <= obj->radius * obj->radius &&
 			(t_cap < 0 || t_cap_bot < t_cap))
 			t_cap = t_cap_bot;
@@ -207,7 +169,7 @@ double	ft_check_cy_caps(t_vec3 ray_o, t_vec3 ray_dir, t_obj *obj)
 	return (t_cap);
 }
 
-double	ft_hit_cylinder(t_vec3 ray_o, t_vec3 ray_dir, t_obj *obj)
+double	ft_hit_cylinder(t_vec3 ray_o, t_vec3 ray_dir, t_obj *obj, t_hit *hit)
 {
 	t_vec3 oc = {ray_o.x - obj->pos
 
@@ -238,7 +200,7 @@ double	ft_hit_cylinder(t_vec3 ray_o, t_vec3 ray_dir, t_obj *obj)
 				t = -1;
 		}
 	}
-	double t_cap = ft_check_cy_caps(ray_o, ray_dir, obj);
+	double t_cap = ft_check_cy_caps(ray_o, ray_dir, obj, hit);
 	if (t_cap > 0 && (t < 0 || t_cap < t))
 		return (t_cap);
 	return (t);
