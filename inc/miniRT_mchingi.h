@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT_mchingi.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchingi <mchingi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 13:19:57 by mchingi           #+#    #+#             */
-/*   Updated: 2025/05/24 17:08:03 by mchingi          ###   ########.fr       */
+/*   Updated: 2025/05/26 11:41:39 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,14 @@ int		cylinder_data(t_data *data, char **data_line);
 void	ft_error(char *str);
 // double	ft_atof2(char *str);
 char	**remove_char(char **array);
+// --------------------------- DEBUG ----------------------------------/
+void 	print_debug_sp(t_obj *obj);
+void 	print_debug_pl(t_obj *obj);
+void 	print_debug_cy(t_obj *obj);
+void 	print_debug_obj(t_obj *obj);
+void 	print_debug_info(t_data data);
+
+
 
 
 #endif
