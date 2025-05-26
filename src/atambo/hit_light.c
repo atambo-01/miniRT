@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 12:21:37 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/26 15:59:14 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/26 19:45:39 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static t_vec3 ft_vec_AB(t_vec3 *A, t_vec3 *B)
 // 		return (-1);
 // }
 
-double	ft_in_shadow(t_ray ray, t_obj *obj)
+double	ft_in_shadow(t_ray ray, t_obj *obj, double light_d)
 {
 	double	t;
 	t_hit	hit;
@@ -54,7 +54,7 @@ double	ft_in_shadow(t_ray ray, t_obj *obj)
 	while (obj) // instead of for each obj we need a BVH logic to optimize
 	{
 		t = ft_calc_hit_2(ray.o, ray.dir, obj, &hit);
-		if (t > 0) // if > 0 then is in shadow
+		if (t > 0 && t < light_d) // if > 0 then is in shadow
 			return (t);
 		obj = obj->next;
 	}
@@ -123,8 +123,8 @@ double	ft_hit_obj_light(t_data *data, t_ray ray, t_hit hit, t_light *lum)
 		if (d < 0)
 			return (-1);
 	}
-	return(d);
 	//check against objects and return if hit
-	if (ft_in_shadow(ray, data->obj))
+	if (ft_in_shadow(ray, data->obj, hit.d))
 		return (-1);
+	return(d);
 }

@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 17:07:27 by mchingi           #+#    #+#             */
-/*   Updated: 2025/05/24 17:36:44 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/26 19:46:50 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	light_data(t_light *light, char **data)
 		return (0);
 	if (fill_color(data[3], &light->color) == 0)
 		return (0);
-	light->radius = 1;
+	light->radius = 1.0;
 	return (1);
 }
 
