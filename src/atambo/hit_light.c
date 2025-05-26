@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 12:21:37 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/26 19:45:39 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/26 19:59:24 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ double	ft_hit_obj_light(t_data *data, t_ray ray, t_hit hit, t_light *lum)
 			return (-1);
 	}
 	//check against objects and return if hit
-	if (ft_in_shadow(ray, data->obj, hit.d))
+	if (ft_in_shadow(ray, data->obj, hit.t))
 		return (-1);
 	return(d);
 }
