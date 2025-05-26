@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 13:16:08 by mchingi           #+#    #+#             */
-/*   Updated: 2025/05/26 11:38:47 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/26 11:57:48 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ int	main(int ac, char **av)
 	data.obj = NULL;
 	if (ac == 2)
 	{
-		
 		fd = file_management(av[1], &data);
 		if (fd > 0)
 		{
@@ -34,10 +33,12 @@ int	main(int ac, char **av)
 			mlx_hook(data.win, 17, 0, ft_exit_minirt, &data);
 			mlx_loop (data.mlx);		}
 		else 
-			printf("Error reading file\n");
+			return(ft_minirt_error(E_READFILE, 1));
 	}
+	else if (ac > 1)
+		return(ft_minirt_error(E_PARAM, 1));
 	else
-		printf("invalid number of args\n");
+		return(ft_minirt_error(E_NEEDFILE, 1));
 	return (0);
 }
 

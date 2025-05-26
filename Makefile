@@ -6,13 +6,12 @@
 #    By: atambo <atambo@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/29 12:55:11 by mchingi           #+#    #+#              #
-#    Updated: 2025/05/26 11:42:03 by atambo           ###   ########.fr        #
+#    Updated: 2025/05/26 11:55:17 by atambo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SOURCES		=	\
 				\
-				src/atambo/check_file.c\
 				src/atambo/init.c\
 				src/atambo/input.c\
 				src/atambo/input_util.c\
@@ -24,7 +23,6 @@ SOURCES		=	\
 				src/atambo/exit_minirt.c\
 				src/atambo/get_next_line.c\
 				src/atambo/get_next_line_utils.c\
-				src/atambo/read_file.c\
 				src/atambo/minirt_error.c\
 				src/atambo/ray.c\
 				src/atambo/upscale_assign.c\

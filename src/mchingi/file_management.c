@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 13:26:05 by mchingi           #+#    #+#             */
-/*   Updated: 2025/05/24 18:46:03 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/26 12:54:14 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	open_file(char *file_name)
 	if (!ft_strrchr(file_name, '.') ||
 		(ft_strncmp(ft_strrchr(file_name, '.'), ".rt", 4)))
 	{
-		ft_minirt_error("Wrong file extension, need a '.rt' file\n", 1);
+		ft_minirt_error(E_EXTENSION, 1);
 		exit (1);
 	}
 	fd = open(file_name, O_RDONLY);
@@ -107,11 +107,8 @@ int	file_management(char *file_name, t_data *data)
 		return (-1);
 	arr_size = count_lines(fd);
 	arr = extract_lines(file_name, arr_size);
-	if (!validate_scene(arr, arr_size) || (!fill_data(remove_char(arr), data)))
-	{
-		ft_free_array(arr);
-		return (-1);
-	}
+	validate_scene(arr, arr_size);
+	fill_data(remove_char(arr), data);
 	ft_free_array(arr);
 	return (fd);
 }

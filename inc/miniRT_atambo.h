@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 22:55:42 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/24 18:05:36 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/26 11:53:59 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,6 @@
 # endif
 
 # include	"./miniRT.h"
-
-
-// src/check_file.c
-int 	ft_check_file(int ac, char **av);
 
 // src/exit_minirt.c
 void	ft_free_obj(t_obj *obj);

@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 14:42:01 by mchingi           #+#    #+#             */
-/*   Updated: 2025/05/24 17:36:44 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/26 13:26:46 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,42 +15,41 @@
 #include "../../inc/miniRT_mchingi.h"
 
 
-int	check_duplicate_capital_elements_aux(int a, int c, int l)
+int	check_dupl_acl_aux(int* acl, char **arr)
 {
-	if (a == 1 && c == 1 && l == 1)
-		return (0);
-	if (a > 1 || c > 1 || l > 1)
-		ft_putstr_fd("Error\nScene: Duplicate ACL element in scene\n", 2);
-	return (1);
+	if ((acl[0] != 1 || acl[1] != 1 || acl[2] != 1))
+	{
+		ft_minirt_error(E_ACL, 1);
+		ft_free_array(arr);
+		exit (1);
+	}
+	return (0);
 }
 
-int	check_duplicate_capital_elements(char **arr, int arr_size)
+
+int	check_dupl_acl(char **arr, int arr_size)
 {
 	int		i;
-	int		a_count;
-	int		c_count;
-	int		l_count;
 	char	**tmp_arr;
+	int		acl[3];
 
 	i = -1;
-	a_count = 0;
-	c_count = 0;
-	l_count = 0;
+	ft_bzero(acl, 3 * sizeof(int));
 	while (++i < arr_size)
 	{
 		tmp_arr = ft_split2(arr[i]);
 		if (tmp_arr[0] != NULL)
 		{
 			if (ft_strncmp(tmp_arr[0], "A", 2) == 0)
-				a_count++;
+				acl[0] += 1;
 			else if (ft_strncmp(tmp_arr[0], "C", 2) == 0)
-				c_count++;
+				acl[1] += 1;
 			else if (ft_strncmp(tmp_arr[0], "L", 2) == 0)
-				l_count++;
+				acl[2] += 1;
 		}
 		ft_free_array(tmp_arr);
 	}
-	return (check_duplicate_capital_elements_aux(a_count, c_count, l_count));
+	return (check_dupl_acl_aux(acl, arr));
 }
 
 int	check_identifier(char **arr)
@@ -78,18 +77,17 @@ int	validate_scene(char **arr, int arr_size)
 	int		i;
 	char	**tmp_arr;
 
-	if (check_duplicate_capital_elements(arr, arr_size))
-		return (0);
+	check_dupl_acl(arr, arr_size);
 	i = -1;
 	while (++i < arr_size && arr[i])
 	{
 		tmp_arr = ft_split2(arr[i]);
 		if (!check_identifier(tmp_arr))
 		{
-			ft_putstr_fd("Error\nScene: Invalid Data\n", 2);
-			printf("\n%s\n", arr[i]); // Debug
+			ft_minirt_error(E_SCENE_DATA, 1);
+			ft_perror(arr[i], 1); // Debug
 			ft_free_array(tmp_arr);
-			return (0);
+			exit (1);
 		}
 		ft_free_array(tmp_arr);
 	}

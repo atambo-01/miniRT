@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 13:19:57 by mchingi           #+#    #+#             */
-/*   Updated: 2025/05/24 14:40:40 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/26 13:26:30 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,13 @@
 # define NUM_PLUS
 
 // error msgs
-# define ERR_PARAM		"Too many params, only need one file_path\n"
-# define ERR_NEED_FILE	"Need a file_path as param\n"
-# define ERR_ALIGHT		"Bad ambient light formating\n"
-
+# define E_READFILE		"Error reading file\n"
+# define E_EXTENSION	"Wrong file extension, need a '.rt' file\n"
+# define E_PARAM		"Too many params, only need one file_path\n"
+# define E_NEEDFILE		"Need a file_path as param\n"
+# define E_ACL		"Duplicate or missing ACL element in scene\n"
+# define E_MISS_ACL		"Missing ACL element in scene\n"
+# define E_SCENE_DATA	"Invalid Data\n"
 typedef struct s_vec3
 {
 	double	x;
