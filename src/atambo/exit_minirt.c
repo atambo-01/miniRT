@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 01:09:44 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/24 17:32:57 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/26 19:34:53 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,5 @@ int	ft_exit_minirt(t_data *data)
 {
 	ft_free_obj(data->obj);
 	ft_quit_mlx(data);
-	if (data->err)
-		ft_minirt_error(data->err, 1);
 	exit(0);
 }
