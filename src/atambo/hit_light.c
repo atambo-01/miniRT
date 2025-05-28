@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 12:21:37 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/28 23:05:36 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/28 23:18:39 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static t_vec3 ft_vec_AB(t_vec3 *A, t_vec3 *B)
 // 		return (-1);
 // }
 
-double	ft_in_shadow(t_ray ray, t_obj *obj, double light_d)
+int	ft_in_shadow(t_ray ray, t_obj *obj, double light_d)
 {
 	double	t;
 	t_hit	hit;
@@ -55,7 +55,7 @@ double	ft_in_shadow(t_ray ray, t_obj *obj, double light_d)
 	{
 		t = ft_calc_hit_2(ray.o, ray.dir, obj, &hit);
 		if (ft_cmp_dbl(t, ">=" ,0) && ft_cmp_dbl(t, "<", light_d)) // if > 0 then is in shadow
-			return (t);
+			return (1);
 		obj = obj->next;
 	}
 	return (0);
@@ -91,17 +91,10 @@ int ft_hit_light(t_data *data, t_ray ray, t_hit *hit, t_light *lum)
 double	ft_hit_obj_light(t_data *data, t_ray ray, t_hit hit, t_light *lum)
 {
 	double	d;
-	t_vec3	oc;
-	double	a;
-	double	b;
-	double	c;
-	double	discriminant;
 	
 	d = 0.0;
 	//init ray
 	t_vec3 v1 = hit.p;
-	if (!hit.obj)
-		printf("is NULL\n");
 	t_vec3 dir = hit.obj->dir;
 	t_vec3 v2 = ft_scalar(dir, 0.0001);
 	ray.o = ft_vec3_add(v1, v2);
