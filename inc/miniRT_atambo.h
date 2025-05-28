@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 22:55:42 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/26 19:43:57 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/28 15:23:01 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,19 @@
 
 # include	"./miniRT.h"
 
+//src/dbl_utils.c
+int	ft_cmp_dbl(double n1, char *op, double n2);
+
 // src/exit_minirt.c
 void	ft_free_obj(t_obj *obj);
 void	ft_quit_mlx(t_data *data);
 int		ft_exit_minirt(t_data *data);
+
+//export.c
+void	ft_export_scene(t_data *data);
+
+//ft_itoaf.c
+char	*ft_itoaf(double num);
 
 // src/init.c
 int		ft_init_obj(t_data *data);
@@ -55,6 +64,9 @@ double	ft_calc_hit_2(t_vec3 ray_o, t_vec3 ray_dir, t_obj *obj, t_hit *hit);
 int		ft_calc_hit(t_ray ray, t_obj *obj, t_hit *hit);
 void	ft_render_scene(t_data *data);
 void	ft_render_and_upscale(t_data *data, int upscale);
+
+//time.c
+void ft_sleep(int sec);
 
 //src/upscale_assign.c
 void	ft_assign_src_coords(t_data *data, t_upscale *up, int x, int y);

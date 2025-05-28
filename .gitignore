@@ -13,6 +13,7 @@
 miniRT
 *~lock*
 miniRT.code-workspace
+saved_scene.rt
 # Compiled source
 *.a
 *.o

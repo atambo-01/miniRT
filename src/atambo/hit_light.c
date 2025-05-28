@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 12:21:37 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/26 19:59:24 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/28 16:44:02 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ double	ft_in_shadow(t_ray ray, t_obj *obj, double light_d)
 	while (obj) // instead of for each obj we need a BVH logic to optimize
 	{
 		t = ft_calc_hit_2(ray.o, ray.dir, obj, &hit);
-		if (t > 0 && t < light_d) // if > 0 then is in shadow
+		if (ft_cmp_dbl(t, ">=" ,0) && ft_cmp_dbl(t, "<", light_d)) // if > 0 then is in shadow
 			return (t);
 		obj = obj->next;
 	}
@@ -67,18 +67,18 @@ int ft_hit_light(t_data *data, t_ray ray, t_hit *hit, t_light *lum)
 	double a = ft_dot(ray.dir, ray.dir);
 	double b = 2.0 * ft_dot(oc, ray.dir);
 	double c = ft_dot(oc, oc) - lum->radius * lum->radius;
-	double discriminant = b * b - 4.0 * a * c;
+	double delta = b * b - 4.0 * a * c;
 
-	if (discriminant < 0)
+	if (ft_cmp_dbl(delta, "<", 0.0))
 		return (0);
-	double t = (-b - sqrt(discriminant)) / (2.0 * a);
-	if (t < 0)
+	double t = (-b - sqrt(delta)) / (2.0 * a);
+	if (ft_cmp_dbl(t, "<" ,0))
 	{
-		t = (-b + sqrt(discriminant)) / (2.0 * a);
-		if (t < 0)
+		t = (-b + sqrt(delta)) / (2.0 * a);
+		if (ft_cmp_dbl(t, "<" ,0))
 			return (0);
 	}
-	if (t >= 0 && (t < hit->t || hit->t < 0))
+	if (ft_cmp_dbl(t, ">=" ,0) && ft_cmp_dbl(t, "<" ,hit->t) || ft_cmp_dbl(hit->t, "<" ,0))
 	{
 		hit->t = t;
 		hit->color = lum->color;
@@ -97,7 +97,7 @@ double	ft_hit_obj_light(t_data *data, t_ray ray, t_hit hit, t_light *lum)
 	double	c;
 	double	discriminant;
 	
-	d = 0;
+	d = 0.0;
 	//init ray
 	t_vec3 v1 = hit.p;
 	if (!hit.obj)
@@ -114,13 +114,13 @@ double	ft_hit_obj_light(t_data *data, t_ray ray, t_hit hit, t_light *lum)
 	c = ft_dot(oc, oc) - lum->radius * lum->radius;
 	discriminant = b * b - 4.0 * a * c;
 
-	if (discriminant < 0)
+	if (ft_cmp_dbl(discriminant, "<" ,0.0))
 		return (-1);
 	d = (-b - sqrt(discriminant)) / (2.0 * a);
-	if (d < 0)
+	if (ft_cmp_dbl(d, "<" ,0.0))
 	{
 		d = (-b + sqrt(discriminant)) / (2.0 * a);
-		if (d < 0)
+		if (ft_cmp_dbl(d, "<" ,0.0))
 			return (-1);
 	}
 	//check against objects and return if hit

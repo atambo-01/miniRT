@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 01:38:57 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/26 18:41:23 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/28 14:59:12 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,11 +162,14 @@ void ft_switch_obj(t_data *data, int x, int y)
 		ft_switch_obj_point(data, x, y, &ray);
 }
 
-void	ft_obj_size(t_data *data, double i)
+void	ft_obj_size(int key, t_data *data, double i)
 {
 	if (!data->curr)
-	return ;
-	data->curr->radius += (i / 100) * data->curr->radius;
+		return ;
+	if (key == 'i' || key == 'k')
+		data->curr->radius += (i / 100) * data->curr->radius;
+	else if (key == 'o' || key == 'l')
+		data->curr->len += (i / 100) * data->curr->radius;
 }
 void ft_move_x(t_data *data, double i)
 {
@@ -222,15 +225,9 @@ void ft_move_z(t_data *data, double i)
 		data->cam.pos.z += i;
 }
 
-int ft_key_hook_2(int key, t_data *data)
+int ft_key_hook_3(int key, t_data *data)
 {
-	if (key == 32)
-		ft_switch_obj(data, -42.0, -42.0);
-	else if (key == 'i')
-		ft_obj_size(data, 10.0);
-	else if (key == 'k')
-		ft_obj_size(data, -10.0);
-	else if (key == '1')
+	if (key == '1')
 	{
 		if (data->curr_light)
 			data->curr_light = NULL;
@@ -247,6 +244,26 @@ int ft_key_hook_2(int key, t_data *data)
 		else
 			data->focus = 1;
 	}
+	return (0);
+}
+
+int ft_key_hook_2(int key, t_data *data)
+{
+	if (key == 32)
+		ft_switch_obj(data, -42.0, -42.0);
+	else if (key == 'i')
+		ft_obj_size(key, data, 25.0);
+	else if (key == 'k')
+		ft_obj_size(key, data, -25.0);
+	else if (key == 'o')
+		ft_obj_size(key, data, 25.0);
+	else if (key == 'l')
+		ft_obj_size(key, data, -25.0);
+	else if (key == '0')
+		ft_export_scene(data);
+	else
+		ft_key_hook_3(key, data);
+	return (0);
 }
 
 int ft_key_hook(int key, t_data *data)

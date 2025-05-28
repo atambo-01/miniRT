@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 13:19:57 by mchingi           #+#    #+#             */
-/*   Updated: 2025/05/26 17:40:27 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/28 15:15:11 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include	<X11/keysym.h>
 # include	<errno.h>
 # include	<stdbool.h>
+# include	<limits.h>
 
 // costum libs
 # include	"../libft/libft.h"
@@ -31,7 +32,7 @@
 // remove these libs before sending
 # include	<sys/time.h>
 
-# define EPSILON	0.0001
+# define EPSILON	1e-6
 # define KAPPA		0.001
 # define GAMMA		0.0009
 
@@ -59,6 +60,7 @@
 # define E_ACL			"Duplicate or missing ACL element in scene\n"
 # define E_MISS_ACL		"Missing ACL element in scene\n"
 # define E_SCENE_DATA	"Invalid or missing identifier\n"
+# define E_EXPORT		"Export failed, could not create './saved_scene'\n"
 typedef struct s_vec3
 {
 	double	x;
