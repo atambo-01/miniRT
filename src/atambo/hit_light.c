@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 12:21:37 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/28 16:44:02 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/28 23:05:36 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,21 +108,8 @@ double	ft_hit_obj_light(t_data *data, t_ray ray, t_hit hit, t_light *lum)
 	ray.dir = ft_vec_AB(&(ray.o), &(lum->pos));
 
 	//check against light
-	oc = (t_vec3){ray.o.x - lum->pos.x, ray.o.y - lum->pos.y, ray.o.z - lum->pos.z};
-	a = ft_dot(ray.dir, ray.dir);
-	b = 2.0 * ft_dot(oc, ray.dir);
-	c = ft_dot(oc, oc) - lum->radius * lum->radius;
-	discriminant = b * b - 4.0 * a * c;
-
-	if (ft_cmp_dbl(discriminant, "<" ,0.0))
-		return (-1);
-	d = (-b - sqrt(discriminant)) / (2.0 * a);
-	if (ft_cmp_dbl(d, "<" ,0.0))
-	{
-		d = (-b + sqrt(discriminant)) / (2.0 * a);
-		if (ft_cmp_dbl(d, "<" ,0.0))
-			return (-1);
-	}
+	ft_hit_light(data, ray, &hit, lum);
+	d = hit.t;
 	//check against objects and return if hit
 	if (ft_in_shadow(ray, data->obj, hit.t))
 		return (-1);

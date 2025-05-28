@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 08:47:48 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/28 13:22:14 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/28 22:53:43 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void	ft_write_sphere(t_obj *obj, int fd)
 	ft_putstr_fd(" ", fd);
 	ft_write_vec3(obj->pos, fd);
 	ft_putstr_fd(" ", fd);
-	ft_putstr_fd(ft_itoaf(obj->radius), fd);
+	ft_putstr_fd(ft_itoaf(obj->radius * 2), fd);
 	ft_putstr_fd(" ", fd);
 	ft_write_color(obj->color, fd);
 }
@@ -103,7 +103,7 @@ void	ft_write_cylinder(t_obj *obj, int fd)
 	ft_putstr_fd(" ", fd);
 	ft_write_vec3(obj->dir, fd);
 	ft_putstr_fd(" ", fd);
-	ft_putstr_fd(ft_itoaf(obj->radius), fd);
+	ft_putstr_fd(ft_itoaf(obj->radius * 2), fd);
 	ft_putstr_fd(" ", fd);
 	ft_putstr_fd(ft_itoaf(obj->len), fd);
 	ft_putstr_fd(" ", fd);
