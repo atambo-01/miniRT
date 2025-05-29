@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 20:15:19 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/29 16:01:55 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/29 17:12:55 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int ft_print_light(t_light *lum)
 	printf("Light:\n");
 	printf("  Pos:\t");
 	ft_print_vec3(&lum->pos);
-	printf("  Ratio:\t%.2f%\n", lum->ratio * 100);
+	printf("  Ratio:\t%.2f%%\n", lum->ratio * 100);
 	printf("  Radius:\t%.2f\n", lum->radius);
 	ft_print_t_color(lum->color);
     return (0);
@@ -79,7 +79,7 @@ int ft_print_light(t_light *lum)
 int ft_print_alight(t_alight *lum)
 {
 	printf("Ambient_Light:\n");
-	printf("  Ratio:\t%.2f%\n", lum->ratio * 100);
+	printf("  Ratio:\t%.2f%%\n", lum->ratio * 100);
 	ft_print_t_color(lum->color);
     return (0);
 }

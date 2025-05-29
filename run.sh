@@ -1,1 +1,1 @@
-make re -s && clear && ./miniRT $_rt
+make -s && clear && ./miniRT saved_scene.rt
