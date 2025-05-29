@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 12:21:37 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/28 23:18:39 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/29 01:51:43 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 static t_vec3 ft_vec_AB(t_vec3 *A, t_vec3 *B)
 {
 	t_vec3	AB;
-	float	mag;
+	double	mag;
 
 	AB.x = B->x - A->x;
 	AB.y = B->y - A->y;
@@ -69,7 +69,9 @@ int ft_hit_light(t_data *data, t_ray ray, t_hit *hit, t_light *lum)
 	double c = ft_dot(oc, oc) - lum->radius * lum->radius;
 	double delta = b * b - 4.0 * a * c;
 
-	if (ft_cmp_dbl(delta, "<", 0.0))
+	if (ft_cmp_dbl(fabs(a), "<", 0.0))
+		return (0);
+	if (ft_cmp_dbl(delta, "<", 0))
 		return (0);
 	double t = (-b - sqrt(delta)) / (2.0 * a);
 	if (ft_cmp_dbl(t, "<" ,0))
@@ -78,7 +80,7 @@ int ft_hit_light(t_data *data, t_ray ray, t_hit *hit, t_light *lum)
 		if (ft_cmp_dbl(t, "<" ,0))
 			return (0);
 	}
-	if (ft_cmp_dbl(t, ">=" ,0) && ft_cmp_dbl(t, "<" ,hit->t) || ft_cmp_dbl(hit->t, "<" ,0))
+	if (ft_cmp_dbl(t, ">=" ,0.0) && ft_cmp_dbl(t, "<" ,hit->t) || ft_cmp_dbl(hit->t, "<" ,0.0))
 	{
 		hit->t = t;
 		hit->color = lum->color;
@@ -87,24 +89,23 @@ int ft_hit_light(t_data *data, t_ray ray, t_hit *hit, t_light *lum)
 	return (t > 0);
 }
 
-// int ft_hit_light (t_data *data, t_ray ray, t_hit hit, t_light *lum)
-double	ft_hit_obj_light(t_data *data, t_ray ray, t_hit hit, t_light *lum)
+double ft_hit_obj_light(t_data *data, t_ray ray, t_hit hit, t_light *lum)
 {
-	double	d;
-	
-	d = 0.0;
-	//init ray
-	t_vec3 v1 = hit.p;
-	t_vec3 dir = hit.obj->dir;
-	t_vec3 v2 = ft_scalar(dir, 0.0001);
-	ray.o = ft_vec3_add(v1, v2);
-	ray.dir = ft_vec_AB(&(ray.o), &(lum->pos));
+    double d = 0.0;
 
-	//check against light
-	ft_hit_light(data, ray, &hit, lum);
-	d = hit.t;
-	//check against objects and return if hit
-	if (ft_in_shadow(ray, data->obj, hit.t))
-		return (-1);
-	return(d);
+    // Initialize shadow ray origin
+    t_vec3 v1 = hit.p; // Hit point
+    t_vec3 cam_dir = ft_vec_AB(&hit.p, &data->cam.pos); // Vector from hit point to camera
+    t_vec3 offset = ft_scalar(cam_dir, 0.001); // Small offset toward camera
+    ray.o = ft_vec3_add(v1, offset); // Move origin slightly toward camera
+    ray.dir = ft_vec_AB(&ray.o, &lum->pos); // Direction from new origin to light
+
+    // Check against light
+    ft_hit_light(data, ray, &hit, lum);
+    d = hit.t;
+
+    // Check for objects in shadow
+    if (ft_in_shadow(ray, data->obj, hit.t))
+        return (-1);
+    return (d);
 }

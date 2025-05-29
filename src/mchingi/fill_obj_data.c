@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 11:38:15 by mchingi           #+#    #+#             */
-/*   Updated: 2025/05/28 16:48:54 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/29 01:00:13 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ int	sphere_data(t_data *data, char **data_line)
 	if (!fill_coordinate(data_line[1], &new_sphere->pos))
 		return (obj_return(data, new_sphere));
 	new_sphere->radius = atof(data_line[2]) / 2;
+	ft_setvec3(&new_sphere->dir, 0.0, 0.0, 0.0);
+	ft_setvec3(&new_sphere->u, 0.0, 0.0, 0.0);
 	if (new_sphere->radius < 0)
 		return (obj_return(data, new_sphere));
 	if (!fill_color(data_line[3], &new_sphere->color))

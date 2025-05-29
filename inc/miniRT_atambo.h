@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 22:55:42 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/28 23:19:00 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/29 01:47:35 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ double	ft_dot(t_vec3 a, t_vec3 b);
 void	ft_normalize(t_vec3 *v);
 double	ft_get_speed(struct timeval start, struct timeval end);
 t_vec3	ft_vec3_add(t_vec3 v1, t_vec3 v2);
-t_vec3	ft_scalar(t_vec3 v1, float r);
+t_vec3	ft_scalar(t_vec3 v1, double r);
 void	ft_hit_init(t_hit *hit);
 t_vec3	ft_vec3_orthogonal(t_vec3 v);
 
@@ -98,7 +98,7 @@ char	*ft_substr_1(char *str, int start, int len_str);
 char	*ft_get_next_line(int fd);
 
 //src/hit_light.c
-int	ft_in_shadow(t_ray ray, t_obj *obj, double light_d);
+int		ft_in_shadow(t_ray ray, t_obj *obj, double light_d);
 int		ft_hit_light(t_data *data, t_ray ray, t_hit *hit, t_light *lum);
 double	ft_hit_obj_light(t_data *data, t_ray ray, t_hit hit, t_light *lum);
 

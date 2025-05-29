@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 02:23:44 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/24 18:05:03 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/29 01:47:32 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ t_vec3	ft_vec3_add(t_vec3 v1, t_vec3 v2)
 	return (result);
 }
 
-t_vec3 ft_scalar(t_vec3 v1, float r)
+t_vec3 ft_scalar(t_vec3 v1, double r)
 {
 	t_vec3	result;
 

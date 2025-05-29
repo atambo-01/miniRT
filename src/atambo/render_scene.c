@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 16:38:03 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/28 23:00:17 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/29 01:32:25 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,8 @@ void ft_ray_color(t_hit *hit, t_data *data, double x, double y)
 	if (hit->d >= 0)
 	{
 		color = hit->color;
-		intensity = data->light.ratio * 1.0 / (1.0 +  KAPPA * hit->d * hit->d);
+
+		intensity = data->light.ratio * 1.0 / (1.0 +  KAPPA * GAMMA * hit->d * hit->d);
 		r = (color >> 16) & 0xFF;
 		g = (color >> 8) & 0xFF;
 		b = color & 0xFF;

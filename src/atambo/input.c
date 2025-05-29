@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 01:38:57 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/28 14:59:12 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/29 02:00:15 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -269,7 +269,10 @@ int ft_key_hook_2(int key, t_data *data)
 int ft_key_hook(int key, t_data *data)
 {
 	if (key == '.')
+	{
 		data->curr = NULL;
+		data->curr_light = NULL;
+	}
 	else if (key == 65307)
 		ft_exit_minirt(data);
 	else if (key == 'w')

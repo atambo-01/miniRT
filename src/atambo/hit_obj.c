@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 20:47:34 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/28 22:27:21 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/29 01:03:40 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,18 +131,18 @@ double	ft_hit_sphere(t_vec3 ray_o, t_vec3 ray_dir, t_obj *obj, t_hit *hit)
 	double c = ft_dot(oc, oc) - obj->radius * obj->radius;
 	double delta = b * b - 4.0 * a * c;
 
-	if (ft_cmp_dbl(delta, "<", 0))
+	if (ft_cmp_dbl(delta, "<", EPSILON))
 		return (-1);
 	double t = (-b - sqrt(delta)) / (2.0 * a);
-	if (ft_cmp_dbl(t, "<", 0))
+	if (ft_cmp_dbl(t, "<", EPSILON))
 	{
 		t = (-b + sqrt(delta)) / (2.0 * a);
 		if (ft_cmp_dbl(t, "<", 0))
-			return (-1);
+			return (-1.0);
 	}
 	hit->n = obj->dir;
 	hit->u = obj->u;
-	return (t - EPSILON);
+	return (t);
 }
 
 double	ft_hit_cylinder(t_vec3 ray_o, t_vec3 ray_dir, t_obj *obj, t_hit *hit)
