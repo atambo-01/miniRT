@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 13:19:57 by mchingi           #+#    #+#             */
-/*   Updated: 2025/05/29 00:55:21 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/29 13:44:04 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,15 @@
 # define E_MISS_ACL		"Missing ACL element in scene\n"
 # define E_SCENE_DATA	"Invalid or missing identifier\n"
 # define E_EXPORT		"Export failed, could not create './saved_scene'\n"
-typedef struct s_vec3
+
+typedef struct	s_color
+{
+	int	r;
+	int	g;
+	int	b;
+}				t_color;
+
+typedef struct	s_vec3
 {
 	double	x;
 	double	y;
@@ -139,7 +147,7 @@ typedef struct	s_obj
 	t_vec3	u;
 	double	radius;
 	double	len;
-	int		color;
+	t_color	color;
 	t_obj	*next;
 }				t_obj;
 
@@ -148,13 +156,13 @@ typedef struct	s_light
 	t_vec3	pos;
 	double	radius;
 	double	ratio;
-	int		color;
+	t_color	color;
 }				t_light;
 
 typedef struct	s_alight
 {
-		double	ratio;
-		int		color;
+	double	ratio;
+	t_color	color;
 }				t_alight;
 
 typedef struct	s_data
@@ -238,7 +246,7 @@ typedef struct	s_hit
 	double	t;
 	double	d;
 	t_vec3	p;
-	int		color;
+	t_color	color;
 	t_vec3	u;
 	t_vec3	n;
 	t_obj	*obj;

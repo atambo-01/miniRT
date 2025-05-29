@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 08:47:48 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/29 10:12:00 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/29 13:52:50 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,20 +23,13 @@ void	ft_write_vec3(t_vec3 v, int fd)
 	ft_putstr_fd(ft_itoaf(v.z), fd);
 }
 
-void ft_write_color(int color, int fd)
+void ft_write_color(t_color color, int fd)
 {
-	int r;
-	int g;
-	int b;
-
-	r = (color >> 16) & 0xFF;
-	g = (color >> 8) & 0xFF;
-	b = color & 0xFF;
-	ft_putstr_fd(ft_itoa(r), fd);
+	ft_putstr_fd(ft_itoa(color.r), fd);
 	ft_putstr_fd(",", fd);
-	ft_putstr_fd(ft_itoa(g), fd);
+	ft_putstr_fd(ft_itoa(color.g), fd);
 	ft_putstr_fd(",", fd);
-	ft_putstr_fd(ft_itoa(b), fd);
+	ft_putstr_fd(ft_itoa(color.b), fd);
 }
 
 void	ft_export_scene(t_data *data)

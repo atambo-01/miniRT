@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 01:38:57 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/29 02:00:15 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/29 13:50:02 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,37 +127,42 @@ void ft_rotate_cam(int keycode, t_data *data)
 
 void ft_switch_obj_point(t_data *data, int x, int y, t_ray *ray)
 {
-    x = x * ((double)IM_WIDTH / W_WIDTH);
-    y = y * ((double)IM_HEIGHT / W_HEIGHT);
-    ft_init_ray(data, ray);
-    ft_calc_ray(x, y, ray);
-    t_hit hit;
+	t_hit	hit;
 
-    ray->dir.x = ray->u;
-    ray->dir.y = ray->v;
-    ray->dir.z = 1.0;
-    ft_normalize(&(ray->dir));
+	x = x * ((double)IM_WIDTH / W_WIDTH);
+	y = y * ((double)IM_HEIGHT / W_HEIGHT);
+	ft_init_ray(data, ray);
+	ft_calc_ray(x, y, ray);
+
+	ray->dir.x = ray->u;
+	ray->dir.y = ray->v;
+	ray->dir.z = 1.0;
+	ft_normalize(&(ray->dir));
 	ft_hit_init(&hit);
-    ft_calc_hit(*ray, data->obj, &hit);
-    if (hit.t > 0) // Valid hit
-        data->curr = hit.obj;
+	ft_calc_hit(*ray, data->obj, &hit);
+	if (hit.t > 0)
+	{
+		data->curr = hit.obj;
+		data->curr_light = NULL;
+	}
 	else
 		data->curr = NULL;
 }
 
-void ft_switch_obj(t_data *data, int x, int y)
+void	ft_switch_obj(t_data *data, int x, int y)
 {
 	t_ray	ray;
-	
-    if (x < 0 || y < 0) // Cycle through objects
-    {
-        if (!data->curr) // Reset to head if NULL
-            data->curr = data->obj;
-        else if (data->curr->next)
-            data->curr = data->curr->next;
-        else
-            data->curr = data->obj;
-    }
+
+	if (x < 0 || y < 0)
+	{
+		if (!data->curr)
+			data->curr = data->obj;
+		else if (data->curr->next)
+			data->curr = data->curr->next;
+		else
+			data->curr = data->obj;
+		data->curr_light = NULL;
+	}
 	else
 		ft_switch_obj_point(data, x, y, &ray);
 }
@@ -227,7 +232,7 @@ void ft_move_z(t_data *data, double i)
 
 int ft_key_hook_3(int key, t_data *data)
 {
-	if (key == '1')
+	if (key == '`')
 	{
 		if (data->curr_light)
 			data->curr_light = NULL;
@@ -247,6 +252,61 @@ int ft_key_hook_3(int key, t_data *data)
 	return (0);
 }
 
+// int ft_switch_color(int color)
+// {
+// 	if (color == BLUE)
+// 		color = RED;
+// 	else if (color == RED)
+// 		color = BLUE;
+// 	return(color);
+// }
+
+int ft_add_rgb(int color, char c, int i)
+{
+    int rgb[3];
+
+    // Extract RGB components into vector
+    rgb[0] = (color >> 16) & 0xFF; // Red
+    rgb[1] = (color >> 8) & 0xFF;  // Green
+    rgb[2] = color & 0xFF;         // Blue
+
+    // Add i to the specified component
+    if (c == 'r') {
+        rgb[0] += i; // Add to red
+    } else if (c == 'g') {
+        rgb[1] += i; // Add to green
+    } else if (c == 'b') {
+        rgb[2] += i; // Add to blue
+    }
+
+    // Clamp each component to [0, 255]
+    for (int j = 0; j < 3; j++) {
+        if (rgb[j] > 255)
+            rgb[j] = 255;
+        if (rgb[j] < 0)
+            rgb[j] = 0;
+    }
+
+    // Combine back into 24-bit color
+    return (rgb[0] << 16) | (rgb[1] << 8) | rgb[2];
+}
+
+void ft_change_color(t_data *data, int key)
+{
+	// int *color;
+
+	// if (data->curr)
+	// 	color = &data->curr->color
+	// else if (data->curr_light)
+	// 	color = &data->curr_light->color;
+	// else
+	// 	color = &data->alight.color
+	// if (key == '1')
+	// {
+	// 	color = ft_add_rgb(color, 'r', 16);
+	// }
+}
+
 int ft_key_hook_2(int key, t_data *data)
 {
 	if (key == 32)
@@ -261,6 +321,8 @@ int ft_key_hook_2(int key, t_data *data)
 		ft_obj_size(key, data, -25.0);
 	else if (key == '0')
 		ft_export_scene(data);
+	else if (key >= '1' && key <= '3' || key == '\t')
+		ft_change_color(data, key);
 	else
 		ft_key_hook_3(key, data);
 	return (0);

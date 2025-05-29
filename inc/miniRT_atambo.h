@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 22:55:42 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/29 11:02:14 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/29 13:55:10 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	ft_write_cam(t_cam *cam, int fd);
 
 //export.c
 void	ft_write_vec3(t_vec3 v, int fd);
-void	ft_write_color(int color, int fd);
+void	ft_write_color(t_color color, int fd);
 void	ft_export_scene(t_data *data);
 
 //ft_itoaf.c
@@ -65,6 +65,10 @@ int		ft_print_vec3(t_vec3 *vec);
 int		ft_print_cam(t_cam *cam);
 int		ft_print_obj(t_obj *obj);
 int		ft_print_data(t_data *data);
+
+//ray_color.c
+void	ft_ray_color(t_hit *hit, t_data *data, double x, double y);
+
 // ray.c
 void	ft_init_ray(t_data *data, t_ray *ray);
 void	ft_calc_ray(int x, int y, t_ray *ray);

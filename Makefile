@@ -6,33 +6,13 @@
 #    By: atambo <atambo@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/29 12:55:11 by mchingi           #+#    #+#              #
-#    Updated: 2025/05/29 10:27:41 by atambo           ###   ########.fr        #
+#    Updated: 2025/05/29 14:09:48 by atambo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SOURCES		=	\
 				\
-				src/atambo/init.c\
-				src/atambo/input.c\
-				src/atambo/input_util.c\
-				src/atambo/util.c\
-				src/atambo/upscale_img.c\
-				src/atambo/render_scene.c\
-				src/atambo/print_data.c\
-				src/atambo/hit_obj.c\
-				src/atambo/exit_minirt.c\
-				src/atambo/get_next_line.c\
-				src/atambo/get_next_line_utils.c\
-				src/atambo/minirt_error.c\
-				src/atambo/ray.c\
-				src/atambo/upscale_assign.c\
-				src/atambo/hit_light.c\
-				src/atambo/ft_sleep.c\
-				src/atambo/ft_itoaf.c\
-				src/atambo/dbl_utils.c\
-				src/atambo/export_scene.c\
-				src/atambo/export_scene_acl.c\
-				src/atambo/export_scene_obj.c\
+				src/miniRT.c\
 				\
 				src/mchingi/file_management.c\
 				src/mchingi/fill_data.c\
@@ -42,7 +22,29 @@ SOURCES		=	\
 				src/mchingi/utils2.c\
 				src/mchingi/print_debug.c\
 				\
-				src/miniRT.c\
+				src/atambo/minirt_error.c\
+				src/atambo/exit_minirt.c\
+				src/atambo/util_02.c\
+				src/atambo/util_01.c\
+				# src/atambo/init.c\
+				# src/atambo/input.c\
+				# src/atambo/input_util.c\
+				# src/atambo/upscale_img.c\
+				# src/atambo/render_scene.c\
+				# src/atambo/print_data.c\
+				# src/atambo/hit_obj.c\
+				# src/atambo/get_next_line.c\
+				# src/atambo/get_next_line_utils.c\
+				# src/atambo/ray.c\
+				# src/atambo/ray_color.c\
+				# src/atambo/upscale_assign.c\
+				# src/atambo/hit_light.c\
+				# src/atambo/ft_sleep.c\
+				# src/atambo/ft_itoaf.c\
+				# src/atambo/dbl_utils.c\
+				# src/atambo/export_scene.c\
+				# src/atambo/export_scene_acl.c\
+				# src/atambo/export_scene_obj.c\
 
 NAME		=	miniRT
 CC			=	cc

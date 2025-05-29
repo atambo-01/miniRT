@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 13:19:57 by mchingi           #+#    #+#             */
-/*   Updated: 2025/05/26 11:41:39 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/29 13:50:36 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int		file_management(char *file_name, t_data *data);
 int		validate_scene(char **arr, int arr_size);
 int		fill_data(char **scene, t_data *data);
 
-int		fill_color(char *color_data, int *color);
+int		fill_color(char *color_data, t_color *color);
 int		fill_coordinate(char *coordinate_data, t_vec3 *coordinates);
 int		fill_normalized_vector(char *data, t_vec3 *direction);
 

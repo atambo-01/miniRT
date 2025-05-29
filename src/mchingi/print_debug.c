@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 11:38:59 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/26 11:44:02 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/29 14:09:03 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void print_debug_sp(t_obj *obj)
 	printf("COORDINATES\nx = %.1lf\ny = %.1lf\nz = %.1lf\n", obj->pos.x,
 		   obj->pos.y, obj->pos.z);
 	printf("Radius = %.1lf\n", obj->radius);
-	printf("COLOR = %d\n", obj->color);
+	printf("COLOR = %d,%d,%d\n", obj->color.r,obj->color.g, obj->color.b);
 	printf("\n");
 }
 
@@ -31,7 +31,7 @@ void print_debug_pl(t_obj *obj)
 		   obj->pos.y, obj->pos.z);
 	printf("DIRECTION\nx = %.1lf\ny = %.1lf\nz = %.1lf\n", obj->dir.x,
 		   obj->dir.y, obj->dir.z);
-	printf("COLOR = %d\n", obj->color);
+	printf("COLOR = %d,%d,%d\n", obj->color.r,obj->color.g, obj->color.b);
 	printf("\n");
 }
 
@@ -44,7 +44,7 @@ void print_debug_cy(t_obj *obj)
 		   obj->dir.y, obj->dir.z);
 	printf("Radius = %.1lf\n", obj->radius);
 	printf("Height = %.1lf\n", obj->len);
-	printf("COLOR = %d\n", obj->color);
+	printf("COLOR = %d,%d,%d\n", obj->color.r,obj->color.g, obj->color.b);
 	printf("\n");
 }
 
@@ -68,7 +68,7 @@ void print_debug_info(t_data data)
     printf("\n");
     printf("/-------- Ambient Lighting --------/\n");
     printf("Ratio = %.1lf\n", data.alight.ratio);
-    printf("COLOR\n = %d\n", data.alight.color);
+	printf("COLOR = %d,%d,%d\n", data.alight.color.r, data.alight.color.g, data.alight.color.b);
     printf("\n");
     printf("/-------- Camera --------/\n");
     printf("COORDINATES\nx = %.1lf\ny = %.1lf\nz = %.1lf\n", data.cam.pos.x,
@@ -81,7 +81,7 @@ void print_debug_info(t_data data)
     printf("COORDINATES\nx = %.1lf\ny = %.1lf\nz = %.1lf\n", data.light.pos.x,
            data.light.pos.y, data.light.pos.z);
     printf("Light Brightness ratio = %.1lf\n", data.light.ratio);
-    printf("COLOR = %d\n", data.light.color);
+	printf("COLOR = %d,%d,%d\n", data.light.color.r, data.light.color.g, data.light.color.b);
     printf("\n");
     printf("/-------------- OBJECTS --------------/\n");
 	print_debug_obj(data.obj);

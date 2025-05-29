@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 02:42:33 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/29 02:44:31 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/29 14:09:22 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ double	ft_get_speed(struct timeval start, struct timeval end)
 void	ft_hit_init(t_hit *hit)
 {
 	hit->obj = NULL;
-	hit->color = 0x000000;
+	hit->color = (t_color){0, 0, 0};
 	hit->t = -1.0;
 	hit->d = 0.0;
 	hit->n = (t_vec3){0.0, 0.0, 0.0};
