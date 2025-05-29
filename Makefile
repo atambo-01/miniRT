@@ -6,7 +6,7 @@
 #    By: atambo <atambo@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/29 12:55:11 by mchingi           #+#    #+#              #
-#    Updated: 2025/05/29 15:11:48 by atambo           ###   ########.fr        #
+#    Updated: 2025/05/29 15:22:35 by atambo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,6 +45,7 @@ SOURCES		=	\
 				src/atambo/export_scene.c\
 				src/atambo/export_scene_acl.c\
 				src/atambo/export_scene_obj.c\
+				src/atambo/t_color.c\
 
 NAME		=	miniRT
 CC			=	cc

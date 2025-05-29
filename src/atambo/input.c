@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 01:38:57 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/29 13:50:02 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/29 16:24:45 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -230,6 +230,70 @@ void ft_move_z(t_data *data, double i)
 		data->cam.pos.z += i;
 }
 
+// Returns the custom color array and its size
+const t_color *get_custom_colors(int *num_colors)
+{
+    static const t_color colors[] = {
+        {255, 105, 180},   // HotPink
+        {21, 174, 194},  // ocean
+        {46, 139, 87},  // SeaGreen
+        {255, 99, 71},   // Tomato
+        {64, 224, 208}   // Turquoise
+    };
+    *num_colors = 5;
+    return colors;
+}
+
+// Returns the basic color array and its size
+const t_color *get_basic_colors(int *num_colors)
+{
+    static const t_color colors[] = {
+        {0, 0, 0},       // Black
+        {255, 255, 255}, // White
+        {255, 0, 0},     // Red
+        {0, 255, 0},     // Green
+        {0, 0, 255}      // Blue
+    };
+    *num_colors = 5;
+    return colors;
+}
+
+void ft_color_switch(t_data *data, int key)
+{
+    static int custom_index = 0;  // Tracks custom color cycle
+    static int basic_index = 0;   // Tracks basic color cycle
+    const t_color *colors;
+    int num_colors;
+    int *index;
+
+    // Select the color to modify
+    t_color *color;
+    if (data->curr)
+        color = &data->curr->color;
+    else if (data->curr_light)
+        color = &data->curr_light->color;
+    else
+        color = &data->alight.color;
+
+    // Choose color set and index based on key
+    if (key == 65289) // Tab key
+    {
+        colors = get_custom_colors(&num_colors);
+        index = &custom_index;
+    }
+    else if (key == 65505) // Shift key (16, or 42/54 for left/right)
+    {
+        colors = get_basic_colors(&num_colors);
+        index = &basic_index;
+    }
+    else
+        return; // Invalid key, no change
+
+    // Set to next color and update index
+    *color = colors[*index];
+    *index = (*index + 1) % num_colors;
+}
+
 int ft_key_hook_3(int key, t_data *data)
 {
 	if (key == '`')
@@ -252,60 +316,6 @@ int ft_key_hook_3(int key, t_data *data)
 	return (0);
 }
 
-// int ft_switch_color(int color)
-// {
-// 	if (color == BLUE)
-// 		color = RED;
-// 	else if (color == RED)
-// 		color = BLUE;
-// 	return(color);
-// }
-
-int ft_add_rgb(int color, char c, int i)
-{
-    int rgb[3];
-
-    // Extract RGB components into vector
-    rgb[0] = (color >> 16) & 0xFF; // Red
-    rgb[1] = (color >> 8) & 0xFF;  // Green
-    rgb[2] = color & 0xFF;         // Blue
-
-    // Add i to the specified component
-    if (c == 'r') {
-        rgb[0] += i; // Add to red
-    } else if (c == 'g') {
-        rgb[1] += i; // Add to green
-    } else if (c == 'b') {
-        rgb[2] += i; // Add to blue
-    }
-
-    // Clamp each component to [0, 255]
-    for (int j = 0; j < 3; j++) {
-        if (rgb[j] > 255)
-            rgb[j] = 255;
-        if (rgb[j] < 0)
-            rgb[j] = 0;
-    }
-
-    // Combine back into 24-bit color
-    return (rgb[0] << 16) | (rgb[1] << 8) | rgb[2];
-}
-
-void ft_change_color(t_data *data, int key)
-{
-	// int *color;
-
-	// if (data->curr)
-	// 	color = &data->curr->color
-	// else if (data->curr_light)
-	// 	color = &data->curr_light->color;
-	// else
-	// 	color = &data->alight.color
-	// if (key == '1')
-	// {
-	// 	color = ft_add_rgb(color, 'r', 16);
-	// }
-}
 
 int ft_key_hook_2(int key, t_data *data)
 {
@@ -321,8 +331,8 @@ int ft_key_hook_2(int key, t_data *data)
 		ft_obj_size(key, data, -25.0);
 	else if (key == '0')
 		ft_export_scene(data);
-	else if (key >= '1' && key <= '3' || key == '\t')
-		ft_change_color(data, key);
+	else if (key == 65289 || key == 65505)
+		ft_color_switch(data, key);
 	else
 		ft_key_hook_3(key, data);
 	return (0);

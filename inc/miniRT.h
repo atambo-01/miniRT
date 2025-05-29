@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 13:19:57 by mchingi           #+#    #+#             */
-/*   Updated: 2025/05/29 13:44:04 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/29 16:42:51 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@
 # define E_NEEDFILE		"Need a file_path as param\n"
 # define E_ACL			"Duplicate or missing ACL element in scene\n"
 # define E_MISS_ACL		"Missing ACL element in scene\n"
-# define E_SCENE_DATA	"Invalid or missing identifier\n"
+# define E_SCENE_DATA	"Invalid or missing identifier or wrong number of tokens\n"
 # define E_EXPORT		"Export failed, could not create './saved_scene'\n"
 
 typedef struct	s_color

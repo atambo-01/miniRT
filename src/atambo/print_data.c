@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 20:15:19 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/29 10:48:25 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/29 16:01:55 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,11 @@ int	ft_print_vec3(t_vec3 *vec)
 	return (0);
 }
 
+void ft_print_t_color(t_color color)
+{
+	printf("  Color:\t%d,%d,%d\n", color.r, color.g, color.b);
+}
+
 int ft_print_cam(t_cam *cam)
 {
 	printf("Camera:\n");
@@ -56,7 +61,7 @@ int ft_print_obj(t_obj *obj)
 	ft_print_vec3(&obj->u);
 	printf("  Radius:\t%.2f\n", obj->radius);
 	printf("  Length:\t%.2f\n", obj->len);
-	printf("  Color:\t0x%06X\n", obj->color);
+	ft_print_t_color(obj->color);
     return (0);
 }
 
@@ -67,7 +72,7 @@ int ft_print_light(t_light *lum)
 	ft_print_vec3(&lum->pos);
 	printf("  Ratio:\t%.2f%\n", lum->ratio * 100);
 	printf("  Radius:\t%.2f\n", lum->radius);
-	printf("  Color:\t0x%06X\n", lum->color);
+	ft_print_t_color(lum->color);
     return (0);
 }
 
@@ -75,7 +80,7 @@ int ft_print_alight(t_alight *lum)
 {
 	printf("Ambient_Light:\n");
 	printf("  Ratio:\t%.2f%\n", lum->ratio * 100);
-	printf("  Color:\t0x%06X\n", lum->color);
+	ft_print_t_color(lum->color);
     return (0);
 }
 

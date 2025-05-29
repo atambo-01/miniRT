@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 22:55:42 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/29 13:55:10 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/29 15:23:28 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 # include	"./miniRT.h"
 
-//src/dbl_utils.c
+//dbl_utils.c
 int	ft_cmp_dbl(double n1, char *op, double n2);
 
 // src/exit_minirt.c
@@ -79,10 +79,14 @@ int		ft_calc_hit(t_ray ray, t_obj *obj, t_hit *hit);
 void	ft_render_scene(t_data *data);
 void	ft_render_and_upscale(t_data *data, int upscale);
 
+//t_color
+t_color t_color_clamp(t_color color);
+int t_color_to_int(t_color color);
+
 //time.c
 void ft_sleep(int sec);
 
-//src/upscale_assign.c
+//upscale_assign.c
 void	ft_assign_src_coords(t_data *data, t_upscale *up, int x, int y);
 void	ft_assign_corner_pixels(t_data *data, t_upscale *up);
 void	ft_assign_rgb_values(t_upscale *up);
@@ -111,7 +115,7 @@ void	ft_free(char **str, char *buffer);
 char	*ft_substr_1(char *str, int start, int len_str);
 char	*ft_get_next_line(int fd);
 
-//src/hit_light.c
+//hit_light.c
 int		ft_in_shadow(t_ray ray, t_obj *obj, double light_d);
 int		ft_hit_light(t_data *data, t_ray ray, t_hit *hit, t_light *lum);
 double	ft_hit_obj_light(t_data *data, t_ray ray, t_hit hit, t_light *lum);
