@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 17:08:11 by mchingi           #+#    #+#             */
-/*   Updated: 2025/05/29 13:47:57 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/29 14:20:37 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ int	fill_color(char *color_data, t_color *color)
 		ft_free_array(rgb);
 		return (0);
 	}
-	color->r = (ft_atoi(rgb[0]) << 16);
-	color->g = (ft_atoi(rgb[1]) << 8);
-	color->b =  ft_atoi(rgb[2]);
+	color->r = ft_atoi(rgb[0]);
+	color->g = ft_atoi(rgb[1]);
+	color->b = ft_atoi(rgb[2]);
 	ft_free_array(rgb);
 	return (1);
 }
