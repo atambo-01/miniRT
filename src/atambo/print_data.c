@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 20:15:19 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/28 10:03:00 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/29 10:48:25 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,11 +71,20 @@ int ft_print_light(t_light *lum)
     return (0);
 }
 
+int ft_print_alight(t_alight *lum)
+{
+	printf("Ambient_Light:\n");
+	printf("  Ratio:\t%.2f%\n", lum->ratio * 100);
+	printf("  Color:\t0x%06X\n", lum->color);
+    return (0);
+}
+
 int ft_print_data(t_data *data)
 {
 	system("clear");
     printf("-----------------------------------------\n");
     printf("\t\tx\ty\tz\n");
+	ft_print_alight(&data->alight);
     ft_print_cam(&data->cam);
 	ft_print_light(&data->light);
 	printf("obj_count = \t%d\n", ft_count_obj(data->obj));

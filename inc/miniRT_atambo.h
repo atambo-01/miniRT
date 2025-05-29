@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 22:55:42 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/29 01:47:35 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/29 11:02:14 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,17 @@ void	ft_free_obj(t_obj *obj);
 void	ft_quit_mlx(t_data *data);
 int		ft_exit_minirt(t_data *data);
 
+//export_scene_obj.c
+void	ft_write_obj(t_obj *obj, int fd);
+
+//export_scene_acl.c
+void	ft_write_alight(t_alight *alum, int fd);
+void	ft_write_light(t_light *lum, int fd);
+void	ft_write_cam(t_cam *cam, int fd);
+
 //export.c
+void	ft_write_vec3(t_vec3 v, int fd);
+void	ft_write_color(int color, int fd);
 void	ft_export_scene(t_data *data);
 
 //ft_itoaf.c

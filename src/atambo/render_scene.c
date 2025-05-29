@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 16:38:03 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/29 01:32:25 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/29 11:20:55 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,31 +50,65 @@ int	ft_calc_hit(t_ray ray, t_obj *obj, t_hit *hit)
 
 }
 
+int	ft_ray_color_aux(int color, int shift, double intensity)
+{
+	int	r;
+
+	r = (color >> shift) & 0xFF;
+	r = (int)(r * intensity);
+	if (r > 255)
+		r = 255;
+	if (r < 0)
+		r = 0;
+	return (r);
+}
+
+int ft_add_alight(int color_1, t_alight lum)
+{
+    int rgb[3];
+
+    // Extract base color components
+    rgb[0] = (color_1 >> 16) & 0xFF; // Red
+    rgb[1] = (color_1 >> 8) & 0xFF;  // Green
+    rgb[2] = color_1 & 0xFF;         // Blue
+
+    // Add scaled ambient light components
+    rgb[0] += ft_ray_color_aux(lum.color, 16, lum.ratio); // Red + ambient red
+    rgb[1] += ft_ray_color_aux(lum.color, 8, lum.ratio);  // Green + ambient green
+    rgb[2] += ft_ray_color_aux(lum.color, 0, lum.ratio);  // Blue + ambient blue
+
+    // Clamp to [0, 255]
+    for (int i = 0; i < 3; i++)
+    {
+        if (rgb[i] > 255)
+            rgb[i] = 255;
+        if (rgb[i] < 0)
+            rgb[i] = 0;
+    }
+
+    // Combine into final color
+    return (rgb[0] << 16) | (rgb[1] << 8) | rgb[2];
+}
+
+
 void ft_ray_color(t_hit *hit, t_data *data, double x, double y)
 {
-	int color;
-	double intensity;
-	int r, g, b;
-	int final_color;
-	
+	int		color;
+	double	intensity;
+	int		rgb[3];
+	int		final_color;
+
 	if (hit->d >= 0)
 	{
 		color = hit->color;
 
-		intensity = data->light.ratio * 1.0 / (1.0 +  KAPPA * GAMMA * hit->d * hit->d);
-		r = (color >> 16) & 0xFF;
-		g = (color >> 8) & 0xFF;
-		b = color & 0xFF;
-		r = (int)(r * intensity);
-		if (r > 255) r = 255;
-		if (r < 0) r = 0;
-		g = (int)(g * intensity);
-		if (g > 255) g = 255;
-		if (g < 0) g = 0;
-		b = (int)(b * intensity);
-		if (b > 255) b = 255;
-		if (b < 0) b = 0;
-		final_color = (r << 16) | (g << 8) | b;
+		intensity = data->light.ratio * 1.0 / (1.0
+				+ KAPPA * hit->d * hit->d);
+		rgb[0] = ft_ray_color_aux(color, 16, intensity);
+		rgb[1] = ft_ray_color_aux(color, 8, intensity);
+		rgb[2] = ft_ray_color_aux(color, 0, intensity);
+		final_color = (rgb[0]  << 16) | (rgb[1] << 8) | rgb[2];
+		final_color = ft_add_alight(final_color, data->alight);
 		ft_pixel_put_img(&data->img, x, y, final_color);
 	}
 	else

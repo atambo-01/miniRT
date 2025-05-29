@@ -6,7 +6,7 @@
 #    By: atambo <atambo@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/29 12:55:11 by mchingi           #+#    #+#              #
-#    Updated: 2025/05/28 15:23:23 by atambo           ###   ########.fr        #
+#    Updated: 2025/05/29 10:27:41 by atambo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,9 +28,11 @@ SOURCES		=	\
 				src/atambo/upscale_assign.c\
 				src/atambo/hit_light.c\
 				src/atambo/ft_sleep.c\
-				src/atambo/export_scene.c\
 				src/atambo/ft_itoaf.c\
 				src/atambo/dbl_utils.c\
+				src/atambo/export_scene.c\
+				src/atambo/export_scene_acl.c\
+				src/atambo/export_scene_obj.c\
 				\
 				src/mchingi/file_management.c\
 				src/mchingi/fill_data.c\
