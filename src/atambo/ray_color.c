@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 13:33:17 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/29 13:33:26 by atambo           ###   ########.fr       */
+/*   Updated: 2025/05/29 15:10:09 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,76 +14,46 @@
 #include "../../inc/miniRT_atambo.h"
 #include "../../inc/miniRT_mchingi.h"
 
-int	ft_ray_color_aux(int color, double intensity)
+t_color t_color_clamp(t_color color)
 {
-	int	r;
-	int shift;
+	t_color res;
 
-		r = (color >> shift) & 0xFF;
-		r = (int)(r * intensity);
-		if (r > 255)
-			r = 255;
-		if (r < 0)
-			r = 0;
-	return (r);
+	res = color;
+	if (res.r > 255)
+		res.r = 255;
+	if (res.g > 255)
+		res.g = 255;
+	if (res.b > 255)
+		res.b = 255;
+	return (res);
 }
 
-// Compute the contribution of a light source (ambient or direct) to an object's color
-void ft_light_effect(int color, int light, double ratio, int *rgb)
+int t_color_to_int(t_color color)
 {
-    // Extract object color components
-    int obj_rgb[3];
-    obj_rgb[0] = (color >> 16) & 0xFF; // Red
-    obj_rgb[1] = (color >> 8) & 0xFF;  // Green
-    obj_rgb[2] = color & 0xFF;         // Blue
+    t_color	clamped;
 
-    // Extract light color components
-    int light_rgb[3];
-    light_rgb[0] = (light >> 16) & 0xFF; // Red
-    light_rgb[1] = (light >> 8) & 0xFF;  // Green
-    light_rgb[2] = light & 0xFF;         // Blue
-
-    // Scale light by ratio and multiply by object color
-    rgb[0] = (int)(obj_rgb[0] * (light_rgb[0] / 255.0) * ratio);
-    rgb[1] = (int)(obj_rgb[1] * (light_rgb[1] / 255.0) * ratio);
-    rgb[2] = (int)(obj_rgb[2] * (light_rgb[2] / 255.0) * ratio);
+	clamped = t_color_clamp(color);
+    return ((clamped.r << 16) | (clamped.g << 8) | (clamped.b));
 }
 
 void ft_ray_color(t_hit *hit, t_data *data, double x, double y)
 {
-    int rgb[3] = {0, 0, 0}; // Accumulated RGB values
-    int temp_rgb[3];        // Temporary RGB for each light contribution
+    t_color rgb = {0, 0, 0};
 
     if (hit->d >= 0)
     {
-        int color = hit->color; // Object color
         // Direct light contribution
-        int light = data->light.color;
-        double intensity = data->light.ratio * 1.0 / (1.0 + KAPPA * hit->d * hit->d);
-        ft_light_effect(color, light, intensity, temp_rgb);
-        rgb[0] += temp_rgb[0];
-        rgb[1] += temp_rgb[1];
-        rgb[2] += temp_rgb[2];
+        double intensity = data->light.ratio / (1.0 + KAPPA * hit->d * hit->d);
+        rgb.r = (int)(hit->color.r * (data->light.color.r / 255.0) * intensity);
+        rgb.g = (int)(hit->color.g * (data->light.color.g / 255.0) * intensity);
+        rgb.b = (int)(hit->color.b * (data->light.color.b / 255.0) * intensity);
     }
 
     // Ambient light contribution
-    int light = data->alight.color;
-    double intensity = data->alight.ratio;
-    ft_light_effect(hit->color, light, intensity, temp_rgb);
-    rgb[0] += temp_rgb[0];
-    rgb[1] += temp_rgb[1];
-    rgb[2] += temp_rgb[2];
+    rgb.r += (int)(hit->color.r * (data->alight.color.r / 255.0) * data->alight.ratio);
+    rgb.g += (int)(hit->color.g * (data->alight.color.g / 255.0) * data->alight.ratio);
+    rgb.b += (int)(hit->color.b * (data->alight.color.b / 255.0) * data->alight.ratio);
 
-    // Clamp to [0, 255]
-    for (int i = 0; i < 3; i++)
-    {
-        if (rgb[i] > 255)
-            rgb[i] = 255;
-        if (rgb[i] < 0)
-            rgb[i] = 0;
-    }
-
-    // Combine into final color
-    int final_color = (rgb[0] << 16) | (rgb[1] << 8) | rgb[2];
-    ft_pixel_put_img(&data->img, x, y, final_color);
+    // Output to image with clamping
+    ft_pixel_put_img(&data->img, x, y, t_color_to_int(rgb));
 }
