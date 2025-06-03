@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 22:55:42 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/29 15:23:28 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/03 19:25:41 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ int		ft_mouse_hook(int button, int x, int y, t_data *data);
 int		ft_close_window(t_data *data);
 
 // src/minirt_error.c
-size_t		ft_strlen(char const *str);
-int			ft_minirt_error(char const *msg, int e);
+size_t	ft_strlen(char const *str);
+int		ft_minirt_error(char const *msg, int e);
 
 // print_data.c
 int		ft_print_vec3(t_vec3 *vec);
@@ -81,7 +81,7 @@ void	ft_render_and_upscale(t_data *data, int upscale);
 
 //t_color
 t_color t_color_clamp(t_color color);
-int t_color_to_int(t_color color);
+int		t_color_to_int(t_color color);
 
 //time.c
 void ft_sleep(int sec);
@@ -102,6 +102,7 @@ double	ft_dot(t_vec3 a, t_vec3 b);
 void	ft_normalize(t_vec3 *v);
 double	ft_get_speed(struct timeval start, struct timeval end);
 t_vec3	ft_vec3_add(t_vec3 v1, t_vec3 v2);
+t_vec3	ft_vec3_sub(t_vec3 v1, t_vec3 v2);
 t_vec3	ft_scalar(t_vec3 v1, double r);
 void	ft_hit_init(t_hit *hit);
 t_vec3	ft_vec3_orthogonal(t_vec3 v);
@@ -125,5 +126,8 @@ double	ft_hit_cube(t_vec3 origin, t_vec3 dir, t_obj *obj, t_hit *hit);
 double	ft_hit_plane(t_vec3 origin, t_vec3 dir, t_obj *obj, t_hit *hit);
 double	ft_hit_sphere(t_vec3 ray_o, t_vec3 ray_dir, t_obj *obj, t_hit *hit);
 double	ft_hit_cylinder(t_vec3 ray_o, t_vec3 ray_dir, t_obj *obj, t_hit *hit);
+
+//obj_normal.c
+void ft_obj_normal(t_hit *hit, t_obj *obj);
 
 #endif

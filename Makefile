@@ -6,7 +6,7 @@
 #    By: atambo <atambo@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/29 12:55:11 by mchingi           #+#    #+#              #
-#    Updated: 2025/05/29 15:22:35 by atambo           ###   ########.fr        #
+#    Updated: 2025/06/03 19:25:02 by atambo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,24 +24,24 @@ SOURCES		=	\
 				\
 				src/atambo/minirt_error.c\
 				src/atambo/exit_minirt.c\
-				src/atambo/util_02.c\
-				src/atambo/util_01.c\
 				src/atambo/init.c\
+				src/atambo/util_01.c\
+				src/atambo/util_dbl.c\
+				src/atambo/util_vec3_01.c\
+				src/atambo/util_vec3_02.c\
 				src/atambo/upscale_img.c\
 				src/atambo/upscale_assign.c\
 				src/atambo/render_scene.c\
 				src/atambo/input.c\
 				src/atambo/input_util.c\
 				src/atambo/print_data.c\
+				src/atambo/obj_normal.c\
 				src/atambo/hit_obj.c\
-				src/atambo/get_next_line.c\
-				src/atambo/get_next_line_utils.c\
 				src/atambo/ray.c\
 				src/atambo/ray_color.c\
 				src/atambo/hit_light.c\
 				src/atambo/ft_sleep.c\
 				src/atambo/ft_itoaf.c\
-				src/atambo/dbl_utils.c\
 				src/atambo/export_scene.c\
 				src/atambo/export_scene_acl.c\
 				src/atambo/export_scene_obj.c\

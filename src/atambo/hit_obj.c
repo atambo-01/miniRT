@@ -6,13 +6,25 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 20:47:34 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/29 01:03:40 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/03 19:31:00 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/miniRT.h"
 #include "../../inc/miniRT_atambo.h"
 #include "../../inc/miniRT_mchingi.h"
+
+void ft_hit_assign(double t, t_hit *hit, t_obj *obj)
+{
+	if (ft_cmp_dbl( t, ">=" ,0) && (ft_cmp_dbl(t ,"<" ,hit->t) || ft_cmp_dbl(hit->t, "<" ,0)))
+	{
+		hit->t = t;
+		hit->color = obj->color;
+		hit->obj = obj;
+		hit->p = ft_vec3_add(hit->o, ft_scalar(hit->l, hit->t));
+		ft_obj_normal(hit, obj);
+	}
+}
 
 double	ft_hit_cube(t_vec3 origin, t_vec3 dir, t_obj *obj, t_hit *hit)
 {
@@ -99,7 +111,10 @@ double	ft_hit_plane(t_vec3 origin, t_vec3 dir, t_obj *obj, t_hit *hit_o)
 	if (t < 0.0)
 		return (-1);
 	if (obj->radius <= 0.0)
+	{
+		ft_hit_assign(t, hit_o, obj);
 		return (t);
+	}
 	hit.x = origin.x + t * dir.x;
 	hit.y = origin.y + t * dir.y;
 	hit.z = origin.z + t * dir.z;
@@ -110,18 +125,15 @@ double	ft_hit_plane(t_vec3 origin, t_vec3 dir, t_obj *obj, t_hit *hit_o)
 		obj->dir.x * u.y - obj->dir.y * u.x
 	};
 	ft_normalize(&v);
-	p.x = ft_dot(hit, u) - ft_dot(obj->pos
-
-, u);
-	p.y = ft_dot(hit, v) - ft_dot(obj->pos
-
-, v);
+	p.x = ft_dot(hit, u) - ft_dot(obj->pos, u);
+	p.y = ft_dot(hit, v) - ft_dot(obj->pos, v);
 	if (p.x < -obj->radius || p.x > obj->radius || p.y < -obj->radius || p.y > obj->radius)
 		return (-1);
-	hit_o->n = obj->dir;
-	hit_o->u = obj->u;
+	ft_hit_assign(t, hit_o, obj);
 	return (t);
+
 }
+
 
 double	ft_hit_sphere(t_vec3 ray_o, t_vec3 ray_dir, t_obj *obj, t_hit *hit)
 {
@@ -140,8 +152,7 @@ double	ft_hit_sphere(t_vec3 ray_o, t_vec3 ray_dir, t_obj *obj, t_hit *hit)
 		if (ft_cmp_dbl(t, "<", 0))
 			return (-1.0);
 	}
-	hit->n = obj->dir;
-	hit->u = obj->u;
+	ft_hit_assign(t, hit, obj);
 	return (t);
 }
 
@@ -170,5 +181,6 @@ double	ft_hit_cylinder(t_vec3 ray_o, t_vec3 ray_dir, t_obj *obj, t_hit *hit)
 				t = -1;
 		}
 	}
+	ft_hit_assign(t, hit, obj);
 	return (t - EPSILON);
 }

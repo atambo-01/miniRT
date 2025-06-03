@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 13:19:57 by mchingi           #+#    #+#             */
-/*   Updated: 2025/05/29 16:42:51 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/03 19:27:42 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,10 @@
 # define RIGHT		65364
 # define W_WIDTH	1080
 # define W_HEIGHT	720
-# define IM_WIDTH	540
-# define IM_HEIGHT	360
-// # define IM_WIDTH	1080
-// # define IM_HEIGHT	720
+// # define IM_WIDTH	540
+// # define IM_HEIGHT	360
+# define IM_WIDTH	1080
+# define IM_HEIGHT	720
 
 # define NUM_1
 # define NUM_PLUS
@@ -245,10 +245,11 @@ typedef struct	s_hit
 {
 	double	t;
 	double	d;
+	t_vec3	o;
 	t_vec3	p;
 	t_color	color;
-	t_vec3	u;
 	t_vec3	n;
+	t_vec3	l;
 	t_obj	*obj;
 }				t_hit;
 
