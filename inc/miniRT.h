@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 13:19:57 by mchingi           #+#    #+#             */
-/*   Updated: 2025/06/03 19:27:42 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/04 15:38:54 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -257,10 +257,20 @@ typedef struct	s_ray
 {
 	t_vec3	o;
 	t_vec3	dir;
-	double   tan_half_fov;
-	double   view_height;
+	//----------------------
+	double	tan_half_fov;
+	double	view_height;
 	double	u;
 	double	v;
+	//----------------------
+	double	t;
+	double	d;
+	t_vec3	p;
+	t_color	color;
+	t_vec3	n;
+	t_vec3	l;
+	t_obj	*obj;
+	t_light	*lum;
 }				t_ray;
 
 # endif

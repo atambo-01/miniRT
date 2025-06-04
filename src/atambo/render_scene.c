@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 16:38:03 by atambo            #+#    #+#             */
-/*   Updated: 2025/06/03 19:28:35 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/04 16:31:13 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,23 @@
 #include "../../inc/miniRT_atambo.h"
 #include "../../inc/miniRT_mchingi.h"
 
-double	ft_calc_hit_2(t_vec3 ray_o, t_vec3 ray_dir, t_obj *obj, t_hit *hit)
+double	ft_hit_obj_2(t_ray *ray, t_obj *obj, t_hit *hit)
 {
 	if (!ft_strcmp(obj->type, "pl"))
-		return (ft_hit_plane(ray_o, ray_dir, obj, hit));
+		return (ft_hit_plane(obj, hit, ray));
 	else if (!ft_strcmp(obj->type, "sp"))
-		return (ft_hit_sphere(ray_o, ray_dir, obj, hit));
-	else if (!ft_strcmp(obj->type, "cy"))
-		return (ft_hit_cylinder(ray_o, ray_dir, obj, hit));
-	else if (!ft_strcmp(obj->type, "cub"))
-		return (ft_hit_cube(ray_o, ray_dir, obj, hit));
+		return (ft_hit_sphere(obj, hit, ray));
 	else
 		return (-1);
 }
 
-int	ft_calc_hit(t_ray ray, t_obj *obj, t_hit *hit)
+int	ft_hit_obj(t_ray *ray, t_obj *obj, t_hit *hit)
 {
 	double	t;
 
 	while (obj) // instead of for each obj we need a BVH logic to optimize
 	{
-		ft_calc_hit_2(ray.o, ray.dir, obj, hit);
+		ft_hit_obj_2(ray, obj, hit);
 		obj = obj->next;
 	}
 	return (hit->t > 1);
@@ -58,8 +54,8 @@ void	ft_render_scene(t_data *data)
 			ft_calc_ray(xy[0], xy[1], &(ray));
 			hit.l = ray.dir;
 			hit.o = data->cam.pos;
-			ft_calc_hit(ray, data->obj, &hit);
-			ft_hit_light(data, ray, &hit, &(data->light));
+			ft_hit_obj(&ray, data->obj, &hit);
+			ft_hit_light(data, &ray, &hit, &(data->light));
 			if (hit.t > 0 && hit.obj)
 				hit.d = ft_hit_obj_light(data, ray, hit, &(data->light));
 			ft_ray_color(&hit, data, xy[0], xy[1]);

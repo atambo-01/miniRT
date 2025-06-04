@@ -6,15 +6,13 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 13:33:17 by atambo            #+#    #+#             */
-/*   Updated: 2025/06/03 20:00:06 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/04 16:25:30 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/miniRT.h"
 #include "../../inc/miniRT_atambo.h"
 #include "../../inc/miniRT_mchingi.h"
-
-
 
 void ft_ray_color(t_hit *hit, t_data *data, double x, double y)
 {

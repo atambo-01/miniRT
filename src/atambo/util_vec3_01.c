@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 02:23:44 by atambo            #+#    #+#             */
-/*   Updated: 2025/06/03 18:45:18 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/04 16:22:44 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ t_vec3	ft_vec3_sub(t_vec3 v1, t_vec3 v2)
 {
 	t_vec3	result;
 
-	result.x = v2.x - v1.x;
-	result.y = v2.y - v1.y;
-	result.z = v2.z - v1.z;
+	result.x = v1.x - v2.x;
+	result.y = v1.y - v2.y;
+	result.z = v1.z - v2.z;
 	return (result);
 }

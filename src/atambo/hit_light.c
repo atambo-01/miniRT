@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 12:21:37 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/29 01:51:43 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/04 16:31:53 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static t_vec3 ft_vec_AB(t_vec3 *A, t_vec3 *B)
 	return (AB);
 }
 
-// static double	ft_calc_hit_2(t_vec3 ray_o, t_vec3 ray_dir, t_obj *obj)
+// static double	ft_hit_obj_2(t_vec3 ray_o, t_vec3 ray_dir, t_obj *obj)
 // {
 // 	if (!ft_strcmp(obj->type, "pl"))
 // 		return (ft_hit_plane(ray_o, ray_dir, obj));
@@ -53,7 +53,7 @@ int	ft_in_shadow(t_ray ray, t_obj *obj, double light_d)
 
 	while (obj) // instead of for each obj we need a BVH logic to optimize
 	{
-		t = ft_calc_hit_2(ray.o, ray.dir, obj, &hit);
+		t = ft_hit_obj_2(&ray, obj, &hit);
 		if (ft_cmp_dbl(t, ">=" ,0) && ft_cmp_dbl(t, "<", light_d)) // if > 0 then is in shadow
 			return (1);
 		obj = obj->next;
@@ -61,11 +61,12 @@ int	ft_in_shadow(t_ray ray, t_obj *obj, double light_d)
 	return (0);
 }
 
-int ft_hit_light(t_data *data, t_ray ray, t_hit *hit, t_light *lum)
+int ft_hit_light(t_data *data, t_ray *ray, t_hit *hit, t_light *lum)
 {
-	t_vec3 oc = {ray.o.x - lum->pos.x, ray.o.y - lum->pos.y, ray.o.z - lum->pos.z};
-	double a = ft_dot(ray.dir, ray.dir);
-	double b = 2.0 * ft_dot(oc, ray.dir);
+	t_vec3 oc = ft_vec3_sub(ray->o, lum->pos);
+
+	double a = ft_dot(ray->dir, ray->dir);
+	double b = 2.0 * ft_dot(oc, ray->dir);
 	double c = ft_dot(oc, oc) - lum->radius * lum->radius;
 	double delta = b * b - 4.0 * a * c;
 
@@ -101,7 +102,7 @@ double ft_hit_obj_light(t_data *data, t_ray ray, t_hit hit, t_light *lum)
     ray.dir = ft_vec_AB(&ray.o, &lum->pos); // Direction from new origin to light
 
     // Check against light
-    ft_hit_light(data, ray, &hit, lum);
+    ft_hit_light(data, &ray, &hit, lum);
     d = hit.t;
 
     // Check for objects in shadow

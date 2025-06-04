@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 01:38:57 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/29 16:24:45 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/04 16:21:35 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,7 +139,7 @@ void ft_switch_obj_point(t_data *data, int x, int y, t_ray *ray)
 	ray->dir.z = 1.0;
 	ft_normalize(&(ray->dir));
 	ft_hit_init(&hit);
-	ft_calc_hit(*ray, data->obj, &hit);
+	ft_hit_obj(ray, data->obj, &hit);
 	if (hit.t > 0)
 	{
 		data->curr = hit.obj;
@@ -248,13 +248,17 @@ const t_color *get_custom_colors(int *num_colors)
 const t_color *get_basic_colors(int *num_colors)
 {
     static const t_color colors[] = {
-        {0, 0, 0},       // Black
+        {010, 010, 010}, // Very Dark grey
         {255, 255, 255}, // White
-        {255, 0, 0},     // Red
-        {0, 255, 0},     // Green
-        {0, 0, 255}      // Blue
+		{000, 000, 255}, // Blue
+        {000, 255, 000}, // Green
+        {255, 000, 000}, // red
+		{000, 255, 255}, // 
+		{255, 000, 255}, // 
+		{255, 255, 000}  // 
+\
     };
-    *num_colors = 5;
+    *num_colors = 8;
     return colors;
 }
 

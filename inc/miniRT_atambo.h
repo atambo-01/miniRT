@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 22:55:42 by atambo            #+#    #+#             */
-/*   Updated: 2025/06/03 19:25:41 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/04 16:30:28 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,8 @@ void	ft_init_ray(t_data *data, t_ray *ray);
 void	ft_calc_ray(int x, int y, t_ray *ray);
 
 // src/render_scene.c
-double	ft_calc_hit_2(t_vec3 ray_o, t_vec3 ray_dir, t_obj *obj, t_hit *hit);
-int		ft_calc_hit(t_ray ray, t_obj *obj, t_hit *hit);
+double	ft_hit_obj_2(t_ray *ray, t_obj *obj, t_hit *hit);
+int		ft_hit_obj(t_ray *ray, t_obj *obj, t_hit *hit);
 void	ft_render_scene(t_data *data);
 void	ft_render_and_upscale(t_data *data, int upscale);
 
@@ -84,7 +84,7 @@ t_color t_color_clamp(t_color color);
 int		t_color_to_int(t_color color);
 
 //time.c
-void ft_sleep(int sec);
+void 	ft_sleep(int sec);
 
 //upscale_assign.c
 void	ft_assign_src_coords(t_data *data, t_upscale *up, int x, int y);
@@ -118,16 +118,12 @@ char	*ft_get_next_line(int fd);
 
 //hit_light.c
 int		ft_in_shadow(t_ray ray, t_obj *obj, double light_d);
-int		ft_hit_light(t_data *data, t_ray ray, t_hit *hit, t_light *lum);
+int 	ft_hit_light(t_data *data, t_ray *ray, t_hit *hit, t_light *lum);
 double	ft_hit_obj_light(t_data *data, t_ray ray, t_hit hit, t_light *lum);
 
 // src/hit_obj.c
-double	ft_hit_cube(t_vec3 origin, t_vec3 dir, t_obj *obj, t_hit *hit);
-double	ft_hit_plane(t_vec3 origin, t_vec3 dir, t_obj *obj, t_hit *hit);
-double	ft_hit_sphere(t_vec3 ray_o, t_vec3 ray_dir, t_obj *obj, t_hit *hit);
-double	ft_hit_cylinder(t_vec3 ray_o, t_vec3 ray_dir, t_obj *obj, t_hit *hit);
+double	ft_hit_plane(t_obj *obj, t_hit *hit, t_ray *ray);
+double	ft_hit_sphere(t_obj *obj, t_hit *hit, t_ray *ray);
 
 //obj_normal.c
-void ft_obj_normal(t_hit *hit, t_obj *obj);
-
 #endif
