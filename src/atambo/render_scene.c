@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 16:38:03 by atambo            #+#    #+#             */
-/*   Updated: 2025/06/04 16:31:13 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/05 15:18:27 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,9 @@ void	ft_render_scene(t_data *data)
 			hit.o = data->cam.pos;
 			ft_hit_obj(&ray, data->obj, &hit);
 			ft_hit_light(data, &ray, &hit, &(data->light));
-			if (hit.t > 0 && hit.obj)
-				hit.d = ft_hit_obj_light(data, ray, hit, &(data->light));
-			ft_ray_color(&hit, data, xy[0], xy[1]);
+			if (ray.t > 0 && ray.obj)
+				ray.d = ft_hit_obj_light(data, ray, hit, &(data->light));
+			ft_ray_color(&ray, &hit, data, xy[0], xy[1]);
 			xy[0]++;
 		}
 		xy[1]++;

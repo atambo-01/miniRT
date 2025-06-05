@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 20:47:34 by atambo            #+#    #+#             */
-/*   Updated: 2025/06/05 15:04:57 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/05 15:09:18 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void ft_hit_assign(double t, t_hit *hit, t_ray *ray, t_obj *obj)
 		ray->t = t;
 		ray->color = obj->color;
 		ray->obj = obj;
-		ray->p = ft_vec3_add(ray->o, ft_scalar(ray->l, ray->t));
+		ray->p = ft_vec3_add(ray->o, ft_scalar(ray->dir, ray->t));
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 22:55:42 by atambo            #+#    #+#             */
-/*   Updated: 2025/06/04 16:30:28 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/05 15:18:44 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int		ft_print_obj(t_obj *obj);
 int		ft_print_data(t_data *data);
 
 //ray_color.c
-void	ft_ray_color(t_hit *hit, t_data *data, double x, double y);
+void	ft_ray_color(t_ray *ray, t_hit *hit, t_data *data, double x, double y);
 
 // ray.c
 void	ft_init_ray(t_data *data, t_ray *ray);
