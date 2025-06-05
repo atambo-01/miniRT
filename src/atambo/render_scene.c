@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 16:38:03 by atambo            #+#    #+#             */
-/*   Updated: 2025/06/05 15:24:19 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/05 15:28:14 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ int	ft_hit_obj(t_ray *ray, t_obj *obj)
 
 void	ft_render_scene(t_data *data)
 {
-	t_hit	hit;
 	t_ray	ray;
 	int		xy[2];
 	
@@ -50,10 +49,7 @@ void	ft_render_scene(t_data *data)
 		xy[0] = 0;
 		while (xy[0] < IM_WIDTH)
 		{
-			ft_hit_init(&hit);
 			ft_calc_ray(xy[0], xy[1], &(ray));
-			hit.l = ray.dir;
-			hit.o = data->cam.pos;
 			ft_hit_obj(&ray, data->obj);
 			ft_hit_light(data, &ray, &(data->light));
 			if (ray.t > 0 && ray.obj)

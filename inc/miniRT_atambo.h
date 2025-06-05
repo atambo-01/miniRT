@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 22:55:42 by atambo            #+#    #+#             */
-/*   Updated: 2025/06/05 15:25:41 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/05 15:30:42 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,17 +104,7 @@ double	ft_get_speed(struct timeval start, struct timeval end);
 t_vec3	ft_vec3_add(t_vec3 v1, t_vec3 v2);
 t_vec3	ft_vec3_sub(t_vec3 v1, t_vec3 v2);
 t_vec3	ft_scalar(t_vec3 v1, double r);
-void	ft_hit_init(t_hit *hit);
 t_vec3	ft_vec3_orthogonal(t_vec3 v);
-
-// src/get_next_line.c && src/get_next_line_utils.c
-char	*ft_strchr_1(char *s, int c);
-char	*ft_strjoin_1(char *str, char *buffer);
-char	*ft_strjoin_2(char *new_str, char *str, char *buffer);
-char	*ft_getline(char *str);
-void	ft_free(char **str, char *buffer);
-char	*ft_substr_1(char *str, int start, int len_str);
-char	*ft_get_next_line(int fd);
 
 //hit_light.c
 int		ft_in_shadow(t_ray ray, t_obj *obj, double light_d);

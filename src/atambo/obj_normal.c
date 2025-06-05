@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 19:03:18 by atambo            #+#    #+#             */
-/*   Updated: 2025/06/04 16:23:22 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/05 15:31:42 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@ void ft_cylinder_normal()
 
 }
 
-void ft_sphere_normal(t_hit *hit, t_obj *obj)
+void ft_sphere_normal(t_ray *ray, t_obj *obj)
 {
 
 }
 
-void ft_obj_normal(t_hit *hit, t_obj *obj)
+void ft_obj_normal(t_ray *ray, t_obj *obj)
 {
 
 }

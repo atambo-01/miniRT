@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 02:42:33 by atambo            #+#    #+#             */
-/*   Updated: 2025/06/03 19:24:58 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/05 15:29:44 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,3 @@ double	ft_get_speed(struct timeval start, struct timeval end)
 	return (sec_diff + usec_diff);
 }
 
-void	ft_hit_init(t_hit *hit)
-{
-	hit->obj = NULL;
-	hit->color = (t_color){0, 0, 0};
-	hit->t = -1.0;
-	hit->d = 0.0;
-	hit->n = (t_vec3){0.0, 0.0, 0.0};
-	hit->l = (t_vec3){0.0, 0.0, 0.0};
-}

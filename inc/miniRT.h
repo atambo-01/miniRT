@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 13:19:57 by mchingi           #+#    #+#             */
-/*   Updated: 2025/06/04 15:38:54 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/05 15:31:18 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,75 +183,6 @@ typedef struct	s_data
 	struct timeval	end;
 	int				focus;
 }				t_data;
-
-//=========================================================
-
-
-// typedef struct s_amblight
-// {
-// 	// char	id; // A 
-// 	double	light_ratio; // ambient lighting ratio in the range [0.0,1.0]
-// 	t_color	color;
-// }		t_amblight;
-
-
-// typedef struct s_light
-// {
-// 	// char	id; // L
-// 	t_vec3	pos; // x, y, z coordinates of the light point
-// 	double	bright_ratio; // the light brightness ratio in the range [0.0,1.0]
-// 	t_color	color;
-// }		t_light;
-
-// typedef struct s_sphere
-// {
-// 	char			id; // sp
-// 	t_vec3			center; // x, y, z coordinates of the sphere center
-// 	float			diameter; // the sphere diameter
-// 	t_color			colors;
-// 	struct s_sphere	*next; // if there are multiple sp
-// }		t_sphere;
-
-// typedef struct s_plane
-// {
-// 	char			id; // pl
-// 	t_vec3			pos; // x, y, z coordinates of the center of the cylinder
-// 	t_vec3			dir; // 3D normalized normal vector, in the range [-1,1] for each x, y, z axis
-// 	t_color			colors;
-// 	struct s_plane	*next; // if there are multiple pl
-// }		t_plane;
-
-// typedef struct s_cylinder
-// {
-// 	char				id; // cy
-// 	t_vec3				center; // x, y, z coordinates of the center of the cylinder
-// 	t_vec3				dir; // 3D normalized vector of axis of cylinder, in the range [-1,1] for each x, y, z axis
-// 	float				diameter; // the cylinder diameter
-// 	float				height; // the cylinder height
-// 	t_color				colors;
-// 	struct s_cylinder	*next;
-// }	t_cylinder;
-
-// typedef struct s_obj
-// {
-// 	t_sphere	*sp;
-// 	t_plane		*pl;
-// 	t_cylinder	*cy;
-// }		t_obj;
-
-//-----------------------------------------------------
-
-typedef struct	s_hit
-{
-	double	t;
-	double	d;
-	t_vec3	o;
-	t_vec3	p;
-	t_color	color;
-	t_vec3	n;
-	t_vec3	l;
-	t_obj	*obj;
-}				t_hit;
 
 typedef struct	s_ray
 {
