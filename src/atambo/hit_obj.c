@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 20:47:34 by atambo            #+#    #+#             */
-/*   Updated: 2025/06/04 16:24:35 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/05 15:04:57 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "../../inc/miniRT_atambo.h"
 #include "../../inc/miniRT_mchingi.h"
 
-void ft_hit_assign(double t, t_hit *hit, t_obj *obj)
+void ft_hit_assign(double t, t_hit *hit, t_ray *ray, t_obj *obj)
 {
 	if (ft_cmp_dbl( t, ">=" ,0) && (ft_cmp_dbl(t ,"<" ,hit->t) || ft_cmp_dbl(hit->t, "<" ,0)))
 	{
@@ -22,6 +22,14 @@ void ft_hit_assign(double t, t_hit *hit, t_obj *obj)
 		hit->color = obj->color;
 		hit->obj = obj;
 		hit->p = ft_vec3_add(hit->o, ft_scalar(hit->l, hit->t));
+
+	}
+	if (ft_cmp_dbl( t, ">=" ,0) && (ft_cmp_dbl(t ,"<" ,ray->t) || ft_cmp_dbl(ray->t, "<" ,0)))
+	{
+		ray->t = t;
+		ray->color = obj->color;
+		ray->obj = obj;
+		ray->p = ft_vec3_add(ray->o, ft_scalar(ray->l, ray->t));
 	}
 }
 
@@ -38,7 +46,7 @@ double	ft_hit_plane(t_obj *obj, t_hit *hit, t_ray *ray)
 		return (-1);
 	if (obj->radius <= 0.0)
 	{
-		ft_hit_assign(t, hit, obj);
+		ft_hit_assign(t, hit, ray, obj);
 		return (t);
 	}
 	hit_p.x = ray->o.x + t * ray->dir.x;
@@ -55,7 +63,7 @@ double	ft_hit_plane(t_obj *obj, t_hit *hit, t_ray *ray)
 	p.y = ft_dot(hit_p, v) - ft_dot(obj->pos, v);
 	if (p.x < -obj->radius || p.x > obj->radius || p.y < -obj->radius || p.y > obj->radius)
 		return (-1);
-	ft_hit_assign(t, hit, obj);
+	ft_hit_assign(t, hit, ray, obj);
 	return (t);
 
 }
@@ -77,7 +85,7 @@ double	ft_hit_sphere(t_obj *obj, t_hit *hit, t_ray *ray)
 		if (ft_cmp_dbl(t, "<", 0))
 			return (-1.0);
 	}
-	ft_hit_assign(t, hit, obj);
+	ft_hit_assign(t, hit, ray, obj);
 	return (t);
 }
 
