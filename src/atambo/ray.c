@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 20:22:34 by atambo            #+#    #+#             */
-/*   Updated: 2025/06/05 15:01:23 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/05 16:03:02 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	ft_init_ray(t_data *data, t_ray *ray)
 	view_width = 2.0 * ray->tan_half_fov;
 	asp_ratio = (double)IM_WIDTH / IM_HEIGHT;
 	ray->view_height = view_width / asp_ratio;
+	ray->lum = &data->light;
 }
 
 void	ft_calc_ray(int x, int y, t_ray *ray)

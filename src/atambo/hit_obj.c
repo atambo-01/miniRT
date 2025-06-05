@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 20:47:34 by atambo            #+#    #+#             */
-/*   Updated: 2025/06/05 15:24:18 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/05 16:22:41 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,31 +16,15 @@
 
 void ft_hit_assign(double t, t_ray *ray, t_obj *obj)
 {
-	if (ft_cmp_dbl( t, ">=" ,0) && (ft_cmp_dbl(t ,"<" ,ray->t) || ft_cmp_dbl(ray->t, "<" ,0)))
-	{
 		ray->t = t;
 		ray->color = obj->color;
 		ray->obj = obj;
 		ray->p = ft_vec3_add(ray->o, ft_scalar(ray->dir, ray->t));
-	}
 }
-
-double	ft_hit_plane(t_obj *obj, t_ray *ray)
+double ft_hit_plane_limited(t_obj *obj, t_ray *ray, double t)
 {
-	double denom, t;
 	t_vec3 hit_p, u, v, p;
 
-	denom = ft_dot(obj->dir, ray->dir);
-	if (denom == 0.0)
-		return (-1);
-	t = (ft_dot(obj->pos, obj->dir) - ft_dot(ray->o, obj->dir)) / denom;
-	if (t < 0.0)
-		return (-1);
-	if (obj->radius <= 0.0)
-	{
-		ft_hit_assign(t, ray, obj);
-		return (t);
-	}
 	hit_p.x = ray->o.x + t * ray->dir.x;
 	hit_p.y = ray->o.y + t * ray->dir.y;
 	hit_p.z = ray->o.z + t * ray->dir.z;
@@ -55,9 +39,36 @@ double	ft_hit_plane(t_obj *obj, t_ray *ray)
 	p.y = ft_dot(hit_p, v) - ft_dot(obj->pos, v);
 	if (p.x < -obj->radius || p.x > obj->radius || p.y < -obj->radius || p.y > obj->radius)
 		return (-1);
-	ft_hit_assign(t, ray, obj);
+	if (ft_cmp_dbl( t, ">=" ,0) && (ft_cmp_dbl(t ,"<" ,ray->t) || ft_cmp_dbl(ray->t, "<" ,0)))
+	{
+		ft_hit_assign(t, ray, obj);
+		ft_sphere_normal(ray, obj);
+	}
 	return (t);
+}
 
+
+double	ft_hit_plane(t_obj *obj, t_ray *ray)
+{
+	double denom, t;
+	
+
+	denom = ft_dot(obj->dir, ray->dir);
+	if (denom == 0.0)
+		return (-1);
+	t = (ft_dot(obj->pos, obj->dir) - ft_dot(ray->o, obj->dir)) / denom;
+	if (t < 0.0)
+		return (-1);
+	if (obj->radius <= 0.0)
+	{
+		if (ft_cmp_dbl( t, ">=" ,0) && (ft_cmp_dbl(t ,"<" ,ray->t) || ft_cmp_dbl(ray->t, "<" ,0)))
+		{
+			ft_hit_assign(t, ray, obj);
+			ft_sphere_normal(ray, obj);
+		}
+		return (t);
+	}
+	return (ft_hit_plane_limited(obj, ray, t));
 }
 
 double	ft_hit_sphere(t_obj *obj, t_ray *ray)
@@ -77,7 +88,11 @@ double	ft_hit_sphere(t_obj *obj, t_ray *ray)
 		if (ft_cmp_dbl(t, "<", 0))
 			return (-1.0);
 	}
-	ft_hit_assign(t, ray, obj);
+	if (ft_cmp_dbl( t, ">=" ,0) && (ft_cmp_dbl(t ,"<" ,ray->t) || ft_cmp_dbl(ray->t, "<" ,0)))
+	{
+		ft_hit_assign(t, ray, obj);
+		ft_sphere_normal(ray, obj);
+	}
 	return (t);
 }
 
