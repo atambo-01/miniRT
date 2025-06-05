@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 01:38:57 by atambo            #+#    #+#             */
-/*   Updated: 2025/06/04 16:21:35 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/05 15:26:37 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,6 @@ void ft_rotate_cam(int keycode, t_data *data)
 
 void ft_switch_obj_point(t_data *data, int x, int y, t_ray *ray)
 {
-	t_hit	hit;
 
 	x = x * ((double)IM_WIDTH / W_WIDTH);
 	y = y * ((double)IM_HEIGHT / W_HEIGHT);
@@ -138,11 +137,10 @@ void ft_switch_obj_point(t_data *data, int x, int y, t_ray *ray)
 	ray->dir.y = ray->v;
 	ray->dir.z = 1.0;
 	ft_normalize(&(ray->dir));
-	ft_hit_init(&hit);
-	ft_hit_obj(ray, data->obj, &hit);
-	if (hit.t > 0)
+	ft_hit_obj(ray, data->obj);
+	if (ray->t > 0)
 	{
-		data->curr = hit.obj;
+		data->curr = ray->obj;
 		data->curr_light = NULL;
 	}
 	else

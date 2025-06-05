@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 22:55:42 by atambo            #+#    #+#             */
-/*   Updated: 2025/06/05 15:18:44 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/05 15:25:41 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,15 +67,15 @@ int		ft_print_obj(t_obj *obj);
 int		ft_print_data(t_data *data);
 
 //ray_color.c
-void	ft_ray_color(t_ray *ray, t_hit *hit, t_data *data, double x, double y);
+void	ft_ray_color(t_ray *ray, t_data *data, double x, double y);
 
 // ray.c
 void	ft_init_ray(t_data *data, t_ray *ray);
 void	ft_calc_ray(int x, int y, t_ray *ray);
 
 // src/render_scene.c
-double	ft_hit_obj_2(t_ray *ray, t_obj *obj, t_hit *hit);
-int		ft_hit_obj(t_ray *ray, t_obj *obj, t_hit *hit);
+double	ft_hit_obj_2(t_ray *ray, t_obj *obj);
+int		ft_hit_obj(t_ray *ray, t_obj *obj);
 void	ft_render_scene(t_data *data);
 void	ft_render_and_upscale(t_data *data, int upscale);
 
@@ -118,12 +118,12 @@ char	*ft_get_next_line(int fd);
 
 //hit_light.c
 int		ft_in_shadow(t_ray ray, t_obj *obj, double light_d);
-int 	ft_hit_light(t_data *data, t_ray *ray, t_hit *hit, t_light *lum);
-double	ft_hit_obj_light(t_data *data, t_ray ray, t_hit hit, t_light *lum);
+int 	ft_hit_light(t_data *data, t_ray *ray, t_light *lum);
+double	ft_hit_obj_light(t_data *data, t_ray ray, t_light *lum);
 
 // src/hit_obj.c
-double	ft_hit_plane(t_obj *obj, t_hit *hit, t_ray *ray);
-double	ft_hit_sphere(t_obj *obj, t_hit *hit, t_ray *ray);
+double	ft_hit_plane(t_obj *obj, t_ray *ray);
+double	ft_hit_sphere(t_obj *obj, t_ray *ray);
 
 //obj_normal.c
 #endif

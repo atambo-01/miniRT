@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 13:33:17 by atambo            #+#    #+#             */
-/*   Updated: 2025/06/05 15:19:14 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/05 15:20:04 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "../../inc/miniRT_atambo.h"
 #include "../../inc/miniRT_mchingi.h"
 
-void ft_ray_color(t_ray *ray, t_hit *hit, t_data *data, double x, double y)
+void ft_ray_color(t_ray *ray, t_data *data, double x, double y)
 {
     t_color rgb = {0, 0, 0};
 

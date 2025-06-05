@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 16:38:03 by atambo            #+#    #+#             */
-/*   Updated: 2025/06/05 15:18:27 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/05 15:24:19 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,26 @@
 #include "../../inc/miniRT_atambo.h"
 #include "../../inc/miniRT_mchingi.h"
 
-double	ft_hit_obj_2(t_ray *ray, t_obj *obj, t_hit *hit)
+double	ft_hit_obj_2(t_ray *ray, t_obj *obj)
 {
 	if (!ft_strcmp(obj->type, "pl"))
-		return (ft_hit_plane(obj, hit, ray));
+		return (ft_hit_plane(obj, ray));
 	else if (!ft_strcmp(obj->type, "sp"))
-		return (ft_hit_sphere(obj, hit, ray));
+		return (ft_hit_sphere(obj, ray));
 	else
 		return (-1);
 }
 
-int	ft_hit_obj(t_ray *ray, t_obj *obj, t_hit *hit)
+int	ft_hit_obj(t_ray *ray, t_obj *obj)
 {
 	double	t;
 
 	while (obj) // instead of for each obj we need a BVH logic to optimize
 	{
-		ft_hit_obj_2(ray, obj, hit);
+		ft_hit_obj_2(ray, obj);
 		obj = obj->next;
 	}
-	return (hit->t > 1);
+	return (ray->t > 1);
 
 }
 
@@ -54,11 +54,11 @@ void	ft_render_scene(t_data *data)
 			ft_calc_ray(xy[0], xy[1], &(ray));
 			hit.l = ray.dir;
 			hit.o = data->cam.pos;
-			ft_hit_obj(&ray, data->obj, &hit);
-			ft_hit_light(data, &ray, &hit, &(data->light));
+			ft_hit_obj(&ray, data->obj);
+			ft_hit_light(data, &ray, &(data->light));
 			if (ray.t > 0 && ray.obj)
-				ray.d = ft_hit_obj_light(data, ray, hit, &(data->light));
-			ft_ray_color(&ray, &hit, data, xy[0], xy[1]);
+				ray.d = ft_hit_obj_light(data, ray, &(data->light));
+			ft_ray_color(&ray, data, xy[0], xy[1]);
 			xy[0]++;
 		}
 		xy[1]++;
