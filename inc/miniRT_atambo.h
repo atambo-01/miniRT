@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 22:55:42 by atambo            #+#    #+#             */
-/*   Updated: 2025/06/05 16:22:03 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/05 18:49:09 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,9 +114,11 @@ double	ft_hit_obj_light(t_data *data, t_ray ray, t_light *lum);
 // src/hit_obj.c
 double	ft_hit_plane(t_obj *obj, t_ray *ray);
 double	ft_hit_sphere(t_obj *obj, t_ray *ray);
+double	ft_hit_cylinder(t_obj *obj, t_ray *ray);
 
 //obj_normal.c
 void ft_plane_obj(t_ray *ray, t_obj *pl);
 void ft_sphere_normal(t_ray *ray, t_obj *sp);
+void ft_cylinder_normal(t_ray *ray, t_obj *cy);
 
 #endif

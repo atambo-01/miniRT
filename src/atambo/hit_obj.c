@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 20:47:34 by atambo            #+#    #+#             */
-/*   Updated: 2025/06/05 16:22:41 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/05 18:48:59 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,3 +96,35 @@ double	ft_hit_sphere(t_obj *obj, t_ray *ray)
 	return (t);
 }
 
+double	ft_hit_cylinder(t_obj *obj, t_ray *ray)
+{
+	t_vec3 oc = ft_vec3_sub(ray->o, obj->pos);
+	double dir_dot_axis = ft_dot(ray->dir, obj->dir);
+	double oc_dot_axis = ft_dot(oc, obj->dir);
+	t_vec3 proj = {ray->dir.x - dir_dot_axis * obj->dir.x, ray->dir.y - dir_dot_axis * obj->dir.y, ray->dir.z - dir_dot_axis * obj->dir.z};
+	t_vec3 oc_proj = {oc.x - oc_dot_axis * obj->dir.x, oc.y - oc_dot_axis * obj->dir.y, oc.z - oc_dot_axis * obj->dir.z};
+	double a = ft_dot(proj, proj);
+	double b = 2.0 * ft_dot(proj, oc_proj);
+	double c = ft_dot(oc_proj, oc_proj) - obj->radius * obj->radius;
+	double delta = b * b - 4.0 * a * c;
+	double t = -1, z;
+
+	if (ft_cmp_dbl(delta, ">=", 0) && ft_cmp_dbl(a, ">=", 1e-6))
+	{
+		t = (-b - sqrt(delta)) / (2.0 * a);
+		z = oc_dot_axis + t * dir_dot_axis;
+		if (ft_cmp_dbl(t, "<", 0) || ft_cmp_dbl(fabs(z), ">=", obj->len / 2))
+		{
+			t = (-b + sqrt(delta)) / (2.0 * a);
+			z = oc_dot_axis + t * dir_dot_axis;
+			if (ft_cmp_dbl(t, "<", 0) || ft_cmp_dbl(fabs(z), ">=", obj->len / 2))
+				t = -1;
+		}
+	}
+	if (ft_cmp_dbl( t, ">=" ,0) && (ft_cmp_dbl(t ,"<" ,ray->t) || ft_cmp_dbl(ray->t, "<" ,0)))
+	{
+		ft_hit_assign(t, ray, obj);
+		ft_cylinder_normal(ray, obj);
+	}
+	return (t - EPSILON);
+}

@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 13:33:17 by atambo            #+#    #+#             */
-/*   Updated: 2025/06/05 16:49:24 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/05 18:54:45 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void ft_ray_color(t_ray *ray, t_data *data, double x, double y)
 		double surface = ft_dot(ray->n, ray->l);
 		if (ft_cmp_dbl(surface, "<", 0))
 			surface = 0.0;
-        double attenuation = data->light.ratio / (1.0 + KAPPA * ray->d * ray->d);
+        double attenuation = data->light.ratio / (1.0 + KAPPA * GAMMA * ray->d * ray->d);
         rgb.r += (int)(ray->color.r * (data->light.color.r / 255.0) * attenuation * surface);
         rgb.g += (int)(ray->color.g * (data->light.color.g / 255.0) * attenuation * surface);
         rgb.b += (int)(ray->color.b * (data->light.color.b / 255.0) * attenuation * surface);

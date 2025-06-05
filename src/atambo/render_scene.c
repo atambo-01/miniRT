@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 16:38:03 by atambo            #+#    #+#             */
-/*   Updated: 2025/06/05 15:28:14 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/05 18:48:05 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ double	ft_hit_obj_2(t_ray *ray, t_obj *obj)
 		return (ft_hit_plane(obj, ray));
 	else if (!ft_strcmp(obj->type, "sp"))
 		return (ft_hit_sphere(obj, ray));
+	else if (!ft_strcmp(obj->type, "cy"))
+		return (ft_hit_cylinder(obj, ray));
 	else
 		return (-1);
 }
