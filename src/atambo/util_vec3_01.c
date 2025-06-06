@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 02:23:44 by atambo            #+#    #+#             */
-/*   Updated: 2025/06/04 16:22:44 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/06 17:37:47 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,6 @@ void	ft_setvec3(t_vec3 *v, double a, double b, double c)
 	v->x = a;
 	v->y = b;
 	v->z = c;
-}
-
-void	ft_pixel_put_img(t_img *img, int x, int y, int color)
-{
-	char	*dst;
-
-	dst = img->addr + (y * img->line_len + x * (img->bpp / 8));
-	*(unsigned int *)dst = color;
 }
 
 double	ft_dot(t_vec3 a, t_vec3 b)

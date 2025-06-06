@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 16:38:03 by atambo            #+#    #+#             */
-/*   Updated: 2025/06/05 18:48:05 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/06 20:48:36 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,36 +14,30 @@
 #include "../../inc/miniRT_atambo.h"
 #include "../../inc/miniRT_mchingi.h"
 
-double	ft_hit_obj_2(t_ray *ray, t_obj *obj)
+void	ft_hit_obj_2(t_ray *ray, t_obj *obj)
 {
 	if (!ft_strcmp(obj->type, "pl"))
-		return (ft_hit_plane(obj, ray));
+		ft_hit_plane(obj, ray);
 	else if (!ft_strcmp(obj->type, "sp"))
-		return (ft_hit_sphere(obj, ray));
+		ft_hit_sphere(obj, ray);
 	else if (!ft_strcmp(obj->type, "cy"))
-		return (ft_hit_cylinder(obj, ray));
-	else
-		return (-1);
+		ft_hit_cylinder(obj, ray);
 }
 
-int	ft_hit_obj(t_ray *ray, t_obj *obj)
+void	ft_hit_obj(t_ray *ray, t_obj *obj)
 {
-	double	t;
-
-	while (obj) // instead of for each obj we need a BVH logic to optimize
+	while (obj)
 	{
 		ft_hit_obj_2(ray, obj);
 		obj = obj->next;
 	}
-	return (ray->t > 1);
-
 }
 
 void	ft_render_scene(t_data *data)
 {
 	t_ray	ray;
 	int		xy[2];
-	
+
 	xy[1] = 0;
 	ft_init_ray(data, &(ray));
 	while (xy[1] < IM_HEIGHT)
@@ -65,9 +59,7 @@ void	ft_render_scene(t_data *data)
 
 void	ft_render_and_upscale(t_data *data, int upscale)
 {
-	gettimeofday(&(data->start), NULL); // remove later
 	ft_render_scene(data);
-	gettimeofday(&(data->end), NULL); //remove later
 	if (upscale)
 	{
 		ft_upscale_img(data);

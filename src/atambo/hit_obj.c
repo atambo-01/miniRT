@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 20:47:34 by atambo            #+#    #+#             */
-/*   Updated: 2025/06/06 16:20:13 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/06 18:49:39 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@
 
 void ft_hit_assign(double t, t_ray *ray, t_obj *obj)
 {
-		ray->t = t;
-		ray->color = obj->color;
-		ray->obj = obj;
-		ray->p = ft_vec3_add(ray->o, ft_scalar_mult(ray->dir, ray->t));
+	ray->t = t;
+	ray->color = obj->color;
+	ray->obj = obj;
+	ray->p = ft_vec3_add(ray->o, ft_scalar_mult(ray->dir, ray->t));
 }
 double ft_hit_plane_limited(t_obj *obj, t_ray *ray, double t)
 {
@@ -35,11 +35,14 @@ double ft_hit_plane_limited(t_obj *obj, t_ray *ray, double t)
 		obj->dir.x * u.y - obj->dir.y * u.x
 	};
 	ft_normalize(&v);
+
 	p.x = ft_dot(hit_p, u) - ft_dot(obj->pos, u);
 	p.y = ft_dot(hit_p, v) - ft_dot(obj->pos, v);
-	if (p.x < -obj->radius || p.x > obj->radius || p.y < -obj->radius || p.y > obj->radius)
+	if (p.x < -obj->radius || p.x > obj->radius
+			|| p.y < -obj->radius || p.y > obj->radius)
 		return (-1);
-	if (ft_cmp_dbl( t, ">=" ,0) && (ft_cmp_dbl(t ,"<" ,ray->t) || ft_cmp_dbl(ray->t, "<" ,0)))
+	if (ft_cmp_dbl(t, ">=", 0) && (ft_cmp_dbl(t ,"<", ray->t)
+			|| ft_cmp_dbl(ray->t, "<", 0)))
 	{
 		ft_hit_assign(t, ray, obj);
 		ft_plane_normal(ray, obj);
@@ -47,11 +50,10 @@ double ft_hit_plane_limited(t_obj *obj, t_ray *ray, double t)
 	return (t);
 }
 
-
 double	ft_hit_plane(t_obj *obj, t_ray *ray)
 {
-	double denom, t;
-	
+	double	denom;
+	double	t;
 
 	denom = ft_dot(obj->dir, ray->dir);
 	if (denom == 0.0)
@@ -61,7 +63,8 @@ double	ft_hit_plane(t_obj *obj, t_ray *ray)
 		return (-1);
 	if (obj->radius <= 0.0)
 	{
-		if (ft_cmp_dbl( t, ">=" ,0) && (ft_cmp_dbl(t ,"<" ,ray->t) || ft_cmp_dbl(ray->t, "<" ,0)))
+		if (ft_cmp_dbl(t, ">=", 0) && (ft_cmp_dbl(t ,"<", ray->t)
+				|| ft_cmp_dbl(ray->t, "<", 0)))
 		{
 			ft_hit_assign(t, ray, obj);
 			ft_plane_normal(ray, obj);
@@ -88,7 +91,8 @@ double	ft_hit_sphere(t_obj *obj, t_ray *ray)
 		if (ft_cmp_dbl(t, "<", 0))
 			return (-1.0);
 	}
-	if (ft_cmp_dbl( t, ">=" ,0) && (ft_cmp_dbl(t ,"<" ,ray->t) || ft_cmp_dbl(ray->t, "<" ,0)))
+	if (ft_cmp_dbl(t, ">=", 0) && (ft_cmp_dbl(t ,"<", ray->t)
+			|| ft_cmp_dbl(ray->t, "<", 0)))
 	{
 		ft_hit_assign(t, ray, obj);
 		ft_sphere_normal(ray, obj);
@@ -121,7 +125,8 @@ double	ft_hit_cylinder(t_obj *obj, t_ray *ray)
 				t = -1;
 		}
 	}
-	if (ft_cmp_dbl( t, ">=" ,0) && (ft_cmp_dbl(t ,"<" ,ray->t) || ft_cmp_dbl(ray->t, "<" ,0)))
+	if (ft_cmp_dbl(t, ">=", 0) && (ft_cmp_dbl(t ,"<", ray->t)
+			|| ft_cmp_dbl(ray->t, "<", 0)))
 	{
 		ft_hit_assign(t, ray, obj);
 		ft_cylinder_normal(ray, obj);

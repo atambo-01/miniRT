@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 21:17:13 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/24 17:36:44 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/06 19:40:05 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,4 +22,14 @@ int	ft_close_window(t_data *data)
 	mlx_destroy_display(data->mlx);
 	free(data->mlx);
 	exit(0);
+}
+
+void	ft_obj_size(int key, t_data *data, double i)
+{
+	if (!data->curr)
+		return ;
+	if (key == 'i' || key == 'k')
+		data->curr->radius += (i / 100) * data->curr->radius;
+	else if (key == 'o' || key == 'l')
+		data->curr->len += (i / 100) * data->curr->radius;
 }

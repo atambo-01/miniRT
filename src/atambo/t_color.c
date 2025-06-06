@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 15:21:59 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/29 15:22:08 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/06 20:51:38 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 #include "../../inc/miniRT_atambo.h"
 #include "../../inc/miniRT_mchingi.h"
 
-t_color t_color_clamp(t_color color)
+t_color	t_color_clamp(t_color color)
 {
-	t_color res;
+	t_color	res;
 
 	res = color;
 	if (res.r > 255)
@@ -28,10 +28,10 @@ t_color t_color_clamp(t_color color)
 	return (res);
 }
 
-int t_color_to_int(t_color color)
+int	t_color_to_int(t_color color)
 {
-    t_color	clamped;
+	t_color	clamped;
 
 	clamped = t_color_clamp(color);
-    return ((clamped.r << 16) | (clamped.g << 8) | (clamped.b));
+	return ((clamped.r << 16) | (clamped.g << 8) | (clamped.b));
 }

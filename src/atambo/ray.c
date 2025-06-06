@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 20:22:34 by atambo            #+#    #+#             */
-/*   Updated: 2025/06/05 18:40:08 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/06 20:22:34 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ void	ft_calc_ray(int x, int y, t_ray *ray)
 	ray->v = (1.0 - 2.0 * (y + 0.5) / IM_HEIGHT) * ray->view_height / 2.0;
 	ray->dir = (t_vec3){ray->u, ray->v, 1.0};
 	ft_normalize(&(ray->dir));
-	//----------------------------------
 	ray->obj = NULL;
 	ray->color = (t_color){0, 0, 0};
 	ray->t = -1.0;

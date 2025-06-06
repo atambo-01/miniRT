@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 02:09:36 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/29 02:35:10 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/06 17:10:06 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	ft_write_sphere(t_obj *obj, int fd)
 	ft_putstr_fd(" ", fd);
 	ft_write_vec3(obj->pos, fd);
 	ft_putstr_fd(" ", fd);
-	ft_putstr_fd(ft_itoaf(obj->radius * 2), fd);
+	ft_putstr_fd(ft_ftoa(obj->radius * 2), fd);
 	ft_putstr_fd(" ", fd);
 	ft_write_color(obj->color, fd);
 }
@@ -44,9 +44,9 @@ void	ft_write_cylinder(t_obj *obj, int fd)
 	ft_putstr_fd(" ", fd);
 	ft_write_vec3(obj->dir, fd);
 	ft_putstr_fd(" ", fd);
-	ft_putstr_fd(ft_itoaf(obj->radius * 2), fd);
+	ft_putstr_fd(ft_ftoa(obj->radius * 2), fd);
 	ft_putstr_fd(" ", fd);
-	ft_putstr_fd(ft_itoaf(obj->len), fd);
+	ft_putstr_fd(ft_ftoa(obj->len), fd);
 	ft_putstr_fd(" ", fd);
 	ft_write_color(obj->color, fd);
 }

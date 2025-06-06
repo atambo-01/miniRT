@@ -6,7 +6,7 @@
 #    By: atambo <atambo@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/29 12:55:11 by mchingi           #+#    #+#              #
-#    Updated: 2025/06/03 19:25:02 by atambo           ###   ########.fr        #
+#    Updated: 2025/06/06 20:16:19 by atambo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,15 +33,21 @@ SOURCES		=	\
 				src/atambo/upscale_assign.c\
 				src/atambo/render_scene.c\
 				src/atambo/input.c\
+				src/atambo/rotate.c\
+				src/atambo/move.c\
+				src/atambo/switch.c\
+				src/atambo/color_switch.c\
 				src/atambo/input_util.c\
 				src/atambo/print_data.c\
+				src/atambo/print_data_acl.c\
 				src/atambo/obj_normal.c\
 				src/atambo/hit_obj.c\
 				src/atambo/ray.c\
 				src/atambo/ray_color.c\
 				src/atambo/hit_light.c\
+				src/atambo/hit_obj_light.c\
 				src/atambo/ft_sleep.c\
-				src/atambo/ft_itoaf.c\
+				src/atambo/ft_ftoa.c\
 				src/atambo/export_scene.c\
 				src/atambo/export_scene_acl.c\
 				src/atambo/export_scene_obj.c\

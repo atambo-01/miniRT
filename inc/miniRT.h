@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 13:19:57 by mchingi           #+#    #+#             */
-/*   Updated: 2025/06/05 18:54:20 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/06 19:58:44 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,6 @@
 # define GAMMA		0.0009
 
 # define UPSCALE	1
-# define ESC		65307
-# define UP			65363
-# define DOWN		65361
-# define LEFT		65362
-# define RIGHT		65364
 # define W_WIDTH	1080
 # define W_HEIGHT	720
 // # define IM_WIDTH	540
@@ -51,6 +46,21 @@
 
 # define NUM_1
 # define NUM_PLUS
+
+// keys
+# define TAB		65289
+# define SHIFT		65505
+# define ESC		65307
+# define UP			65363
+# define DOWN		65361
+# define LEFT		65362
+# define RIGHT		65364
+# define NUMPAD_1	65436
+# define NUMPAD_3	65435
+# define NUMPAD_4	65430
+# define NUMPAD_6	65432
+# define NUMPAD_7	65429
+# define NUMPAD_9	65434
 
 // error msgs
 # define E_READFILE		"Error reading file\n"
