@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 12:21:37 by atambo            #+#    #+#             */
-/*   Updated: 2025/06/05 15:27:24 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/06 15:23:11 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ double ft_hit_obj_light(t_data *data, t_ray ray, t_light *lum)
 
     // Initialize shadow ray origin
     t_vec3 cam_dir = ft_vec_AB(&ray.p, &data->cam.pos); // Vector from hit point to camera
-    t_vec3 offset = ft_scalar(cam_dir, 0.001); // Small offset toward camera
+    t_vec3 offset = ft_scalar_mult(cam_dir, 0.001); // Small offset toward camera
     ray.o = ft_vec3_add(ray.p, offset); // Move origin slightly toward camera
     ray.dir = ft_vec_AB(&ray.o, &lum->pos); // Direction from new origin to light
 

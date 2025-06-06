@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 20:47:34 by atambo            #+#    #+#             */
-/*   Updated: 2025/06/05 18:48:59 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/06 16:20:13 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void ft_hit_assign(double t, t_ray *ray, t_obj *obj)
 		ray->t = t;
 		ray->color = obj->color;
 		ray->obj = obj;
-		ray->p = ft_vec3_add(ray->o, ft_scalar(ray->dir, ray->t));
+		ray->p = ft_vec3_add(ray->o, ft_scalar_mult(ray->dir, ray->t));
 }
 double ft_hit_plane_limited(t_obj *obj, t_ray *ray, double t)
 {
@@ -42,7 +42,7 @@ double ft_hit_plane_limited(t_obj *obj, t_ray *ray, double t)
 	if (ft_cmp_dbl( t, ">=" ,0) && (ft_cmp_dbl(t ,"<" ,ray->t) || ft_cmp_dbl(ray->t, "<" ,0)))
 	{
 		ft_hit_assign(t, ray, obj);
-		ft_sphere_normal(ray, obj);
+		ft_plane_normal(ray, obj);
 	}
 	return (t);
 }
@@ -64,7 +64,7 @@ double	ft_hit_plane(t_obj *obj, t_ray *ray)
 		if (ft_cmp_dbl( t, ">=" ,0) && (ft_cmp_dbl(t ,"<" ,ray->t) || ft_cmp_dbl(ray->t, "<" ,0)))
 		{
 			ft_hit_assign(t, ray, obj);
-			ft_sphere_normal(ray, obj);
+			ft_plane_normal(ray, obj);
 		}
 		return (t);
 	}

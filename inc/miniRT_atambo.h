@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 22:55:42 by atambo            #+#    #+#             */
-/*   Updated: 2025/06/05 18:49:09 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/06 15:23:11 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ void	ft_normalize(t_vec3 *v);
 double	ft_get_speed(struct timeval start, struct timeval end);
 t_vec3	ft_vec3_add(t_vec3 v1, t_vec3 v2);
 t_vec3	ft_vec3_sub(t_vec3 v1, t_vec3 v2);
-t_vec3	ft_scalar(t_vec3 v1, double r);
+t_vec3	ft_scalar_mult(t_vec3 v1, double r);
 t_vec3	ft_vec3_orthogonal(t_vec3 v);
 
 //hit_light.c
@@ -117,7 +117,7 @@ double	ft_hit_sphere(t_obj *obj, t_ray *ray);
 double	ft_hit_cylinder(t_obj *obj, t_ray *ray);
 
 //obj_normal.c
-void ft_plane_obj(t_ray *ray, t_obj *pl);
+void ft_plane_normal(t_ray *ray, t_obj *pl);
 void ft_sphere_normal(t_ray *ray, t_obj *sp);
 void ft_cylinder_normal(t_ray *ray, t_obj *cy);
 
