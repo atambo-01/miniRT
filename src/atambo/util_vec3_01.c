@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 02:23:44 by atambo            #+#    #+#             */
-/*   Updated: 2025/06/06 17:37:47 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/07 16:35:09 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,16 @@ double	ft_dot(t_vec3 a, t_vec3 b)
 	double	result;
 
 	result = a.x * b.x + a.y * b.y + a.z * b.z;
+	return (result);
+}
+
+t_vec3	ft_cross(t_vec3 a, t_vec3 b)
+{
+	t_vec3	result;
+
+	result.x = a.y * b.z - a.z * b.y;
+	result.y = a.z * b.x - a.x * b.z;
+	result.z = a.x * b.y - a.y * b.x;
 	return (result);
 }
 

@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 22:55:42 by atambo            #+#    #+#             */
-/*   Updated: 2025/06/07 08:53:20 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/07 16:35:28 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,6 +133,7 @@ t_vec3	ft_scalar_mult(t_vec3 v1, double r);
 t_vec3	ft_vec3_orthogonal(t_vec3 v);
 int		ft_count_obj(t_obj *obj);
 t_vec3	ft_vec3_invert(t_vec3 v);
+t_vec3	ft_cross(t_vec3 a, t_vec3 b);
 
 // hit_light.c
 t_vec3	ft_vec_ab(t_vec3 *A, t_vec3 *B);

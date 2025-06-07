@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchingi <mchingi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 17:07:27 by mchingi           #+#    #+#             */
-/*   Updated: 2025/06/07 12:35:37 by mchingi          ###   ########.fr       */
+/*   Updated: 2025/06/07 16:46:50 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,11 @@ int	camera_data(t_cam *cam, char **data)
 	cam->fov = atof(data[3]);
 	if (cam->fov < 0 || cam->fov > 180)
 		return (0);
+	cam->right = ft_cross(cam->dir, (t_vec3){0.0, 1.0, 0.0});
+	cam->up = ft_cross(cam->dir, cam->right);
+	ft_normalize(&cam->dir);
+	ft_normalize(&cam->right);
+	ft_normalize(&cam->up);
 	return (1);
 }
 

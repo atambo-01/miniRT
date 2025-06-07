@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 20:22:34 by atambo            #+#    #+#             */
-/*   Updated: 2025/06/07 09:03:03 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/07 16:19:32 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	ft_calc_ray(int x, int y, t_ray *ray)
 {
 	ray->u = (2.0 * (x + 0.5) / IM_WIDTH - 1.0) * ray->tan_half_fov;
 	ray->v = (1.0 - 2.0 * (y + 0.5) / IM_HEIGHT) * ray->view_height / 2.0;
-	ray->dir = (t_vec3){ray->u, ray->v, -1.0};
+	ray->dir = (t_vec3){ray->u, ray->v, 1.0};
 	ft_normalize(&(ray->dir));
 	ray->obj = NULL;
 	ray->color = (t_color){0, 0, 0};

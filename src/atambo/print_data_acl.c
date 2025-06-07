@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 20:15:24 by atambo            #+#    #+#             */
-/*   Updated: 2025/06/06 20:22:04 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/07 16:53:03 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,10 @@ int	ft_print_cam(t_cam *cam)
 	ft_print_vec3(&cam->pos);
 	printf("  Dir:\t");
 	ft_print_vec3(&cam->dir);
+	printf("  Up:\t");
+	ft_print_vec3(&cam->up);
+	printf("  Right: ");
+	ft_print_vec3(&cam->right);
 	printf("  FOV:\t\t%.2f degrees\n", cam->fov);
 	return (0);
 }

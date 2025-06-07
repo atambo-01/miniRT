@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 20:15:19 by atambo            #+#    #+#             */
-/*   Updated: 2025/06/06 20:48:56 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/07 16:51:04 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	ft_print_obj(t_obj *obj)
 
 int	ft_print_vec3(t_vec3 *vec)
 {
-	printf("\t%.4f\t%.4f\t%.4f\n", vec->x, vec->y, vec->z);
+	printf("\t%+06.2f  %+06.2f  %+06.2f\n", vec->x, vec->y, vec->z);
 	return (0);
 }
 
