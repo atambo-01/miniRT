@@ -6,18 +6,18 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 22:55:42 by atambo            #+#    #+#             */
-/*   Updated: 2025/06/06 21:09:28 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/07 07:59:42 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef			MINIRT_ATAMBO_H
-# define		MINIRT_ATAMBO_H
+#ifndef MINIRT_ATAMBO_H
+# define MINIRT_ATAMBO_H
 
-# ifndef		BUFFER_SIZE
-#  define		BUFFER_SIZE 42
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
 # endif
 
-# include	"./miniRT.h"
+# include "./miniRT.h"
 
 // color_switch.c
 void	ft_color_switch(t_data *data, int key);
@@ -49,7 +49,7 @@ char	*ft_ftoa(double num);
 // init.c
 int		ft_init_obj(t_data *data);
 int		ft_init_cam(t_data *data);
-int 	ft_init_data(t_data *data, int fd);
+int		ft_init_data(t_data *data, int fd);
 
 // input.c
 int		ft_key_hook(int keycode, t_data *data);
@@ -110,7 +110,7 @@ t_color	t_color_clamp(t_color color);
 int		t_color_to_int(t_color color);
 
 // time.c
-void 	ft_sleep(int sec);
+void	ft_sleep(int sec);
 
 // upscale_assign.c
 void	ft_assign_src_coords(t_data *data, t_upscale *up, int x, int y);
@@ -122,7 +122,7 @@ void	ft_init_neighbor(t_upscale *up, t_neighbor *nb);
 void	ft_upscale_img(t_data *data);
 
 // util.c
-void 	ft_setvec3(t_vec3 *v, double a, double b, double c);
+void	ft_setvec3(t_vec3 *v, double a, double b, double c);
 void	ft_pixel_put_img(t_img *img, int x, int y, int color);
 double	ft_dot(t_vec3 a, t_vec3 b);
 void	ft_normalize(t_vec3 *v);
@@ -131,19 +131,19 @@ t_vec3	ft_vec3_add(t_vec3 v1, t_vec3 v2);
 t_vec3	ft_vec3_sub(t_vec3 v1, t_vec3 v2);
 t_vec3	ft_scalar_mult(t_vec3 v1, double r);
 t_vec3	ft_vec3_orthogonal(t_vec3 v);
-int	ft_count_obj(t_obj *obj);
-
+int		ft_count_obj(t_obj *obj);
 
 // hit_light.c
 t_vec3	ft_vec_ab(t_vec3 *A, t_vec3 *B);
 int		ft_in_shadow(t_ray ray, t_obj *obj, double light_d);
-void 	ft_hit_light(t_data *data, t_ray *ray, t_light *lum);
+void	ft_hit_light(t_data *data, t_ray *ray, t_light *lum);
 double	ft_hit_obj_light(t_data *data, t_ray ray, t_light *lum);
 
 // hit_obj.c
-double	ft_hit_plane(t_obj *obj, t_ray *ray);
-double	ft_hit_sphere(t_obj *obj, t_ray *ray);
-double	ft_hit_cylinder(t_obj *obj, t_ray *ray);
+void	ft_hit_assign(double t, t_ray *ray, t_obj *obj);
+void	ft_hit_plane(t_obj *obj, t_ray *ray);
+void	ft_hit_sphere(t_obj *obj, t_ray *ray);
+void	ft_hit_cylinder(t_obj *obj, t_ray *ray);
 
 // obj_normal.c
 void	ft_plane_normal(t_ray *ray, t_obj *pl);

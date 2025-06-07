@@ -6,7 +6,7 @@
 #    By: atambo <atambo@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/29 12:55:11 by mchingi           #+#    #+#              #
-#    Updated: 2025/06/06 20:16:19 by atambo           ###   ########.fr        #
+#    Updated: 2025/06/07 07:53:43 by atambo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,8 @@ SOURCES		=	\
 				src/atambo/print_data.c\
 				src/atambo/print_data_acl.c\
 				src/atambo/obj_normal.c\
-				src/atambo/hit_obj.c\
+				src/atambo/hit_obj_01.c\
+				src/atambo/hit_obj_02.c\
 				src/atambo/ray.c\
 				src/atambo/ray_color.c\
 				src/atambo/hit_light.c\

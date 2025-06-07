@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 07:44:22 by atambo            #+#    #+#             */
-/*   Updated: 2025/06/07 07:44:51 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/07 07:54:20 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "../../inc/miniRT_atambo.h"
 #include "../../inc/miniRT_mchingi.h"
 
-void	ft_hit_cy_aux(t_cy *cy, t_ray *ray, t_obj *obj)
+static void	ft_hit_cy_aux(t_cy *cy, t_ray *ray, t_obj *obj)
 {
 	cy->oc = ft_vec3_sub(ray->o, obj->pos);
 	cy->dda = ft_dot(ray->dir, obj->dir);

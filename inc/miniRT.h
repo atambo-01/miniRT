@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 13:19:57 by mchingi           #+#    #+#             */
-/*   Updated: 2025/06/07 07:39:53 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/07 07:58:05 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,23 @@
 # define MINIRT_H
 
 //builtin libs
-# include	<unistd.h>
-# include	<stdio.h>
-# include	<stdlib.h>
-# include	<string.h>
-# include	<math.h>
-# include	<fcntl.h>
-# include	<X11/keysym.h>
-# include	<errno.h>
-# include	<stdbool.h>
-# include	<limits.h>
+# include <unistd.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <string.h>
+# include <math.h>
+# include <fcntl.h>
+# include <X11/keysym.h>
+# include <errno.h>
+# include <stdbool.h>
+# include <limits.h>
 
 // costum libs
-# include	"../libft/libft.h"
-# include	"../minilibx-linux/mlx.h"
+# include "../libft/libft.h"
+# include "../minilibx-linux/mlx.h"
 
 // remove these libs before sending
-# include	<sys/time.h>
+# include <sys/time.h>
 
 # define EPSILON	1e-6
 # define KAPPA		0.0001
@@ -129,8 +129,8 @@ typedef struct s_neighbor
 
 typedef struct s_img
 {
-	void*	ptr;
-	void*	addr;
+	void	*ptr;
+	void	*addr;
 	int		line_len;
 	int		bpp;
 	int		endian;
