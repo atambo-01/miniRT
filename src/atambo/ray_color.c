@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 13:33:17 by atambo            #+#    #+#             */
-/*   Updated: 2025/06/07 07:51:41 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/07 11:04:12 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ void	ft_ray_color(t_ray *ray, t_data *data, double x, double y)
 	if (ray->d >= 0)
 	{
 		surface = ft_dot(ray->n, ray->l);
+		if (ft_dot(ray->n, ray->l))
+			surface = ft_dot(ft_vec3_invert(ray->n), ray->l);
 		if (ft_cmp_dbl(surface, "<", 0))
 			surface = 0.0;
 		dim = data->light.ratio / (1.0 + KAPPA * GAMMA * ray->d * ray->d);

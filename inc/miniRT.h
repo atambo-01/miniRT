@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 13:19:57 by mchingi           #+#    #+#             */
-/*   Updated: 2025/06/07 07:58:05 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/07 09:35:00 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,10 @@
 # define UPSCALE	1
 # define W_WIDTH	1080
 # define W_HEIGHT	720
-// # define IM_WIDTH	540
-// # define IM_HEIGHT	360
-# define IM_WIDTH	1080
-# define IM_HEIGHT	720
+# define IM_WIDTH	540
+# define IM_HEIGHT	360
+// # define IM_WIDTH	1080
+// # define IM_HEIGHT	720
 
 # define NUM_1
 # define NUM_PLUS
