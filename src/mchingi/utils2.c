@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mchingi <mchingi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 17:08:11 by mchingi           #+#    #+#             */
-/*   Updated: 2025/05/29 14:20:37 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/07 12:38:25 by mchingi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	fill_color(char *color_data, t_color *color)
 		return (0);
 	*color = (t_color){0, 0, 0};
 	rgb = ft_split(color_data, ',');
-	if (!rgb || ft_array_size(rgb) != 3 ||
+	if (!rgb || ft_array_size(rgb) != 3 || \
 		!color_range(ft_atoi(rgb[0]), ft_atoi(rgb[1]), ft_atoi(rgb[2])))
 	{
 		ft_free_array(rgb);

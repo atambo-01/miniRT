@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene_validations.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mchingi <mchingi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 14:42:01 by mchingi           #+#    #+#             */
-/*   Updated: 2025/05/26 14:00:20 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/07 12:38:06 by mchingi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 #include "../../inc/miniRT_atambo.h"
 #include "../../inc/miniRT_mchingi.h"
 
-
-int	check_dupl_acl_aux(int* acl, char **arr)
+int	check_dupl_acl_aux(int *acl, char **arr)
 {
 	if ((acl[0] != 1 || acl[1] != 1 || acl[2] != 1))
 	{
@@ -25,7 +24,6 @@ int	check_dupl_acl_aux(int* acl, char **arr)
 	}
 	return (0);
 }
-
 
 int	check_dupl_acl(char **arr, int arr_size)
 {
@@ -85,7 +83,7 @@ int	validate_scene(char **arr, int arr_size)
 		if (!check_identifier(tmp_arr))
 		{
 			ft_minirt_error(E_SCENE_DATA, 1);
-			ft_perror(arr[i], 1); // Debug
+			ft_perror(arr[i], 1);
 			ft_free_array(tmp_arr);
 			ft_free_array(arr);
 			exit (1);

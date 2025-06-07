@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils3.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mchingi <mchingi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 13:03:23 by mchingi           #+#    #+#             */
-/*   Updated: 2025/05/24 17:35:45 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/07 12:38:55 by mchingi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "../../inc/miniRT_atambo.h"
 #include "../../inc/miniRT_mchingi.h"
 
-double ft_atof2_aux(char *dec_str)
+double	ft_atof2_aux(char *dec_str)
 {
 	int		i;
 	double	power;
@@ -22,10 +22,10 @@ double ft_atof2_aux(char *dec_str)
 	i = 0;
 	power = 1.0;
 	while (dec_str[i] && ft_isdigit(dec_str[i]))
-    {
-        power *= 10.0;
-        i++;
-    }
+	{
+		power *= 10.0;
+		i++;
+	}
 	return (power);
 }
 

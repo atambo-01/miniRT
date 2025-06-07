@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mchingi <mchingi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 17:07:27 by mchingi           #+#    #+#             */
-/*   Updated: 2025/05/29 17:07:06 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/07 12:35:37 by mchingi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ int	fill_data(char **scene, t_data *data)
 			ft_putnbr_fd(i + 1, 2);
 			ft_perror(" :", 1);
 			ft_perror("\n\n", 1);
-			ft_perror(scene[i], 1); // Debug
+			ft_perror(scene[i], 1);
 			ft_perror("\n\n", 1);
 			ft_free_array(scene);
 			exit(1);

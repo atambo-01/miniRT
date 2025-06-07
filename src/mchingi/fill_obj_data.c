@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_obj_data.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mchingi <mchingi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 11:38:15 by mchingi           #+#    #+#             */
-/*   Updated: 2025/05/29 01:00:13 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/07 12:36:30 by mchingi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,23 +16,23 @@
 
 int	obj_return(t_data *data, void *ptr)
 {
-	void*	temp;
+	void	*temp;
 
 	free(ptr);
 	ft_free_obj(data->obj);
 	return (0);
 }
 
-void put_obj_tail(t_data *data, t_obj *obj)
+void	put_obj_tail(t_data *data, t_obj *obj)
 {
-	t_obj *temp;
+	t_obj	*temp;
 
 	if (!data->obj)
 		data->obj = obj;
 	else
 	{
 		temp = data->obj;
-		while(temp->next)
+		while (temp->next)
 			temp = temp->next;
 		temp->next = obj;
 	}
@@ -84,7 +84,6 @@ int	sphere_data(t_data *data, char **data_line)
 	put_obj_tail(data, new_sphere);
 	return (1);
 }
-
 
 int	cylinder_data(t_data *data, char **data_line)
 {
