@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 13:33:17 by atambo            #+#    #+#             */
-/*   Updated: 2025/06/06 20:45:56 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/07 07:51:41 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 #include "../../inc/miniRT_atambo.h"
 #include "../../inc/miniRT_mchingi.h"
 
-void	ft_ray_color(t_color *rgb, t_color ray, t_color light, double effect)
+void	ft_ray_color_aux(t_color *rgb, t_color ray, t_color light, double e)
 {
-	rgb->r += (int)(ray.r * (light.r / 255.0) * effect);
-	rgb->g += (int)(ray.g * (light.g / 255.0) * effect);
-	rgb->b += (int)(ray.b * (light.b / 255.0) * effect);
+	rgb->r += (int)(ray.r * (light.r / 255.0) * e);
+	rgb->g += (int)(ray.g * (light.g / 255.0) * e);
+	rgb->b += (int)(ray.b * (light.b / 255.0) * e);
 }
 
 void	ft_ray_color(t_ray *ray, t_data *data, double x, double y)
@@ -34,10 +34,11 @@ void	ft_ray_color(t_ray *ray, t_data *data, double x, double y)
 		if (ft_cmp_dbl(surface, "<", 0))
 			surface = 0.0;
 		dim = data->light.ratio / (1.0 + KAPPA * GAMMA * ray->d * ray->d);
-		ft_ray_color(&rgb, ray->color, data->light.color, dim * surface);
+		ft_ray_color_aux(&rgb, ray->color, data->light.color, dim * surface);
 	}
 	if (ray->obj)
-		ft_ray_color(&rgb, ray->color, data->alight.color, data->alight.ratio);
+		ft_ray_color_aux(&rgb, ray->color,
+			data->alight.color, data->alight.ratio);
 	else
 		rgb = ray->color;
 	rgb.r = (int)fmin(255.0, fmax(0.0, rgb.r));

@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 13:19:57 by mchingi           #+#    #+#             */
-/*   Updated: 2025/06/06 19:58:44 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/07 07:39:53 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,23 +69,23 @@
 # define E_NEEDFILE		"Need a file_path as param\n"
 # define E_ACL			"Duplicate or missing ACL element in scene\n"
 # define E_MISS_ACL		"Missing ACL element in scene\n"
-# define E_SCENE_DATA	"Invalid or missing identifier or wrong number of tokens\n"
+# define E_SCENE_DATA	"Invalid or missing identifier or number of tokens\n"
 # define E_EXPORT		"Export failed, could not create './saved_scene'\n"
 
-typedef struct	s_color
+typedef struct s_color
 {
 	int	r;
 	int	g;
 	int	b;
 }				t_color;
 
-typedef struct	s_vec3
+typedef struct s_vec3
 {
 	double	x;
 	double	y;
 	double	z;
 }				t_vec3;
-typedef struct	s_upscale
+typedef struct s_upscale
 {
 	double	src_x;
 	double	src_y;
@@ -112,7 +112,7 @@ typedef struct	s_upscale
 	int		b11;
 }				t_upscale;
 
-typedef struct	s_neighbor
+typedef struct s_neighbor
 {
 	double	r_sum;
 	double	g_sum;
@@ -127,7 +127,7 @@ typedef struct	s_neighbor
 	int		*p;
 }				t_neighbor;
 
-typedef struct	s_img
+typedef struct s_img
 {
 	void*	ptr;
 	void*	addr;
@@ -138,18 +138,13 @@ typedef struct	s_img
 
 typedef struct s_cam
 {
-	// char	id; // C
-	t_vec3	pos; // x, y, z coordinates of the viewpoint
-	t_vec3	dir; // 3D normalized orientation vector, in the range [-1,1] for each x, y, z axis
-	double		fov; // Horizontal field of view in degrees in the range [0,180]
+	t_vec3	pos;
+	t_vec3	dir;
+	double	fov;
 }		t_cam;
 
-
-//--------  these structs need to be fixed and joined  -------- //
-
-
-typedef struct	s_obj t_obj;
-typedef struct	s_obj
+typedef struct s_obj	t_obj;
+typedef struct s_obj
 {
 	char	*type;
 	t_vec3	pos;
@@ -161,7 +156,7 @@ typedef struct	s_obj
 	t_obj	*next;
 }				t_obj;
 
-typedef struct	s_light
+typedef struct s_light
 {
 	t_vec3	pos;
 	double	radius;
@@ -169,16 +164,16 @@ typedef struct	s_light
 	t_color	color;
 }				t_light;
 
-typedef struct	s_alight
+typedef struct s_alight
 {
 	double	ratio;
 	t_color	color;
 }				t_alight;
 
-typedef struct	s_data
+typedef struct s_data
 {
-	void*			mlx;
-	void*			win;
+	void			*mlx;
+	void			*win;
 	int				fd;
 	t_img			img;
 	t_img			s_img;
@@ -194,7 +189,7 @@ typedef struct	s_data
 	int				focus;
 }				t_data;
 
-typedef struct	s_ray
+typedef struct s_ray
 {
 	t_vec3	o;
 	t_vec3	dir;
@@ -214,4 +209,19 @@ typedef struct	s_ray
 	t_light	*lum;
 }				t_ray;
 
-# endif
+typedef struct s_cy
+{
+	t_vec3	oc;
+	double	dda;
+	double	ocda;
+	t_vec3	proj;
+	t_vec3	oc_proj;
+	double	a;
+	double	b;
+	double	c;
+	double	delta;
+	double	t;
+	double	z;
+}				t_cy;
+
+#endif

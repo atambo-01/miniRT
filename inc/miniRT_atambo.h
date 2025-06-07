@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 22:55:42 by atambo            #+#    #+#             */
-/*   Updated: 2025/06/06 20:17:12 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/06 21:09:28 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,6 @@ int		ft_print_cam(t_cam *cam);
 int		ft_print_light(t_light *lum);
 int		ft_print_alight(t_alight *lum);
 
-
 // print_data.c
 int		ft_print_vec3(t_vec3 *vec);
 int		ft_print_cam(t_cam *cam);
@@ -132,6 +131,8 @@ t_vec3	ft_vec3_add(t_vec3 v1, t_vec3 v2);
 t_vec3	ft_vec3_sub(t_vec3 v1, t_vec3 v2);
 t_vec3	ft_scalar_mult(t_vec3 v1, double r);
 t_vec3	ft_vec3_orthogonal(t_vec3 v);
+int	ft_count_obj(t_obj *obj);
+
 
 // hit_light.c
 t_vec3	ft_vec_ab(t_vec3 *A, t_vec3 *B);
