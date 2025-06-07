@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 02:23:44 by atambo            #+#    #+#             */
-/*   Updated: 2025/06/06 17:37:16 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/07 08:53:06 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,9 @@ t_vec3	ft_scalar_mult(t_vec3 v1, double r)
 	result.y = v1.y * r;
 	result.z = v1.z * r;
 	return (result);
+}
+
+t_vec3	ft_vec3_invert(t_vec3 v)
+{
+	return ((t_vec3){-v.x, -v.y, -v.z});
 }

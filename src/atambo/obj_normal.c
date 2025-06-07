@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 19:03:18 by atambo            #+#    #+#             */
-/*   Updated: 2025/06/06 20:10:38 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/07 08:56:32 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,10 @@ void	ft_plane_normal(t_ray *ray, t_obj *pl)
 {
 	if (!ray || !pl || !ray->lum)
 		return ;
-	ray->n = pl->dir;
+	if (ft_dot(pl->dir, ray->lum->pos) >= 0.0)
+		ray->n = pl->dir;
+	else
+		ray->n = ft_vec3_invert(pl->dir);
 	ray->l = ft_vec3_sub(ray->lum->pos, ray->p);
 	ft_normalize(&ray->n);
 	ft_normalize(&ray->l);

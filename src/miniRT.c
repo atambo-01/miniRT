@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 13:16:08 by mchingi           #+#    #+#             */
-/*   Updated: 2025/05/29 17:15:19 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/07 08:10:21 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,11 @@ int	main(int ac, char **av)
 			mlx_loop (data.mlx);
 		}
 		else 
-			return(ft_minirt_error(E_READFILE, 1));
+			return (ft_minirt_error(E_READFILE, 1));
 	}
 	else if (ac > 1)
-		return(ft_minirt_error(E_PARAM, 1));
+		return (ft_minirt_error(E_PARAM, 1));
 	else
-		return(ft_minirt_error(E_NEEDFILE, 1));
+		return (ft_minirt_error(E_NEEDFILE, 1));
 	return (0);
 }
-
