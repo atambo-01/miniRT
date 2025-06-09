@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 13:19:57 by mchingi           #+#    #+#             */
-/*   Updated: 2025/06/09 19:51:10 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/09 20:06:48 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@
 # define EPSILON	1e-6
 # define KAPPA		0.0001
 # define GAMMA		0.0009
+# define ANGLE		15.0
 
 # define UPSCALE	1
 # define W_WIDTH	1080
