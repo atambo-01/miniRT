@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 19:43:14 by atambo            #+#    #+#             */
-/*   Updated: 2025/06/07 09:04:16 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/09 14:24:26 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_switch_obj_point(t_data *data, int x, int y, t_ray *ray)
 	x = x * ((double)IM_WIDTH / W_WIDTH);
 	y = y * ((double)IM_HEIGHT / W_HEIGHT);
 	ft_init_ray(data, ray);
-	ft_calc_ray(x, y, ray);
+	ft_calc_ray(x, y, ray, &data->cam);
 	ray->dir.z = -1.0;
 	ft_normalize(&(ray->dir));
 	ft_hit_obj(ray, data->obj);

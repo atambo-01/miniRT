@@ -6,7 +6,7 @@
 #    By: atambo <atambo@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/29 12:55:11 by mchingi           #+#    #+#              #
-#    Updated: 2025/06/07 07:53:43 by atambo           ###   ########.fr        #
+#    Updated: 2025/06/09 16:17:28 by atambo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ SOURCES		=	\
 				src/miniRT.c\
 				\
 				src/mchingi/file_management.c\
+				src/mchingi/fill_data_acl.c\
 				src/mchingi/fill_data.c\
 				src/mchingi/fill_obj_data.c\
 				src/mchingi/scene_validations.c\

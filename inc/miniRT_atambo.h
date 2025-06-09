@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 22:55:42 by atambo            #+#    #+#             */
-/*   Updated: 2025/06/07 16:35:28 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/09 16:32:51 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ void	ft_ray_color(t_ray *ray, t_data *data, double x, double y);
 
 // ray.c
 void	ft_init_ray(t_data *data, t_ray *ray);
-void	ft_calc_ray(int x, int y, t_ray *ray);
+void	ft_calc_ray(int x, int y, t_ray *ray, t_cam *cam);
 
 // render_scene.c
 void	ft_hit_obj_2(t_ray *ray, t_obj *obj);
@@ -134,6 +134,7 @@ t_vec3	ft_vec3_orthogonal(t_vec3 v);
 int		ft_count_obj(t_obj *obj);
 t_vec3	ft_vec3_invert(t_vec3 v);
 t_vec3	ft_cross(t_vec3 a, t_vec3 b);
+double	ft_vec3_mag(t_vec3 v);
 
 // hit_light.c
 t_vec3	ft_vec_ab(t_vec3 *A, t_vec3 *B);

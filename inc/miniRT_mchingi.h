@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 13:19:57 by mchingi           #+#    #+#             */
-/*   Updated: 2025/05/29 13:50:36 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/09 16:59:15 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,13 @@ int		fill_data(char **scene, t_data *data);
 int		fill_color(char *color_data, t_color *color);
 int		fill_coordinate(char *coordinate_data, t_vec3 *coordinates);
 int		fill_normalized_vector(char *data, t_vec3 *direction);
+
+int		ambient_data(t_alight *amb, char **data);
+void	ft_cam_right(t_cam *cam);
+void	ft_cam_up(t_cam *cam);
+int		camera_data(t_cam *cam, char **data);
+int		light_data(t_light *light, char **data);
+
 
 int		sphere_data(t_data *data, char **data_line);
 int		plane_data(t_data *data, char **data_line);
