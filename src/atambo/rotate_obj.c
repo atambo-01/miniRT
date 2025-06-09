@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rotate.c                                           :+:      :+:    :+:   */
+/*   rotate_obj.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 19:22:49 by atambo            #+#    #+#             */
-/*   Updated: 2025/06/06 20:49:28 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/09 18:56:15 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	ft_rotate_obj_z(int key, t_obj *obj)
 		obj->u.x = tmp_uz * cos(angle) - obj->u.y * sin(angle);
 		obj->u.y = tmp_uz * sin(angle) + obj->u.y * cos(angle);
 	}
-	else if (key == 'm' || key == NUMPAD_3)
+	else
 	{
 		obj->dir.x = tmp_z * cos(angle) + obj->dir.y * sin(angle);
 		obj->dir.y = -tmp_z * sin(angle) + obj->dir.y * cos(angle);
@@ -57,7 +57,7 @@ void	ft_rotate_obj_y(int key, t_obj *obj)
 		obj->u.x = tmp_ux * cos(angle) - obj->u.z * sin(angle);
 		obj->u.z = tmp_ux * sin(angle) + obj->u.z * cos(angle);
 	}
-	else if (key == 'j' || key == NUMPAD_6)
+	else
 	{
 		obj->dir.x = tmp_x * cos(angle) + obj->dir.z * sin(angle);
 		obj->dir.z = -tmp_x * sin(angle) + obj->dir.z * cos(angle);
@@ -84,7 +84,7 @@ void	ft_rotate_obj_x(int key, t_obj *obj)
 		obj->u.y = tmp_uy * cos(angle) - obj->u.z * sin(angle);
 		obj->u.z = tmp_uy * sin(angle) + obj->u.z * cos(angle);
 	}
-	else if (key == 'u' || key == NUMPAD_9)
+	else
 	{
 		obj->dir.y = tmp_y * cos(angle) + obj->dir.z * sin(angle);
 		obj->dir.z = -tmp_y * sin(angle) + obj->dir.z * cos(angle);
@@ -99,35 +99,10 @@ void	ft_rotate_obj(int key, t_obj *obj)
 {
 	if (!obj)
 		return ;
-	ft_rotate_obj_x(key, obj);
-	ft_rotate_obj_y(key, obj);
-	ft_rotate_obj_z(key, obj);
-	ft_normalize(&obj->dir);
-	ft_normalize(&obj->u);
-	ft_print_vec3(&obj->dir);
-}
-
-void	ft_rotate_cam(int keycode, t_data *data)
-{
-	double	tmp;
-
-	if (keycode == 113)
-	{
-		tmp = data->cam.dir.x;
-		data->cam.dir.x = tmp * cos(0.1) + data->cam.dir.z * sin(0.1);
-		data->cam.dir.z = -tmp * sin(0.1) + data->cam.dir.z * cos(0.1);
-	}
-	if (keycode == 'q')
-	{
-		tmp = data->cam.dir.x;
-		data->cam.dir.x = tmp * cos(0.157) + data->cam.dir.z * sin(0.157);
-		data->cam.dir.z = -tmp * sin(0.157) + data->cam.dir.z * cos(0.157);
-	}
-	if (keycode == 'e')
-	{
-		tmp = data->cam.dir.x;
-		data->cam.dir.x = tmp * cos(-0.157) + data->cam.dir.z * sin(-0.157);
-		data->cam.dir.z = -tmp * sin(-0.157) + data->cam.dir.z * cos(-0.157);
-	}
-	ft_normalize(&data->cam.dir);
+	if (key == 't' || key == NUMPAD_7 || key == 'u' || key == NUMPAD_9)
+		ft_rotate_obj_x(key, obj);
+	else if (key == 'g' || key == NUMPAD_4 || key == 'j' || key == NUMPAD_6)
+		ft_rotate_obj_y(key, obj);
+	if (key == 'b' || key == NUMPAD_1 || key == 'm' || key == NUMPAD_3)
+		ft_rotate_obj_z(key, obj);
 }

@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 22:55:42 by atambo            #+#    #+#             */
-/*   Updated: 2025/06/09 16:32:51 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/09 19:21:25 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ int		ft_init_data(t_data *data, int fd);
 
 // input.c
 int		ft_key_hook(int keycode, t_data *data);
-void	ft_switch_obj(t_data *data, int x, int y);
 int		ft_mouse_hook(int button, int x, int y, t_data *data);
 
 // input_util.c
@@ -65,11 +64,12 @@ void	ft_rotate_obj_z(int key, t_obj *obj);
 void	ft_rotate_obj_y(int key, t_obj *obj);
 void	ft_rotate_obj_x(int key, t_obj *obj);
 void	ft_rotate_obj(int key, t_obj *obj);
-void	ft_rotate_cam(int keycode, t_data *data);
+void 	ft_rotate_cam(int key, t_cam *cam);
+
 
 // switch.c
-void	ft_switch_obj_point(t_data *data, int x, int y, t_ray *ray);
-void	ft_switch_obj(t_data *data, int x, int y);
+void	ft_switch_obj_point(t_data *data, int x, int y);
+void	ft_switch_obj(t_data *data);
 
 // move_obj.c
 void	ft_move_x(t_data *data, double i);

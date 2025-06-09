@@ -6,7 +6,7 @@
 #    By: atambo <atambo@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/29 12:55:11 by mchingi           #+#    #+#              #
-#    Updated: 2025/06/09 16:17:28 by atambo           ###   ########.fr        #
+#    Updated: 2025/06/09 18:53:40 by atambo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,8 @@ SOURCES		=	\
 				src/atambo/upscale_assign.c\
 				src/atambo/render_scene.c\
 				src/atambo/input.c\
-				src/atambo/rotate.c\
+				src/atambo/rotate_cam.c\
+				src/atambo/rotate_obj.c\
 				src/atambo/move.c\
 				src/atambo/switch.c\
 				src/atambo/color_switch.c\

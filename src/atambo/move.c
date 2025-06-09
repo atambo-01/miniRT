@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 19:25:39 by atambo            #+#    #+#             */
-/*   Updated: 2025/06/07 09:05:37 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/09 19:15:54 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,54 +16,69 @@
 
 void	ft_move_x(t_data *data, double i)
 {
+	t_vec3	temp;
+
+	if (!data)
+		return ;
+	temp = ft_scalar_mult(data->cam.right, i);
 	if (data->curr)
 	{
-		data->curr->pos.x += i;
+		data->curr->pos = ft_vec3_add(data->curr->pos, temp);
 		if (data->focus)
-			data->cam.pos.x += i;
+			data->cam.pos = ft_vec3_add(data->curr->pos, temp);
 	}
 	else if (data->curr_light)
 	{
-		data->curr_light->pos.x += i;
+		data->curr_light->pos = ft_vec3_add(data->curr->pos, temp);
 		if (data->focus)
-			data->cam.pos.x += i;
+			data->cam.pos = ft_vec3_add(data->curr->pos, temp);
 	}
 	else
-		data->cam.pos.x += i;
+		data->cam.pos = ft_vec3_add(data->cam.pos, temp);
 }
 
 void	ft_move_y(t_data *data, double i)
 {
+	t_vec3	temp;
+
+	if (!data)
+		return ;
+	temp = ft_scalar_mult(data->cam.up, i);
 	if (data->curr)
 	{
-		data->curr->pos.y += i;
+		data->curr->pos = ft_vec3_add(data->curr->pos, temp);
 		if (data->focus)
-			data->cam.pos.y += i;
+			data->cam.pos = ft_vec3_add(data->curr->pos, temp);
 	}
 	else if (data->curr_light)
 	{
-		data->curr_light->pos.y += i;
+		data->curr_light->pos = ft_vec3_add(data->curr->pos, temp);
 		if (data->focus)
-			data->cam.pos.y += i;
+			data->cam.pos = ft_vec3_add(data->curr->pos, temp);
 	}
 	else
-		data->cam.pos.y += i;
+		data->cam.pos = ft_vec3_add(data->cam.pos, temp);
 }
 
 void	ft_move_z(t_data *data, double i)
 {
+	t_vec3	temp;
+
+	if (!data)
+		return ;
+	temp = ft_scalar_mult(data->cam.dir, i);
 	if (data->curr)
 	{
-		data->curr->pos.z += i;
+		data->curr->pos = ft_vec3_add(data->curr->pos, temp);
 		if (data->focus)
-			data->cam.pos.z += i;
+			data->cam.pos = ft_vec3_add(data->curr->pos, temp);
 	}
 	else if (data->curr_light)
 	{
-		data->curr_light->pos.z += i;
+		data->curr_light->pos = ft_vec3_add(data->curr->pos, temp);
 		if (data->focus)
-			data->cam.pos.z += i;
+			data->cam.pos = ft_vec3_add(data->curr->pos, temp);
 	}
 	else
-		data->cam.pos.z += i;
+		data->cam.pos = ft_vec3_add(data->cam.pos, temp);
 }

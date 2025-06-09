@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 13:19:57 by mchingi           #+#    #+#             */
-/*   Updated: 2025/06/07 16:29:21 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/09 19:51:10 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,10 @@
 # define TAB		65289
 # define SHIFT		65505
 # define ESC		65307
-# define UP			65363
-# define DOWN		65361
-# define LEFT		65362
-# define RIGHT		65364
+# define UP			65362
+# define DOWN		65364
+# define LEFT		65361
+# define RIGHT		65363
 # define NUMPAD_1	65436
 # define NUMPAD_3	65435
 # define NUMPAD_4	65430

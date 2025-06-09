@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 01:38:57 by atambo            #+#    #+#             */
-/*   Updated: 2025/06/07 09:36:22 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/09 19:30:36 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	ft_key_hook_3(int key, t_data *data)
 int	ft_key_hook_2(int key, t_data *data)
 {
 	if (key == 32)
-		ft_switch_obj(data, -42.0, -42.0);
+		ft_switch_obj(data);
 	else if (key == 'i')
 		ft_obj_size(key, data, 25.0);
 	else if (key == 'k')
@@ -76,7 +76,7 @@ int	ft_key_hook(int key, t_data *data)
 		ft_move_x(data, +1.0);
 	else
 		ft_key_hook_2(key, data);
-	ft_rotate_cam(key, data);
+	ft_rotate_cam(key, &data->cam);
 	ft_rotate_obj(key, data->curr);
 	ft_print_data(data);
 	ft_render_and_upscale(data, UPSCALE);
@@ -91,7 +91,7 @@ int	ft_mouse_hook(int button, int x, int y, t_data *data)
 	if (button == 5)
 		ft_move_z(data, -1.0);
 	if (button == 1)
-		ft_switch_obj(data, x, y);
+		ft_switch_obj_point(data, x, y);
 	ft_print_data(data);
 	ft_render_and_upscale(data, UPSCALE);
 	printf("mouse_hook = %d\n", button);
