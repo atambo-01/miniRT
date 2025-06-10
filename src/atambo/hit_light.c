@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 12:21:37 by atambo            #+#    #+#             */
-/*   Updated: 2025/06/06 19:03:23 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/10 19:32:45 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ void	ft_light_assign(double t, t_ray *ray, t_light *lum)
 		|| ft_cmp_dbl(ray->t, "<", 0.0))
 	{
 		ray->t = t;
-		ray->color = lum->color;
 		ray->obj = NULL;
 	}
 }

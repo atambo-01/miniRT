@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 13:33:17 by atambo            #+#    #+#             */
-/*   Updated: 2025/06/07 11:04:12 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/10 19:32:30 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	ft_ray_color(t_ray *ray, t_data *data, double x, double y)
 	double	surface;
 
 	rgb = (t_color){0, 0, 0};
-	if (ray->d >= 0)
+	if (ray->obj && ray->d >= 0)
 	{
 		surface = ft_dot(ray->n, ray->l);
 		if (ft_dot(ray->n, ray->l))
@@ -36,13 +36,13 @@ void	ft_ray_color(t_ray *ray, t_data *data, double x, double y)
 		if (ft_cmp_dbl(surface, "<", 0))
 			surface = 0.0;
 		dim = data->light.ratio / (1.0 + KAPPA * GAMMA * ray->d * ray->d);
-		ft_ray_color_aux(&rgb, ray->color, data->light.color, dim * surface);
+		ft_ray_color_aux(&rgb, ray->obj->color, data->light.color, dim * surface);
 	}
 	if (ray->obj)
-		ft_ray_color_aux(&rgb, ray->color,
+		ft_ray_color_aux(&rgb, ray->obj->color,
 			data->alight.color, data->alight.ratio);
-	else
-		rgb = ray->color;
+	else if (ray->lum)
+		rgb = ray->lum->color;
 	rgb.r = (int)fmin(255.0, fmax(0.0, rgb.r));
 	rgb.g = (int)fmin(255.0, fmax(0.0, rgb.g));
 	rgb.b = (int)fmin(255.0, fmax(0.0, rgb.b));

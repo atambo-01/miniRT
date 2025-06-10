@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 20:22:34 by atambo            #+#    #+#             */
-/*   Updated: 2025/06/10 15:08:49 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/10 19:31:56 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ void ft_calc_ray(int x, int y, t_ray *ray, t_cam *cam)
 
     // Initialize other ray properties
     ray->obj = NULL;
-    ray->color = (t_color){0, 0, 0};
     ray->t = -1.0;
     ray->d = 0.0;
     ray->n = (t_vec3){1.0, 0.0, 0.0}; // Default normal (may be unused)

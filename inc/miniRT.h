@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 13:19:57 by mchingi           #+#    #+#             */
-/*   Updated: 2025/06/10 13:52:28 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/10 19:30:13 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -206,7 +206,6 @@ typedef struct s_ray
 	double	t;
 	double	d;
 	t_vec3	p;
-	t_color	color;
 	t_vec3	n;
 	t_vec3	l;
 	t_obj	*obj;
