@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 13:19:57 by mchingi           #+#    #+#             */
-/*   Updated: 2025/06/09 20:06:48 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/10 13:52:28 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,6 +190,7 @@ typedef struct s_data
 	struct timeval	start;
 	struct timeval	end;
 	int				focus;
+	int				ray_info;
 }				t_data;
 
 typedef struct s_ray

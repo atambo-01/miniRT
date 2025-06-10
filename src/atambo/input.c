@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 01:38:57 by atambo            #+#    #+#             */
-/*   Updated: 2025/06/09 19:30:36 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/10 13:51:05 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,13 @@ int	ft_key_hook_2(int key, t_data *data)
 		ft_export_scene(data);
 	else if (key == TAB || key == SHIFT)
 		ft_color_switch(data, key);
+	else if (key == 'r')
+	{
+		if (data->ray_info)
+			data->ray_info = 0;
+		else
+			data->ray_info = 1;
+	}
 	else
 		ft_key_hook_3(key, data);
 	return (0);
@@ -91,7 +98,11 @@ int	ft_mouse_hook(int button, int x, int y, t_data *data)
 	if (button == 5)
 		ft_move_z(data, -1.0);
 	if (button == 1)
+	{
 		ft_switch_obj_point(data, x, y);
+		if (data->ray_info)
+			ft_ray_info(x, y, data);
+	}
 	ft_print_data(data);
 	ft_render_and_upscale(data, UPSCALE);
 	printf("mouse_hook = %d\n", button);
