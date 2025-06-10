@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 19:25:39 by atambo            #+#    #+#             */
-/*   Updated: 2025/06/10 12:55:26 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/10 15:18:25 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,13 @@ void	ft_move_x(t_data *data, double i)
 	{
 		data->curr->pos = ft_vec3_add(data->curr->pos, temp);
 		if (data->focus)
-			data->cam.pos = ft_vec3_add(data->curr->pos, temp);
+			data->cam.pos = ft_vec3_add(data->cam.pos, temp);
 	}
 	else if (data->curr_light)
 	{
 		data->curr_light->pos = ft_vec3_add(data->curr_light->pos, temp);
 		if (data->focus)
-			data->cam.pos = ft_vec3_add(data->curr_light->pos, temp);
+			data->cam.pos = ft_vec3_add(data->cam.pos, temp);
 	}
 	else
 		data->cam.pos = ft_vec3_add(data->cam.pos, temp);
@@ -48,13 +48,13 @@ void	ft_move_y(t_data *data, double i)
 	{
 		data->curr->pos = ft_vec3_add(data->curr->pos, temp);
 		if (data->focus)
-			data->cam.pos = ft_vec3_add(data->curr->pos, temp);
+			data->cam.pos = ft_vec3_add(data->cam.pos, temp);
 	}
 	else if (data->curr_light)
 	{
 		data->curr_light->pos = ft_vec3_add(data->curr_light->pos, temp);
 		if (data->focus)
-			data->cam.pos = ft_vec3_add(data->curr_light->pos, temp);
+			data->cam.pos = ft_vec3_add(data->cam.pos, temp);
 	}
 	else
 		data->cam.pos = ft_vec3_add(data->cam.pos, temp);
@@ -71,13 +71,13 @@ void	ft_move_z(t_data *data, double i)
 	{
 		data->curr->pos = ft_vec3_add(data->curr->pos, temp);
 		if (data->focus)
-			data->cam.pos = ft_vec3_add(data->curr->pos, temp);
+			data->cam.pos = ft_vec3_add(data->cam.pos, temp);
 	}
 	else if (data->curr_light)
 	{
 		data->curr_light->pos = ft_vec3_add(data->curr_light->pos, temp);
 		if (data->focus)
-			data->cam.pos = ft_vec3_add(data->curr_light->pos, temp);
+			data->cam.pos = ft_vec3_add(data->cam.pos, temp);
 	}
 	else
 		data->cam.pos = ft_vec3_add(data->cam.pos, temp);

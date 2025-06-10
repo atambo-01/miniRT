@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 01:38:57 by atambo            #+#    #+#             */
-/*   Updated: 2025/06/10 13:51:05 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/10 14:25:29 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,11 @@ int	ft_mouse_hook(int button, int x, int y, t_data *data)
 	{
 		ft_switch_obj_point(data, x, y);
 		if (data->ray_info)
+		{
 			ft_ray_info(x, y, data);
+			printf("mouse_hook = %d\n", button);
+			return (0);
+		}
 	}
 	ft_print_data(data);
 	ft_render_and_upscale(data, UPSCALE);
