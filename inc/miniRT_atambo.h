@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 22:55:42 by atambo            #+#    #+#             */
-/*   Updated: 2025/06/10 13:50:37 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/12 12:48:20 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,8 @@ int		ft_mouse_hook(int button, int x, int y, t_data *data);
 
 // input_util.c
 int		ft_close_window(t_data *data);
-void	ft_obj_size(int key, t_data *data, double i);
+void	ft_obj_radius(t_data *data, double i);
+void	ft_obj_len(t_data *data, double i);
 
 // rotate_obj.c
 void	ft_rotate_obj_z(int key, t_obj *obj);

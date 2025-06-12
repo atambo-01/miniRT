@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 01:38:57 by atambo            #+#    #+#             */
-/*   Updated: 2025/06/10 14:25:29 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/12 12:49:42 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 int	ft_key_hook_3(int key, t_data *data)
 {
-	if (key == '`')
+	if (key == 'l')
 	{
 		if (data->curr_light)
 			data->curr_light = NULL;
@@ -40,14 +40,14 @@ int	ft_key_hook_2(int key, t_data *data)
 {
 	if (key == 32)
 		ft_switch_obj(data);
-	else if (key == 'i')
-		ft_obj_size(key, data, 25.0);
-	else if (key == 'k')
-		ft_obj_size(key, data, -25.0);
-	else if (key == 'o')
-		ft_obj_size(key, data, 25.0);
-	else if (key == 'l')
-		ft_obj_size(key, data, -25.0);
+	else if (key == '1')
+		ft_obj_radius(data, 25.0);
+	else if (key == '2')
+		ft_obj_radius(data, -25.0);
+	else if (key == '3')
+		ft_obj_len(data, 25.0);
+	else if (key == '4')
+		ft_obj_len(data, -25.0);
 	else if (key == '0')
 		ft_export_scene(data);
 	else if (key == TAB || key == SHIFT)

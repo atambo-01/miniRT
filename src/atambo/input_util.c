@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 21:17:13 by atambo            #+#    #+#             */
-/*   Updated: 2025/06/06 19:40:05 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/12 12:48:30 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,16 @@ int	ft_close_window(t_data *data)
 	exit(0);
 }
 
-void	ft_obj_size(int key, t_data *data, double i)
+void	ft_obj_radius(t_data *data, double i)
 {
 	if (!data->curr)
 		return ;
-	if (key == 'i' || key == 'k')
-		data->curr->radius += (i / 100) * data->curr->radius;
-	else if (key == 'o' || key == 'l')
-		data->curr->len += (i / 100) * data->curr->radius;
+	data->curr->radius += (i / 100) * data->curr->radius;
+}
+
+void	ft_obj_len(t_data *data, double i)
+{
+	if (!data->curr)
+		return ;
+	data->curr->len += (i / 100) * data->curr->radius;
 }
