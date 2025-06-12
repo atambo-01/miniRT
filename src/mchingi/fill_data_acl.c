@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 16:17:04 by atambo            #+#    #+#             */
-/*   Updated: 2025/06/09 17:12:38 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/12 19:38:41 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ void	ft_cam_right(t_cam *cam)
 			world_up = alt_up;
 		else
 			world_up = (t_vec3){1.0, 0.0, 0.0};
-
 	}
 	cam->right = ft_cross(world_up, cam->dir);
 	ft_normalize(&cam->right);

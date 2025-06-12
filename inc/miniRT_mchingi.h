@@ -6,14 +6,14 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 13:19:57 by mchingi           #+#    #+#             */
-/*   Updated: 2025/06/09 16:59:15 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/12 20:01:18 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINIRT_MCHINGI_H
 # define MINIRT_MCHINGI_H
 
-# include	"./miniRT.h"
+# include "./miniRT.h"
 
 // ----------------------- FILE MANAGEMENT --------------------------------/
 int		open_file(char *file_name);
@@ -31,7 +31,6 @@ void	ft_cam_up(t_cam *cam);
 int		camera_data(t_cam *cam, char **data);
 int		light_data(t_light *light, char **data);
 
-
 int		sphere_data(t_data *data, char **data_line);
 int		plane_data(t_data *data, char **data_line);
 int		cylinder_data(t_data *data, char **data_line);
@@ -47,13 +46,10 @@ void	ft_error(char *str);
 // double	ft_atof2(char *str);
 char	**remove_char(char **array);
 // --------------------------- DEBUG ----------------------------------/
-void 	print_debug_sp(t_obj *obj);
-void 	print_debug_pl(t_obj *obj);
-void 	print_debug_cy(t_obj *obj);
-void 	print_debug_obj(t_obj *obj);
-void 	print_debug_info(t_data data);
-
-
-
+void	print_debug_sp(t_obj *obj);
+void	print_debug_pl(t_obj *obj);
+void	print_debug_cy(t_obj *obj);
+void	print_debug_obj(t_obj *obj);
+void	print_debug_info(t_data data);
 
 #endif

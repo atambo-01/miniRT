@@ -1,4 +1,16 @@
-# include "libft.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_split2.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/12 20:02:50 by atambo            #+#    #+#             */
+/*   Updated: 2025/06/12 20:03:29 by atambo           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
 
 static int	ft_wordcount(char const *s)
 {
@@ -76,7 +88,7 @@ char	**ft_split2(char const *s)
 		if (s[i] != '\0')
 		{
 			arr[++j] = ft_getword(s, i);
-			i += ft_wordlen(s, i); // Skip the entire word
+			i += ft_wordlen(s, i);
 		}
 		while (ft_isspace(s[i]) && s[i] != '\0')
 			i++;

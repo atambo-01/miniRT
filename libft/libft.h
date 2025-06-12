@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:54:02 by mchingi           #+#    #+#             */
-/*   Updated: 2025/05/23 14:14:54 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/12 20:03:42 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,4 @@ int		ft_perror(char const *msg, int e);
 void	ft_putstr(char const *str);
 void	*ft_malloc(size_t size);
 int		ft_strcmp(const char *s1, const char *s2);
-
-
 #endif

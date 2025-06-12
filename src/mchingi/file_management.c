@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   file_management.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchingi <mchingi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 13:26:05 by mchingi           #+#    #+#             */
-/*   Updated: 2025/06/07 12:34:51 by mchingi          ###   ########.fr       */
+/*   Updated: 2025/06/12 19:31:03 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ int	open_file(char *file_name)
 	char	buffer[1];
 
 	fd = -1;
-	if (!ft_strrchr(file_name, '.') || \
-		(ft_strncmp(ft_strrchr(file_name, '.'), ".rt", 4)))
+	if (!ft_strrchr(file_name, '.')
+		|| (ft_strncmp(ft_strrchr(file_name, '.'), ".rt", 4)))
 	{
 		ft_minirt_error(E_EXTENSION, 1);
 		exit (1);

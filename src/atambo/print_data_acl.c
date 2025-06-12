@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 20:15:24 by atambo            #+#    #+#             */
-/*   Updated: 2025/06/09 17:03:08 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/12 19:41:00 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ void	ft_print_t_color(t_color color)
 
 int	ft_print_cam(t_cam *cam)
 {
-	printf("Camera:\n");
-	printf("  Pos:\t");
+	printf("Camera:\n"
+		"  Pos:\t");
 	ft_print_vec3(&cam->pos);
 	printf("  Dir:\t");
 	ft_print_vec3(&cam->dir);
@@ -36,8 +36,8 @@ int	ft_print_cam(t_cam *cam)
 
 int	ft_print_light(t_light *lum)
 {
-	printf("Light:\n");
-	printf("  Pos:\t");
+	printf("Light:\n"
+		"  Pos:\t");
 	ft_print_vec3(&lum->pos);
 	printf("  Ratio:\t%.2f%%\n", lum->ratio * 100);
 	printf("  Radius:\t%.2f\n", lum->radius);
@@ -47,8 +47,8 @@ int	ft_print_light(t_light *lum)
 
 int	ft_print_alight(t_alight *lum)
 {
-	printf("Ambient_Light:\n");
-	printf("  Ratio:\t%.2f%%\n", lum->ratio * 100);
+	printf("Ambient_Light:\n"
+		"  Ratio:\t%.2f%%\n", lum->ratio * 100);
 	ft_print_t_color(lum->color);
 	return (0);
 }

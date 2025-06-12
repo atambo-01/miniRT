@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 20:15:19 by atambo            #+#    #+#             */
-/*   Updated: 2025/06/10 14:15:56 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/12 19:45:44 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,16 @@
 
 int	ft_print_obj(t_obj *obj)
 {
-	printf("Object:\n");
-	printf("  Type:\t\t%s\n", obj->type);
-	printf("  pos:\t");
+	printf("Object:\n"
+		"  Type:\t\t%s\n"
+		"  pos:\t", obj->type);
 	ft_print_vec3(&obj->pos);
 	printf("  Dir:\t");
 	ft_print_vec3(&obj->dir);
 	printf("  U:\t");
 	ft_print_vec3(&obj->u);
-	printf("  Radius:\t%.2f\n", obj->radius);
-	printf("  Length:\t%.2f\n", obj->len);
+	printf("  Radius:\t%.2f\n"
+		"  Length:\t%.2f\n", obj->radius, obj->len);
 	ft_print_t_color(obj->color);
 	return (0);
 }
@@ -47,9 +47,9 @@ int	ft_print_data(t_data *data)
 	printf("obj_count = \t%d\n", ft_count_obj(data->obj));
 	if (data->curr)
 		ft_print_obj(data->curr);
-	printf("-----------------------------------------\n");
-	printf(" Focus = %d\n", data->focus);
-	printf(" Curr = %p\n", data->curr);
-	printf(" Curr_ligth = %p\n", data->curr_light);
+	printf("-----------------------------------------\n"
+		" Focus = %d\n"
+		" Curr = %p\n"
+		" Curr_ligth = %p\n", data->focus, data->curr, data->curr_light);
 	return (0);
 }

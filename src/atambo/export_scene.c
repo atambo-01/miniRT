@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 08:47:48 by atambo            #+#    #+#             */
-/*   Updated: 2025/06/06 17:10:06 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/12 19:48:57 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,9 @@ void	ft_export_scene(t_data *data)
 	ft_write_obj(data->obj, fd);
 	close(fd);
 	system("clear");
-	printf("-----------------------------------------\n");
-	printf("Scene saved in ./saved_scene.rt\n");
-	printf("-----------------------------------------\n");
+	printf(
+		"-----------------------------------------"
+		"Scene saved in ./saved_scene.rt\n"
+		"-----------------------------------------\n");
 	ft_sleep(2);
 }

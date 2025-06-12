@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atof.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchingi <mchingi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 19:52:25 by mchingi           #+#    #+#             */
-/*   Updated: 2025/05/20 19:53:26 by mchingi          ###   ########.fr       */
+/*   Updated: 2025/06/12 20:02:24 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-double ft_atof2_aux(char *dec_str)
+double	ft_atof2_aux(char *dec_str)
 {
 	int		i;
 	double	power;
@@ -20,10 +20,10 @@ double ft_atof2_aux(char *dec_str)
 	i = 0;
 	power = 1.0;
 	while (dec_str[i] && ft_isdigit(dec_str[i]))
-    {
-        power *= 10.0;
-        i++;
-    }
+	{
+		power *= 10.0;
+		i++;
+	}
 	return (power);
 }
 

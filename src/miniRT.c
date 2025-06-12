@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 13:16:08 by mchingi           #+#    #+#             */
-/*   Updated: 2025/06/07 08:10:21 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/12 19:30:24 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	main(int ac, char **av)
 			mlx_hook(data.win, 17, 0, ft_exit_minirt, &data);
 			mlx_loop (data.mlx);
 		}
-		else 
+		else
 			return (ft_minirt_error(E_READFILE, 1));
 	}
 	else if (ac > 1)

@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 22:55:42 by atambo            #+#    #+#             */
-/*   Updated: 2025/06/10 13:50:37 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/12 20:00:54 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,7 @@ void	ft_rotate_obj_z(int key, t_obj *obj);
 void	ft_rotate_obj_y(int key, t_obj *obj);
 void	ft_rotate_obj_x(int key, t_obj *obj);
 void	ft_rotate_obj(int key, t_obj *obj);
-void 	ft_rotate_cam(int key, t_cam *cam);
-
+void	ft_rotate_cam(int key, t_cam *cam);
 
 // switch.c
 void	ft_switch_obj_point(t_data *data, int x, int y);
