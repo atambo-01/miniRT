@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 13:26:05 by mchingi           #+#    #+#             */
-/*   Updated: 2025/06/12 19:31:03 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/13 12:25:59 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ int	file_management(char *file_name, t_data *data)
 	fd = open_file(file_name);
 	if (fd < 0)
 		return (-1);
+	ft_init_data(data, fd);
 	arr_size = count_lines(fd);
 	arr = extract_lines(file_name, arr_size);
 	validate_scene(arr, arr_size);
