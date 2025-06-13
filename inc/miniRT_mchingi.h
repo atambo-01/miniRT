@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 13:19:57 by mchingi           #+#    #+#             */
-/*   Updated: 2025/06/13 18:18:06 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/13 20:19:04 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ int		light_data(t_light *light, char **data);
 int		sphere_data(t_data *data, char **data_line);
 int		plane_data(t_data *data, char **data_line);
 int		cylinder_data(t_data *data, char **data_line);
-
 
 // --------------------------- UTILS ----------------------------------/
 void	ft_error(char *str);

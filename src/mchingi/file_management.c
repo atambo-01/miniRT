@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 13:26:05 by mchingi           #+#    #+#             */
-/*   Updated: 2025/06/13 20:15:41 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/13 20:16:50 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,9 @@ int	open_file(char *file_name)
 	char	buffer[1];
 
 	fd = -1;
-	if (!(ft_strrchr(file_name, '.')) || (ft_strrchr(file_name, '.') == strchr(file_name, '.')) || (ft_strncmp(ft_strrchr(file_name, '.'), ".rt", 4)))
+	if (!(ft_strrchr(file_name, '.'))
+		|| (ft_strrchr(file_name, '.') == strchr(file_name, '.'))
+		|| (ft_strncmp(ft_strrchr(file_name, '.'), ".rt", 4)))
 	{
 		ft_minirt_error(E_EXTENSION, 1);
 		exit (1);

@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 17:08:11 by mchingi           #+#    #+#             */
-/*   Updated: 2025/06/13 15:30:29 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/13 20:18:29 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,4 +98,3 @@ int	fill_normalized_vector(char *data, t_vec3 *direction)
 	ft_free_array(xyz);
 	return (threed_n_o_range(direction->x, direction->y, direction->z));
 }
-

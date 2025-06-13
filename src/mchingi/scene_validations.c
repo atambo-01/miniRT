@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 14:42:01 by mchingi           #+#    #+#             */
-/*   Updated: 2025/06/13 15:49:04 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/13 20:18:41 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	check_acl_aux(int *acl, char **arr, int i)
 		ft_perror(":\n", 1);
 		ft_perror(arr[i], 1);
 		ft_perror("\n", 1);
-	}	
+	}
 	else if (acl[1] != 1)
 		ft_minirt_error(E_CAM, 1);
 	else

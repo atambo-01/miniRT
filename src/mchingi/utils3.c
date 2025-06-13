@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 17:08:11 by mchingi           #+#    #+#             */
-/*   Updated: 2025/06/13 19:02:02 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/13 20:18:03 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ int	ft_fill_fov(t_cam *cam, char **data_line, int i)
 	}
 	return (0);
 }
-
 
 static int	validate_double(char *token)
 {

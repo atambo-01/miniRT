@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 22:55:42 by atambo            #+#    #+#             */
-/*   Updated: 2025/06/13 16:45:18 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/13 20:19:23 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,7 +137,6 @@ void	ft_init_neighbor(t_upscale *up, t_neighbor *nb);
 
 // upscale_img.c
 void	ft_upscale_img(t_data *data);
-
 
 // hit_light.c
 t_vec3	ft_vec_ab(t_vec3 *A, t_vec3 *B);
