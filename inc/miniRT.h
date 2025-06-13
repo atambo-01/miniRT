@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 13:19:57 by mchingi           #+#    #+#             */
-/*   Updated: 2025/06/13 12:12:24 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/13 20:03:03 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@
 
 // error msgs
 # define E_READFILE		"Error reading file\n"
-# define E_EXTENSION	"Wrong file extension, need a '.rt' file\n"
+# define E_EXTENSION	"Bad file extension, need a '.rt' file\n"
 # define E_PARAM		"Too many params, only need one file_path\n"
 # define E_NEEDFILE		"Need a file_path as param\n"
 # define E_ACL			"Duplicate ACL element in scene\n"
@@ -73,6 +73,13 @@
 # define E_MISS_ACL		"Missing ACL element in scene\n"
 # define E_SCENE_DATA	"Invalid or missing identifier or number of tokens\n"
 # define E_EXPORT		"Export failed, could not create './saved_scene'\n"
+// fill_data_error
+# define E_COOR		"Coordinates must be 3 numbers separated by commas only"
+# define E_VECT		"Vectors must be 3 numbers separated by commas only"
+# define E_VNORM	"Vectors must be normalized, in the range [-1,1]"
+# define E_RADLEN	"Radii and heights must be greater than 0"
+# define E_COLOR	"Colors must be in the range [0-255]"
+# define E_FOV		"FOV must must be in degrees in the range [0,180]"
 
 typedef struct s_color
 {

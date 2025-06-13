@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils3.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchingi <mchingi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/23 13:03:23 by mchingi           #+#    #+#             */
-/*   Updated: 2025/06/07 12:38:55 by mchingi          ###   ########.fr       */
+/*   Created: 2025/05/07 17:08:11 by mchingi           #+#    #+#             */
+/*   Updated: 2025/06/13 19:02:02 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,46 +14,74 @@
 #include "../../inc/miniRT_atambo.h"
 #include "../../inc/miniRT_mchingi.h"
 
-double	ft_atof2_aux(char *dec_str)
+int	ft_fill_radius(t_obj *obj, char **data_line, int i)
 {
-	int		i;
-	double	power;
-
-	i = 0;
-	power = 1.0;
-	while (dec_str[i] && ft_isdigit(dec_str[i]))
+	if (!obj)
+		return (1);
+	obj->radius = atof(data_line[i]) / 2;
+	if (ft_strcmp(obj->type, "cy") == 0)
+		obj->len = atof(data_line[i + 1]);
+	if (ft_cmp_dbl(obj->radius, "<", 0) || ft_cmp_dbl(obj->len, "<", 0))
 	{
-		power *= 10.0;
-		i++;
+		ft_minirt_error("Parsing error\n", 1);
+		ft_perror(E_RADLEN, 1);
+		return (1);
 	}
-	return (power);
+	return (0);
 }
 
-double	ft_atof2(char *str)
+int	ft_fill_fov(t_cam *cam, char **data_line, int i)
 {
-	int		int_part;
-	double	dec_part;
-	double	num;
-	char	**tmp;
+	if (!cam)
+		return (1);
+	cam->fov = atof(data_line[i]);
+	if (ft_cmp_dbl(cam->fov, "<", 0.0) || ft_cmp_dbl(cam->fov, ">", 180.0))
+	{
+		ft_minirt_error("Parsing error\n", 1);
+		ft_perror(E_FOV, 1);
+		return (1);
+	}
+	return (0);
+}
 
-	num = 0;
-	tmp = ft_split(str, '.');
-	int_part = ft_atoi(tmp[0]);
-	if (ft_array_size(tmp) == 2)
+
+static int	validate_double(char *token)
+{
+	int	j;
+	int	has_decimal;
+
+	j = 0;
+	has_decimal = 0;
+	if (!token[0])
+		return (0);
+	if (token[0] == '-' || token[0] == '+')
+		j++;
+	while (token[j])
 	{
-		dec_part = ft_atoi(tmp[1]);
-		if (int_part < 0)
-			num = (int_part - (dec_part / ft_atof2_aux(tmp[1])));
-		else
-			num = (int_part + (dec_part / ft_atof2_aux(tmp[1])));
+		if (token[j] == '.')
+		{
+			if (has_decimal)
+				return (0);
+			has_decimal = 1;
+		}
+		else if (!ft_isdigit(token[j]))
+			return (0);
+		j++;
 	}
-	else if (ft_array_size(tmp) == 1)
-		num = int_part;
-	else
+	return (1);
+}
+
+int	check_coord_tokens(char **xyz)
+{
+	int	i;
+
+	i = 0;
+	if (!xyz)
+		return (0);
+	while (xyz[i])
 	{
-		ft_free_array(tmp);
-		return (-1);
+		if (!validate_double(xyz[i++]))
+			return (0);
 	}
-	ft_free_array(tmp);
-	return (num);
+	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 13:19:57 by mchingi           #+#    #+#             */
-/*   Updated: 2025/06/12 20:01:18 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/13 18:18:06 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,12 @@ int		sphere_data(t_data *data, char **data_line);
 int		plane_data(t_data *data, char **data_line);
 int		cylinder_data(t_data *data, char **data_line);
 
-// ------------------------- MLX UTILS -----------------------------------/
-// int		input_keys(int keysym, t_mlx *data);
-// void	ft_mlx_put_pixel(t_img *img, int x, int y, int color);
-// void	ft_put_pixels(t_img *img, int x, int y, int size, int color);
-// void    draw_gradient(t_img *img, int width, int height);
 
 // --------------------------- UTILS ----------------------------------/
 void	ft_error(char *str);
-// double	ft_atof2(char *str);
 char	**remove_char(char **array);
+int		check_coord_tokens(char **xyz);
+
 // --------------------------- DEBUG ----------------------------------/
 void	print_debug_sp(t_obj *obj);
 void	print_debug_pl(t_obj *obj);

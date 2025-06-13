@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 11:38:15 by mchingi           #+#    #+#             */
-/*   Updated: 2025/06/12 20:33:06 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/13 18:57:16 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,50 +61,52 @@ int	plane_data(t_data *data, char **data_line)
 
 int	sphere_data(t_data *data, char **data_line)
 {
-	t_obj	*new_sphere;
+	t_obj	*sp;
 
 	if (ft_array_size(data_line) < 4)
 		return (0);
-	new_sphere = (t_obj *)malloc(sizeof(t_obj));
-	if (!new_sphere)
+	sp = (t_obj *)malloc(sizeof(t_obj));
+	if (!sp)
 		return (0);
-	new_sphere->type = ft_strdup(data_line[0]);
-	if (!fill_coordinate(data_line[1], &new_sphere->pos))
-		return (obj_return(data, new_sphere));
-	new_sphere->radius = atof(data_line[2]) / 2;
-	ft_setvec3(&new_sphere->dir, 0.0, 0.0, 0.0);
-	ft_setvec3(&new_sphere->u, 0.0, 0.0, 0.0);
-	if (new_sphere->radius < 0)
-		return (obj_return(data, new_sphere));
-	if (!fill_color(data_line[3], &new_sphere->color))
-		return (obj_return(data, new_sphere));
-	new_sphere->next = NULL;
-	put_obj_tail(data, new_sphere);
+	sp->type = ft_strdup(data_line[0]);
+	if (!fill_coordinate(data_line[1], &sp->pos))
+		return (obj_return(data, sp));
+	ft_fill_radius(sp, data_line, 2);
+	ft_setvec3(&sp->dir, 0.0, 0.0, 0.0);
+	ft_setvec3(&sp->u, 0.0, 0.0, 0.0);
+	if (sp->radius < 0)
+		return (obj_return(data, sp));
+	if (!fill_color(data_line[3], &sp->color))
+		return (obj_return(data, sp));
+	sp->next = NULL;
+	put_obj_tail(data, sp);
 	return (1);
 }
 
 int	cylinder_data(t_data *data, char **data_line)
 {
-	t_obj	*new_cylinder;
+	t_obj	*cy;
 
 	if (ft_array_size(data_line) < 6)
 		return (0);
-	new_cylinder = (t_obj *)malloc(sizeof(t_obj));
-	if (!new_cylinder)
+	cy = (t_obj *)malloc(sizeof(t_obj));
+	if (!cy)
 		return (0);
-	new_cylinder->type = ft_strdup(data_line[0]);
-	if (!fill_coordinate(data_line[1], &new_cylinder->pos))
-		return (obj_return(data, new_cylinder));
-	if (!fill_normalized_vector(data_line[2], &new_cylinder->dir))
-		return (obj_return(data, new_cylinder));
-	new_cylinder->u = ft_vec3_orthogonal(new_cylinder->dir);
-	new_cylinder->radius = atof(data_line[3]) / 2;
-	new_cylinder->len = atof(data_line[4]);
-	if (new_cylinder->radius < 0 || new_cylinder->len < 0)
-		return (obj_return(data, new_cylinder));
-	if (!fill_color(data_line[5], &new_cylinder->color))
-		return (obj_return(data, new_cylinder));
-	new_cylinder->next = NULL;
-	put_obj_tail(data, new_cylinder);
+	cy->type = ft_strdup(data_line[0]);
+	if (!fill_coordinate(data_line[1], &cy->pos))
+		return (obj_return(data, cy));
+	if (!fill_normalized_vector(data_line[2], &cy->dir))
+		return (obj_return(data, cy));
+	cy->u = ft_vec3_orthogonal(cy->dir);
+	ft_fill_radius(cy, data_line, 3);
+	cy->radius = atof(data_line[3]) / 2;
+	cy->len = atof(data_line[4]);
+	if (ft_cmp_dbl(cy->radius, "<", 0)
+		|| ft_cmp_dbl(cy->len, "<", 0))
+		return (obj_return(data, cy));
+	if (!fill_color(data_line[5], &cy->color))
+		return (obj_return(data, cy));
+	cy->next = NULL;
+	put_obj_tail(data, cy);
 	return (1);
 }

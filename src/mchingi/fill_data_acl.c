@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 16:17:04 by atambo            #+#    #+#             */
-/*   Updated: 2025/06/12 19:38:41 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/13 18:57:44 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,7 @@ int	camera_data(t_cam *cam, char **data)
 		return (0);
 	if (!fill_normalized_vector(data[2], &cam->dir))
 		return (0);
-	cam->fov = atof(data[3]);
-	if (cam->fov < 0 || cam->fov > 180)
+	if (ft_fill_fov(cam, data, 3))
 		return (0);
 	ft_cam_right(cam);
 	ft_cam_up(cam);

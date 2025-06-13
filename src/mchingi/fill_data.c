@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 17:07:27 by mchingi           #+#    #+#             */
-/*   Updated: 2025/06/09 16:16:46 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/13 18:57:53 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,7 @@ int	fill_data(char **scene, t_data *data)
 	{
 		if (!parse_line(scene[i], data))
 		{
-			ft_minirt_error("In line number ", 1);
-			ft_putnbr_fd(i + 1, 2);
-			ft_perror(" :", 1);
-			ft_perror("\n\n", 1);
+			ft_perror("\n\nline :\n", 1);
 			ft_perror(scene[i], 1);
 			ft_perror("\n\n", 1);
 			ft_free_array(scene);

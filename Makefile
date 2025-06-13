@@ -6,7 +6,7 @@
 #    By: atambo <atambo@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/29 12:55:11 by mchingi           #+#    #+#              #
-#    Updated: 2025/06/13 11:43:37 by atambo           ###   ########.fr        #
+#    Updated: 2025/06/13 18:55:58 by atambo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ SOURCES		=	\
 				src/mchingi/scene_validations.c\
 				src/mchingi/utils.c\
 				src/mchingi/utils2.c\
+				src/mchingi/utils3.c\
 				src/mchingi/print_debug.c\
 				\
 				src/atambo/minirt_error.c\

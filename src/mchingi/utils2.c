@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 17:08:11 by mchingi           #+#    #+#             */
-/*   Updated: 2025/06/12 19:31:22 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/13 15:30:29 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ int	fill_color(char *color_data, t_color *color)
 	if (!rgb || ft_array_size(rgb) != 3
 		|| !color_range(ft_atoi(rgb[0]), ft_atoi(rgb[1]), ft_atoi(rgb[2])))
 	{
+		ft_minirt_error("Parsing error\n", 1);
+		ft_perror(E_COLOR, 1);
 		ft_free_array(rgb);
 		return (0);
 	}
@@ -49,8 +51,10 @@ int	fill_coordinate(char *coordinate_data, t_vec3 *coordinates)
 	if (!coordinate_data)
 		return (0);
 	xyz = ft_split(coordinate_data, ',');
-	if (!xyz || ft_array_size(xyz) != 3)
+	if (!xyz || ft_array_size(xyz) != 3 || !check_coord_tokens(xyz))
 	{
+		ft_minirt_error("Parsing error\n", 1);
+		ft_perror(E_COOR, 1);
 		ft_free_array(xyz);
 		return (0);
 	}
@@ -63,9 +67,15 @@ int	fill_coordinate(char *coordinate_data, t_vec3 *coordinates)
 
 int	threed_n_o_range(double x, double y, double z)
 {
-	if ((x >= -1 && x <= 1) && (y >= -1 && y <= 1) && (z >= -1 && z <= 1))
-		return (1);
-	return (0);
+	if (ft_cmp_dbl(x, "<", -1) || ft_cmp_dbl(x, ">", 1)
+		|| ft_cmp_dbl(y, "<", -1) || ft_cmp_dbl(y, ">", 1)
+		|| ft_cmp_dbl(z, "<", -1) || ft_cmp_dbl(z, ">", 1))
+	{
+		ft_minirt_error("Parsing error\n", 1);
+		ft_perror(E_VNORM, 1);
+		return (0);
+	}
+	return (1);
 }
 
 int	fill_normalized_vector(char *data, t_vec3 *direction)
@@ -75,8 +85,10 @@ int	fill_normalized_vector(char *data, t_vec3 *direction)
 	if (!data)
 		return (0);
 	xyz = ft_split(data, ',');
-	if (!xyz || ft_array_size(xyz) != 3)
+	if (!xyz || ft_array_size(xyz) != 3 || !check_coord_tokens(xyz))
 	{
+		ft_minirt_error("Parsing error\n", 1);
+		ft_perror(E_VECT, 1);
 		ft_free_array(xyz);
 		return (0);
 	}
@@ -86,3 +98,4 @@ int	fill_normalized_vector(char *data, t_vec3 *direction)
 	ft_free_array(xyz);
 	return (threed_n_o_range(direction->x, direction->y, direction->z));
 }
+

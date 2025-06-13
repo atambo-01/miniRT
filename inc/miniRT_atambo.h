@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 22:55:42 by atambo            #+#    #+#             */
-/*   Updated: 2025/06/13 11:49:11 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/13 16:45:18 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,23 @@
 # endif
 
 # include "./miniRT.h"
+
+// util.c
+void	ft_setvec3(t_vec3 *v, double a, double b, double c);
+void	ft_pixel_put_img(t_img *img, int x, int y, int color);
+double	ft_dot(t_vec3 a, t_vec3 b);
+void	ft_normalize(t_vec3 *v);
+double	ft_get_speed(struct timeval start, struct timeval end);
+t_vec3	ft_vec3_add(t_vec3 v1, t_vec3 v2);
+t_vec3	ft_vec3_sub(t_vec3 v1, t_vec3 v2);
+t_vec3	ft_scalar_mult(t_vec3 v1, double r);
+t_vec3	ft_vec3_orthogonal(t_vec3 v);
+int		ft_count_obj(t_obj *obj);
+t_vec3	ft_vec3_invert(t_vec3 v);
+t_vec3	ft_cross(t_vec3 a, t_vec3 b);
+double	ft_vec3_mag(t_vec3 v);
+int		ft_fill_radius(t_obj *obj, char **data_line, int i);
+int		ft_fill_fov(t_cam *cam, char **data_line, int i);
 
 // color_switch.c
 void	ft_color_switch(t_data *data, int key);
@@ -121,20 +138,6 @@ void	ft_init_neighbor(t_upscale *up, t_neighbor *nb);
 // upscale_img.c
 void	ft_upscale_img(t_data *data);
 
-// util.c
-void	ft_setvec3(t_vec3 *v, double a, double b, double c);
-void	ft_pixel_put_img(t_img *img, int x, int y, int color);
-double	ft_dot(t_vec3 a, t_vec3 b);
-void	ft_normalize(t_vec3 *v);
-double	ft_get_speed(struct timeval start, struct timeval end);
-t_vec3	ft_vec3_add(t_vec3 v1, t_vec3 v2);
-t_vec3	ft_vec3_sub(t_vec3 v1, t_vec3 v2);
-t_vec3	ft_scalar_mult(t_vec3 v1, double r);
-t_vec3	ft_vec3_orthogonal(t_vec3 v);
-int		ft_count_obj(t_obj *obj);
-t_vec3	ft_vec3_invert(t_vec3 v);
-t_vec3	ft_cross(t_vec3 a, t_vec3 b);
-double	ft_vec3_mag(t_vec3 v);
 
 // hit_light.c
 t_vec3	ft_vec_ab(t_vec3 *A, t_vec3 *B);

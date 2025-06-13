@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 14:42:01 by mchingi           #+#    #+#             */
-/*   Updated: 2025/06/13 12:12:28 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/13 15:49:04 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,23 @@
 #include "../../inc/miniRT_atambo.h"
 #include "../../inc/miniRT_mchingi.h"
 
-int	check_acl_aux(int *acl, char **arr)
+int	check_acl_aux(int *acl, char **arr, int i)
 {
 	if ((acl[0] > 1 || acl[1] > 1 || acl[2] > 1))
 	{
 		ft_minirt_error(E_ACL, 1);
-		ft_free_array(arr);
-		exit (1);
-	}
+		ft_perror("\nline ", 1);
+		ft_putnbr_fd(i + 1, 2);
+		ft_perror(":\n", 1);
+		ft_perror(arr[i], 1);
+		ft_perror("\n", 1);
+	}	
 	else if (acl[1] != 1)
-	{
 		ft_minirt_error(E_CAM, 1);
-		ft_free_array(arr);
-		exit (1);
-	}
-	return (0);
+	else
+		return (0);
+	ft_free_array(arr);
+	exit (1);
 }
 
 int	check_acl(char **arr, int arr_size)
@@ -41,6 +43,8 @@ int	check_acl(char **arr, int arr_size)
 	ft_bzero(acl, 3 * sizeof(int));
 	while (++i < arr_size)
 	{
+		if (i > 3)
+			check_acl_aux(acl, arr, i);
 		tmp_arr = ft_split2(arr[i]);
 		if (tmp_arr[0] != NULL)
 		{
@@ -53,7 +57,7 @@ int	check_acl(char **arr, int arr_size)
 		}
 		ft_free_array(tmp_arr);
 	}
-	return (check_acl_aux(acl, arr));
+	return (0);
 }
 
 int	check_identifier(char **arr)
@@ -89,7 +93,9 @@ int	validate_scene(char **arr, int arr_size)
 		if (!check_identifier(tmp_arr))
 		{
 			ft_minirt_error(E_SCENE_DATA, 1);
+			ft_perror("\nline :\n", 1);
 			ft_perror(arr[i], 1);
+			ft_perror("\n", 1);
 			ft_free_array(tmp_arr);
 			ft_free_array(arr);
 			exit (1);
