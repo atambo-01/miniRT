@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 22:55:42 by atambo            #+#    #+#             */
-/*   Updated: 2025/06/12 20:00:54 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/13 11:49:11 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ int		t_color_to_int(t_color color);
 void	ft_sleep(int sec);
 
 // upscale_assign.c
-void	ft_assign_src_coords(t_data *data, t_upscale *up, int x, int y);
+void	ft_assign_src_coords(t_upscale *up, int x, int y);
 void	ft_assign_corner_pixels(t_data *data, t_upscale *up);
 void	ft_assign_rgb_values(t_upscale *up);
 void	ft_init_neighbor(t_upscale *up, t_neighbor *nb);
@@ -139,7 +139,7 @@ double	ft_vec3_mag(t_vec3 v);
 // hit_light.c
 t_vec3	ft_vec_ab(t_vec3 *A, t_vec3 *B);
 int		ft_in_shadow(t_ray ray, t_obj *obj, double light_d);
-void	ft_hit_light(t_data *data, t_ray *ray, t_light *lum);
+void	ft_hit_light(t_ray *ray, t_light *lum);
 double	ft_hit_obj_light(t_data *data, t_ray ray, t_light *lum);
 
 // hit_obj.c

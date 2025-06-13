@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 11:38:59 by atambo            #+#    #+#             */
-/*   Updated: 2025/06/12 19:58:44 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/12 20:08:41 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,10 @@ void	print_debug_cy(t_obj *obj)
 {
 	printf(
 		"/---- Cylinder ----/\n"
-		"COORDINATES\nx = %.1lf\ny = %.1lf\nz = %.1lf\n",
-		"DIRECTION\nx = %.1lf\ny = %.1lf\nz = %.1lf\n",
-		"Radius = %.1lf\n",
-		"Height = %.1lf\n",
+		"COORDINATES\nx = %.1lf\ny = %.1lf\nz = %.1lf\n"
+		"DIRECTION\nx = %.1lf\ny = %.1lf\nz = %.1lf\n"
+		"Radius = %.1lf\n"
+		"Height = %.1lf\n"
 		"COLOR = %d,%d,%d\n\n",
 		obj->pos.x, obj->pos.y, obj->pos.z,
 		obj->dir.x, obj->dir.y, obj->dir.z,

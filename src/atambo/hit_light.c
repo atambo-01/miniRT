@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 12:21:37 by atambo            #+#    #+#             */
-/*   Updated: 2025/06/06 19:03:23 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/13 11:50:32 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ t_vec3	ft_vec_ab(t_vec3 *A, t_vec3 *B)
 
 void	ft_light_assign(double t, t_ray *ray, t_light *lum)
 {
-	if (ft_cmp_dbl(t, ">=", 0.0) && ft_cmp_dbl(t, "<", ray->t)
-		|| ft_cmp_dbl(ray->t, "<", 0.0))
+	if ((ft_cmp_dbl(t, ">=", 0.0)) && ((ft_cmp_dbl(t, "<", ray->t))
+			|| (ft_cmp_dbl(ray->t, "<", 0.0))))
 	{
 		ray->t = t;
 		ray->color = lum->color;
@@ -49,7 +49,7 @@ void	ft_hit_light_aux(t_ray *ray, t_light *lum, double *b, double *c)
 	*c = ft_dot(oc, oc) - lum->radius * lum->radius;
 }
 
-void	ft_hit_light(t_data *data, t_ray *ray, t_light *lum)
+void	ft_hit_light(t_ray *ray, t_light *lum)
 {
 	double	a;
 	double	b;

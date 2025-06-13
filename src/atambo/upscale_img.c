@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 04:24:21 by atambo            #+#    #+#             */
-/*   Updated: 2025/05/24 17:36:44 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/13 11:45:44 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	ft_upscale_img(t_data *data)
 		x = 0;
 		while (x < W_WIDTH)
 		{
-			ft_assign_src_coords(data, &up, x, y);
+			ft_assign_src_coords(&up, x, y);
 			ft_assign_corner_pixels(data, &up);
 			ft_bilinear_interpolate(&up);
 			ft_average_neighbors(data, &up);

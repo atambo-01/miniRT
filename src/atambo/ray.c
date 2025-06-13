@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 20:22:34 by atambo            #+#    #+#             */
-/*   Updated: 2025/06/12 19:59:47 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/13 11:48:40 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	ft_print_ray(int x, int y, t_ray *ray)
 	printf("  Dir:\t");
 	ft_print_vec3(&ray->dir);
 	printf("-----------------------------------------\n"
-		"  Cam_obj(t):\t  %.2f\n",
+		"  Cam_obj(t):\t  %.2f\n"
 		"  Obj_lum(d):\t  %.2f\n", ray->t, ray->d);
 	if (ray->obj != NULL)
 		ft_print_obj(ray->obj);
@@ -76,7 +76,7 @@ void	ft_ray_info(int x, int y, t_data *data)
 	ft_init_ray(data, &ray);
 	ft_calc_ray(x, y, &ray, &data->cam);
 	ft_hit_obj(&ray, data->obj);
-	ft_hit_light(data, &ray, &data->light);
+	ft_hit_light(&ray, &data->light);
 	ray.d = ft_hit_obj_light(data, ray, &data->light);
 	ft_print_ray(x, y, &ray);
 }

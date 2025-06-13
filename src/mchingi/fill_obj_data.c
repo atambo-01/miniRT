@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_obj_data.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchingi <mchingi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 11:38:15 by mchingi           #+#    #+#             */
-/*   Updated: 2025/06/07 12:36:30 by mchingi          ###   ########.fr       */
+/*   Updated: 2025/06/12 20:33:06 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@
 
 int	obj_return(t_data *data, void *ptr)
 {
-	void	*temp;
-
 	free(ptr);
 	ft_free_obj(data->obj);
 	return (0);

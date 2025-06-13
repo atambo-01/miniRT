@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 19:00:09 by atambo            #+#    #+#             */
-/*   Updated: 2025/06/10 16:00:57 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/13 11:48:43 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ double	ft_hit_obj_light(t_data *data, t_ray ray, t_light *lum)
 	offset = ft_scalar_mult(cam_dir, 0.00002);
 	ray.o = ft_vec3_add(ray.p, offset);
 	ray.dir = ft_vec_ab(&ray.o, &lum->pos);
-	ft_hit_light(data, &ray, lum);
+	ft_hit_light(&ray, lum);
 	d = ray.t;
 	if (ft_in_shadow(ray, data->obj, d))
 		return (-1.0);
