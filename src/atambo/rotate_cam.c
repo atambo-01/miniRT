@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 19:22:49 by atambo            #+#    #+#             */
-/*   Updated: 2025/06/12 19:27:49 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/14 16:30:50 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,27 +22,30 @@ void	ft_cam_normalize(t_cam *cam)
 	ft_normalize(&cam->right);
 }
 
-void	ft_rotate_cam_radial(int key, t_cam *cam, double angle)
+void ft_rotate_cam_radial(int key, t_cam *cam, double angle)
 {
-	t_vec3	tmp_right;
-	t_vec3	tmp_up;
+    t_vec3 tmp_right;
+    t_vec3 tmp_up;
 
-	tmp_right = cam->right;
-	tmp_up = cam->up;
-	if (key == 'q')
-	{
-		cam->right = ft_vec3_add(ft_scalar_mult(tmp_right, cos(angle)),
-				ft_scalar_mult(tmp_up, sin(angle)));
-		cam->dir = ft_vec3_sub(ft_scalar_mult(tmp_up, cos(angle)),
-				ft_scalar_mult(tmp_right, sin(angle)));
-	}
-	else if (key == 'e')
-	{
-		cam->right = ft_vec3_sub(ft_scalar_mult(tmp_right, cos(angle)),
-				ft_scalar_mult(tmp_up, sin(angle)));
-		cam->dir = ft_vec3_add(ft_scalar_mult(tmp_up, cos(angle)),
-				ft_scalar_mult(tmp_right, sin(angle)));
-	}
+    if (!cam)
+        return;
+    tmp_right = cam->right;
+    tmp_up = cam->up;
+    if (key == 'q')
+    {
+        cam->right = ft_vec3_add(ft_scalar_mult(tmp_right, cos(angle)),
+                                 ft_scalar_mult(tmp_up, sin(angle)));
+        cam->up = ft_vec3_add(ft_scalar_mult(tmp_right, -sin(angle)),
+                              ft_scalar_mult(tmp_up, cos(angle)));
+    }
+    else if (key == 'e')
+    {
+        cam->right = ft_vec3_sub(ft_scalar_mult(tmp_right, cos(angle)),
+                                 ft_scalar_mult(tmp_up, sin(angle)));
+        cam->up = ft_vec3_add(ft_scalar_mult(tmp_right, sin(angle)),
+                              ft_scalar_mult(tmp_up, cos(angle)));
+    }
+
 }
 
 void	ft_rotate_cam_vertical(int key, t_cam *cam, double angle)
