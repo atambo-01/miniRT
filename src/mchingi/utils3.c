@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 17:08:11 by mchingi           #+#    #+#             */
-/*   Updated: 2025/06/14 13:39:49 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/14 15:53:49 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,9 @@ int	ft_valid_double(char *token)
 
 int	fill_radius(t_obj *obj, char **data_line, int i)
 {
-
 	if (!obj)
 		return (0);
-	obj->radius = -1.0; 
+	obj->radius = -1.0;
 	if (ft_valid_double(data_line[i]))
 		obj->radius = ft_atof(data_line[i]) / 2;
 	if (ft_strcmp(obj->type, "cy") == 0)
@@ -56,8 +55,7 @@ int	fill_radius(t_obj *obj, char **data_line, int i)
 		if (ft_valid_double(data_line[i + 1]))
 			obj->len = ft_atof(data_line[i + 1]);
 		if (ft_cmp_dbl(obj->len, "<=", 0))
-			obj->radius = -1.0; 
-
+			obj->radius = -1.0;
 	}
 	if (ft_cmp_dbl(obj->radius, "<=", 0))
 	{
@@ -84,7 +82,6 @@ int	ft_fill_fov(t_cam *cam, char **data_line, int i)
 	}
 	return (0);
 }
-
 
 int	check_coord_tokens(char **xyz)
 {

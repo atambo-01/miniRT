@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 13:26:05 by mchingi           #+#    #+#             */
-/*   Updated: 2025/06/14 15:38:58 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/14 15:50:57 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,5 +112,5 @@ int	file_management(char *file_name, t_data *data)
 	validate_scene(arr, arr_size);
 	trimmed = remove_char(arr);
 	fill_data(trimmed, data);
-	return (fd);
+	return (1);
 }

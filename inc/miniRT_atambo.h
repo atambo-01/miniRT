@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 22:55:42 by atambo            #+#    #+#             */
-/*   Updated: 2025/06/14 15:40:32 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/14 15:54:18 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ int		ft_init_cam(t_data *data);
 void	ft_init_data_mlx(t_data *data);
 void	ft_init_data_acl(t_data *data);
 void	ft_init_data_extra(t_data *data);
-
 
 // input.c
 int		ft_key_hook(int keycode, t_data *data);

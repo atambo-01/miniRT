@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 00:13:05 by atambo            #+#    #+#             */
-/*   Updated: 2025/06/14 15:39:52 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/14 15:52:01 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,3 @@ void	ft_init_data_extra(t_data *data)
 	data->err = NULL;
 	data->focus = 0;
 }
-

@@ -1,7 +1,0 @@
-Error
-Parsing error
-Colors must be 3 numbers in the range [0-255]
-
-line :
-sp -9.5,-6.5,-30.5 6 255,89,890
-

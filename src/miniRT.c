@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 13:16:08 by mchingi           #+#    #+#             */
-/*   Updated: 2025/06/14 15:39:30 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/14 15:51:41 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,11 @@
 int	main(int ac, char **av)
 {
 	t_data	data;
-	int		fd;
 
 	data.obj = NULL;
 	if (ac == 2)
 	{
-		fd = file_management(av[1], &data);
-		if (fd > 0)
+		if (file_management(av[1], &data))
 		{
 			ft_init_data_mlx(&data);
 			ft_init_data_extra(&data);

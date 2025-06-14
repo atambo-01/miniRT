@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 11:38:15 by mchingi           #+#    #+#             */
-/*   Updated: 2025/06/14 13:24:51 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/14 15:52:31 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ int	plane_data(t_data *data, char **data_line)
 		return (0);
 	new_plane->type = ft_strdup(data_line[0]);
 	if ((!fill_coordinate(data_line[1], &new_plane->pos))
-	||	(!fill_normalized_vector(data_line[2], &new_plane->dir))
-	||	(!fill_color(data_line[3], &new_plane->color)))
+		|| (!fill_normalized_vector(data_line[2], &new_plane->dir))
+		|| (!fill_color(data_line[3], &new_plane->color)))
 		return (obj_return(data, new_plane));
 	new_plane->u = ft_vec3_orthogonal(new_plane->dir);
 	new_plane->next = NULL;
@@ -68,8 +68,8 @@ int	sphere_data(t_data *data, char **data_line)
 		return (0);
 	sp->type = ft_strdup(data_line[0]);
 	if ((!fill_coordinate(data_line[1], &sp->pos))
-	||	(!fill_radius(sp, data_line, 2))
-	||	(!fill_color(data_line[3], &sp->color)))
+		|| (!fill_radius(sp, data_line, 2))
+		|| (!fill_color(data_line[3], &sp->color)))
 		return (obj_return(data, sp));
 	ft_setvec3(&sp->dir, 0.0, 0.0, 0.0);
 	ft_setvec3(&sp->u, 0.0, 0.0, 0.0);

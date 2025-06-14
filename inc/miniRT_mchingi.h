@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 13:19:57 by mchingi           #+#    #+#             */
-/*   Updated: 2025/06/14 13:35:11 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/14 15:54:12 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ char	**remove_char(char **array);
 int		ft_valid_double(char *token);
 int		check_coord_tokens(char **xyz);
 int		ft_check_filename(char *filename);
-
 
 // --------------------------- DEBUG ----------------------------------/
 void	print_debug_sp(t_obj *obj);
