@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 16:38:03 by atambo            #+#    #+#             */
-/*   Updated: 2025/06/13 11:48:36 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/14 18:58:12 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,12 @@ void	ft_render_scene(t_data *data)
 	}
 }
 
-void	ft_render_and_upscale(t_data *data, int upscale)
+void	ft_render_and_upscale(t_data *data)
 {
+	if (!data)
+		return ;
 	ft_render_scene(data);
-	if (upscale)
+	if (data->upscale)
 	{
 		ft_upscale_img(data);
 		mlx_put_image_to_window(data->mlx, data->win, data->s_img.ptr, 0, 0);

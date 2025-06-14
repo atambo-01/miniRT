@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 16:17:04 by atambo            #+#    #+#             */
-/*   Updated: 2025/06/13 18:57:44 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/14 18:46:52 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int	light_data(t_light *light, char **data)
 		return (0);
 	if (!fill_coordinate(data[1], &light->pos))
 		return (0);
-	light->ratio = atof(data[2]);
+	light->ratio = ft_atof(data[2]);
 	if (light->ratio < 0.0 || light->ratio > 1.0)
 		return (0);
 	if (fill_color(data[3], &light->color) == 0)

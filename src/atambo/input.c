@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 01:38:57 by atambo            #+#    #+#             */
-/*   Updated: 2025/06/10 14:25:29 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/15 00:25:23 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,13 +86,15 @@ int	ft_key_hook(int key, t_data *data)
 	ft_rotate_cam(key, &data->cam);
 	ft_rotate_obj(key, data->curr);
 	ft_print_data(data);
-	ft_render_and_upscale(data, UPSCALE);
+	ft_render_and_upscale(data);
 	printf("key = %d (%c)\n", key, key);
 	return (0);
 }
 
 int	ft_mouse_hook(int button, int x, int y, t_data *data)
 {
+	if (!data)
+		return (1);
 	if (button == 4)
 		ft_move_z(data, +1.0);
 	if (button == 5)
@@ -108,7 +110,7 @@ int	ft_mouse_hook(int button, int x, int y, t_data *data)
 		}
 	}
 	ft_print_data(data);
-	ft_render_and_upscale(data, UPSCALE);
+	ft_render_and_upscale(data);
 	printf("mouse_hook = %d\n", button);
 	return (0);
 }

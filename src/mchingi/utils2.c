@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 17:08:11 by mchingi           #+#    #+#             */
-/*   Updated: 2025/06/14 15:53:58 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/15 00:46:48 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,11 @@ int	threed_n_o_range(double x, double y, double z)
 	{
 		ft_minirt_error("Parsing error\n", 1);
 		ft_perror(E_VNORM, 1);
+		if (ft_cmp_dbl(tmp, "=", 0.0))
+		{
+			ft_perror("\n", 1);
+			ft_perror(E_VZERO, 1);
+		}
 		return (0);
 	}
 	return (1);

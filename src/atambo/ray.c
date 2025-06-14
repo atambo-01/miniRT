@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 20:22:34 by atambo            #+#    #+#             */
-/*   Updated: 2025/06/13 18:54:36 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/15 00:26:55 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ void	ft_ray_info(int x, int y, t_data *data)
 {
 	t_ray	ray;
 
+	if (!data)
+		return ;
 	x = x * ((double)IM_WIDTH / W_WIDTH);
 	y = y * ((double)IM_HEIGHT / W_HEIGHT);
 	ft_init_ray(data, &ray);

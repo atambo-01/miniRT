@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 13:16:08 by mchingi           #+#    #+#             */
-/*   Updated: 2025/06/14 15:51:41 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/14 19:01:06 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	main(int ac, char **av)
 			ft_init_data_mlx(&data);
 			ft_init_data_extra(&data);
 			print_debug_info(data);
-			ft_render_and_upscale(&data, UPSCALE);
+			ft_render_and_upscale(&data);
 			mlx_mouse_hook(data.win, ft_mouse_hook, &data);
 			mlx_key_hook(data.win, ft_key_hook, &data);
 			mlx_hook(data.win, 17, 0, ft_exit_minirt, &data);
