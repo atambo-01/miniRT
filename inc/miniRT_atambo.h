@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 22:55:42 by atambo            #+#    #+#             */
-/*   Updated: 2025/06/13 20:19:23 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/14 15:40:32 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int		ft_count_obj(t_obj *obj);
 t_vec3	ft_vec3_invert(t_vec3 v);
 t_vec3	ft_cross(t_vec3 a, t_vec3 b);
 double	ft_vec3_mag(t_vec3 v);
-int		ft_fill_radius(t_obj *obj, char **data_line, int i);
+int		fill_radius(t_obj *obj, char **data_line, int i);
 int		ft_fill_fov(t_cam *cam, char **data_line, int i);
 
 // color_switch.c
@@ -66,7 +66,10 @@ char	*ft_ftoa(double num);
 // init.c
 int		ft_init_obj(t_data *data);
 int		ft_init_cam(t_data *data);
-int		ft_init_data(t_data *data, int fd);
+void	ft_init_data_mlx(t_data *data);
+void	ft_init_data_acl(t_data *data);
+void	ft_init_data_extra(t_data *data);
+
 
 // input.c
 int		ft_key_hook(int keycode, t_data *data);

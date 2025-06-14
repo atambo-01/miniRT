@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 20:15:19 by atambo            #+#    #+#             */
-/*   Updated: 2025/06/12 20:10:12 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/14 11:18:34 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,13 @@ int	ft_print_vec3(t_vec3 *vec)
 int	ft_print_data(t_data *data)
 {
 	system("clear");
-	printf("-----------------------------------------\n"
-		"\t\tx\ty\tz\n");
 	ft_print_alight(&data->alight);
+	printf("-----------------------------------------\n"
+		"\t\t  x\t   y\t    z\n");
 	ft_print_cam(&data->cam);
+	printf("\n");
 	ft_print_light(&data->light);
+	printf("\n");
 	printf("obj_count = \t%d\n", ft_count_obj(data->obj));
 	if (data->curr)
 		ft_print_obj(data->curr);

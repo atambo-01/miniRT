@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 13:19:57 by mchingi           #+#    #+#             */
-/*   Updated: 2025/06/13 20:19:04 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/14 13:35:11 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,10 @@ int		cylinder_data(t_data *data, char **data_line);
 // --------------------------- UTILS ----------------------------------/
 void	ft_error(char *str);
 char	**remove_char(char **array);
+int		ft_valid_double(char *token);
 int		check_coord_tokens(char **xyz);
+int		ft_check_filename(char *filename);
+
 
 // --------------------------- DEBUG ----------------------------------/
 void	print_debug_sp(t_obj *obj);

@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 17:08:11 by mchingi           #+#    #+#             */
-/*   Updated: 2025/06/13 20:18:29 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/14 13:35:11 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,9 @@ int	fill_color(char *color_data, t_color *color)
 	*color = (t_color){0, 0, 0};
 	rgb = ft_split(color_data, ',');
 	if (!rgb || ft_array_size(rgb) != 3
+		|| !ft_valid_double(rgb[0])
+		|| !ft_valid_double(rgb[1])
+		|| !ft_valid_double(rgb[2])
 		|| !color_range(ft_atoi(rgb[0]), ft_atoi(rgb[1]), ft_atoi(rgb[2])))
 	{
 		ft_minirt_error("Parsing error\n", 1);
@@ -67,9 +70,13 @@ int	fill_coordinate(char *coordinate_data, t_vec3 *coordinates)
 
 int	threed_n_o_range(double x, double y, double z)
 {
-	if (ft_cmp_dbl(x, "<", -1) || ft_cmp_dbl(x, ">", 1)
-		|| ft_cmp_dbl(y, "<", -1) || ft_cmp_dbl(y, ">", 1)
-		|| ft_cmp_dbl(z, "<", -1) || ft_cmp_dbl(z, ">", 1))
+	double	tmp;
+
+	tmp = x + y + z;
+	if (ft_cmp_dbl(tmp, "=", 0.0)
+		|| ft_cmp_dbl(fabs(x), ">", 1)
+		|| ft_cmp_dbl(fabs(y), ">", 1)
+		|| ft_cmp_dbl(fabs(z), ">", 1))
 	{
 		ft_minirt_error("Parsing error\n", 1);
 		ft_perror(E_VNORM, 1);
@@ -77,6 +84,7 @@ int	threed_n_o_range(double x, double y, double z)
 	}
 	return (1);
 }
+
 
 int	fill_normalized_vector(char *data, t_vec3 *direction)
 {

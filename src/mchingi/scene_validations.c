@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 14:42:01 by mchingi           #+#    #+#             */
-/*   Updated: 2025/06/13 20:18:41 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/14 12:43:41 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ int	check_acl(char **arr, int arr_size)
 		}
 		ft_free_array(tmp_arr);
 	}
+	check_acl_aux(acl, arr, i);
 	return (0);
 }
 
@@ -92,7 +93,7 @@ int	validate_scene(char **arr, int arr_size)
 		tmp_arr = ft_split2(arr[i]);
 		if (!check_identifier(tmp_arr))
 		{
-			ft_minirt_error(E_SCENE_DATA, 1);
+			ft_minirt_error(E_SCN_DATA, 1);
 			ft_perror("\nline :\n", 1);
 			ft_perror(arr[i], 1);
 			ft_perror("\n", 1);

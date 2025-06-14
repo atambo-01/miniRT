@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 13:26:05 by mchingi           #+#    #+#             */
-/*   Updated: 2025/06/13 20:16:50 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/14 15:38:58 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,23 +27,21 @@ int	check_empty_line(char *str)
 	return (0);
 }
 
-int	open_file(char *file_name)
+int	open_file(char *filename)
 {
 	int		fd;
 	char	buffer[1];
 
 	fd = -1;
-	if (!(ft_strrchr(file_name, '.'))
-		|| (ft_strrchr(file_name, '.') == strchr(file_name, '.'))
-		|| (ft_strncmp(ft_strrchr(file_name, '.'), ".rt", 4)))
+	if (ft_check_filename(filename))
 	{
-		ft_minirt_error(E_EXTENSION, 1);
+		ft_minirt_error(E_EXTENSIO, 1);
 		exit (1);
 	}
-	fd = open(file_name, O_RDONLY);
+	fd = open(filename, O_RDONLY);
 	if (fd == -1 || (read(fd, buffer, 1) == -1 && errno == EISDIR))
 	{
-		ft_minirt_error(file_name, 1);
+		ft_minirt_error(filename, 1);
 		perror(" ");
 		close(fd);
 		exit (1);
@@ -107,7 +105,8 @@ int	file_management(char *file_name, t_data *data)
 	fd = open_file(file_name);
 	if (fd < 0)
 		return (-1);
-	ft_init_data(data, fd);
+	data->fd = fd;
+	ft_init_data_acl(data);
 	arr_size = count_lines(fd);
 	arr = extract_lines(file_name, arr_size);
 	validate_scene(arr, arr_size);
