@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 13:19:57 by mchingi           #+#    #+#             */
-/*   Updated: 2025/06/14 13:27:29 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/15 00:43:10 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,8 @@
 # define UPSCALE	1
 # define W_WIDTH	1080
 # define W_HEIGHT	720
-# define IM_WIDTH	540
-# define IM_HEIGHT	360
-// # define IM_WIDTH	1080
-// # define IM_HEIGHT	720
+# define IM_WIDTH	1080
+# define IM_HEIGHT	720
 
 # define NUM_1
 # define NUM_PLUS
@@ -77,6 +75,7 @@
 # define E_COOR		"Coordinates must be 3 numbers separated by ',' only"
 # define E_VECT		"Vectors must be 3 numbers split by commas only"
 # define E_VNORM	"Vectors must be 3 numbers in the range [-1,1] split by ','"
+# define E_VZERO	"note: 0,0,0 is not a valid vector since it points nowhere"
 # define E_RADLEN	"Radii and heights must be numbers greater than 0"
 # define E_COLOR	"Colors must be 3 numbers in the range [0-255]"
 # define E_FOV		"FOV must be a number for degrees in the range [0,180]"
@@ -189,16 +188,15 @@ typedef struct s_data
 	t_img			img;
 	t_img			s_img;
 	t_cam			cam;
+	t_light			light;
+	t_alight		alight;
 	t_obj			*obj;
 	t_obj			*curr;
 	t_light			*curr_light;
-	t_light			light;
-	t_alight		alight;
 	char			*err;
-	struct timeval	start;
-	struct timeval	end;
 	int				focus;
 	int				ray_info;
+	int				upscale;
 }				t_data;
 
 typedef struct s_ray

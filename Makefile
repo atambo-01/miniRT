@@ -6,7 +6,7 @@
 #    By: atambo <atambo@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/29 12:55:11 by mchingi           #+#    #+#              #
-#    Updated: 2025/06/14 15:48:34 by atambo           ###   ########.fr        #
+#    Updated: 2025/06/15 00:16:15 by atambo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,7 +63,7 @@ CFLAGS		=	-Wall -Wextra -Werror
 OBJS		=	$(SOURCES:.c=.o)
 INCLUDES	=	-Iinc -Ilibft
 
-SUBDIR		=	./minilibx-linux ./libft
+SUBDIR		=	./minilibx-linux ./libft 
 LIBS		=	-Lminilibx-linux -l:libmlx_Linux.a -L/usr/lib -lXext -lX11 -lm -lz\
 				-Llibft -l:libft.a\
 

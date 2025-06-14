@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 22:55:42 by atambo            #+#    #+#             */
-/*   Updated: 2025/06/14 15:54:18 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/14 19:00:54 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ void	ft_ray_info(int x, int y, t_data *data);
 void	ft_hit_obj_2(t_ray *ray, t_obj *obj);
 void	ft_hit_obj(t_ray *ray, t_obj *obj);
 void	ft_render_scene(t_data *data);
-void	ft_render_and_upscale(t_data *data, int upscale);
+void	ft_render_and_upscale(t_data *data);
 
 // t_color
 t_color	t_color_clamp(t_color color);
