@@ -1,0 +1,95 @@
+# Generic ignores for common files and directories
+
+# Editor and IDE files
+*.swp
+*~
+.DS_Store
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Build and dependency directories
+node_modules/
+vendor/
+dist/
+build/
+out/
+bin/
+obj/
+target/
+.cache/
+
+# Dependency lock files (optional, depending on your workflow)
+# package-lock.json
+# yarn.lock
+# composer.lock
+
+# Environment and configuration files
+.env
+.env.local
+.env.*.local
+*.env
+config/secrets.yml
+
+# Logs and temporary files
+*.log
+logs/
+tmp/
+temp/
+*.tmp
+*.bak
+*.pid
+*.seed
+*.dat
+
+# Operating system files
+Thumbs.db
+desktop.ini
+
+# Sensitive or private files
+*.key
+*.pem
+*.crt
+*.cert
+*.p12
+*.pfx
+*.keystore
+*.jks
+*.password
+*.secret
+*.private
+
+# Coverage and test output
+coverage/
+*.cov
+*.lcov
+*.tap
+*.xml
+junit.xml
+
+# Documentation build output
+_site/
+docs/_build/
+public/
+
+# Archives and compressed files
+*.zip
+*.tar.gz
+*.rar
+*.7z
+
+# Git submodules (optional, if you don't want to track certain submodules)
+# .gitmodules
+# path/to/submodule/
+
+# Runtime data
+*.pid
+*.sock
+*.socket
+
+# Miscellaneous
+*.bak
+*.old
+*.orig
+*.rej
