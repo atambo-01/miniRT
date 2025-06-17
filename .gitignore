@@ -1,5 +1,6 @@
 # Generic ignores for common files and directories
-
+./miniRT
+*.o
 # Editor and IDE files
 *.swp
 *~
