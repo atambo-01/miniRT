@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 14:42:01 by mchingi           #+#    #+#             */
-/*   Updated: 2025/06/17 18:22:00 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/17 19:06:33 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,25 @@
 #include "../../inc/miniRT_atambo.h"
 #include "../../inc/miniRT_mchingi.h"
 
-int	check_acl_aux(int *acl, char **arr, int i)
+static int	check_acl_cam(int *acl)
+{
+	if (acl[1] != 1)
+		ft_minirt_error(E_CAM, 1);
+	else
+		return (0);
+	exit (1);
+}
+
+int	check_acl_dup(int *acl, char **arr, int i)
 {
 	if ((acl[0] > 1 || acl[1] > 1 || acl[2] > 1))
 	{
 		ft_minirt_error(E_ACL, 1);
 		ft_perror("\nline ", 1);
-		ft_putnbr_fd(i + 1, 2);
 		ft_perror(":\n", 1);
 		ft_perror(arr[i], 1);
 		ft_perror("\n", 1);
 	}
-	else if (acl[1] != 1)
-		ft_minirt_error(E_CAM, 1);
 	else
 		return (0);
 	ft_free_array(arr);
@@ -43,6 +49,8 @@ int	check_acl(char **arr, int arr_size)
 	ft_bzero(acl, 3 * sizeof(int));
 	while (++i < arr_size)
 	{
+		if (i > 3)
+			check_acl_dup(acl, arr, i);
 		tmp_arr = ft_split2(arr[i]);
 		if (tmp_arr[0] != NULL)
 		{
@@ -55,7 +63,7 @@ int	check_acl(char **arr, int arr_size)
 		}
 		ft_free_array(tmp_arr);
 	}
-	check_acl_aux(acl, arr, i);
+	check_acl_cam(acl);
 	return (0);
 }
 
