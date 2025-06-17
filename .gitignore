@@ -1,5 +1,7 @@
 # Generic ignores for common files and directories
 
+
+*.o
 # Editor and IDE files
 *.swp
 *~

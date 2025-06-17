@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 20:22:34 by atambo            #+#    #+#             */
-/*   Updated: 2025/06/15 00:26:55 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/17 11:34:11 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_init_ray(t_data *data, t_ray *ray)
 	double	asp_ratio;
 
 	ray->o = data->cam.pos;
-	ray->tan_half_fov = tan(data->cam.fov * M_PI / 360.0);
+	ray->tan_half_fov = tan(data->cam.fov * M_PI / 2 * 180.0);
 	view_width = 2.0 * ray->tan_half_fov;
 	asp_ratio = (double)IM_WIDTH / IM_HEIGHT;
 	ray->view_height = view_width / asp_ratio;
