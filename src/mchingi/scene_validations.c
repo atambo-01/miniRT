@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 14:42:01 by mchingi           #+#    #+#             */
-/*   Updated: 2025/06/14 12:43:41 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/17 18:22:00 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,6 @@ int	check_acl(char **arr, int arr_size)
 	ft_bzero(acl, 3 * sizeof(int));
 	while (++i < arr_size)
 	{
-		if (i > 3)
-			check_acl_aux(acl, arr, i);
 		tmp_arr = ft_split2(arr[i]);
 		if (tmp_arr[0] != NULL)
 		{
