@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 19:00:09 by atambo            #+#    #+#             */
-/*   Updated: 2025/06/13 11:48:43 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/17 12:38:54 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,9 @@ int	ft_in_shadow(t_ray ray, t_obj *obj, double light_d)
 {
 	while (obj)
 	{
+		ray.t = -42.0;
 		ft_hit_obj_2(&ray, obj);
-		if (ft_cmp_dbl(ray.t, ">=", 0) && ft_cmp_dbl(ray.t, "<", light_d))
+		if (ft_cmp_dbl(ray.t, "<", light_d))
 			return (1);
 		obj = obj->next;
 	}

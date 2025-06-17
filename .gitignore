@@ -1,5 +1,6 @@
 # Generic ignores for common files and directories
-./miniRT
+saved_scene.rt
+miniRT
 *.o
 # Editor and IDE files
 *.swp
