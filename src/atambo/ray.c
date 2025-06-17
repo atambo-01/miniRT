@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 20:22:34 by atambo            #+#    #+#             */
-/*   Updated: 2025/06/17 13:08:46 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/17 14:05:36 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@
 
 void	ft_init_ray(t_data *data, t_ray *ray)
 {
-	double	vieWIDTH;
+	double	view_heigth;
 	double	asp_ratio;
 
 	ray->o = data->cam.pos;
 	ray->tan_half_fov = tan(data->cam.fov * M_PI / 360.0);
-	vieWIDTH = 2.0 * ray->tan_half_fov;
+	view_heigth = 2.0 * ray->tan_half_fov;
 	asp_ratio = (double)IM_WIDTH / IM_HEIGHT;
-	ray->vieHEIGTH = vieWIDTH / asp_ratio;
+	ray->view_heigth = view_heigth / asp_ratio;
 	ray->lum = &data->light;
 }
 
@@ -33,7 +33,7 @@ void	ft_calc_ray(int x, int y, t_ray *ray, t_cam *cam)
 	double	v;
 
 	u = (2.0 * (x + 0.5) / IM_WIDTH - 1.0) * ray->tan_half_fov;
-	v = (1.0 - 2.0 * (y + 0.5) / IM_HEIGHT) * (ray->vieHEIGTH / 2.0);
+	v = (1.0 - 2.0 * (y + 0.5) / IM_HEIGHT) * (ray->view_heigth / 2.0);
 	ray->dir = cam->dir;
 	ray->dir.x += u * cam->right.x + v * cam->up.x;
 	ray->dir.y += u * cam->right.y + v * cam->up.y;
