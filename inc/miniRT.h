@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 13:19:57 by mchingi           #+#    #+#             */
-/*   Updated: 2025/06/15 00:43:10 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/17 12:47:36 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@
 # define ANGLE		15.0
 
 # define UPSCALE	1
-# define W_WIDTH	1080
-# define W_HEIGHT	720
+# define WIDTH	1080
+# define HEIGTH	720
 # define IM_WIDTH	1080
 # define IM_HEIGHT	720
 
@@ -196,7 +196,7 @@ typedef struct s_data
 	char			*err;
 	int				focus;
 	int				ray_info;
-	int				upscale;
+	unsigned int	upscale;
 }				t_data;
 
 typedef struct s_ray
@@ -205,7 +205,7 @@ typedef struct s_ray
 	t_vec3	dir;
 	//----------------------
 	double	tan_half_fov;
-	double	view_height;
+	double	vieHEIGTH;
 	double	u;
 	double	v;
 	//----------------------

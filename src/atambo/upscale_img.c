@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 04:24:21 by atambo            #+#    #+#             */
-/*   Updated: 2025/06/13 11:45:44 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/17 12:45:48 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,10 +74,10 @@ void	ft_upscale_img(t_data *data)
 	int			x;
 
 	y = 0;
-	while (y < W_HEIGHT)
+	while (y < HEIGTH)
 	{
 		x = 0;
-		while (x < W_WIDTH)
+		while (x < WIDTH)
 		{
 			ft_assign_src_coords(&up, x, y);
 			ft_assign_corner_pixels(data, &up);

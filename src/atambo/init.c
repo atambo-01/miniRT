@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 00:13:05 by atambo            #+#    #+#             */
-/*   Updated: 2025/06/15 00:56:12 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/17 12:49:08 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,13 @@
 
 void	ft_init_data_mlx(t_data *data)
 {
+	data->upscale = 0;
 	data->mlx = mlx_init();
 	if (!data->mlx)
 		exit(ft_perror("Failed to init mlw connection\n", 1));
-	data->win = mlx_new_window(data->mlx, W_WIDTH, W_HEIGHT, "miniRT");
+	data->win = mlx_new_window(data->mlx, WIDTH, HEIGTH, "miniRT");
+	data->s_img.ptr = mlx_new_image(data->mlx, WIDTH, HEIGTH);
 	data->img.ptr = mlx_new_image(data->mlx, IM_WIDTH, IM_HEIGHT);
-	data->s_img.ptr = mlx_new_image(data->mlx, W_WIDTH, W_HEIGHT);
 	if (!data->win || !data->img.ptr || !data->s_img.ptr)
 	{
 		mlx_destroy_display(data->mlx);
@@ -59,5 +60,4 @@ void	ft_init_data_extra(t_data *data)
 	data->err = NULL;
 	data->focus = 0;
 	data->ray_info = 0;
-	data->upscale = 0;
 }

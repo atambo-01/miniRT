@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 19:00:09 by atambo            #+#    #+#             */
-/*   Updated: 2025/06/17 12:43:45 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/17 13:13:17 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 
 int	ft_in_shadow(t_ray ray, t_obj *obj, double light_d)
 {
+	ray.t = -42.0;
 	while (obj)
 	{
-		ray.t = -42.0;
 		ft_hit_obj_2(&ray, obj);
 		if (ft_cmp_dbl(ray.t, ">=", 0) && ft_cmp_dbl(ray.t, "<", light_d))
 			return (1);
@@ -37,9 +37,9 @@ double	ft_hit_obj_light(t_data *data, t_ray ray, t_light *lum)
 	cam_dir = ft_vec_ab(&ray.p, &data->cam.pos);
 	offset = ft_scalar_mult(cam_dir, 0.00002);
 	ray.o = ft_vec3_add(ray.p, offset);
-	ray.dir = ft_vec_ab(&ray.o, &lum->pos);
-	ft_hit_light(&ray, lum);
-	d = ray.t;
+	ray.dir = ft_vec3_sub(lum->pos, ray.o);
+	ft_normalize(&ray.dir);
+	d = ft_vec3_mag(ft_vec3_sub(lum->pos, ray.o));
 	if (ft_in_shadow(ray, data->obj, d))
 		return (-1.0);
 	return (d);

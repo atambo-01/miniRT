@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 20:22:34 by atambo            #+#    #+#             */
-/*   Updated: 2025/06/15 00:26:55 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/17 13:08:46 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@
 
 void	ft_init_ray(t_data *data, t_ray *ray)
 {
-	double	view_width;
+	double	vieWIDTH;
 	double	asp_ratio;
 
 	ray->o = data->cam.pos;
 	ray->tan_half_fov = tan(data->cam.fov * M_PI / 360.0);
-	view_width = 2.0 * ray->tan_half_fov;
+	vieWIDTH = 2.0 * ray->tan_half_fov;
 	asp_ratio = (double)IM_WIDTH / IM_HEIGHT;
-	ray->view_height = view_width / asp_ratio;
+	ray->vieHEIGTH = vieWIDTH / asp_ratio;
 	ray->lum = &data->light;
 }
 
@@ -33,7 +33,7 @@ void	ft_calc_ray(int x, int y, t_ray *ray, t_cam *cam)
 	double	v;
 
 	u = (2.0 * (x + 0.5) / IM_WIDTH - 1.0) * ray->tan_half_fov;
-	v = (1.0 - 2.0 * (y + 0.5) / IM_HEIGHT) * (ray->view_height / 2.0);
+	v = (1.0 - 2.0 * (y + 0.5) / IM_HEIGHT) * (ray->vieHEIGTH / 2.0);
 	ray->dir = cam->dir;
 	ray->dir.x += u * cam->right.x + v * cam->up.x;
 	ray->dir.y += u * cam->right.y + v * cam->up.y;
@@ -41,8 +41,8 @@ void	ft_calc_ray(int x, int y, t_ray *ray, t_cam *cam)
 	ft_normalize(&ray->dir);
 	ray->obj = NULL;
 	ray->color = (t_color){0, 0, 0};
-	ray->t = -1.0;
-	ray->d = 0.0;
+	ray->t = -42.0;
+	ray->d = -42.0;
 	ray->n = (t_vec3){1.0, 0.0, 0.0};
 	ray->l = (t_vec3){1.0, 0.0, 0.0};
 }
@@ -73,8 +73,8 @@ void	ft_ray_info(int x, int y, t_data *data)
 
 	if (!data)
 		return ;
-	x = x * ((double)IM_WIDTH / W_WIDTH);
-	y = y * ((double)IM_HEIGHT / W_HEIGHT);
+	x = x * ((double)IM_WIDTH / WIDTH);
+	y = y * ((double)IM_HEIGHT / HEIGTH);
 	ft_init_ray(data, &ray);
 	ft_calc_ray(x, y, &ray, &data->cam);
 	ft_hit_obj(&ray, data->obj);
