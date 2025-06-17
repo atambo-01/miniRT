@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 11:38:15 by mchingi           #+#    #+#             */
-/*   Updated: 2025/06/14 15:52:31 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/17 15:36:14 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 #include "../../inc/miniRT_atambo.h"
 #include "../../inc/miniRT_mchingi.h"
 
-int	obj_return(t_data *data, void *ptr)
+int	obj_return(t_data *data, t_obj *obj)
 {
-	free(ptr);
+	free(obj->type);
+	free(obj);
 	ft_free_obj(data->obj);
 	return (0);
 }

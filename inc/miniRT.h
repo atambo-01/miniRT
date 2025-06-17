@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 13:19:57 by mchingi           #+#    #+#             */
-/*   Updated: 2025/06/17 14:04:30 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/17 15:21:09 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,10 @@
 # define ANGLE		15.0
 
 # define UPSCALE	1
-# define WIDTH	1080
-# define HEIGTH	720
-# define IM_WIDTH	1080
-# define IM_HEIGHT	720
+# define WIDTH		100
+# define HEIGTH		100
+# define IM_WIDTH	100
+# define IM_HEIGHT	100
 
 # define NUM_1
 # define NUM_PLUS

@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 00:13:05 by atambo            #+#    #+#             */
-/*   Updated: 2025/06/17 14:01:47 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/17 15:30:50 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 
 void	ft_init_data_mlx(t_data *data)
 {
-	data->upscale = 0;
 	data->mlx = mlx_init();
 	if (!data->mlx)
 		exit(ft_perror("Failed to init mlw connection\n", 1));

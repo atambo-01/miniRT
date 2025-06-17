@@ -6,7 +6,7 @@
 #    By: atambo <atambo@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/29 12:55:11 by mchingi           #+#    #+#              #
-#    Updated: 2025/06/15 00:16:15 by atambo           ###   ########.fr        #
+#    Updated: 2025/06/17 15:30:20 by atambo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,7 +59,7 @@ SOURCES		=	\
 
 NAME		=	miniRT
 CC			=	cc
-CFLAGS		=	-Wall -Wextra -Werror
+CFLAGS		=	-g -Wall -Wextra -Werror
 OBJS		=	$(SOURCES:.c=.o)
 INCLUDES	=	-Iinc -Ilibft
 

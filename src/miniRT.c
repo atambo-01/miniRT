@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 13:16:08 by mchingi           #+#    #+#             */
-/*   Updated: 2025/06/14 19:01:06 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/17 14:27:05 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int	main(int ac, char **av)
 	{
 		if (file_management(av[1], &data))
 		{
+			data.upscale = 0;
 			ft_init_data_mlx(&data);
 			ft_init_data_extra(&data);
 			print_debug_info(data);
