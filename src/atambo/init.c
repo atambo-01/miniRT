@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 00:13:05 by atambo            #+#    #+#             */
-/*   Updated: 2025/06/17 12:49:08 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/17 13:39:44 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ void	ft_init_data_mlx(t_data *data)
 	if (!data->mlx)
 		exit(ft_perror("Failed to init mlw connection\n", 1));
 	data->win = mlx_new_window(data->mlx, WIDTH, HEIGTH, "miniRT");
-	data->s_img.ptr = mlx_new_image(data->mlx, WIDTH, HEIGTH);
 	data->img.ptr = mlx_new_image(data->mlx, IM_WIDTH, IM_HEIGHT);
+	data->s_img.ptr = mlx_new_image(data->mlx, WIDTH, HEIGTH);
 	if (!data->win || !data->img.ptr || !data->s_img.ptr)
 	{
 		mlx_destroy_display(data->mlx);
