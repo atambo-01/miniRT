@@ -6,85 +6,91 @@
 #    By: atambo <atambo@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/29 12:55:11 by mchingi           #+#    #+#              #
-#    Updated: 2025/06/17 15:30:20 by atambo           ###   ########.fr        #
+#    Updated: 2025/06/25 21:47:12 by atambo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SOURCES		=	\
+OBJECTS		=	\
 				\
-				src/miniRT.c\
+				src/miniRT.o\
 				\
-				src/mchingi/file_management.c\
-				src/mchingi/fill_data_acl.c\
-				src/mchingi/fill_data.c\
-				src/mchingi/fill_obj_data.c\
-				src/mchingi/scene_validations.c\
-				src/mchingi/utils.c\
-				src/mchingi/utils2.c\
-				src/mchingi/utils3.c\
-				src/mchingi/print_debug.c\
+				src/mchingi/file_management.o\
+				src/mchingi/fill_data_acl.o\
+				src/mchingi/fill_data.o\
+				src/mchingi/fill_obj_data.o\
+				src/mchingi/scene_validations.o\
+				src/mchingi/utils.o\
+				src/mchingi/utils2.o\
+				src/mchingi/utils3.o\
+				src/mchingi/print_debug.o\
 				\
-				src/atambo/minirt_error.c\
-				src/atambo/exit_minirt.c\
-				src/atambo/init.c\
-				src/atambo/util_01.c\
-				src/atambo/util_dbl.c\
-				src/atambo/util_vec3_01.c\
-				src/atambo/util_vec3_02.c\
-				src/atambo/upscale_img.c\
-				src/atambo/upscale_assign.c\
-				src/atambo/render_scene.c\
-				src/atambo/input.c\
-				src/atambo/rotate_cam.c\
-				src/atambo/rotate_obj.c\
-				src/atambo/move.c\
-				src/atambo/switch.c\
-				src/atambo/color_switch.c\
-				src/atambo/input_util.c\
-				src/atambo/print_data.c\
-				src/atambo/print_data_acl.c\
-				src/atambo/obj_normal.c\
-				src/atambo/hit_obj_01.c\
-				src/atambo/hit_obj_02.c\
-				src/atambo/ray.c\
-				src/atambo/ray_color.c\
-				src/atambo/hit_light.c\
-				src/atambo/hit_obj_light.c\
-				src/atambo/ft_sleep.c\
-				src/atambo/ft_ftoa.c\
-				src/atambo/export_scene.c\
-				src/atambo/export_scene_acl.c\
-				src/atambo/export_scene_obj.c\
-				src/atambo/t_color.c\
+				src/atambo/minirt_error.o\
+				src/atambo/exit_minirt.o\
+				src/atambo/init.o\
+				src/atambo/util_01.o\
+				src/atambo/util_dbl.o\
+				src/atambo/util_vec3_01.o\
+				src/atambo/util_vec3_02.o\
+				src/atambo/upscale_img.o\
+				src/atambo/upscale_assign.o\
+				src/atambo/render_scene.o\
+				src/atambo/input.o\
+				src/atambo/rotate_cam.o\
+				src/atambo/rotate_obj.o\
+				src/atambo/move.o\
+				src/atambo/switch.o\
+				src/atambo/color_switch.o\
+				src/atambo/input_util.o\
+				src/atambo/print_data.o\
+				src/atambo/print_data_acl.o\
+				src/atambo/obj_normal.o\
+				src/atambo/hit_obj_01.o\
+				src/atambo/hit_obj_02.o\
+				src/atambo/ray.o\
+				src/atambo/ray_color.o\
+				src/atambo/hit_light.o\
+				src/atambo/hit_obj_light.o\
+				src/atambo/ft_sleep.o\
+				src/atambo/ft_ftoa.o\
+				src/atambo/export_scene.o\
+				src/atambo/export_scene_acl.o\
+				src/atambo/export_scene_obj.o\
+				src/atambo/t_color.o
+
+HEADERS		=	inc/miniRT.h\
+				inc/miniRT_atambo.h\
+				inc/miniRT_mchingi.h
 
 NAME		=	miniRT
 CC			=	cc
-CFLAGS		=	-g -Wall -Wextra -Werror
-OBJS		=	$(SOURCES:.c=.o)
-INCLUDES	=	-Iinc -Ilibft
+CFLAGS		=	-Wall -Wextra -Werror
 
-SUBDIR		=	./minilibx-linux ./libft 
-LIBS		=	-Lminilibx-linux -l:libmlx_Linux.a -L/usr/lib -lXext -lX11 -lm -lz\
-				-Llibft -l:libft.a\
+SUBDIRS		=	./minilibx-linux\
+				./libft
+LFLAGS		=	\
+				-Lminilibx-linux -l:libmlx_Linux.a\
+				-L/usr/lib -lXext -lX11 -lm -lz\
+				-Llibft -l:libft.a
 
-all: submake $(NAME)
+all: $(SUBDIRS) $(NAME)
 
-$(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(INCLUDES) -o $(NAME) $(OBJS) $(LIBS)
+$(SUBDIRS):
+	$(MAKE) -C $@
 
-submake:
-	$(foreach dir, $(SUBDIR), $(MAKE) -C $(dir);)
+$(NAME): $(OBJECTS) $(HEADERS)
+	$(CC) $(OBJECTS) $(LFLAGS) -o $(NAME)
 
 clean:
-	rm -f $(OBJS)
-	$(foreach dir, $(SUBDIR), $(MAKE) -C $(dir) clean;)
+	rm -f $(OBJECTS) $(NAME)
+	for dir in $(SUBDIRS);do \
+		$(MAKE) -C $$dir clean;\
+	done
 
 fclean: clean
 	rm -f $(NAME)
-	$(foreach dir, $(SUBDIR), $(MAKE) -C $(dir) fclean;)
 
-re: fclean all
+re:
+	fclean all
 
-# Phony targets
-.PHONY: all clean fclean re submake
+.PHONY: all clean $(SUBDIRS)
 
