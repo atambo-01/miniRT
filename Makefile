@@ -6,7 +6,7 @@
 #    By: atambo <atambo@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/29 12:55:11 by mchingi           #+#    #+#              #
-#    Updated: 2025/06/25 21:47:12 by atambo           ###   ########.fr        #
+#    Updated: 2025/06/26 16:13:30 by atambo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -77,7 +77,9 @@ all: $(SUBDIRS) $(NAME)
 $(SUBDIRS):
 	$(MAKE) -C $@
 
-$(NAME): $(OBJECTS) $(HEADERS)
+$(OBJECTS) : $(HEADERS)
+
+$(NAME): $(OBJECTS)
 	$(CC) $(OBJECTS) $(LFLAGS) -o $(NAME)
 
 clean:

@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 01:38:57 by atambo            #+#    #+#             */
-/*   Updated: 2025/06/15 00:25:23 by atambo           ###   ########.fr       */
+/*   Updated: 2025/06/26 16:11:49 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 int	ft_key_hook_3(int key, t_data *data)
 {
-	if (key == '`')
+	if (key == '1')
 	{
 		if (data->curr_light)
 			data->curr_light = NULL;
