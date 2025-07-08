@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 00:13:05 by atambo            #+#    #+#             */
-/*   Updated: 2025/06/17 15:30:50 by atambo           ###   ########.fr       */
+/*   Updated: 2025/07/08 18:06:31 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	ft_init_data_acl(t_data *data)
 	data->cam.fov = 0.0;
 	data->light.pos = (t_vec3){0.0, 0.0, 0.0};
 	data->light.color = (t_color){0, 0, 0};
-	data->light.radius = 0.0;
+	data->light.radius = LUM_RADIUS;
 	data->light.ratio = 0.0;
 	data->alight.color = (t_color){0, 0, 0};
 	data->alight.ratio = 0.0;

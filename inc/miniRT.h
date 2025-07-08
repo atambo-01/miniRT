@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 13:19:57 by mchingi           #+#    #+#             */
-/*   Updated: 2025/06/26 16:07:52 by atambo           ###   ########.fr       */
+/*   Updated: 2025/07/08 18:07:17 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 
 // remove these libs before sending
 # include <sys/time.h>
+# define LUM_RADIUS 0.0
 
 # define EPSILON	1e-6
 # define KAPPA		0.0001
