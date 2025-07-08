@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 13:19:57 by mchingi           #+#    #+#             */
-/*   Updated: 2025/06/26 16:07:52 by atambo           ###   ########.fr       */
+/*   Updated: 2025/07/08 17:27:25 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -217,6 +217,8 @@ typedef struct s_ray
 	t_vec3	l;
 	t_obj	*obj;
 	t_light	*lum;
+	float	v_fov;
+	float	h_fov;
 }				t_ray;
 
 typedef struct s_cy
