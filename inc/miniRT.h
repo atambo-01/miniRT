@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 13:19:57 by mchingi           #+#    #+#             */
-/*   Updated: 2025/07/08 17:27:25 by atambo           ###   ########.fr       */
+/*   Updated: 2025/07/08 17:40:10 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -202,6 +202,7 @@ typedef struct s_data
 typedef struct s_ray
 {
 	t_vec3	o;
+	t_vec3	initial_dir;
 	t_vec3	dir;
 	//----------------------
 	double	tan_half_fov;

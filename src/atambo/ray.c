@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 20:22:34 by atambo            #+#    #+#             */
-/*   Updated: 2025/07/08 17:27:47 by atambo           ###   ########.fr       */
+/*   Updated: 2025/07/08 17:49:16 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_init_ray(t_data *data, t_ray *ray)
 	double	asp_ratio;
 
 	ray->o = data->cam.pos;
-	ray->dir = data->cam.dir;
+	ray->initial_dir = data->cam.dir;
 	ray->tan_half_fov = tan(data->cam.fov * M_PI / 360.0);
 	view_heigth = 2.0 * ray->tan_half_fov;
 	asp_ratio = (double)IM_WIDTH / IM_HEIGHT;
@@ -55,7 +55,7 @@ void	ft_calc_ray(int x, int y, t_ray *ray, t_cam *cam)
     float width = (float)IM_WIDTH;
     float height = (float)IM_HEIGHT;
     
-    
+	ray->dir = ray->initial_dir;
     // Angle for x-z plane (horizontal)
     float angle_x = ((width - 1.0f) - 2.0f * x) / (width - 1.0f) * (ray->h_fov / 2.0f);
     
@@ -76,11 +76,17 @@ void	ft_calc_ray(int x, int y, t_ray *ray, t_cam *cam)
     // |0		cos(θ)	-sin(θ)	|
     // |0		sin(θ)	cos(θ)	|
 
-    ray->dir.x = ray->dir.x;
-    ray->dir.y = ray->dir.y * cosf(angle_y) - ray->dir.z * sinf(angle_y);
+    ray->dir.x = (-1) * (ray->dir.x);
+    ray->dir.y = (-1) * (ray->dir.y * cosf(angle_y) - ray->dir.z * sinf(angle_y));
     ray->dir.z = (ray->dir.y) * sinf(angle_y) + ray->dir.z * cosf(angle_y);
     
     ft_normalize(&ray->dir);
+	ray->obj = NULL;
+	ray->color = (t_color){0, 0, 0};
+	ray->t = -42.0;
+	ray->d = -42.0;
+	ray->n = (t_vec3){1.0, 0.0, 0.0};
+	ray->l = (t_vec3){1.0, 0.0, 0.0};
 }
 
 void	ft_print_ray(int x, int y, t_ray *ray)
