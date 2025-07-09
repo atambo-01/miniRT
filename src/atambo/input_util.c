@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 21:17:13 by atambo            #+#    #+#             */
-/*   Updated: 2025/07/09 09:22:40 by atambo           ###   ########.fr       */
+/*   Updated: 2025/07/09 15:28:24 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	ft_obj_size(int key, t_data *data, double i)
 {
 	if (!data->curr)
 		return ;
-	if (strcmp(data->curr->type, "pl") == 0)
+	if (ft_strcmp(data->curr->type, "pl") == 0)
 	{
 		if (key == 'i' || key == 'k')
 		{
