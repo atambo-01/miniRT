@@ -6,7 +6,7 @@
 #    By: atambo <atambo@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/29 12:55:11 by mchingi           #+#    #+#              #
-#    Updated: 2025/07/09 14:07:07 by atambo           ###   ########.fr        #
+#    Updated: 2025/07/09 14:54:35 by atambo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,7 +63,7 @@ HEADERS		=	inc/miniRT.h\
 
 NAME		=	miniRT
 CC			=	cc
-CFLAGS		=	-Wall -Wextra -Werror -g
+CFLAGS		=	-Wall -Wextra -Werror
 
 SUBDIRS		=	./minilibx-linux\
 				./libft
