@@ -1,5 +1,4 @@
 # Generic ignores for common files and directories
-scenes*
 saved_scene.rt
 miniRT
 *.o
