@@ -6,7 +6,7 @@
 #    By: atambo <atambo@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/29 12:55:11 by mchingi           #+#    #+#              #
-#    Updated: 2025/07/09 13:43:34 by atambo           ###   ########.fr        #
+#    Updated: 2025/07/09 14:07:07 by atambo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -77,22 +77,24 @@ all: $(SUBDIRS) $(NAME)
 $(SUBDIRS):
 	$(MAKE) -C $@
 
-$(OBJECTS) : $(HEADERS)
+$(OBJECTS): $(HEADERS)
 
 $(NAME): $(OBJECTS)
 	$(CC) $(OBJECTS) $(LFLAGS) -o $(NAME)
 
 clean:
-	rm -f $(OBJECTS) $(NAME)
-	for dir in $(SUBDIRS);do \
-		rm -f $(OBJECTS);\
+	rm -f $(OBJECTS)
+	for dir in $(SUBDIRS); do \
+		make -C $$dir clean; \
 	done
 
 fclean: clean
 	rm -f $(NAME)
+	for dir in $(SUBDIRS); do \
+		make -C $$dir fclean; \
+	done
 
-re:
-	fclean all
+re: fclean all
 
-.PHONY: all clean $(SUBDIRS) re
+.PHONY: all clean fclean $(SUBDIRS) re
 
