@@ -6,7 +6,7 @@
 #    By: atambo <atambo@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/29 12:55:11 by mchingi           #+#    #+#              #
-#    Updated: 2025/06/26 16:13:30 by atambo           ###   ########.fr        #
+#    Updated: 2025/07/09 13:43:34 by atambo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,7 +63,7 @@ HEADERS		=	inc/miniRT.h\
 
 NAME		=	miniRT
 CC			=	cc
-CFLAGS		=	-Wall -Wextra -Werror
+CFLAGS		=	-Wall -Wextra -Werror -g
 
 SUBDIRS		=	./minilibx-linux\
 				./libft
@@ -85,7 +85,7 @@ $(NAME): $(OBJECTS)
 clean:
 	rm -f $(OBJECTS) $(NAME)
 	for dir in $(SUBDIRS);do \
-		$(MAKE) -C $$dir clean;\
+		rm -f $(OBJECTS);\
 	done
 
 fclean: clean
@@ -94,5 +94,5 @@ fclean: clean
 re:
 	fclean all
 
-.PHONY: all clean $(SUBDIRS)
+.PHONY: all clean $(SUBDIRS) re
 

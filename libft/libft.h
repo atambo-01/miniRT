@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:54:02 by mchingi           #+#    #+#             */
-/*   Updated: 2025/06/12 20:32:52 by atambo           ###   ########.fr       */
+/*   Updated: 2025/07/09 13:44:23 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ char	*ft_strrchr(const char *s, int c);
 char	*ft_strnstr(const char *big, const char *little, size_t len);
 size_t	ft_strlen(const char *str);
 size_t	ft_strlcpy(char *dest, const char *src, size_t size);
+int		ft_strcpy(char *dst, char *src);
 size_t	ft_strlcat(char *dest, const char *src, size_t size);
 void	ft_bzero(void *s, size_t n);
 void	*ft_calloc(size_t nmemb, size_t size);

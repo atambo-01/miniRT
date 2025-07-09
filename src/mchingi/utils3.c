@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 17:08:11 by mchingi           #+#    #+#             */
-/*   Updated: 2025/06/14 15:53:49 by atambo           ###   ########.fr       */
+/*   Updated: 2025/07/09 13:00:13 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	fill_radius(t_obj *obj, char **data_line, int i)
 	return (1);
 }
 
-int	ft_fill_fov(t_cam *cam, char **data_line, int i)
+int	fill_fov(t_cam *cam, char **data_line, int i)
 {
 	if (!cam)
 		return (1);

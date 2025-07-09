@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 13:19:57 by mchingi           #+#    #+#             */
-/*   Updated: 2025/07/08 18:07:17 by atambo           ###   ########.fr       */
+/*   Updated: 2025/07/09 09:19:33 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@
 # define E_RADLEN	"Radii and heights must be numbers greater than 0"
 # define E_COLOR	"Colors must be 3 numbers in the range [0-255]"
 # define E_FOV		"FOV must be a number for degrees in the range [0,180]"
-
+# define E_INTENS	"Ligth intensity must be between [0.0 ; 1.0]"
 typedef struct s_color
 {
 	int	r;

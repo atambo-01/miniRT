@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 22:55:42 by atambo            #+#    #+#             */
-/*   Updated: 2025/06/14 19:00:54 by atambo           ###   ########.fr       */
+/*   Updated: 2025/07/09 12:28:30 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ t_vec3	ft_vec3_invert(t_vec3 v);
 t_vec3	ft_cross(t_vec3 a, t_vec3 b);
 double	ft_vec3_mag(t_vec3 v);
 int		fill_radius(t_obj *obj, char **data_line, int i);
-int		ft_fill_fov(t_cam *cam, char **data_line, int i);
+int		fill_fov(t_cam *cam, char **data_line, int i);
 
 // color_switch.c
 void	ft_color_switch(t_data *data, int key);
