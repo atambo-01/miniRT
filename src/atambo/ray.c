@@ -6,7 +6,7 @@
 /*   By: atambo <atambo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 20:22:34 by atambo            #+#    #+#             */
-/*   Updated: 2025/07/08 17:49:16 by atambo           ###   ########.fr       */
+/*   Updated: 2025/07/12 18:53:02 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,66 @@ void	ft_init_ray(t_data *data, t_ray *ray)
 	ray->v_fov = ray->h_fov / asp_ratio; // Vertical FOV
 }
 
-// void	ft_calc_ray(int x, int y, t_ray *ray, t_cam *cam)
+void ft_calc_ray(int x, int y, t_ray *ray, t_cam *cam)
+{
+    double u, v;
+    t_vec3 p;
+
+    // Initialize point p as camera position
+    p = cam->pos;
+
+    // Compute projection plane distance (PPD)
+    double ppd = ((double)(IM_WIDTH - 1) / 2) / ray->tan_half_fov;
+
+    // Compute normalized coordinates (u, v) in [-1, 1] range
+    u = (IM_WIDTH - 1 - x + 0.5) / (double)(IM_WIDTH - 1);  // Maps x to [0, 1], inverted
+    v = (IM_HEIGHT - 1 - y + 0.5) / (double)(IM_HEIGHT - 1); // Maps y to [0, 1], inverted
+
+    // Scale to projection plane dimensions (accounting for aspect ratio)
+    double half_width = (IM_WIDTH - 1) / 2.0;
+    double half_height = (IM_HEIGHT - 1) / 2.0;
+
+    // Assume camera looks along cam->dir; compute basis vectors
+    t_vec3 forward = cam->dir; // Should be normalized
+    t_vec3 up = {0.0, 1.0, 0.0}; // World up vector (adjust if needed)
+    t_vec3 right = {1.0, 0.0, 0.0}; // Right vector
+
+    // Compute point on projection plane in world space
+    p = ft_vec3_add(p, ft_scalar_mult(forward, ppd)); // Move to projection plane
+    p = ft_vec3_add(p, ft_scalar_mult(right, u * half_width)); // Adjust x
+    p = ft_vec3_add(p, ft_scalar_mult(up, v * half_height));   // Adjust y
+
+    // Compute ray direction
+    ray->dir = ft_vec3_sub(p, cam->pos);
+    ft_normalize(&ray->dir);
+
+    // Initialize other ray properties
+    ray->obj = NULL;
+    ray->color = (t_color){0, 0, 0};
+    ray->t = -42.0;
+    ray->d = -42.0;
+    ray->n = (t_vec3){1.0, 0.0, 0.0};
+    ray->l = (t_vec3){1.0, 0.0, 0.0};
+}
+
+// void ft_calc_ray(int x, int y, t_ray *ray, t_cam *cam)
+// {
+//     t_vec3 p = cam->pos; // Start at camera position
+//     double ppd = ((double)(IM_WIDTH - 1) / 2) / ray->tan_half_fov;
+//     p.x += ((IM_WIDTH - 1) / 2.0) * ((IM_WIDTH - 1 - x + 0.5) / (IM_WIDTH - 1));
+//     p.y += ((IM_HEIGHT - 1) / 2.0) * ((IM_HEIGHT - 1 - y + 0.5) / (IM_HEIGHT - 1));
+//     p.z -= ppd; // Place projection plane at cam.z - PPD (negative Z direction)
+//     ray->dir = ft_vec3_sub(p, cam->pos);
+//     ft_normalize(&ray->dir);
+//     ray->obj = NULL;
+//     ray->color = (t_color){0, 0, 0};
+//     ray->t = -42.0;
+//     ray->d = -42.0;
+//     ray->n = (t_vec3){1.0, 0.0, 0.0};
+//     ray->l = (t_vec3){1.0, 0.0, 0.0};
+// }
+
+// void	ft_calc_ray(int x, int y, t_ray *ray, t_cam *cam) projection plane
 // {
 // 	double	u;
 // 	double	v;
@@ -50,44 +109,44 @@ void	ft_init_ray(t_data *data, t_ray *ray)
 // 	ray->l = (t_vec3){1.0, 0.0, 0.0};
 // }
 
-void	ft_calc_ray(int x, int y, t_ray *ray, t_cam *cam)
-{
-    float width = (float)IM_WIDTH;
-    float height = (float)IM_HEIGHT;
+// void	ft_calc_ray(int x, int y, t_ray *ray, t_cam *cam)//spherical
+// {
+//     float width = (float)IM_WIDTH;
+//     float height = (float)IM_HEIGHT;
     
-	ray->dir = ray->initial_dir;
-    // Angle for x-z plane (horizontal)
-    float angle_x = ((width - 1.0f) - 2.0f * x) / (width - 1.0f) * (ray->h_fov / 2.0f);
+// 	ray->dir = ray->initial_dir;
+//     // Angle for x-z plane (horizontal)
+//     float angle_x = ((width - 1.0f) - 2.0f * x) / (width - 1.0f) * (ray->h_fov / 2.0f);
     
-    // Angle for y-z plane (vertical)
-    float angle_y = ((height - 1.0f) - 2.0f * y) / (height - 1.0f) * (ray->v_fov / 2.0f);
+//     // Angle for y-z plane (vertical)
+//     float angle_y = ((height - 1.0f) - 2.0f * y) / (height - 1.0f) * (ray->v_fov / 2.0f);
   
-    // The rotation matrix for rotating around the y-axis by θ radians is:
-    // |cos(θ)	0		sin(θ)	|
-    // |0		1		0		|
-    // |-sin(θ)	0		cos(θ)	|
+//     // The rotation matrix for rotating around the y-axis by θ radians is:
+//     // |cos(θ)	0		sin(θ)	|
+//     // |0		1		0		|
+//     // |-sin(θ)	0		cos(θ)	|
 
-    ray->dir.x = ray->dir.x * cosf(angle_x) + ray->dir.z * sinf(angle_x);
-    ray->dir.y = ray->dir.y;
-    ray->dir.z = -(ray->dir.x) * sinf(angle_x) + ray->dir.z * cosf(angle_x);
+//     ray->dir.x = ray->dir.x * cosf(angle_x) + ray->dir.z * sinf(angle_x);
+//     ray->dir.y = ray->dir.y;
+//     ray->dir.z = -(ray->dir.x) * sinf(angle_x) + ray->dir.z * cosf(angle_x);
 
-    // The rotation matrix for rotating around the x-axis by θ radians is:
-    // |1		0		0		|
-    // |0		cos(θ)	-sin(θ)	|
-    // |0		sin(θ)	cos(θ)	|
+//     // The rotation matrix for rotating around the x-axis by θ radians is:
+//     // |1		0		0		|
+//     // |0		cos(θ)	-sin(θ)	|
+//     // |0		sin(θ)	cos(θ)	|
 
-    ray->dir.x = (-1) * (ray->dir.x);
-    ray->dir.y = (-1) * (ray->dir.y * cosf(angle_y) - ray->dir.z * sinf(angle_y));
-    ray->dir.z = (ray->dir.y) * sinf(angle_y) + ray->dir.z * cosf(angle_y);
+//     ray->dir.x = (-1) * (ray->dir.x);
+//     ray->dir.y = (-1) * (ray->dir.y * cosf(angle_y) - ray->dir.z * sinf(angle_y));
+//     ray->dir.z = (ray->dir.y) * sinf(angle_y) + ray->dir.z * cosf(angle_y);
     
-    ft_normalize(&ray->dir);
-	ray->obj = NULL;
-	ray->color = (t_color){0, 0, 0};
-	ray->t = -42.0;
-	ray->d = -42.0;
-	ray->n = (t_vec3){1.0, 0.0, 0.0};
-	ray->l = (t_vec3){1.0, 0.0, 0.0};
-}
+//     ft_normalize(&ray->dir);
+// 	ray->obj = NULL;
+// 	ray->color = (t_color){0, 0, 0};
+// 	ray->t = -42.0;
+// 	ray->d = -42.0;
+// 	ray->n = (t_vec3){1.0, 0.0, 0.0};
+// 	ray->l = (t_vec3){1.0, 0.0, 0.0};
+// }
 
 void	ft_print_ray(int x, int y, t_ray *ray)
 {
